@@ -1,0 +1,20 @@
+[ovirt-stable]
+name=Stable builds of the oVirt project
+baseurl=http://ovirt.org/releases/stable/fedora/$releasever/
+enabled=1
+skip_if_unavailable=1
+gpgcheck=0
+
+[ovirt-beta]
+name=Beta builds of the oVirt project
+baseurl=http://ovirt.org/releases/beta/fedora/$releasever/
+enabled=0
+skip_if_unavailable=1
+gpgcheck=0
+
+[ovirt-nightly]
+name=Nightly builds of the oVirt project
+baseurl=http://ovirt.org/releases/nightly/fedora/$releasever/
+enabled=0
+skip_if_unavailable=1
+gpgcheck=0

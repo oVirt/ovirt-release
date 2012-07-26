@@ -2,17 +2,33 @@ Summary:	oVirt repository files
 Name:		ovirt-release
 Version:	@VERSION@
 Release:	1
-License:	ASL	
-Group:		System Environment/Base
+License:	ASL
 URL:		http://ovirt.org
 Source:		%{name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:	noarch
-Requires:	fedora-release
 BuildRequires: automake autoconf
 
+%package fedora
+Summary:    oVirt Repository Files for Fedora systems
+Group:		System Environment/Base
+Requires:	fedora-release
+
+%package el6
+Summary:    oVirt Repository Files for EL6 systems
+Group:		System Environment/Base
+Requires:	/etc/system-release
+
 %description
-oVirt repository file required to obtain both release and nightly versions.
+should be nothing...
+
+%description fedora
+oVirt repository file required to obtain stable releases, beta,
+and nightly versions for Fedora systems.
+
+%description el6
+oVirt repository file required to obtain stable releases, beta,
+and nightly versions for EL6 based systems.
 
 %prep
 %setup -q
@@ -22,15 +38,21 @@ oVirt repository file required to obtain both release and nightly versions.
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d 755 $RPM_BUILD_ROOT/etc/yum.repos.d
-install -m 644 ovirt.repo $RPM_BUILD_ROOT/etc/yum.repos.d
+install -m 644 fedora-ovirt.repo $RPM_BUILD_ROOT/etc/yum.repos.d/ovirt.repo
+install -m 644 el6-ovirt.repo $RPM_BUILD_ROOT/etc/yum.repos.d
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files fedora
 %defattr(-,root,root,-)
-%doc ASL 
+%doc ASL
 %config(noreplace) /etc/yum.repos.d/ovirt.repo
+
+%files el6
+%defattr(-,root,root,-)
+%doc ASL
+%config(noreplace) /etc/yum.repos.d/el6-ovirt.repo
 
 %changelog
 * Thu Jun 14 2012 Mike Burns <mburns@redhat.com> - 2-1

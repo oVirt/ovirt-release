@@ -1,18 +1,21 @@
 Summary:	oVirt repository files
 Name:		ovirt-release
 Version:	@VERSION@
-Release:	1
+Release:	2
 License:	ASL
 URL:		http://ovirt.org
 Source:		%{name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:	noarch
 BuildRequires: automake autoconf
+Epoch: 0
 
 %package fedora
 Summary:    oVirt Repository Files for Fedora systems
 Group:		System Environment/Base
 Requires:	fedora-release
+Obsoletes:  ovirt-release <= 0:4-1
+Provides:   ovirt-release = %{epoch}:%{version}-%{release}
 
 %package el6
 Summary:    oVirt Repository Files for EL6 systems

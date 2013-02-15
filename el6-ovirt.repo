@@ -1,20 +1,20 @@
 [ovirt-stable]
 name=Stable builds of the oVirt project
-baseurl=http://ovirt.org/releases/stable/rpm/EL6/$releasever/
+baseurl=http://ovirt.org/releases/stable/rpm/EL/$releasever/
 enabled=1
 skip_if_unavailable=1
 gpgcheck=0
 
 [ovirt-beta]
 name=Beta builds of the oVirt project
-baseurl=http://ovirt.org/releases/beta/rpm/EL6/$releasever/
+baseurl=http://ovirt.org/releases/beta/rpm/EL/$releasever/
 enabled=0
 skip_if_unavailable=1
 gpgcheck=0
 
 [ovirt-nightly]
 name=Nightly builds of the oVirt project
-baseurl=http://ovirt.org/releases/nightly/rpm/EL6/$releasever/
+baseurl=http://ovirt.org/releases/nightly/rpm/EL/$releasever/
 enabled=0
 skip_if_unavailable=1
 gpgcheck=0

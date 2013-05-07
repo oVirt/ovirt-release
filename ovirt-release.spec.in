@@ -1,7 +1,7 @@
 Summary:	oVirt repository files
 Name:		ovirt-release
 Version:	@VERSION@
-Release:	3
+Release:	1
 License:	ASL
 URL:		http://ovirt.org
 Source:		%{name}-%{version}.tar.gz

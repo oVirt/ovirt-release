@@ -5,6 +5,13 @@ enabled=1
 skip_if_unavailable=1
 gpgcheck=0
 
+[ovirt-updates-testing]
+name=Stable builds of the oVirt project
+baseurl=http://ovirt.org/releases/updates-testing/rpm/Fedora/$releasever/
+enabled=0
+skip_if_unavailable=1
+gpgcheck=0
+
 [ovirt-beta]
 name=Beta builds of the oVirt project
 baseurl=http://ovirt.org/releases/beta/rpm/Fedora/$releasever/

@@ -45,6 +45,7 @@ and nightly versions for EL6 based systems.
 rm -rf $RPM_BUILD_ROOT
 install -d 755 $RPM_BUILD_ROOT/etc/yum.repos.d
 install -m 644 fedora-ovirt.repo $RPM_BUILD_ROOT/etc/yum.repos.d/ovirt.repo
+install -m 644 fedora-virt-preview.repo $RPM_BUILD_ROOT/etc/yum.repos.d/fedora-virt-preview.repo
 install -m 644 el6-ovirt.repo $RPM_BUILD_ROOT/etc/yum.repos.d
 
 %clean
@@ -54,6 +55,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %doc ASL
 %config(noreplace) /etc/yum.repos.d/ovirt.repo
+%config(noreplace) /etc/yum.repos.d/fedora-virt-preview.repo
 
 %files el6
 %defattr(-,root,root,-)

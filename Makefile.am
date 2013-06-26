@@ -20,6 +20,7 @@ OVIRT_CACHE_DIR	?= $(HOME)/ovirt-cache
 EXTRA_DIST = \
 	ASL \
 	fedora-ovirt.repo \
+	fedora-virt-preview.repo \
 	el6-ovirt.repo \
   ovirt-release.spec \
   ovirt-release.spec.in

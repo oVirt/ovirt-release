@@ -22,6 +22,7 @@ EXTRA_DIST = \
 	fedora-ovirt.repo \
 	fedora-virt-preview.repo \
 	el6-ovirt.repo \
+	glusterfs-epel.repo \
   ovirt-release.spec \
   ovirt-release.spec.in
 

@@ -65,6 +65,15 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) /etc/yum.repos.d/glusterfs-epel.repo
 
 %changelog
+* Thu Aug 22 2013 Mike Burns <mburns@redhat.com> - 8-1
+- Add glusterfs-epel repo to el6 package
+
+* Wed Jun 26 2013 Mike Burns <mburns@redhat.com> - 7-1
+- Add Fedora virt-preview repo for Fedora builds
+
+* Tue May 07 2013 Mike Burns <mburns@redhat.com> - 6-1
+- Add updates-testing repository
+
 * Thu Jun 14 2012 Mike Burns <mburns@redhat.com> - 2-1
 - Add Beta repo
 - convert to automake/autoconf build system.

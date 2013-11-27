@@ -65,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) /etc/yum.repos.d/glusterfs-epel.repo
 
 %changelog
+* Thu Nov 28 2013 Sandro Bonazzola <sbonazzo@redhat.com> - 9-1
+- change glusterfs-epel to use LATEST branch
+
 * Thu Aug 22 2013 Mike Burns <mburns@redhat.com> - 8-1
 - Add glusterfs-epel repo to el6 package
 

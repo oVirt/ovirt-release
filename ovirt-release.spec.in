@@ -24,6 +24,7 @@ Summary:    oVirt Repository Files for EL6 systems
 Group:		System Environment/Base
 Requires:	/etc/system-release
 Requires:   tar
+Requires:   epel-release
 
 %description
 should be nothing...

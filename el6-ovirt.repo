@@ -1,12 +1,19 @@
 [ovirt-stable]
-name=Stable builds of the oVirt project
+name=Older Stable builds of the oVirt project
 baseurl=http://ovirt.org/releases/stable/rpm/EL/$releasever/
 enabled=1
 skip_if_unavailable=1
 gpgcheck=0
 
+[ovirt-3.3.2]
+name=oVirt 3.3.2 release
+baseurl=http://resources.ovirt.org/releases/3.3.2/rpm/EL/$releasever/
+enabled=1
+skip_if_unavailable=1
+gpgcheck=0
+
 [ovirt-updates-testing]
-name=Stable builds of the oVirt project
+name=Test Updates builds of the oVirt project
 baseurl=http://ovirt.org/releases/updates-testing/rpm/EL/$releasever/
 enabled=0
 skip_if_unavailable=1

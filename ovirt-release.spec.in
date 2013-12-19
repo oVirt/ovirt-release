@@ -65,6 +65,12 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) /etc/yum.repos.d/glusterfs-epel.repo
 
 %changelog
+* Thu Dec 19 2013 Sandro Bonazzola <sbonazzo@redhat.com> - 10-1
+- new ovirt-3.3.2 repository, Releasing oVirt 3.3.2
+- ovirt-stable repository now provides Older Stable builds.
+- ovirt-updates-testing provides Test Updates builds
+- removed ovirt-alpha, obsolete and no longer used in oVirt >= 3.3.0.
+
 * Thu Nov 28 2013 Sandro Bonazzola <sbonazzo@redhat.com> - 9-1
 - change glusterfs-epel to use LATEST branch
 

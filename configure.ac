@@ -1,4 +1,4 @@
-AC_INIT([ovirt-release], [9], [users@ovirt.org])
+AC_INIT([ovirt-release], [10], [users@ovirt.org])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign -Wno-portability tar-pax])
 
 AC_SUBST([PACKAGE_NAME])

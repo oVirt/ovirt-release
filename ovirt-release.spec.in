@@ -1,7 +1,7 @@
 Summary:	oVirt repository files
 Name:		ovirt-release
 Version:	@VERSION@
-Release:	1
+Release:	2
 License:	ASL
 URL:		http://ovirt.org
 Source:		%{name}-%{version}.tar.gz
@@ -65,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) /etc/yum.repos.d/glusterfs-epel.repo
 
 %changelog
+* Mon Jan 13 2014 Kiril Nesenko <knesenko@redhat.com> - 10-2
+- Update the repositories with 3.4.0-alpha testing
+
 * Thu Dec 19 2013 Sandro Bonazzola <sbonazzo@redhat.com> - 10-1
 - new ovirt-3.3.2 repository, Releasing oVirt 3.3.2
 - ovirt-stable repository now provides Older Stable builds.

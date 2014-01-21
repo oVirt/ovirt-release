@@ -1,25 +1,48 @@
+#
+# ovirt-release -- repo files for oVirt projects
+# Copyright (C) 2012-2014 Red Hat, Inc.
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+#
+
+%global     package_version @PACKAGE_VERSION@
+%global     package_name @PACKAGE_NAME@
+
 Summary:	oVirt repository files
-Name:		ovirt-release
-Version:	@VERSION@
-Release:	2
-License:	ASL
+Name:		%{package_name}
+Version:	@PACKAGE_RPM_VERSION@
+Release:	@PACKAGE_RPM_RELEASE@%{?release_suffix}%{?dist}
+License:	ASL 2.0
 URL:		http://ovirt.org
-Source:		%{name}-%{version}.tar.gz
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Source:		%{package_name}-%{package_version}.tar.gz
+
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
 BuildArch:	noarch
 Requires:   tar
 BuildRequires: automake autoconf
 Epoch: 0
 
-%package fedora
-Summary:    oVirt Repository Files for Fedora systems
+%package	fedora
+Summary:	oVirt Repository Files for Fedora systems
 Group:		System Environment/Base
 Requires:	fedora-release
 Obsoletes:  ovirt-release <= 0:4-1
 Provides:   ovirt-release = %{epoch}:%{version}-%{release}
 Requires:   tar
 
-%package el6
+%package	el6
 Summary:    oVirt Repository Files for EL6 systems
 Group:		System Environment/Base
 Requires:	/etc/system-release
@@ -38,30 +61,30 @@ oVirt repository file required to obtain stable releases, beta,
 and nightly versions for EL6 based systems.
 
 %prep
-%setup -q
+%setup -q -n %{package_name}-%{package_version}
 
 %build
 
 %install
-rm -rf $RPM_BUILD_ROOT
-install -d 755 $RPM_BUILD_ROOT/etc/yum.repos.d
-install -m 644 fedora-ovirt.repo $RPM_BUILD_ROOT/etc/yum.repos.d/ovirt.repo
-install -m 644 fedora-virt-preview.repo $RPM_BUILD_ROOT/etc/yum.repos.d/fedora-virt-preview.repo
-install -m 644 el6-ovirt.repo $RPM_BUILD_ROOT/etc/yum.repos.d
-install -m 644 glusterfs-epel.repo $RPM_BUILD_ROOT/etc/yum.repos.d
+rm -rf "%{buildroot}"
+install -d 755 "%{buildroot}"/etc/yum.repos.d
+install -m 644 fedora-ovirt.repo "%{buildroot}"/etc/yum.repos.d/ovirt.repo
+install -m 644 fedora-virt-preview.repo "%{buildroot}"/etc/yum.repos.d/fedora-virt-preview.repo
+install -m 644 el6-ovirt.repo "%{buildroot}"/etc/yum.repos.d
+install -m 644 glusterfs-epel.repo "%{buildroot}"/etc/yum.repos.d
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf "%{buildroot}"
 
 %files fedora
 %defattr(-,root,root,-)
-%doc ASL
+%doc COPYING
 %config(noreplace) /etc/yum.repos.d/ovirt.repo
 %config(noreplace) /etc/yum.repos.d/fedora-virt-preview.repo
 
 %files el6
 %defattr(-,root,root,-)
-%doc ASL
+%doc COPYING
 %config(noreplace) /etc/yum.repos.d/el6-ovirt.repo
 %config(noreplace) /etc/yum.repos.d/glusterfs-epel.repo
 

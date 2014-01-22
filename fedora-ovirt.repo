@@ -39,3 +39,10 @@ baseurl=http://ovirt.org/releases/3.4.0-alpha/rpm/Fedora/$releasever/
 enabled=0
 skip_if_unavailable=1
 gpgcheck=0
+
+[ovirt-3.4.0-prerelease]
+name=Pre release builds of the oVirt 3.4 project
+baseurl=http://resources.ovirt.org/releases/3.4.0_pre/rpm/Fedora/$releasever/
+enabled=1
+skip_if_unavailable=1
+gpgcheck=0

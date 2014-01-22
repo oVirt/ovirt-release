@@ -89,6 +89,9 @@ rm -rf "%{buildroot}"
 %config(noreplace) /etc/yum.repos.d/glusterfs-epel.repo
 
 %changelog
+* Wed Jan 22 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 10.0.1-1
+- Update the repositories with 3.4.0_pre for testing
+
 * Mon Jan 13 2014 Kiril Nesenko <knesenko@redhat.com> - 10-2
 - Update the repositories with 3.4.0-alpha testing
 

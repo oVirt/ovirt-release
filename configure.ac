@@ -17,16 +17,16 @@ dnl License along with this library; if not, write to the Free Software
 dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 dnl
 
-define([VERSION_MAJOR], [10])
+define([VERSION_MAJOR], [11])
 define([VERSION_MINOR], [0])
-define([VERSION_FIX], [1])
+define([VERSION_FIX], [0])
 define([VERSION_NUMBER], VERSION_MAJOR[.]VERSION_MINOR[.]VERSION_FIX)
 define([VERSION_SUFFIX], [])
 
 AC_INIT([ovirt-release], VERSION_NUMBER[]VERSION_SUFFIX, [users@ovirt.org])
 
 PACKAGE_RPM_VERSION="VERSION_NUMBER"
-PACKAGE_RPM_RELEASE="3$(echo VERSION_SUFFIX | sed 's/^_//')"
+PACKAGE_RPM_RELEASE="1$(echo VERSION_SUFFIX | sed 's/^_//')"
 AC_SUBST([PACKAGE_RPM_VERSION])
 AC_SUBST([PACKAGE_RPM_RELEASE])
 

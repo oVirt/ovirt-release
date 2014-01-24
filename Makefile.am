@@ -19,31 +19,19 @@
 
 AUTOMAKE_OPTIONS = foreign 1.9
 
-OVIRT_CACHE_DIR	?= $(HOME)/ovirt-cache
-
 EXTRA_DIST = \
+	autogen.sh \
 	COPYING \
-	fedora-ovirt.repo \
-	fedora-virt-preview.repo \
-	el6-ovirt.repo \
-	glusterfs-epel.repo \
-  ovirt-release.spec \
-  ovirt-release.spec.in
+	ovirt-release.spec \
+	ovirt-release.spec.in \
+	$(NULL)
 
-DISTCLEANFILES = $(PACKAGE)-$(VERSION).tar.gz
+dist_pkgdata_DATA = \
+	$(srcdir)/fedora-virt-preview.repo \
+	$(srcdir)/glusterfs-epel.repo \
+	$(srcdir)/ovirt-epel.repo \
+	$(srcdir)/ovirt.repo.in \
+	$(NULL)
 
-rpms: dist
-	rpmbuild $(RPM_FLAGS) -ta $(distdir).tar.gz
-
-srpms: dist
-	rpmbuild $(RPM_FLAGS) -ts $(distdir).tar.gz
-
-publish: rpms
-	mkdir -p $(OVIRT_CACHE_DIR)
-	rsync -aq $(shell rpm --eval '%{_rpmdir}')/ $(OVIRT_CACHE_DIR)/ovirt/
-	rsync -aq $(shell rpm --eval '%{_srcrpmdir}')/ $(OVIRT_CACHE_DIR)/ovirt/src
-	createrepo $(OVIRT_CACHE_DIR)/ovirt
-
-.PHONY: rpms publish srpms
 
 # vim: ts=2

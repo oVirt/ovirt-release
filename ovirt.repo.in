@@ -1,0 +1,41 @@
+[ovirt-stable]
+name=oVirt Latest Releases
+baseurl=http://ovirt.org/releases/stable/rpm/@DIST@/$releasever/
+enabled=1
+skip_if_unavailable=1
+gpgcheck=0
+
+[ovirt-3.3.3]
+name=oVirt 3.3.3 Release
+baseurl=http://resources.ovirt.org/releases/3.3.3/rpm/@DIST@/$releasever/
+enabled=1
+skip_if_unavailable=1
+gpgcheck=0
+
+[ovirt-updates-testing]
+name=oVirt 3.3.z Latest Pre Releases (Release Candidate)
+baseurl=http://ovirt.org/releases/updates-testing/rpm/@DIST@/$releasever/
+enabled=0
+skip_if_unavailable=1
+gpgcheck=0
+
+[ovirt-beta]
+name=oVirt 3.3.z Beta Test Releases
+baseurl=http://ovirt.org/releases/beta/rpm/@DIST@/$releasever/
+enabled=0
+skip_if_unavailable=1
+gpgcheck=0
+
+[ovirt-nightly]
+name=oVirt Nightly Test Releases
+baseurl=http://ovirt.org/releases/nightly/rpm/@DIST@/$releasever/
+enabled=0
+skip_if_unavailable=1
+gpgcheck=0
+
+[ovirt-3.4.0-prerelease]
+name=oVirt 3.4.0 Latest Pre Releases (Beta to Release Candidate)
+baseurl=http://resources.ovirt.org/releases/3.4.0_pre/rpm/@DIST@/$releasever/
+enabled=0
+skip_if_unavailable=1
+gpgcheck=0

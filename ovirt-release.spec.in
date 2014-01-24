@@ -17,78 +17,89 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #
 
-%global     package_version @PACKAGE_VERSION@
-%global     package_name @PACKAGE_NAME@
+%global	package_version @PACKAGE_VERSION@
+%global	package_name @PACKAGE_NAME@
 
-Summary:	oVirt repository files
 Name:		%{package_name}
 Version:	@PACKAGE_RPM_VERSION@
 Release:	@PACKAGE_RPM_RELEASE@%{?release_suffix}
+Summary:	oVirt repository configuration
+Epoch:		0
+Group:		System Environment/Base
+
 License:	ASL 2.0
 URL:		http://ovirt.org
-Source:		%{package_name}-%{package_version}.tar.gz
+Source0:	http://ovirt.org/releases/stable/src/%{package_name}-%{package_version}.tar.gz
 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
 BuildArch:	noarch
-Requires:   tar
-BuildRequires: automake autoconf
-Epoch: 0
 
-%package	fedora
-Summary:	oVirt Repository Files for Fedora systems
-Group:		System Environment/Base
-Requires:	fedora-release
-Obsoletes:  ovirt-release <= 0:4-1
-Provides:   ovirt-release = %{epoch}:%{version}-%{release}
-Requires:   tar
-
-%package	el6
-Summary:    oVirt Repository Files for EL6 systems
-Group:		System Environment/Base
-Requires:	/etc/system-release
-Requires:   tar
-Requires:   epel-release
+BuildRequires:	automake
+BuildRequires:	autoconf
+Requires:		system-release
+Requires:		tar
 
 %description
-should be nothing...
+This package contains the yum configuration for oVirt repositories
 
-%description fedora
-oVirt repository file required to obtain stable releases, beta,
-and nightly versions for Fedora systems.
-
-%description el6
-oVirt repository file required to obtain stable releases, beta,
-and nightly versions for EL6 based systems.
 
 %prep
-%setup -q -n %{package_name}-%{package_version}
+%setup -q
+
 
 %build
+%configure
+make %{?_smp_mflags}
+
 
 %install
 rm -rf "%{buildroot}"
-install -d 755 "%{buildroot}"/etc/yum.repos.d
-install -m 644 fedora-ovirt.repo "%{buildroot}"/etc/yum.repos.d/ovirt.repo
-install -m 644 fedora-virt-preview.repo "%{buildroot}"/etc/yum.repos.d/fedora-virt-preview.repo
-install -m 644 el6-ovirt.repo "%{buildroot}"/etc/yum.repos.d
-install -m 644 glusterfs-epel.repo "%{buildroot}"/etc/yum.repos.d
+%make_install
+#Allow ghost files
+install -d 755 "%{buildroot}%{_sysconfdir}"/yum.repos.d
+touch "%{buildroot}%{_sysconfdir}"/yum.repos.d/ovirt.repo
+touch "%{buildroot}%{_sysconfdir}"/yum.repos.d/fedora-virt-preview.repo
+touch "%{buildroot}%{_sysconfdir}"/yum.repos.d/glusterfs-epel.repo
+touch "%{buildroot}%{_sysconfdir}"/yum.repos.d/ovirt-epel.repo
 
-%clean
-rm -rf "%{buildroot}"
+%post
 
-%files fedora
+# Adjust repos as per dist and version
+DIST=Fedora
+#Fedora is good for both Fedora and Generic (and probably other based on Fedora)
+#Handling EL exception only (for now)
+if grep -qFi 'CentOS' /etc/system-release; then
+    DIST=EL
+elif grep -qFi 'Red Hat' /etc/system-release; then
+    DIST=EL
+fi
+
+sed -e "s/@DIST@/$DIST/g" <"%{_datadir}/%{package_name}/ovirt.repo.in" >%{_sysconfdir}/yum.repos.d/ovirt.repo
+
+ADDITIONAL_REPO="fedora-virt-preview.repo"
+[ "$DIST" == "EL" ] && ADDITIONAL_REPO="glusterfs-epel.repo"
+
+install -m 644 "%{_datadir}/%{package_name}/$ADDITIONAL_REPO" "%{_sysconfdir}/yum.repos.d/$ADDITIONAL_REPO"
+
+if [ "$DIST" == "EL" ] ; then
+#Can't explicitly require epel-release, so adding epel-release to available packages
+#This will allow "yum install epel-release".
+    install -m 644 "%{_datadir}/%{package_name}/ovirt-epel.repo" "%{_sysconfdir}/yum.repos.d/ovirt-epel.repo"
+fi
+
+%files
 %defattr(-,root,root,-)
 %doc COPYING
-%config(noreplace) /etc/yum.repos.d/ovirt.repo
-%config(noreplace) /etc/yum.repos.d/fedora-virt-preview.repo
-
-%files el6
-%defattr(-,root,root,-)
-%doc COPYING
-%config(noreplace) /etc/yum.repos.d/el6-ovirt.repo
-%config(noreplace) /etc/yum.repos.d/glusterfs-epel.repo
+%{_datadir}/%{package_name}/
+%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt.repo
+%ghost %config(noreplace,missingok) %{_sysconfdir}/yum.repos.d/fedora-virt-preview.repo
+%ghost %config(noreplace,missingok) %{_sysconfdir}/yum.repos.d/glusterfs-epel.repo
+%ghost %config(noreplace,missingok) %{_sysconfdir}/yum.repos.d/ovirt-epel.repo
 
 %changelog
+* Fri Jan 24 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 11.0.0-1
+- Unify ovirt-release-fedora and ovirt-release-el6
+
 * Wed Jan 22 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 10.0.1-3
 - new ovirt-3.3.3 repository, Releasing oVirt 3.3.3
 - 3.3.2 packages are now in stable

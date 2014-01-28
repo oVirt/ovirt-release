@@ -5,9 +5,9 @@ enabled=1
 skip_if_unavailable=1
 gpgcheck=0
 
-[ovirt-3.3.2]
-name=oVirt 3.3.2 release
-baseurl=http://resources.ovirt.org/releases/3.3.2/rpm/EL/$releasever/
+[ovirt-3.3.3]
+name=oVirt 3.3.3 release
+baseurl=http://resources.ovirt.org/releases/3.3.3/rpm/EL/$releasever/
 enabled=1
 skip_if_unavailable=1
 gpgcheck=0

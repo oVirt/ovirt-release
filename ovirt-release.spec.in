@@ -89,6 +89,10 @@ rm -rf "%{buildroot}"
 %config(noreplace) /etc/yum.repos.d/glusterfs-epel.repo
 
 %changelog
+* Wed Jan 22 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 10.0.1-3
+- new ovirt-3.3.3 repository, Releasing oVirt 3.3.3
+- 3.3.2 packages are now in stable
+
 * Wed Jan 22 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 10.0.1-2
 - Update the repositories with 3.4.0_pre for testing (disabled by default)
 

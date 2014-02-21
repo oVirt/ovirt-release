@@ -68,9 +68,7 @@ touch "%{buildroot}%{_sysconfdir}"/yum.repos.d/ovirt-epel.repo
 DIST=Fedora
 #Fedora is good for both Fedora and Generic (and probably other based on Fedora)
 #Handling EL exception only (for now)
-if grep -qFi 'CentOS' /etc/system-release; then
-    DIST=EL
-elif grep -qFi 'Red Hat' /etc/system-release; then
+if rpm --eval "%%dist" | grep -qFi 'el'; then
     DIST=EL
 fi
 

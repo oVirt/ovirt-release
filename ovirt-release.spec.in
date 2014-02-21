@@ -95,6 +95,9 @@ fi
 %ghost %config(noreplace,missingok) %{_sysconfdir}/yum.repos.d/ovirt-epel.repo
 
 %changelog
+* Mon Feb 24 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 11.0.1-1
+- Add support for EL6 derived distributions
+
 * Fri Jan 24 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 11.0.0-1
 - Unify ovirt-release-fedora and ovirt-release-el6
 

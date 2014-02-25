@@ -68,11 +68,15 @@ touch "%{buildroot}%{_sysconfdir}"/yum.repos.d/ovirt-epel.repo
 DIST=Fedora
 #Fedora is good for both Fedora and Generic (and probably other based on Fedora)
 #Handling EL exception only (for now)
+DISTVER="$(rpm --eval "%%dist"|cut -c2-)"
 if rpm --eval "%%dist" | grep -qFi 'el'; then
     DIST=EL
 fi
 
-sed -e "s/@DIST@/$DIST/g" <"%{_datadir}/%{package_name}/ovirt.repo.in" >%{_sysconfdir}/yum.repos.d/ovirt.repo
+sed \
+    -e "s/@DIST@/${DIST}/g" \
+    -e "s/@DISTVER@/${DISTVER}/g" \
+    <"%{_datadir}/%{package_name}/ovirt.repo.in" >%{_sysconfdir}/yum.repos.d/ovirt.repo
 
 ADDITIONAL_REPO="fedora-virt-preview.repo"
 [ "$DIST" == "EL" ] && ADDITIONAL_REPO="glusterfs-epel.repo"
@@ -95,6 +99,9 @@ fi
 %ghost %config(noreplace,missingok) %{_sysconfdir}/yum.repos.d/ovirt-epel.repo
 
 %changelog
+* Tue Feb 25 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 11.0.2-1
+- Add new layout nightly builds
+
 * Mon Feb 24 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 11.0.1-1
 - Add support for EL6 derived distributions
 

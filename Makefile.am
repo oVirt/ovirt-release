@@ -30,6 +30,7 @@ dist_pkgdata_DATA = \
 	$(srcdir)/fedora-virt-preview.repo \
 	$(srcdir)/glusterfs-epel.repo \
 	$(srcdir)/ovirt-epel.repo \
+	$(srcdir)/ovirt-nightly.repo.in \
 	$(srcdir)/ovirt.repo.in \
 	$(NULL)
 

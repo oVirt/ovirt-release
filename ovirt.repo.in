@@ -1,76 +1,45 @@
+
 [ovirt-stable]
-name=oVirt Latest Releases
+name=Latest oVirt Releases
 baseurl=http://ovirt.org/releases/stable/rpm/@DIST@/$releasever/
 enabled=1
 skip_if_unavailable=1
 gpgcheck=0
 
-[ovirt-3.3.3]
-name=oVirt 3.3.3 Release
-baseurl=http://resources.ovirt.org/releases/3.3.3/rpm/@DIST@/$releasever/
+
+# Latest oVirt 3.4 releases
+
+[ovirt-3.4-stable]
+name=Latest oVirt 3.4.z Releases
+baseurl=http://ovirt.org/releases/3.4/rpm/@DIST@/$releasever/
 enabled=1
 skip_if_unavailable=1
 gpgcheck=0
 
-[ovirt-updates-testing]
-name=oVirt 3.3.z Latest Pre Releases (Release Candidate)
-baseurl=http://ovirt.org/releases/updates-testing/rpm/@DIST@/$releasever/
+
+[ovirt-3.4-prerelease]
+name=Latest oVirt 3.4 Pre Releases (Beta to Release Candidate)
+baseurl=http://resources.ovirt.org/releases/3.4_pre/rpm/@DIST@/$releasever/
 enabled=0
 skip_if_unavailable=1
 gpgcheck=0
 
-[ovirt-beta]
-name=oVirt 3.3.z Beta Test Releases
-baseurl=http://ovirt.org/releases/beta/rpm/@DIST@/$releasever/
+
+# Latest oVirt 3.3 releases
+
+[ovirt-3.3-stable]
+name=Latest oVirt 3.3.z Releases
+baseurl=http://resources.ovirt.org/releases/3.3/rpm/@DIST@/$releasever/
+enabled=1
+skip_if_unavailable=1
+gpgcheck=0
+
+[ovirt-3.3-prerelease]
+name=Latest oVirt 3.3.z Pre Releases (Beta to Release Candidate)
+baseurl=http://resources.ovirt.org/releases/3.3_pre/rpm/@DIST@/$releasever/
 enabled=0
 skip_if_unavailable=1
 gpgcheck=0
 
-[ovirt-3.4.0-prerelease]
-name=oVirt 3.4.0 Latest Pre Releases (Beta to Release Candidate)
-baseurl=http://resources.ovirt.org/releases/3.4.0_pre/rpm/@DIST@/$releasever/
-enabled=0
-skip_if_unavailable=1
-gpgcheck=0
 
-[ovirt-snapshot]
-name=oVirt Master Nightly Test Releases
-baseurl=http://resources.ovirt.org/pub/ovirt-snapshot/rpm/@DISTVER@/
-enabled=0
-skip_if_unavailable=1
-gpgcheck=0
-
-[ovirt-snapshot-static]
-name=oVirt Master Static Test Releases
-baseurl=http://resources.ovirt.org/pub/ovirt-snapshot-static/rpm/@DISTVER@/
-enabled=0
-skip_if_unavailable=1
-gpgcheck=0
-
-[ovirt-3.4-snapshot]
-name=oVirt 3.4.z Nightly Test Releases
-baseurl=http://resources.ovirt.org/pub/ovirt-3.4-snapshot/rpm/@DISTVER@/
-enabled=0
-skip_if_unavailable=1
-gpgcheck=0
-
-[ovirt-3.4-snapshot-static]
-name=oVirt 3.4.z Static Test Releases
-baseurl=http://resources.ovirt.org/pub/ovirt-3.4-snapshot-static/rpm/@DISTVER@/
-enabled=0
-skip_if_unavailable=1
-gpgcheck=0
-
-[ovirt-3.3-snapshot]
-name=oVirt 3.3.z Nightly Test Releases
-baseurl=http://resources.ovirt.org/pub/ovirt-3.3-snapshot/rpm/@DISTVER@/
-enabled=0
-skip_if_unavailable=1
-gpgcheck=0
-
-[ovirt-3.3-snapshot-static]
-name=oVirt 3.3.z Static Test Releases
-baseurl=http://resources.ovirt.org/pub/ovirt-3.3-snapshot-static/rpm/@DISTVER@/
-enabled=0
-skip_if_unavailable=1
-gpgcheck=0
+# Note: for nightly builds see ovirt-nightly.repo

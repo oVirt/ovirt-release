@@ -78,6 +78,11 @@ sed \
     -e "s/@DISTVER@/${DISTVER}/g" \
     <"%{_datadir}/%{package_name}/ovirt.repo.in" >%{_sysconfdir}/yum.repos.d/ovirt.repo
 
+sed \
+    -e "s/@DIST@/${DIST}/g" \
+    -e "s/@DISTVER@/${DISTVER}/g" \
+    <"%{_datadir}/%{package_name}/ovirt-nightly.repo.in" >%{_sysconfdir}/yum.repos.d/ovirt-nightly.repo
+
 ADDITIONAL_REPO="fedora-virt-preview.repo"
 [ "$DIST" == "EL" ] && ADDITIONAL_REPO="glusterfs-epel.repo"
 
@@ -99,6 +104,11 @@ fi
 %ghost %config(noreplace,missingok) %{_sysconfdir}/yum.repos.d/ovirt-epel.repo
 
 %changelog
+* Mon Mar 10 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 11.1.0-1
+- Splitted nightly builds in separate ovirt-nightly.repo file.
+- Added ovirt-3.4-stable and ovirt-3.3-stable repositories.
+- Dropped beta and updates testing in favor of ovirt-3.3-prerelease.
+
 * Tue Feb 25 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 11.0.2-1
 - Add new layout nightly builds
 

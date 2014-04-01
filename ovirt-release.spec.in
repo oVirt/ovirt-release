@@ -28,8 +28,8 @@ Epoch:		0
 Group:		System Environment/Base
 
 License:	ASL 2.0
-URL:		http://ovirt.org
-Source0:	http://ovirt.org/releases/stable/src/%{package_name}-%{package_version}.tar.gz
+URL:		http://www.ovirt.org
+Source0:	http://resources.ovirt.org/pub/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
 BuildArch:	noarch
@@ -58,9 +58,8 @@ rm -rf "%{buildroot}"
 #Allow ghost files
 install -d 755 "%{buildroot}%{_sysconfdir}"/yum.repos.d
 touch "%{buildroot}%{_sysconfdir}"/yum.repos.d/ovirt.repo
-touch "%{buildroot}%{_sysconfdir}"/yum.repos.d/fedora-virt-preview.repo
-touch "%{buildroot}%{_sysconfdir}"/yum.repos.d/glusterfs-epel.repo
-touch "%{buildroot}%{_sysconfdir}"/yum.repos.d/ovirt-epel.repo
+touch "%{buildroot}%{_sysconfdir}"/yum.repos.d/ovirt-nightly.repo
+touch "%{buildroot}%{_sysconfdir}"/yum.repos.d/ovirt-dependencies.repo
 
 %post
 
@@ -83,15 +82,10 @@ sed \
     -e "s/@DISTVER@/${DISTVER}/g" \
     <"%{_datadir}/%{package_name}/ovirt-nightly.repo.in" >%{_sysconfdir}/yum.repos.d/ovirt-nightly.repo
 
-ADDITIONAL_REPO="fedora-virt-preview.repo"
-[ "$DIST" == "EL" ] && ADDITIONAL_REPO="glusterfs-epel.repo"
-
-install -m 644 "%{_datadir}/%{package_name}/$ADDITIONAL_REPO" "%{_sysconfdir}/yum.repos.d/$ADDITIONAL_REPO"
-
 if [ "$DIST" == "EL" ] ; then
-#Can't explicitly require epel-release, so adding epel-release to available packages
-#This will allow "yum install epel-release".
-    install -m 644 "%{_datadir}/%{package_name}/ovirt-epel.repo" "%{_sysconfdir}/yum.repos.d/ovirt-epel.repo"
+    install -m 644 "%{_datadir}/%{package_name}/ovirt-el-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-dependencies.repo"
+elif [ "$DISTVER" == "fc19" ] ; then
+    install -m 644 "%{_datadir}/%{package_name}/ovirt-f19-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-dependencies.repo"
 fi
 
 %files
@@ -99,11 +93,13 @@ fi
 %doc COPYING
 %{_datadir}/%{package_name}/
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt.repo
-%ghost %config(noreplace,missingok) %{_sysconfdir}/yum.repos.d/fedora-virt-preview.repo
-%ghost %config(noreplace,missingok) %{_sysconfdir}/yum.repos.d/glusterfs-epel.repo
-%ghost %config(noreplace,missingok) %{_sysconfdir}/yum.repos.d/ovirt-epel.repo
+%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-nightly.repo
+%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-dependencies.repo
 
 %changelog
+* Tue Apr  8 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 11.2.0-1
+- Added repos for allowing dep resolution on packages in external repos
+
 * Mon Apr 07 2014 Kiril Nesenko <knesenko@redhat.com> - 11.1.0-1.1
 - Update nightly repos
 

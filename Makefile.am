@@ -27,9 +27,8 @@ EXTRA_DIST = \
 	$(NULL)
 
 dist_pkgdata_DATA = \
-	$(srcdir)/fedora-virt-preview.repo \
-	$(srcdir)/glusterfs-epel.repo \
-	$(srcdir)/ovirt-epel.repo \
+	$(srcdir)/ovirt-el-deps.repo \
+	$(srcdir)/ovirt-f19-deps.repo \
 	$(srcdir)/ovirt-nightly.repo.in \
 	$(srcdir)/ovirt.repo.in \
 	$(NULL)

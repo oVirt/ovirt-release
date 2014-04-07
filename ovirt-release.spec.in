@@ -44,7 +44,7 @@ This package contains the yum configuration for oVirt repositories
 
 
 %prep
-%setup -q
+%setup -q -n %{package_name}-%{package_version}
 
 
 %build
@@ -104,6 +104,9 @@ fi
 %ghost %config(noreplace,missingok) %{_sysconfdir}/yum.repos.d/ovirt-epel.repo
 
 %changelog
+* Mon Apr 07 2014 Kiril Nesenko <knesenko@redhat.com> - 11.1.0-1.1
+- Update nightly repos
+
 * Mon Mar 10 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 11.1.0-1
 - Splitted nightly builds in separate ovirt-nightly.repo file.
 - Added ovirt-3.4-stable and ovirt-3.3-stable repositories.

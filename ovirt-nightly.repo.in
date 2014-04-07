@@ -1,16 +1,16 @@
 # Latest oVirt Nightly development releases
 # You need both ovirt-snapshot and ovirt-snapshot-static in order to run it
 
-[ovirt-snapshot]
+[ovirt-master-snapshot]
 name=oVirt Master Nightly Test Releases
-baseurl=http://resources.ovirt.org/pub/ovirt-snapshot/rpm/@DISTVER@/
+baseurl=http://resources.ovirt.org/pub/ovirt-master-snapshot/rpm/@DISTVER@/
 enabled=0
 skip_if_unavailable=1
 gpgcheck=0
 
-[ovirt-snapshot-static]
+[ovirt-master-snapshot-static]
 name=oVirt Master Static Test Releases
-baseurl=http://resources.ovirt.org/pub/ovirt-snapshot-static/rpm/@DISTVER@/
+baseurl=http://resources.ovirt.org/pub/ovirt-master-snapshot-static/rpm/@DISTVER@/
 enabled=0
 skip_if_unavailable=1
 gpgcheck=0

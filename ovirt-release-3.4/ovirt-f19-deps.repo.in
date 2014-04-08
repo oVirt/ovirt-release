@@ -1,5 +1,4 @@
-
-[ovirt-fedora-virt-preview]
+[ovirt-@OVIRT_SLOT@-fedora-virt-preview]
 name=Virtualization packages from Rawhide built for latest Fedora
 baseurl=http://fedorapeople.org/groups/virt/virt-preview/fedora-$releasever/$basearch
 enabled=1

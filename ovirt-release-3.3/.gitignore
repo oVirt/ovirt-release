@@ -8,3 +8,5 @@ configure
 install-sh
 missing
 ovirt-release.spec
+*.tar.gz
+*.repo

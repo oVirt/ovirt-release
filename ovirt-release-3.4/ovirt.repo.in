@@ -1,0 +1,6 @@
+[ovirt-@OVIRT_SLOT@-stable]
+name=Latest oVirt @OVIRT_SLOT@ Release
+baseurl=http://resources.ovirt.org/pub/ovirt-@OVIRT_SLOT@/rpm/@DIST@$releasever/
+enabled=1
+skip_if_unavailable=1
+gpgcheck=1

@@ -21,17 +21,13 @@ AUTOMAKE_OPTIONS = foreign 1.9
 
 EXTRA_DIST = \
 	autogen.sh \
-	COPYING \
 	ovirt-release.spec \
 	ovirt-release.spec.in \
 	$(NULL)
 
-dist_pkgdata_DATA = \
+pkgdata_DATA = \
 	$(srcdir)/ovirt-el-deps.repo \
-	$(srcdir)/ovirt-f19-deps.repo \
-	$(srcdir)/ovirt-nightly.repo.in \
-	$(srcdir)/ovirt.repo.in \
+	$(srcdir)/ovirt.repo \
 	$(NULL)
-
 
 # vim: ts=2

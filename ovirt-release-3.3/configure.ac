@@ -17,24 +17,30 @@ dnl License along with this library; if not, write to the Free Software
 dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 dnl
 
-define([VERSION_MAJOR], [11])
-define([VERSION_MINOR], [2])
+define([VERSION_MAJOR], [1])
+define([VERSION_MINOR], [0])
 define([VERSION_FIX], [0])
 define([VERSION_NUMBER], VERSION_MAJOR[.]VERSION_MINOR[.]VERSION_FIX)
-define([VERSION_SUFFIX], [])
+define([VERSION_SUFFIX], [_master])
+define([OVIRT_VERSION_MAJOR], [3])
+define([OVIRT_VERSION_MINOR], [3])
 
-AC_INIT([ovirt-release], VERSION_NUMBER[]VERSION_SUFFIX, [users@ovirt.org])
+AC_INIT([ovirt-release][]OVIRT_VERSION_MAJOR[]OVIRT_VERSION_MINOR, VERSION_NUMBER[]VERSION_SUFFIX, [infra@ovirt.org])
 
 PACKAGE_RPM_VERSION="VERSION_NUMBER"
-PACKAGE_RPM_RELEASE="1$(echo VERSION_SUFFIX | sed 's/^_//')"
+PACKAGE_RPM_RELEASE="0.1.$(echo VERSION_SUFFIX | sed 's/^_//')"
+OVIRT_SLOT="OVIRT_VERSION_MAJOR.OVIRT_VERSION_MINOR"
 AC_SUBST([PACKAGE_RPM_VERSION])
 AC_SUBST([PACKAGE_RPM_RELEASE])
+AC_SUBST([OVIRT_SLOT])
 
 AC_CONFIG_AUX_DIR([.])
 AM_INIT_AUTOMAKE
 
 AC_CONFIG_FILES([
 	Makefile
+	ovirt-el-deps.repo
 	ovirt-release.spec
+	ovirt.repo
 ])
 AC_OUTPUT

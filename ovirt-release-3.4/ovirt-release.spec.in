@@ -1,0 +1,96 @@
+#
+# ovirt-release -- repo files for oVirt projects
+# Copyright (C) 2012-2014 Red Hat, Inc.
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+#
+
+%global	package_version @PACKAGE_VERSION@
+%global	package_name @PACKAGE_NAME@
+%global	ovirt_version @OVIRT_SLOT@
+
+Name:		%{package_name}
+Version:	@PACKAGE_RPM_VERSION@
+Release:	@PACKAGE_RPM_RELEASE@%{?release_suffix}
+Summary:	oVirt repository configuration
+Epoch:		0
+Group:		System Environment/Base
+
+License:	ASL 2.0
+URL:		http://www.ovirt.org
+Source0:	http://resources.ovirt.org/pub/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
+
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
+BuildArch:	noarch
+
+BuildRequires:	automake
+BuildRequires:	autoconf
+Requires:		system-release
+Requires:		tar
+
+%description
+This package contains the yum configuration for oVirt repositories
+
+
+%prep
+%setup -q -n %{package_name}-%{package_version}
+
+
+%build
+%configure
+make "%{?_smp_mflags}"
+
+
+%install
+rm -rf "%{buildroot}"
+%make_install
+#Allow ghost files
+install -d 755 "%{buildroot}%{_sysconfdir}/yum.repos.d"
+touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo"
+touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+
+%post
+
+# Adjust repos as per dist and version
+DIST=fc
+#Fedora is good for both Fedora and Generic (and probably other based on Fedora)
+#Handling EL exception only (for now)
+DISTVER="$(rpm --eval "%%dist"|cut -c2-)"
+if rpm --eval "%%dist" | grep -qFi 'el'; then
+    DIST=el
+fi
+
+sed \
+    -e "s/@DIST@/${DIST}/g" \
+    <"%{_datadir}/%{package_name}/ovirt.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo"
+
+if [ "${DIST}" == "el" ] ; then
+    install -m 644 "%{_datadir}/%{package_name}/ovirt-el-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+elif [ "${DISTVER}" == "fc19" ]; then
+    install -m 644 "%{_datadir}/%{package_name}/ovirt-f19-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+fi
+
+%files
+%defattr(-,root,root,-)
+%{_datadir}/%{package_name}/
+# We do not know what distribution we are installed at,
+# we copy the actual files at %post, but still wants this package to own them.
+# %ghost in this case solves that issue
+%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo
+%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
+
+%changelog
+* Thu Apr 10 2014 Kiril Nesenko <knesenko@redhat.com> - 1.0.0-0.1.master
+- Split into two packages

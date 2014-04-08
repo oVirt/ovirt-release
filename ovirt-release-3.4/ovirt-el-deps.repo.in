@@ -1,4 +1,4 @@
-[ovirt-epel]
+[ovirt-@OVIRT_SLOT@-epel]
 name=Extra Packages for Enterprise Linux 6 - $basearch
 #baseurl=http://download.fedoraproject.org/pub/epel/6/$basearch
 mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=epel-6&arch=$basearch
@@ -7,21 +7,21 @@ enabled=1
 includepkgs=epel-release,python-uinput,puppet,python-lockfile,python-cpopen,python-ordereddict,python-pthreading,python-inotify,python-argparse,novnc,python-ply,python-kitchen,python-daemon,python-websockify,livecd-tools,spice-html5,mom
 gpgcheck=1
 
-[ovirt-jpackage-6.0-generic]
+[ovirt-@OVIRT_SLOT@-jpackage-6.0-generic]
 name=JPackage 6.0, for generic
 mirrorlist=http://www.jpackage.org/mirrorlist.php?dist=generic&type=free&release=6.0
 enabled=1
 gpgcheck=1
 includepkgs=dom4j
 
-[ovirt-glusterfs-epel]
+[ovirt-@OVIRT_SLOT@-glusterfs-epel]
 name=GlusterFS is a clustered file-system capable of scaling to several petabytes.
 baseurl=http://download.gluster.org/pub/gluster/glusterfs/LATEST/EPEL.repo/epel-$releasever/$basearch/
 enabled=1
 skip_if_unavailable=1
 gpgcheck=0
 
-[ovirt-glusterfs-noarch-epel]
+[ovirt-@OVIRT_SLOT@-glusterfs-noarch-epel]
 name=GlusterFS is a clustered file-system capable of scaling to several petabytes.
 baseurl=http://download.gluster.org/pub/gluster/glusterfs/LATEST/EPEL.repo/epel-$releasever/noarch
 enabled=1

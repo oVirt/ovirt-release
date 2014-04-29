@@ -10,3 +10,4 @@ missing
 ovirt-release.spec
 *.tar.gz
 *.repo
+rpmbuild

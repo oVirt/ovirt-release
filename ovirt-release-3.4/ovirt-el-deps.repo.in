@@ -6,6 +6,7 @@ failovermethod=priority
 enabled=1
 includepkgs=epel-release,python-uinput,puppet,python-lockfile,python-cpopen,python-ordereddict,python-pthreading,python-inotify,python-argparse,novnc,python-ply,python-kitchen,python-daemon,python-websockify,livecd-tools,spice-html5,mom
 gpgcheck=1
+gpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-6
 
 [ovirt-@OVIRT_SLOT@-jpackage-6.0-generic]
 name=JPackage 6.0, for generic
@@ -13,6 +14,7 @@ mirrorlist=http://www.jpackage.org/mirrorlist.php?dist=generic&type=free&release
 enabled=1
 gpgcheck=1
 includepkgs=dom4j,isorelax,jaxen,jdom,msv,msv-xsdlib,relaxngDatatype,servicemix-specs,tomcat5-servlet-2.4-api,ws-jaxme,xalan-j2,xml-commons,xml-commons-jaxp-1.2-apis,xml-commons-resolver11,xom,xpp2,xpp3
+gpgkey=http://www.jpackage.org/jpackage.asc
 
 [ovirt-@OVIRT_SLOT@-glusterfs-epel]
 name=GlusterFS is a clustered file-system capable of scaling to several petabytes.

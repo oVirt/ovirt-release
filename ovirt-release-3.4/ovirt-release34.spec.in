@@ -25,7 +25,6 @@ Name:		%{package_name}
 Version:	@PACKAGE_RPM_VERSION@
 Release:	@PACKAGE_RPM_RELEASE@%{?release_suffix}
 Summary:	oVirt repository configuration
-Epoch:		0
 Group:		System Environment/Base
 
 License:	ASL 2.0
@@ -95,5 +94,8 @@ fi
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
 
 %changelog
+* Wed May 07 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 1.0.0-1
+- 1.0.0
+
 * Thu Apr 10 2014 Kiril Nesenko <knesenko@redhat.com> - 1.0.0-0.1.master
 - Split into two packages

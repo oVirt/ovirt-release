@@ -21,8 +21,8 @@ AUTOMAKE_OPTIONS = foreign 1.9
 
 EXTRA_DIST = \
 	autogen.sh \
-	ovirt-release.spec \
-	ovirt-release.spec.in \
+	ovirt-release34.spec \
+	ovirt-release34.spec.in \
 	$(NULL)
 
 pkgdata_DATA = \

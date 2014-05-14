@@ -94,6 +94,9 @@ fi
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
 
 %changelog
+* Wed May 14 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 1.0.1-1
+- 1.0.1 - provide mirrorlist for oVirt repo
+
 * Wed May 07 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 1.0.0-1
 - 1.0.0
 

@@ -1,0 +1,8 @@
+[ovirt-@OVIRT_SLOT@-pre]
+name=Latest oVirt @OVIRT_SLOT@ Pre Release
+#baseurl=http://resources.ovirt.org/pub/ovirt-@OVIRT_SLOT@-pre/rpm/@DIST@$releasever/
+mirrorlist=http://resources.ovirt.org/pub/yum-repo/mirrorlist-ovirt-@OVIRT_SLOT@-pre-@DIST@$releasever
+enabled=1
+skip_if_unavailable=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-ovirt

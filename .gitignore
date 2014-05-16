@@ -7,8 +7,8 @@ config.status
 configure
 install-sh
 missing
-ovirt-release.spec
 ovirt-release34.spec
+ovirt-release35.spec
 *.tar.gz
 *.repo
 rpmbuild

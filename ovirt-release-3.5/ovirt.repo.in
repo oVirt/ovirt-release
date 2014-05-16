@@ -5,4 +5,4 @@ mirrorlist=http://resources.ovirt.org/pub/yum-repo/mirrorlist-ovirt-@OVIRT_SLOT@
 enabled=1
 skip_if_unavailable=1
 gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-ovirt
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-ovirt-@OVIRT_SLOT@

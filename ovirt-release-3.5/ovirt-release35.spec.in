@@ -58,7 +58,7 @@ rm -rf "%{buildroot}"
 #Allow ghost files
 install -d 755 "%{buildroot}%{_sysconfdir}/yum.repos.d"
 install -d "%{buildroot}%{_sysconfdir}/pki/rpm-gpg"
-install -m 644 "%{SOURCE1}" "%{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-ovirt"
+install -m 644 "%{SOURCE1}" "%{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-ovirt-%{ovirt_version}"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 
@@ -86,7 +86,7 @@ fi
 %files
 %defattr(-,root,root,-)
 %{_datadir}/%{package_name}/
-%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-ovirt
+%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-ovirt-%{ovirt_version}
 # We do not know what distribution we are installed at,
 # we copy the actual files at %post, but still wants this package to own them.
 # %ghost in this case solves that issue

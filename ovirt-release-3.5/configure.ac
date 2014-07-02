@@ -19,14 +19,14 @@ dnl
 
 
 define([VERSION_NUMBER], [001])
-define([VERSION_SUFFIX], [_alpha1])
+define([VERSION_SUFFIX], [_beta1])
 define([OVIRT_VERSION_MAJOR], [3])
 define([OVIRT_VERSION_MINOR], [5])
 
 AC_INIT([ovirt-release][]OVIRT_VERSION_MAJOR[]OVIRT_VERSION_MINOR, VERSION_NUMBER[]VERSION_SUFFIX, [infra@ovirt.org])
 
 PACKAGE_RPM_VERSION="VERSION_NUMBER"
-PACKAGE_RPM_RELEASE="0.0.$(echo VERSION_SUFFIX | sed 's/^_//')"
+PACKAGE_RPM_RELEASE="0.1.$(echo VERSION_SUFFIX | sed 's/^_//')"
 OVIRT_SLOT="OVIRT_VERSION_MAJOR.OVIRT_VERSION_MINOR"
 AC_SUBST([PACKAGE_RPM_VERSION])
 AC_SUBST([PACKAGE_RPM_RELEASE])
@@ -39,6 +39,7 @@ AC_CONFIG_FILES([
 	Makefile
 	ovirt-el-deps.repo
 	ovirt-f19-deps.repo
+	ovirt-f20-deps.repo
 	ovirt-release35.spec
 	ovirt.repo
 ])

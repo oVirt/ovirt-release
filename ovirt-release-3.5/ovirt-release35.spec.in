@@ -81,6 +81,8 @@ if [ "${DIST}" == "el" ] ; then
     install -m 644 "%{_datadir}/%{package_name}/ovirt-el-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [ "${DISTVER}" == "fc19" ]; then
     install -m 644 "%{_datadir}/%{package_name}/ovirt-f19-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+elif [ "${DISTVER}" == "fc20" ]; then
+    install -m 644 "%{_datadir}/%{package_name}/ovirt-f20-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 fi
 
 %files
@@ -94,5 +96,8 @@ fi
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
 
 %changelog
+* Tue Jul  8 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.1.beta1
+- Add PatternFly copr repositories
+
 * Fri May 16 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.0.alpha1
 - Provide oVirt 3.5.0 alpha1 repositories

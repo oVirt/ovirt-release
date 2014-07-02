@@ -29,3 +29,10 @@ baseurl=http://download.gluster.org/pub/gluster/glusterfs/LATEST/EPEL.repo/epel-
 enabled=1
 skip_if_unavailable=1
 gpgcheck=0
+
+[ovirt-@OVIRT_SLOT@-patternfly1-noarch-epel]
+name=Copr repo for patternfly1 owned by patternfly
+baseurl=http://copr-be.cloud.fedoraproject.org/results/patternfly/patternfly1/epel-6-$basearch/
+enabled=1
+skip_if_unavailable=1
+gpgcheck=0

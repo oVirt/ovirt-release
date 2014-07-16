@@ -96,6 +96,9 @@ fi
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
 
 %changelog
+* Wed Jul 16 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.2.beta2
+- add python-IPy from EPEL repository for ovirt-node.
+
 * Tue Jul  8 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.1.beta1
 - Add PatternFly copr repositories
 

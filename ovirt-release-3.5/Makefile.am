@@ -30,6 +30,7 @@ pkgdata_DATA = \
 	$(srcdir)/ovirt-f19-deps.repo \
 	$(srcdir)/ovirt-f20-deps.repo \
 	$(srcdir)/ovirt.repo \
+	$(srcdir)/ovirt-snapshot.repo \
 	$(NULL)
 
 

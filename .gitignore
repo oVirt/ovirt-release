@@ -9,6 +9,6 @@ install-sh
 missing
 ovirt-release34.spec
 ovirt-release35.spec
-*.tar.gz
+ovirt-release-master.spec
 *.repo
 rpmbuild

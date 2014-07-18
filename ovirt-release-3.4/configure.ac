@@ -19,7 +19,7 @@ dnl
 
 define([VERSION_MAJOR], [1])
 define([VERSION_MINOR], [0])
-define([VERSION_FIX], [1])
+define([VERSION_FIX], [2])
 define([VERSION_NUMBER], VERSION_MAJOR[.]VERSION_MINOR[.]VERSION_FIX)
 define([VERSION_SUFFIX], [])
 define([OVIRT_VERSION_MAJOR], [3])
@@ -43,5 +43,6 @@ AC_CONFIG_FILES([
 	ovirt-f19-deps.repo
 	ovirt-release34.spec
 	ovirt.repo
+	ovirt-snapshot.repo
 ])
 AC_OUTPUT

@@ -1,0 +1,7 @@
+[ovirt-@OVIRT_SLOT@-patternfly1]
+name=Copr repo for patternfly1 owned by patternfly
+baseurl=http://copr-be.cloud.fedoraproject.org/results/patternfly/patternfly1/fedora-$releasever-$basearch/
+enabled=1
+skip_if_unavailable=1
+gpgcheck=0
+

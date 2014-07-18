@@ -43,6 +43,15 @@ Requires:		tar
 %description
 This package contains the yum configuration for oVirt repositories
 
+%package snapshot
+Summary:	oVirt snapshot repository configuration
+Group:		System Environment/Base
+Requires:	%{package_name}
+
+
+%description snapshot
+This package contains the yum configuration for oVirt snapshot repositories
+
 
 %prep
 %setup -q -n "%{package_name}-%{package_version}"
@@ -60,6 +69,7 @@ install -d 755 "%{buildroot}%{_sysconfdir}/yum.repos.d"
 install -d "%{buildroot}%{_sysconfdir}/pki/rpm-gpg"
 install -m 644 "%{SOURCE1}" "%{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-ovirt-%{ovirt_version}"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo"
+touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 
 %post
@@ -85,17 +95,41 @@ elif [ "${DISTVER}" == "fc20" ]; then
     install -m 644 "%{_datadir}/%{package_name}/ovirt-f20-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 fi
 
+%post snapshot
+
+# Adjust repos as per dist and version
+DIST=fc
+#Fedora is good for both Fedora and Generic (and probably other based on Fedora)
+#Handling EL exception only (for now)
+DISTVER="$(rpm --eval "%%dist"|cut -c2-)"
+if rpm --eval "%%dist" | grep -qFi 'el'; then
+    DIST=el
+fi
+
+sed \
+    -e "s/@DIST@/${DIST}/g" \
+    <"%{_datadir}/%{package_name}/ovirt-snapshot.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
+
+
 %files
 %defattr(-,root,root,-)
 %{_datadir}/%{package_name}/
 %{_sysconfdir}/pki/rpm-gpg/RPM-GPG-ovirt-%{ovirt_version}
 # We do not know what distribution we are installed at,
-# we copy the actual files at %post, but still wants this package to own them.
-# %ghost in this case solves that issue
+# we copy the actual files at post, but still wants this package to own them.
+# ghost in this case solves that issue
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
 
+%files snapshot
+%defattr(-,root,root,-)
+%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo
+
+
 %changelog
+* Fri Jul 18 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.3.beta2
+- provide snapshot repositories
+
 * Wed Jul 16 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.2.beta2
 - add python-IPy from EPEL repository for ovirt-node.
 

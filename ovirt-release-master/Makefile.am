@@ -21,14 +21,15 @@ AUTOMAKE_OPTIONS = foreign 1.9
 
 EXTRA_DIST = \
 	autogen.sh \
-	ovirt-release34.spec \
-	ovirt-release34.spec.in \
+	ovirt-release-master.spec \
+	ovirt-release-master.spec.in \
 	$(NULL)
 
 pkgdata_DATA = \
-	$(srcdir)/ovirt-el-deps.repo \
+	$(srcdir)/ovirt-el6-deps.repo \
+	$(srcdir)/ovirt-el7-deps.repo \
 	$(srcdir)/ovirt-f19-deps.repo \
-	$(srcdir)/ovirt.repo \
+	$(srcdir)/ovirt-f20-deps.repo \
 	$(srcdir)/ovirt-snapshot.repo \
 	$(NULL)
 

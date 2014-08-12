@@ -130,6 +130,9 @@ sed \
 
 
 %changelog
+* Tue Aug 12 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.5.rc2
+- provide ioprocess rpms from EPEL repositories for python-ioprocess
+
 * Fri Aug  1 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.4.rc1
 - provide EL7 dependencies
 - add python-ioprocess from EPEL repository for vdsm.

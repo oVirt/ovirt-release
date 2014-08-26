@@ -28,7 +28,6 @@ EXTRA_DIST = \
 pkgdata_DATA = \
 	$(srcdir)/ovirt-el6-deps.repo \
 	$(srcdir)/ovirt-el7-deps.repo \
-	$(srcdir)/ovirt-f19-deps.repo \
 	$(srcdir)/ovirt-f20-deps.repo \
 	$(srcdir)/ovirt-snapshot.repo \
 	$(NULL)

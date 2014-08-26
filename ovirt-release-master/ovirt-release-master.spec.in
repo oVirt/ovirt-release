@@ -75,8 +75,6 @@ if [ "${DISTVER}" == "el6" ] ; then
 elif [ "${DISTVER/.*/}" == "el7" ] ; then
     # On CentOS 7 ${DISTVER} is "el7.centos"
     install -m 644 "%{_datadir}/%{package_name}/ovirt-el7-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-elif [ "${DISTVER}" == "fc19" ]; then
-    install -m 644 "%{_datadir}/%{package_name}/ovirt-f19-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [ "${DISTVER}" == "fc20" ]; then
     install -m 644 "%{_datadir}/%{package_name}/ovirt-f20-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 fi

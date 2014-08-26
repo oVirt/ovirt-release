@@ -13,7 +13,7 @@ name=JPackage 6.0, for generic
 mirrorlist=http://www.jpackage.org/mirrorlist.php?dist=generic&type=free&release=6.0
 enabled=1
 gpgcheck=1
-includepkgs=dom4j,isorelax,jaxen,jdom,msv,msv-xsdlib,relaxngDatatype,servicemix-specs,tomcat5-servlet-2.4-api,ws-jaxme,xalan-j2,xml-commons,xml-commons-jaxp-1.2-apis,xml-commons-resolver11,xom,xpp2,xpp3
+includepkgs=dom4j,isorelax,jaxen,jdom,msv,msv-xsdlib,relaxngDatatype,servicemix-specs,tomcat5-servlet-2.4-api,ws-jaxme,xalan-j2,xml-commons,xml-commons-jaxp-1.2-apis,xml-commons-resolver11,xom,xpp2,xpp3,antlr3,stringtemplate
 gpgkey=http://www.jpackage.org/jpackage.asc
 
 [ovirt-@OVIRT_SLOT@-glusterfs-epel]

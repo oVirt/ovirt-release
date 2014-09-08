@@ -87,8 +87,11 @@ sed \
     -e "s/@DIST@/${DIST}/g" \
     <"%{_datadir}/%{package_name}/ovirt.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo"
 
-if [ "${DIST}" == "el" ] ; then
-    install -m 644 "%{_datadir}/%{package_name}/ovirt-el-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+if [ "${DISTVER}" == "el6" ] ; then
+    install -m 644 "%{_datadir}/%{package_name}/ovirt-el6-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+elif [ "${DISTVER/.*/}" == "el7" ] ; then
+    # On CentOS 7 ${DISTVER} is "el7.centos"
+    install -m 644 "%{_datadir}/%{package_name}/ovirt-el7-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [ "${DISTVER}" == "fc19" ]; then
     install -m 644 "%{_datadir}/%{package_name}/ovirt-f19-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 fi
@@ -125,6 +128,9 @@ sed \
 
 
 %changelog
+* Mon Sep  8 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 1.0.3-1
+-1.0.3 - provide EPEL 7 repositories
+
 * Fri Jul 18 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 1.0.2-1
 - 1.0.2 - provide snapshot repositories
 

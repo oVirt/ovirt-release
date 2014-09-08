@@ -19,7 +19,7 @@ dnl
 
 define([VERSION_MAJOR], [1])
 define([VERSION_MINOR], [0])
-define([VERSION_FIX], [2])
+define([VERSION_FIX], [3])
 define([VERSION_NUMBER], VERSION_MAJOR[.]VERSION_MINOR[.]VERSION_FIX)
 define([VERSION_SUFFIX], [])
 define([OVIRT_VERSION_MAJOR], [3])
@@ -39,7 +39,8 @@ AM_INIT_AUTOMAKE
 
 AC_CONFIG_FILES([
 	Makefile
-	ovirt-el-deps.repo
+	ovirt-el6-deps.repo
+    ovirt-el7-deps.repo
 	ovirt-f19-deps.repo
 	ovirt-release34.spec
 	ovirt.repo

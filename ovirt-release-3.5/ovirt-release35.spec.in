@@ -130,9 +130,6 @@ sed \
 
 
 %changelog
-* Fri Sep 26 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 001-1
-- Release 001
-
 * Tue Aug 12 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.5.rc2
 - provide ioprocess rpms from EPEL repositories for python-ioprocess
 - provide rubygem-rgen rpms from EPEL repositories for puppet

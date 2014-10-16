@@ -36,8 +36,8 @@ BuildArch:	noarch
 
 BuildRequires:	automake
 BuildRequires:	autoconf
-Requires:		system-release
-Requires:		tar
+Requires:	system-release
+Requires:	tar
 
 %description
 This package contains the yum configuration for oVirt repositories
@@ -77,6 +77,8 @@ elif [ "${DISTVER/.*/}" == "el7" ] ; then
     install -m 644 "%{_datadir}/%{package_name}/ovirt-el7-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [ "${DISTVER}" == "fc20" ]; then
     install -m 644 "%{_datadir}/%{package_name}/ovirt-f20-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+elif [ "${DISTVER}" == "fc21" ]; then
+    install -m 644 "%{_datadir}/%{package_name}/ovirt-f21-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 fi
 
 sed \
@@ -95,5 +97,6 @@ sed \
 
 
 %changelog
-* Fri May 16 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.0.master
+* Mon Oct 20 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.1.master
+- Add Fedora 21 support for 3.6.0
 - Provide oVirt master development repositories

@@ -36,8 +36,9 @@ AM_INIT_AUTOMAKE
 AC_CONFIG_FILES([
 	Makefile
 	ovirt-el6-deps.repo
-    ovirt-el7-deps.repo
+	ovirt-el7-deps.repo
 	ovirt-f20-deps.repo
+	ovirt-f21-deps.repo
 	ovirt-release-master.spec
 	ovirt-snapshot.repo
 ])

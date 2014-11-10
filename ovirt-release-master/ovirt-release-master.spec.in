@@ -97,6 +97,9 @@ sed \
 
 
 %changelog
+* Mon Nov 10 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.2.master
+- Add EL7 support for 3.6.0
+
 * Mon Oct 20 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.1.master
 - Add Fedora 21 support for 3.6.0
 - Provide oVirt master development repositories

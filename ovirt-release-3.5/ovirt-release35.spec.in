@@ -130,6 +130,9 @@ sed \
 
 
 %changelog
+* Mon Nov 10 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 002-0.0.master
+- provide EL7 dependencies
+
 * Fri Sep 26 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 001-1
 - Release 001
 

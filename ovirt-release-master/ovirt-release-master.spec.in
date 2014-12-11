@@ -97,6 +97,10 @@ sed \
 
 
 %changelog
+* Thu Dec 11 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.3.master
+- Use latest glusterfs also on Fedora
+- Enable rpm gpg check on glusterfs rpms
+
 * Mon Nov 10 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.2.master
 - Add EL7 support for 3.6.0
 

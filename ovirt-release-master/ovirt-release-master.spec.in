@@ -1,6 +1,6 @@
 #
 # ovirt-release -- repo files for oVirt projects
-# Copyright (C) 2014 Red Hat, Inc.
+# Copyright (C) 2014-2015 Red Hat, Inc.
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -97,6 +97,9 @@ sed \
 
 
 %changelog
+* Wed Feb  4 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.4.master
+- Enable virt-preview repository on Fedora 20
+
 * Thu Dec 11 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.3.master
 - Use latest glusterfs also on Fedora
 - Enable rpm gpg check on glusterfs rpms

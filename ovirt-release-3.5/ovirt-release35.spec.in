@@ -96,6 +96,8 @@ elif [ "${DISTVER}" == "fc19" ]; then
     install -m 644 "%{_datadir}/%{package_name}/ovirt-f19-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [ "${DISTVER}" == "fc20" ]; then
     install -m 644 "%{_datadir}/%{package_name}/ovirt-f20-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+elif [ "${DISTVER}" == "fc21" ]; then
+    install -m 644 "%{_datadir}/%{package_name}/ovirt-f21-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 fi
 
 %post snapshot
@@ -130,6 +132,9 @@ sed \
 
 
 %changelog
+* Tue Mar 17 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 003-0.0.master
+- Added dependencies for Fedora 21
+
 * Wed Jan 21 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 002-1
 - Release 002
 

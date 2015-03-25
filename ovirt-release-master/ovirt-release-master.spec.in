@@ -97,6 +97,10 @@ sed \
 
 
 %changelog
+* Wed Mar 25 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.5.master
+- Enable GlusterFS Nightly on all distributions required for VDSM starting
+  from https://gerrit.ovirt.org/39075
+
 * Wed Feb  4 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.4.master
 - Enable virt-preview repository on Fedora 20
 

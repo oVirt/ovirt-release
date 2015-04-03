@@ -97,6 +97,9 @@ sed \
 
 
 %changelog
+* Fri Apr  3 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.6.master
+- Add userspace-rcu from EPEL, needed by Gluster 3.7
+
 * Wed Mar 25 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.5.master
 - Enable GlusterFS Nightly on all distributions required for VDSM starting
   from https://gerrit.ovirt.org/39075

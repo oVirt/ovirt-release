@@ -1,14 +1,17 @@
+## files
 Makefile
 Makefile.in
 aclocal.m4
-autom4te.cache
 config.log
 config.status
 configure
 install-sh
 missing
-ovirt-release34.spec
-ovirt-release35.spec
-ovirt-release-master.spec
-*.repo
+## folders
+autom4te.cache
 rpmbuild
+.idea
+.project
+## patterns
+*.spec
+*.repo

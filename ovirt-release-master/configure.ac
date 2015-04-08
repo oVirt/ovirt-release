@@ -1,6 +1,6 @@
 dnl
 dnl ovirt-release -- repo files for oVirt projects
-dnl Copyright (C) 2014 Red Hat, Inc.
+dnl Copyright (C) 2014-2015 Red Hat, Inc.
 dnl
 dnl This library is free software; you can redistribute it and/or
 dnl modify it under the terms of the GNU Lesser General Public
@@ -22,25 +22,58 @@ define([VERSION_NUMBER], [001])
 define([VERSION_SUFFIX], [_master])
 
 AC_INIT([ovirt-release-master], VERSION_NUMBER[]VERSION_SUFFIX, [infra@ovirt.org])
-
-PACKAGE_RPM_VERSION="VERSION_NUMBER"
-PACKAGE_RPM_RELEASE="0.7.$(echo VERSION_SUFFIX | sed 's/^_//')"
-OVIRT_SLOT="master"
-AC_SUBST([PACKAGE_RPM_VERSION])
-AC_SUBST([PACKAGE_RPM_RELEASE])
-AC_SUBST([OVIRT_SLOT])
-
-AC_CONFIG_AUX_DIR([.])
 AM_INIT_AUTOMAKE
 
+PACKAGE_RPM_VERSION="VERSION_NUMBER"
+AC_SUBST([PACKAGE_RPM_VERSION])
+
+PACKAGE_RPM_RELEASE="0.8.$(echo VERSION_SUFFIX | sed 's/^_//')"
+AC_SUBST([PACKAGE_RPM_RELEASE])
+
+OVIRT_SLOT="master"
+AC_SUBST([OVIRT_SLOT])
+
+AC_ARG_WITH([ovirt-yum-repo],[AC_HELP_STRING([--with-ovirt-yum-repo],
+            [Specify yum repo, defaults to: http://resources.ovirt.org/])],
+            [OVIRT_YUM_REPO="$withval"],
+            [OVIRT_YUM_REPO="http://resources.ovirt.org"])
+AC_SUBST([OVIRT_YUM_REPO])
+
+AC_ARG_WITH([repo-url-key],[AC_HELP_STRING([--with-repo-url-key],
+            [Specify yum repo, defaults to: mirrorlist])],
+            [REPO_URL_KEY="$withval"],
+            [REPO_URL_KEY="mirrorlist"])
+AC_SUBST([REPO_URL_KEY])
+
+AC_ARG_WITH([repo-path-normal],[AC_HELP_STRING([--with-repo-path-normal],
+            ["Specify path on yum-repo, defaults to: /pub/yum-repo/mirrorlist-ovirt-${OVIRT_SLOT}-snapshot"])],
+            [REPO_PATH_NORMAL="$withval"],
+            [REPO_PATH_NORMAL="/pub/yum-repo/mirrorlist-ovirt-${OVIRT_SLOT}-snapshot"])
+AC_SUBST([REPO_PATH_NORMAL])
+
+AC_ARG_WITH([repo-path-static],[AC_HELP_STRING([--with-repo-path-static],
+            ["Specify static path on yum-repo, defaults to: /pub/yum-repo/mirrorlist-ovirt-${OVIRT_SLOT}-snapshot-static"])],
+            [REPO_PATH_STATIC="$withval"],
+            [REPO_PATH_STATIC="/pub/yum-repo/mirrorlist-ovirt-${OVIRT_SLOT}-snapshot-static"])
+AC_SUBST([REPO_PATH_STATIC])
+
+AC_ARG_WITH([ovirt-yum-repo],[AC_HELP_STRING([--with-ovirt-yum-repo],
+            [Specify yum repo, defaults to: http://resources.ovirt.org/])],
+            [OVIRT_YUM_REPO="$withval"],
+            [OVIRT_YUM_REPO="http://resources.ovirt.org"])
+AC_SUBST([OVIRT_YUM_REPO])
+
+PACKAGE_NAME=ovirt-release-${OVIRT_SLOT}
+PRODUCT_NAME=oVirt\ Packages\ Repository
+
 AC_CONFIG_FILES([
-	Makefile
-	ovirt-el6-deps.repo
-	ovirt-el7-deps.repo
-	ovirt-f20-deps.repo
-	ovirt-f21-deps.repo
-	ovirt-f22-deps.repo
-	ovirt-release-master.spec
-	ovirt-snapshot.repo
+            Makefile
+            ovirt-el6-deps.repo
+            ovirt-el7-deps.repo
+            ovirt-f20-deps.repo
+            ovirt-f21-deps.repo
+            ovirt-f22-deps.repo
+            ovirt-release-master.spec
+            ovirt-snapshot.repo
 ])
 AC_OUTPUT

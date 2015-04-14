@@ -132,6 +132,9 @@ sed \
 
 
 %changelog
+* Tue Apr 14 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 003-1
+- Added fedora-virt-preview libvirt to fedora 20
+
 * Tue Mar 17 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 003-0.0.master
 - Added dependencies for Fedora 21
 

@@ -5,3 +5,10 @@ enabled=1
 skip_if_unavailable=1
 gpgcheck=0
 
+[ovirt-@OVIRT_SLOT@-fedora-virt-preview]
+name=Virtualization packages from Rawhide built for latest Fedora
+baseurl=http://fedorapeople.org/groups/virt/virt-preview/fedora-$releasever/$basearch
+enabled=1
+skip_if_unavailable=1
+gpgcheck=0
+includepkgs=libvirt*

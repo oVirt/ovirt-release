@@ -8,9 +8,9 @@ includepkgs=epel-release,python-uinput,puppet,python-lockfile,python-cpopen,pyth
 gpgcheck=1
 gpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
 
-[ovirt-@OVIRT_SLOT@-glusterfs-epel-nightly]
+[ovirt-@OVIRT_SLOT@-glusterfs-3.7-epel-nightly]
 name=Nightly Gluster builds for EPEL 7 - $basearch
-baseurl=http://download.gluster.org/pub/gluster/glusterfs/nightly/glusterfs/epel-7-$basearch/
+baseurl=http://download.gluster.org/pub/gluster/glusterfs/nightly/glusterfs-3.7/epel-7-$basearch/
 enabled=1
 skip_if_unavailable=1
 gpgcheck=0

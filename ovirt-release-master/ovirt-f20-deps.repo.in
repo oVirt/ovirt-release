@@ -1,6 +1,6 @@
-[ovirt-@OVIRT_SLOT@-glusterfs-fedora-nightly]
+[ovirt-@OVIRT_SLOT@-glusterfs-3.7-fedora-nightly]
 name=Nightly Gluster builds for Fedora $releasever - $basearch
-baseurl=http://download.gluster.org/pub/gluster/glusterfs/nightly/glusterfs/fedora-$releasever-$basearch/
+baseurl=http://download.gluster.org/pub/gluster/glusterfs/nightly/glusterfs-3.7/fedora-$releasever-$basearch/
 enabled=1
 skip_if_unavailable=1
 gpgcheck=0
@@ -34,4 +34,3 @@ baseurl=http://fedorapeople.org/groups/virt/virt-preview/fedora-$releasever/$bas
 enabled=1
 skip_if_unavailable=1
 gpgcheck=0
-includepkgs=libvirt*

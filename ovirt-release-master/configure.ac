@@ -24,7 +24,7 @@ define([VERSION_SUFFIX], [_master])
 AC_INIT([ovirt-release-master], VERSION_NUMBER[]VERSION_SUFFIX, [infra@ovirt.org])
 
 PACKAGE_RPM_VERSION="VERSION_NUMBER"
-PACKAGE_RPM_RELEASE="0.6.$(echo VERSION_SUFFIX | sed 's/^_//')"
+PACKAGE_RPM_RELEASE="0.7.$(echo VERSION_SUFFIX | sed 's/^_//')"
 OVIRT_SLOT="master"
 AC_SUBST([PACKAGE_RPM_VERSION])
 AC_SUBST([PACKAGE_RPM_RELEASE])
@@ -39,6 +39,7 @@ AC_CONFIG_FILES([
 	ovirt-el7-deps.repo
 	ovirt-f20-deps.repo
 	ovirt-f21-deps.repo
+	ovirt-f22-deps.repo
 	ovirt-release-master.spec
 	ovirt-snapshot.repo
 ])

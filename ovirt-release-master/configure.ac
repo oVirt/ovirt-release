@@ -48,13 +48,13 @@ AC_SUBST([REPO_URL_KEY])
 AC_ARG_WITH([repo-path-normal],[AC_HELP_STRING([--with-repo-path-normal],
             ["Specify path on yum-repo, defaults to: /pub/yum-repo/mirrorlist-ovirt-${OVIRT_SLOT}-snapshot"])],
             [REPO_PATH_NORMAL="$withval"],
-            [REPO_PATH_NORMAL="/pub/yum-repo/mirrorlist-ovirt-${OVIRT_SLOT}-snapshot"])
+            [REPO_PATH_NORMAL="/pub/yum-repo/mirrorlist-ovirt-${OVIRT_SLOT}-snapshot-"])
 AC_SUBST([REPO_PATH_NORMAL])
 
 AC_ARG_WITH([repo-path-static],[AC_HELP_STRING([--with-repo-path-static],
             ["Specify static path on yum-repo, defaults to: /pub/yum-repo/mirrorlist-ovirt-${OVIRT_SLOT}-snapshot-static"])],
             [REPO_PATH_STATIC="$withval"],
-            [REPO_PATH_STATIC="/pub/yum-repo/mirrorlist-ovirt-${OVIRT_SLOT}-snapshot-static"])
+            [REPO_PATH_STATIC="/pub/yum-repo/mirrorlist-ovirt-${OVIRT_SLOT}-snapshot-static-"])
 AC_SUBST([REPO_PATH_STATIC])
 
 AC_ARG_WITH([ovirt-yum-repo],[AC_HELP_STRING([--with-ovirt-yum-repo],

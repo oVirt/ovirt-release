@@ -34,31 +34,31 @@ OVIRT_SLOT="master"
 AC_SUBST([OVIRT_SLOT])
 
 AC_ARG_WITH([ovirt-yum-repo],[AC_HELP_STRING([--with-ovirt-yum-repo],
-            [Specify yum repo, defaults to: http://resources.ovirt.org/])],
+            [Specify yum repo. default: "http://resources.ovirt.org"])],
             [OVIRT_YUM_REPO="$withval"],
             [OVIRT_YUM_REPO="http://resources.ovirt.org"])
 AC_SUBST([OVIRT_YUM_REPO])
 
 AC_ARG_WITH([repo-url-key],[AC_HELP_STRING([--with-repo-url-key],
-            [Specify yum repo, defaults to: mirrorlist])],
+            [Specify yum repo. default: "mirrorlist"])],
             [REPO_URL_KEY="$withval"],
             [REPO_URL_KEY="mirrorlist"])
 AC_SUBST([REPO_URL_KEY])
 
 AC_ARG_WITH([repo-path-normal],[AC_HELP_STRING([--with-repo-path-normal],
-            ["Specify path on yum-repo, defaults to: /pub/yum-repo/mirrorlist-ovirt-${OVIRT_SLOT}-snapshot"])],
+            [Specify path on yum-repo. default: "/pub/yum-repo/mirrorlist-ovirt-${OVIRT_SLOT}-snapshot-"])],
             [REPO_PATH_NORMAL="$withval"],
             [REPO_PATH_NORMAL="/pub/yum-repo/mirrorlist-ovirt-${OVIRT_SLOT}-snapshot-"])
 AC_SUBST([REPO_PATH_NORMAL])
 
 AC_ARG_WITH([repo-path-static],[AC_HELP_STRING([--with-repo-path-static],
-            ["Specify static path on yum-repo, defaults to: /pub/yum-repo/mirrorlist-ovirt-${OVIRT_SLOT}-snapshot-static"])],
+            [Specify static path on yum-repo. default: "/pub/yum-repo/mirrorlist-ovirt-${OVIRT_SLOT}-snapshot-static-"])],
             [REPO_PATH_STATIC="$withval"],
             [REPO_PATH_STATIC="/pub/yum-repo/mirrorlist-ovirt-${OVIRT_SLOT}-snapshot-static-"])
 AC_SUBST([REPO_PATH_STATIC])
 
 AC_ARG_WITH([ovirt-yum-repo],[AC_HELP_STRING([--with-ovirt-yum-repo],
-            [Specify yum repo, defaults to: http://resources.ovirt.org/])],
+            [Specify yum repo. default: "http://resources.ovirt.org"])],
             [OVIRT_YUM_REPO="$withval"],
             [OVIRT_YUM_REPO="http://resources.ovirt.org"])
 AC_SUBST([OVIRT_YUM_REPO])

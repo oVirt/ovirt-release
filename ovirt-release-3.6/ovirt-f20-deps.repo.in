@@ -34,3 +34,11 @@ baseurl=http://fedorapeople.org/groups/virt/virt-preview/fedora-$releasever/$bas
 enabled=1
 skip_if_unavailable=1
 gpgcheck=0
+
+[virtio-win-stable]
+name=virtio-win builds roughly matching what was shipped in latest RHEL
+baseurl=http://fedorapeople.org/groups/virt/virtio-win/repo/stable
+enabled=1
+skip_if_unavailable=1
+gpgcheck=0
+

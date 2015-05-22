@@ -34,7 +34,7 @@ Group:		System Environment/Base
 
 License:	ASL 2.0
 URL:		http://www.ovirt.org
-Source0:	http://resources.ovirt.org/pub/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
+Source0:	http://resources.ovirt.org/pub/ovirt-master-snapshot-static/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
 BuildArch:	noarch
@@ -108,6 +108,10 @@ sed \
 
 
 %changelog
+* Fri May 22 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.9.master
+- Drop Gluster 3.7 Nightly repository since 3.7.0 GA is available
+- Add VirtIO-Win Stable repository
+
 * Mon Apr 27 2015 Max Kovgan <mkovgan@redhat.com> - 001-0.8.master
 - add overrides to urls/paths serving the repositories
 

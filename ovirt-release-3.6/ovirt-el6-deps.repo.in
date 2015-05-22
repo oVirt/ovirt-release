@@ -16,13 +16,6 @@ gpgcheck=1
 includepkgs=dom4j,isorelax,jaxen,jdom,msv,msv-xsdlib,relaxngDatatype,servicemix-specs,tomcat5-servlet-2.4-api,ws-jaxme,xalan-j2,xml-commons,xml-commons-jaxp-1.2-apis,xml-commons-resolver11,xom,xpp2,xpp3,antlr3,stringtemplate
 gpgkey=http://www.jpackage.org/jpackage.asc
 
-[ovirt-@OVIRT_SLOT@-glusterfs-3.7-epel-nightly]
-name=Nightly Gluster builds for EPEL 6 - $basearch
-baseurl=http://download.gluster.org/pub/gluster/glusterfs/nightly/glusterfs-3.7/epel-6-$basearch/
-enabled=1
-skip_if_unavailable=1
-gpgcheck=0
-
 [ovirt-@OVIRT_SLOT@-glusterfs-epel]
 name=GlusterFS is a clustered file-system capable of scaling to several petabytes.
 baseurl=http://download.gluster.org/pub/gluster/glusterfs/LATEST/EPEL.repo/epel-$releasever/$basearch/
@@ -52,4 +45,3 @@ baseurl=http://fedorapeople.org/groups/virt/virtio-win/repo/stable
 enabled=1
 skip_if_unavailable=1
 gpgcheck=0
-

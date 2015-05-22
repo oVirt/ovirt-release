@@ -1,10 +1,3 @@
-[ovirt-@OVIRT_SLOT@-glusterfs-3.7-fedora-nightly]
-name=Nightly Gluster builds for Fedora $releasever - $basearch
-baseurl=http://download.gluster.org/pub/gluster/glusterfs/nightly/glusterfs-3.7/fedora-$releasever-$basearch/
-enabled=1
-skip_if_unavailable=1
-gpgcheck=0
-
 [ovirt-@OVIRT_SLOT@-glusterfs-fedora]
 name=GlusterFS is a clustered file-system capable of scaling to several petabytes.
 baseurl=http://download.gluster.org/pub/gluster/glusterfs/LATEST/Fedora/fedora-$releasever/$basearch/
@@ -41,4 +34,3 @@ baseurl=http://fedorapeople.org/groups/virt/virtio-win/repo/stable
 enabled=1
 skip_if_unavailable=1
 gpgcheck=0
-

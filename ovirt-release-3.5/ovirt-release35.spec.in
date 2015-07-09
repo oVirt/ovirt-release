@@ -132,8 +132,11 @@ sed \
 
 
 %changelog
+* Thu Jul  9 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 005-1
+- Added pyxattr and userspace-rcu to EPEL 6 repository for Gluster 3.7.2
+
 * Tue May 19 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 004-1
-- Add userspace-rcu from EPEL, needed by Gluster 3.7
+- Added userspace-rcu from EPEL, needed by Gluster 3.7
 
 * Tue Apr 14 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 003-1
 - Added fedora-virt-preview libvirt to fedora 20

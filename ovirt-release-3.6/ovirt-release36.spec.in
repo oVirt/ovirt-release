@@ -112,6 +112,9 @@ sed \
 
 
 %changelog
+* Thu Jul  9 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.3.alpha
+- Added pyxattr and userspace-rcu to EPEL 6 repository for Gluster 3.7.2
+
 * Fri May 22 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.2.alpha
 - Drop Gluster 3.7 Nightly repository since 3.7.0 GA is available
 - Add VirtIO-Win Stable repository

@@ -18,7 +18,7 @@ dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 dnl
 
 
-define([VERSION_NUMBER], [004])
+define([VERSION_NUMBER], [005])
 define([VERSION_SUFFIX], [])
 define([OVIRT_VERSION_MAJOR], [3])
 define([OVIRT_VERSION_MINOR], [5])

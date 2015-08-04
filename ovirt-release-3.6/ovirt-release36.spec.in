@@ -34,7 +34,7 @@ Group:		System Environment/Base
 
 License:	ASL 2.0
 URL:		http://www.ovirt.org
-Source0:	http://resources.ovirt.org/pub/ovirt-master-snapshot-static/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
+Source0:	http://resources.ovirt.org/pub/ovirt-3.6-snapshot-static/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
 Source1:	http://resources.ovirt.org/pub/keys/RPM-GPG-ovirt
 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
@@ -47,6 +47,15 @@ Requires:	tar
 
 %description
 This package contains the yum configuration for oVirt repositories
+
+%package snapshot
+Summary:	oVirt snapshot repository configuration
+Group:		System Environment/Base
+Requires:	%{package_name}
+
+
+%description snapshot
+This package contains the yum configuration for oVirt snapshot repositories
 
 
 %prep
@@ -69,6 +78,7 @@ install -d 755 "%{buildroot}%{_sysconfdir}/yum.repos.d"
 install -d "%{buildroot}%{_sysconfdir}/pki/rpm-gpg"
 install -m 644 "%{SOURCE1}" "%{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-ovirt-%{ovirt_version}"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo"
+touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 
 %post
@@ -87,8 +97,6 @@ if [[ "${DISTVER}" == "el6" ]]; then
 elif [[ "${DISTVER::3}" == "el7" ]] ; then
     # On some systems [el7_1], take only 3 1st chars: ${var::3}
     install -m 644 "%{_datadir}/%{package_name}/ovirt-el7-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-elif [[ "${DISTVER}" == "fc20" ]]; then
-    install -m 644 "%{_datadir}/%{package_name}/ovirt-f20-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc21" ]]; then
     install -m 644 "%{_datadir}/%{package_name}/ovirt-f21-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc22" ]]; then
@@ -110,8 +118,16 @@ sed \
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
 
+%files snapshot
+%defattr(-,root,root,-)
+%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo
+
 
 %changelog
+* Thu Jul  9 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.4.beta
+- Dropped Fedora 20
+- Added nightly snapshot repositories
+
 * Thu Jul  9 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.3.alpha
 - Added pyxattr and userspace-rcu to EPEL 6 repository for Gluster 3.7.2
 

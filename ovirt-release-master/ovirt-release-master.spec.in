@@ -84,8 +84,6 @@ if [[ "${DISTVER}" == "el6" ]]; then
 elif [[ "${DISTVER::3}" == "el7" ]] ; then
     # On some systems [el7_1], take only 3 1st chars: ${var::3}
     install -m 644 "%{_datadir}/%{package_name}/ovirt-el7-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-elif [[ "${DISTVER}" == "fc20" ]]; then
-    install -m 644 "%{_datadir}/%{package_name}/ovirt-f20-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc21" ]]; then
     install -m 644 "%{_datadir}/%{package_name}/ovirt-f21-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc22" ]]; then
@@ -108,6 +106,9 @@ sed \
 
 
 %changelog
+* Tue Aug  4 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.11.master
+- Dropped Fedora 20
+
 * Thu Jul  9 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.10.master
 - Added pyxattr and userspace-rcu to EPEL 6 repository for Gluster 3.7.2
 

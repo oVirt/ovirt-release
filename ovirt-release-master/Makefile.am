@@ -26,13 +26,19 @@ EXTRA_DIST = \
 	$(NULL)
 
 pkgdata_DATA = \
-	$(srcdir)/ovirt-el6-deps.repo \
-	$(srcdir)/ovirt-el7-deps.repo \
-	$(srcdir)/ovirt-f20-deps.repo \
-	$(srcdir)/ovirt-f21-deps.repo \
-	$(srcdir)/ovirt-f22-deps.repo \
-	$(srcdir)/ovirt-snapshot.repo \
+	ovirt-el6-deps.repo \
+	ovirt-el7-deps.repo \
+	ovirt-f21-deps.repo \
+	ovirt-f22-deps.repo \
+	ovirt-snapshot.repo \
 	$(NULL)
 
+dist_noinst_DATA = \
+	$(srcdir)/ovirt-el6-deps.repo.in \
+	$(srcdir)/ovirt-el7-deps.repo.in \
+	$(srcdir)/ovirt-f21-deps.repo.in \
+	$(srcdir)/ovirt-f22-deps.repo.in \
+	$(srcdir)/ovirt-snapshot.repo.in \
+	$(NULL)
 
 # vim: ts=2

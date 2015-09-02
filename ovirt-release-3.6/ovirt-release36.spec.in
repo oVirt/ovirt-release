@@ -107,6 +107,21 @@ sed \
     -e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
     <"%{_datadir}/%{package_name}/ovirt.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo"
 
+%post snapshot
+
+# Adjust repos as per dist and version
+DIST=fc
+#Fedora is good for both Fedora and Generic (and probably other based on Fedora)
+#Handling EL exception only (for now)
+DISTVER="$(rpm --eval "%%dist"|cut -c2-)"
+if rpm --eval "%%dist" | grep -qFi 'el'; then
+    DIST=el
+fi
+
+sed \
+    -e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
+    <"%{_datadir}/%{package_name}/ovirt-snapshot.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
+
 
 %files
 %defattr(-,root,root,-)
@@ -124,6 +139,9 @@ sed \
 
 
 %changelog
+* Wed Sep  2 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.5.beta
+- Fixed post section for snapshot sub-package
+
 * Thu Jul  9 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.4.beta
 - Dropped Fedora 20
 - Added nightly snapshot repositories

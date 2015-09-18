@@ -79,9 +79,7 @@ if rpm --eval "%%dist" | grep -qFi 'el'; then
     DIST=el
 fi
 
-if [[ "${DISTVER}" == "el6" ]]; then
-    install -m 644 "%{_datadir}/%{package_name}/ovirt-el6-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-elif [[ "${DISTVER::3}" == "el7" ]] ; then
+if [[ "${DISTVER::3}" == "el7" ]] ; then
     # On some systems [el7_1], take only 3 1st chars: ${var::3}
     install -m 644 "%{_datadir}/%{package_name}/ovirt-el7-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc21" ]]; then
@@ -106,6 +104,10 @@ sed \
 
 
 %changelog
+* Fri Sep 18 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 002-0.0.master
+- Bumped version to 002 for 4.0 release cycle
+- Dropped EL 6 support
+
 * Tue Aug  4 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.11.master
 - Dropped Fedora 20
 

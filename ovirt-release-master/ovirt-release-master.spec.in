@@ -107,6 +107,7 @@ sed \
 * Fri Sep 18 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 002-0.0.master
 - Bumped version to 002 for 4.0 release cycle
 - Dropped EL 6 support
+- Add centos-openstack-kilo repository for openvswitch package on EL7
 
 * Tue Aug  4 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.11.master
 - Dropped Fedora 20

@@ -37,3 +37,10 @@ baseurl=http://fedorapeople.org/groups/virt/virtio-win/repo/stable
 enabled=1
 skip_if_unavailable=1
 gpgcheck=0
+
+[ovirt-centos-openstack-kilo]
+name=CentOS-$releasever - OpenStack kilo
+baseurl=http://mirror.centos.org/centos/$releasever/cloud/$basearch/openstack-kilo/
+gpgcheck=0
+enabled=1
+includepkgs=openvswitch

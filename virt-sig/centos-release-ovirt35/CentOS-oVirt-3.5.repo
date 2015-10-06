@@ -3,14 +3,14 @@
 # Please see http://wiki.centos.org/SpecialInterestGroup/Virtualization for more
 # information
 
-[centos-kvm-common]
+[centos-ovirt35]
 name=CentOS-$releasever - oVirt 3.5
 baseurl=http://mirror.centos.org/centos/$releasever/virt/$basearch/ovirt-3.5/
 gpgcheck=1
 enabled=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Virtualization
 
-[centos-kvm-common-test]
+[centos-ovirt35-test]
 name=CentOS-$releasever - oVirt 3.5 Testing
 baseurl=http://buildlogs.centos.org/centos/$releasever/virt/$basearch/ovirt-3.5/
 gpgcheck=1

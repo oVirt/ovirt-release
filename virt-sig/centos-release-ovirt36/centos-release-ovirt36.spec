@@ -1,8 +1,7 @@
-  
 Summary: oVirt 3.6 packages from the CentOS Virtualization SIG repository
 Name: centos-release-ovirt36
 Version: 1.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPLv2
 URL: http://wiki.centos.org/SpecialInterestGroup/Virtualization
 Source0: CentOS-oVirt-3.6.repo
@@ -11,7 +10,7 @@ Source1: COPYING
 BuildArch: noarch
 
 Requires: centos-release-virt-common
-Requires: centos-release-kvm
+Requires: centos-release-qemu-ev
 
 
 %description
@@ -30,5 +29,8 @@ install -D -m 644 %{SOURCE0} %{buildroot}%{_sysconfdir}/yum.repos.d/CentOS-oVirt
 %license COPYING
 
 %changelog
+* Tue Oct  6 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 1.0-2
+- Update dependencies
+
 * Fri Sep  4 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 1.0-1
 - Initial version based on centos-release-openstack

@@ -34,7 +34,7 @@ Group:		System Environment/Base
 
 License:	ASL 2.0
 URL:		http://www.ovirt.org
-Source0:	http://resources.ovirt.org/pub/ovirt-3.6-snapshot-static/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
+Source0:	http://resources.ovirt.org/pub/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
 Source1:	http://resources.ovirt.org/pub/keys/RPM-GPG-ovirt
 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
@@ -139,6 +139,9 @@ sed \
 
 
 %changelog
+* Thu Oct 29 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 001-1
+- 001-1
+
 * Wed Sep  2 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.5.beta
 - Fixed post section for snapshot sub-package
 

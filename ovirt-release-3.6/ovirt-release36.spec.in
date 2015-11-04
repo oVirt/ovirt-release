@@ -139,6 +139,9 @@ sed \
 
 
 %changelog
+* Wed Nov  4 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 001-2
+- oVirt 3.6.0 GA release
+
 * Thu Oct 29 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 001-1
 - 001-1
 

@@ -104,6 +104,9 @@ sed \
 
 
 %changelog
+* Fri Nov  6 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 002-0.1.master
+- Resolves: BZ#1278398
+
 * Fri Sep 18 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 002-0.0.master
 - Bumped version to 002 for 4.0 release cycle
 - Dropped EL 6 support

@@ -1,6 +1,6 @@
 dnl
 dnl ovirt-release -- repo files for oVirt projects
-dnl Copyright (C) 2012-2014 Red Hat, Inc.
+dnl Copyright (C) 2012-2015 Red Hat, Inc.
 dnl
 dnl This library is free software; you can redistribute it and/or
 dnl modify it under the terms of the GNU Lesser General Public
@@ -18,7 +18,7 @@ dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 dnl
 
 
-define([VERSION_NUMBER], [005])
+define([VERSION_NUMBER], [006])
 define([VERSION_SUFFIX], [])
 define([OVIRT_VERSION_MAJOR], [3])
 define([OVIRT_VERSION_MINOR], [5])

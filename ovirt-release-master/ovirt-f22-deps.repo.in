@@ -4,7 +4,7 @@ baseurl=http://download.gluster.org/pub/gluster/glusterfs/LATEST/Fedora/fedora-$
 enabled=1
 skip_if_unavailable=1
 gpgcheck=1
-gpgkey=http://download.gluster.org/pub/gluster/glusterfs/LATEST/Fedora/pub.key
+gpgkey=https://download.gluster.org/pub/gluster/glusterfs/LATEST/pub.key
 
 [ovirt-@OVIRT_SLOT@-glusterfs-noarch-fedora]
 name=GlusterFS is a clustered file-system capable of scaling to several petabytes.
@@ -12,7 +12,7 @@ baseurl=http://download.gluster.org/pub/gluster/glusterfs/LATEST/Fedora/fedora-$
 enabled=1
 skip_if_unavailable=1
 gpgcheck=1
-gpgkey=http://download.gluster.org/pub/gluster/glusterfs/LATEST/Fedora/pub.key
+gpgkey=https://download.gluster.org/pub/gluster/glusterfs/LATEST/pub.key
 
 [ovirt-@OVIRT_SLOT@-patternfly1]
 name=Copr repo for patternfly1 owned by patternfly

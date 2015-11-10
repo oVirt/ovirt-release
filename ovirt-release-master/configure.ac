@@ -27,7 +27,7 @@ AM_INIT_AUTOMAKE
 PACKAGE_RPM_VERSION="VERSION_NUMBER"
 AC_SUBST([PACKAGE_RPM_VERSION])
 
-PACKAGE_RPM_RELEASE="0.1.$(echo VERSION_SUFFIX | sed 's/^_//')"
+PACKAGE_RPM_RELEASE="0.2.$(echo VERSION_SUFFIX | sed 's/^_//')"
 AC_SUBST([PACKAGE_RPM_RELEASE])
 
 OVIRT_SLOT="master"
@@ -71,6 +71,7 @@ AC_CONFIG_FILES([
             ovirt-el7-deps.repo
             ovirt-f21-deps.repo
             ovirt-f22-deps.repo
+            ovirt-f23-deps.repo
             ovirt-release-master.spec
             ovirt-snapshot.repo
 ])

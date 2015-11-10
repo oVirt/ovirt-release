@@ -101,6 +101,8 @@ elif [[ "${DISTVER}" == "fc21" ]]; then
     install -m 644 "%{_datadir}/%{package_name}/ovirt-f21-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc22" ]]; then
     install -m 644 "%{_datadir}/%{package_name}/ovirt-f22-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+elif [[ "${DISTVER}" == "fc23" ]]; then
+    install -m 644 "%{_datadir}/%{package_name}/ovirt-f23-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 fi
 
 sed \
@@ -139,6 +141,10 @@ sed \
 
 
 %changelog
+* Tue Nov 10  2015 Sandro Bonazzola <sbonazzo@redhat.com> - 002-1
+- Updated Gluster repositories GPG key URL
+- Added Fedora 23
+
 * Wed Nov  4 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 001-2
 - oVirt 3.6.0 GA release
 

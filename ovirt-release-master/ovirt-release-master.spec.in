@@ -106,7 +106,10 @@ sed \
 
 
 %changelog
-* Tue Nov 10  2015 Sandro Bonazzola <sbonazzo@redhat.com> - 002-0.2.master
+* Wed Nov 11 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 002-0.3.master
+- Allow ovirt-guest-agent sub packages to be installed from EPEL
+
+* Tue Nov 10 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 002-0.2.master
 - Updated Gluster repositories GPG key URL
 - Added Fedora 23
 

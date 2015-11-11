@@ -4,7 +4,7 @@ name=Extra Packages for Enterprise Linux 7 - $basearch
 mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=epel-7&arch=$basearch
 failovermethod=priority
 enabled=1
-includepkgs=epel-release,python-uinput,puppet,python-lockfile,python-cpopen,python-ordereddict,python-pthreading,python-inotify,python-argparse,novnc,python-ply,python-kitchen,python-daemon,python-websockify,livecd-tools,spice-html5,mom,python-IPy,python-ioprocess,ioprocess,safelease,python-paramiko,python-crypto,python-cheetah,python-ecdsa,python-markdown,rubygem-rgen,ovirt-guest-agent,userspace-rcu,protobuf-java,objenesis
+includepkgs=epel-release,python-uinput,puppet,python-lockfile,python-cpopen,python-ordereddict,python-pthreading,python-inotify,python-argparse,novnc,python-ply,python-kitchen,python-daemon,python-websockify,livecd-tools,spice-html5,mom,python-IPy,python-ioprocess,ioprocess,safelease,python-paramiko,python-crypto,python-cheetah,python-ecdsa,python-markdown,rubygem-rgen,ovirt-guest-agent*,userspace-rcu,protobuf-java,objenesis
 gpgcheck=1
 gpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
 

@@ -19,6 +19,10 @@
 
 AUTOMAKE_OPTIONS = foreign 1.9
 
+SUBDIRS = \
+	host-node \
+	$(NULL)
+
 EXTRA_DIST = \
 	autogen.sh \
 	ovirt-release-master.spec \

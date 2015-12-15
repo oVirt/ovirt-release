@@ -47,6 +47,25 @@ Requires:	tar
 %description
 This package contains the yum configuration for oVirt repositories
 
+%global	host_node_release_file ovirt-release-host-node
+%package host-node
+Summary:	oVirt Node release file
+Version:	@PACKAGE_RPM_VERSION@
+Release:	@PACKAGE_RPM_RELEASE@%{?release_suffix}
+Group:  	System Environment/Base
+
+License:	GPLv2
+URL:    	http://www.ovirt.org
+
+BuildArch:	noarch
+
+Requires:	%{name} = %{version}-%{release}
+Requires:	cockpit
+Requires:	imgbased
+Requires:	vdsm
+
+%description host-node
+oVirt Node distro dependencies, presets and required settings.
 
 %prep
 %setup -q -n "%{package_name}-%{package_version}"
@@ -104,8 +123,79 @@ sed \
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo
 
+%post host-node
+#
+# Create the common os-release file
+
+# Import os-release to get some fields
+# NAME, VERSION, ID, VERSION_ID, CPE_NAME
+. /etc/os-release || :
+
+install -d /usr/lib/os.release.d/
+cat << EOF >> /usr/lib/os.release.d/%{host_node_release_file}
+NAME="$NAME"
+VERSION="$VERSION"
+ID="$ID"
+VERSION_ID="$VERSION_ID"
+VARIANT="oVirt Node %{ovirt_version}"
+VARIANT_ID="%{ovirt_version}"
+PRETTY_NAME="oVirt Node %{ovirt_version}.%{package_version}"
+ANSI_COLOR="0;34"
+CPE_NAME="$CPE_NAME"
+HOME_URL="https://www.ovirt.org/"
+BUG_REPORT_URL="https://bugzilla.redhat.com/"
+REDHAT_BUGZILLA_PRODUCT="ovirt-node"
+REDHAT_BUGZILLA_PRODUCT_VERSION="%{ovirt_version}"
+REDHAT_SUPPORT_PRODUCT="oVirt"
+REDHAT_SUPPORT_PRODUCT_VERSION="%{ovirt_version}"
+EOF
+
+# Only on installation
+if [ $1 = 1 ]; then
+    cp -p /etc/os-release /usr/lib/os.release.d/.host-node-previous-os-release
+    ln -sf /usr/lib/os.release.d/%{host_node_release_file} /usr/lib/os-release
+    ln -sf /usr/lib/os.release.d/%{host_node_release_file} /etc/os-release
+fi
+
+# Firewalld - Set default zone ovirthostnode
+systemctl status firewalld.service >/dev/null 2>&1
+if [ $? -ne 0 ]; then
+    systemctl start firewalld.service >/dev/null 2>&1
+fi
+# --get-default-zone doesn't allow --quiet
+firewall-cmd --get-default-zone > /usr/lib/firewalld/zones/.host-node-previous-default-zone
+firewall-cmd --reload --quiet
+firewall-cmd --set-default-zone="ovirthostnode" --quiet
+firewall-cmd --runtime-to-permanent --quiet
+
+%postun host-node
+# In case of uninstall the host-node pkg, return the previous os-release
+if [ $1 = 0 ]; then
+    rm -f /usr/lib/os-release /etc/os-release
+    cp -pf /usr/lib/os.release.d/.host-node-previous-os-release /usr/lib/os-release
+    ln -sf /usr/lib/os-release /etc/os-release
+    rm -f /usr/lib/os.release.d/.host-node-previous-os-release
+    # Return original zone
+    systemctl status firewalld.service >/dev/null 2>&1
+    if [ $? -ne 0 ]; then
+        systemctl start firewalld.service >/dev/null 2>&1
+    fi
+    firewall-cmd --set-default-zone=`cat /usr/lib/firewalld/zones/.host-node-previous-default-zone` --quiet
+    rm -f /usr/lib/firewalld/zones/.host-node-previous-default-zone
+    firewall-cmd --reload --quiet
+fi
+
+
+%files host-node
+%ghost %attr(0644, root, root) %{_prefix}/lib/os.release.d/%{host_node_release_file}
+%{_prefix}/lib/systemd/system-preset/98-ovirt-host-node.preset
+%{_prefix}/lib/firewalld/zones/ovirthostnode.xml
+
 
 %changelog
+* Wed Dec 09 2015 Ryan Barry <rbarry@redhat.com> - 002-0.4.master
+* Add a host-node subpackage for next-gen node
+
 * Wed Nov 11 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 002-0.3.master
 - Allow ovirt-guest-agent sub packages to be installed from EPEL
 

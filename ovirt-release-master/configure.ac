@@ -27,7 +27,7 @@ AM_INIT_AUTOMAKE
 PACKAGE_RPM_VERSION="VERSION_NUMBER"
 AC_SUBST([PACKAGE_RPM_VERSION])
 
-PACKAGE_RPM_RELEASE="0.3.$(echo VERSION_SUFFIX | sed 's/^_//')"
+PACKAGE_RPM_RELEASE="0.4.$(echo VERSION_SUFFIX | sed 's/^_//')"
 AC_SUBST([PACKAGE_RPM_RELEASE])
 
 OVIRT_SLOT="master"
@@ -68,6 +68,7 @@ PRODUCT_NAME=oVirt\ Packages\ Repository
 
 AC_CONFIG_FILES([
             Makefile
+            host-node/Makefile
             ovirt-el7-deps.repo
             ovirt-f21-deps.repo
             ovirt-f22-deps.repo

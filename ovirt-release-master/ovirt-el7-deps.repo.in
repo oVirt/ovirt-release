@@ -38,9 +38,8 @@ enabled=1
 skip_if_unavailable=1
 gpgcheck=0
 
-[ovirt-centos-openstack-kilo]
-name=CentOS-$releasever - OpenStack kilo
-baseurl=http://mirror.centos.org/centos/$releasever/cloud/$basearch/openstack-kilo/
+[centos-ovirt36]
+name=CentOS-$releasever - oVirt 3.6
+baseurl=http://mirror.centos.org/centos/$releasever/virt/$basearch/ovirt-3.6/
 gpgcheck=0
 enabled=1
-includepkgs=openvswitch

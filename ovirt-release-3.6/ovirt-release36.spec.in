@@ -97,8 +97,6 @@ if [[ "${DISTVER}" == "el6" ]]; then
 elif [[ "${DISTVER::3}" == "el7" ]] ; then
     # On some systems [el7_1], take only 3 1st chars: ${var::3}
     install -m 644 "%{_datadir}/%{package_name}/ovirt-el7-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-elif [[ "${DISTVER}" == "fc21" ]]; then
-    install -m 644 "%{_datadir}/%{package_name}/ovirt-f21-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc22" ]]; then
     install -m 644 "%{_datadir}/%{package_name}/ovirt-f22-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc23" ]]; then
@@ -141,6 +139,10 @@ sed \
 
 
 %changelog
+* Wed Dec 23 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 003-1
+- Add CentOS Virt SIG oVirt 3.6 repo as dependency for EL7 including openvswitch
+- Drop Fedora 21 support
+
 * Wed Nov 11 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 002-2
 - Allow ovirt-guest-agent sub packages to be installed from EPEL
 

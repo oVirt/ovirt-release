@@ -18,7 +18,7 @@ dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 dnl
 
 
-define([VERSION_NUMBER], [002])
+define([VERSION_NUMBER], [003])
 define([VERSION_SUFFIX], [])
 define([OVIRT_VERSION_MAJOR], [3])
 define([OVIRT_VERSION_MINOR], [6])
@@ -28,7 +28,7 @@ AM_INIT_AUTOMAKE
 PACKAGE_RPM_VERSION="VERSION_NUMBER"
 AC_SUBST([PACKAGE_RPM_VERSION])
 
-PACKAGE_RPM_RELEASE="2"
+PACKAGE_RPM_RELEASE="1"
 AC_SUBST([PACKAGE_RPM_RELEASE])
 
 OVIRT_SLOT="OVIRT_VERSION_MAJOR.OVIRT_VERSION_MINOR"
@@ -70,7 +70,6 @@ AC_CONFIG_FILES([
             Makefile
             ovirt-el6-deps.repo
             ovirt-el7-deps.repo
-            ovirt-f21-deps.repo
             ovirt-f22-deps.repo
             ovirt-f23-deps.repo
             ovirt-release36.spec

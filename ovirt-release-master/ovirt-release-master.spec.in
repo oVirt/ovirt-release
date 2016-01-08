@@ -151,8 +151,8 @@ EOF
 # Only on installation
 if [ $1 = 1 ]; then
     cp -p /etc/os-release /usr/lib/os.release.d/.host-node-previous-os-release
-    ln -sf /usr/lib/os.release.d/%{host_node_release_file} /usr/lib/os-release
-    ln -sf /usr/lib/os.release.d/%{host_node_release_file} /etc/os-release
+    ln -sf os.release.d/%{host_node_release_file} /usr/lib/os-release
+    ln -sf ../usr/lib/os-release /etc/os-release
 fi
 
 # Firewalld - Set default zone ovirthostnode

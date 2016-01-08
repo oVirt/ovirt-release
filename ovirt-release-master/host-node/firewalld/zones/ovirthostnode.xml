@@ -2,6 +2,7 @@
 <zone>
   <short>oVirtNode</short>
   <description>Services needed for oVirt Node distro.</description>
+  <service name="cockpit"/>
   <service name="libvirt"/>
   <service name="ssh"/>
   <service name="vdsm"/>

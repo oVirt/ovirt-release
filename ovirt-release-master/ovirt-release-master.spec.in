@@ -134,18 +134,15 @@ cat << EOF >> /usr/lib/os.release.d/%{host_node_release_file}
 NAME="$NAME"
 VERSION="$VERSION"
 ID="$ID"
+ID_LIKE="$ID_LIKE"
 VERSION_ID="$VERSION_ID"
 VARIANT="oVirt Node %{ovirt_version}"
 VARIANT_ID="ovirt-node-%{ovirt_version}"
 PRETTY_NAME="oVirt Node %{ovirt_version}.%{package_version}"
-ANSI_COLOR="0;34"
+ANSI_COLOR="$ANSI_COLOR"
 CPE_NAME="$CPE_NAME"
 HOME_URL="https://www.ovirt.org/"
 BUG_REPORT_URL="https://bugzilla.redhat.com/"
-REDHAT_BUGZILLA_PRODUCT="ovirt-node"
-REDHAT_BUGZILLA_PRODUCT_VERSION="%{ovirt_version}"
-REDHAT_SUPPORT_PRODUCT="oVirt"
-REDHAT_SUPPORT_PRODUCT_VERSION="%{ovirt_version}"
 EOF
 
 # Only on installation

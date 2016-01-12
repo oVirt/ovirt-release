@@ -1,6 +1,6 @@
 #
 # ovirt-release -- repo files for oVirt projects
-# Copyright (C) 2014-2015 Red Hat, Inc.
+# Copyright (C) 2014-2016 Red Hat, Inc.
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -150,6 +150,8 @@ if [ $1 = 1 ]; then
     cp -p /etc/os-release /usr/lib/os.release.d/.host-node-previous-os-release
     ln -sf os.release.d/%{host_node_release_file} /usr/lib/os-release
     ln -sf ../usr/lib/os-release /etc/os-release
+    source /etc/os-release
+    ln -sf %{_prefix}/share/ovirt-release-host-node/branding %{_prefix}/share/cockpit/branding/$ID-ovirt-node-%{ovirt_version}
 fi
 
 # Firewalld - Set default zone ovirthostnode
@@ -166,6 +168,7 @@ firewall-cmd --runtime-to-permanent --quiet
 %postun host-node
 # In case of uninstall the host-node pkg, return the previous os-release
 if [ $1 = 0 ]; then
+    rm -f %{_prefix}/share/cockpit/branding/*-ovirt-node-%{ovirt_version}
     rm -f /usr/lib/os-release /etc/os-release
     cp -pf /usr/lib/os.release.d/.host-node-previous-os-release /usr/lib/os-release
     ln -sf /usr/lib/os-release /etc/os-release
@@ -183,9 +186,14 @@ fi
 
 %files host-node
 %ghost %attr(0644, root, root) %{_prefix}/lib/os.release.d/%{host_node_release_file}
+%dir %{_prefix}/share/ovirt-release-host-node
+%dir %{_prefix}/share/ovirt-release-host-node/branding
 %{_prefix}/lib/systemd/system-preset/98-ovirt-host-node.preset
 %{_prefix}/lib/firewalld/zones/ovirthostnode.xml
-
+%{_prefix}/share/ovirt-release-host-node/branding/logo.png
+%{_prefix}/share/ovirt-release-host-node/branding/bg-login.png
+%{_prefix}/share/ovirt-release-host-node/branding/favicon.ico
+%{_prefix}/share/ovirt-release-host-node/branding/branding.css
 
 %changelog
 * Wed Dec 23 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 002-0.5.master

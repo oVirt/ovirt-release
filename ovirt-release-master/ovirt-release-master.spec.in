@@ -196,6 +196,9 @@ fi
 %{_prefix}/share/ovirt-release-host-node/branding/branding.css
 
 %changelog
+* Thu Jan 14 2016 Douglas Schilling Landgraf <dougsland@redhat.com> - 002-0.6.master
+- Added host-node sub-package requirements
+
 * Wed Dec 23 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 002-0.5.master
 - Add CentOS Virt SIG oVirt 3.6 repo as dependency for EL7 including openvswitch
 - Drop Fedora 21 support

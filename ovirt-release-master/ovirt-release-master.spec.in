@@ -67,6 +67,22 @@ Requires:	vdsm
 %description host-node
 oVirt Node distro dependencies, presets and required settings.
 
+%package placeholder
+Summary:	oVirt Node Image Update Placeholder
+Version:	@PACKAGE_RPM_VERSION@
+Release:	@PACKAGE_RPM_RELEASE@%{?release_suffix}
+Group:  	System Environment/Base
+
+License:	GPLv2
+URL:    	http://www.ovirt.org
+
+BuildArch:	noarch
+
+Requires:	%{name}-host-node = %{version}-%{release}
+
+%description placeholder
+A subpackage to be included into oVirt Node Next squashfs image to allow upgrading itself
+
 %prep
 %setup -q -n "%{package_name}-%{package_version}"
 
@@ -183,6 +199,7 @@ if [ $1 = 0 ]; then
     firewall-cmd --reload --quiet
 fi
 
+%files placeholder
 
 %files host-node
 %ghost %attr(0644, root, root) %{_prefix}/lib/os.release.d/%{host_node_release_file}

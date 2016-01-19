@@ -153,7 +153,7 @@ ID="$ID"
 ID_LIKE="$ID_LIKE"
 VERSION_ID="$VERSION_ID"
 VARIANT="oVirt Node %{ovirt_version}"
-VARIANT_ID="ovirt-node-%{ovirt_version}"
+VARIANT_ID="ovirt-node"
 PRETTY_NAME="oVirt Node %{ovirt_version}.%{package_version}"
 ANSI_COLOR="$ANSI_COLOR"
 CPE_NAME="$CPE_NAME"
@@ -167,7 +167,7 @@ if [ $1 = 1 ]; then
     ln -sf os.release.d/%{host_node_release_file} /usr/lib/os-release
     ln -sf ../usr/lib/os-release /etc/os-release
     source /etc/os-release
-    ln -sf %{_prefix}/share/ovirt-release-host-node/branding %{_prefix}/share/cockpit/branding/$ID-ovirt-node-%{ovirt_version}
+    ln -sf %{_prefix}/share/ovirt-release-host-node/branding %{_prefix}/share/cockpit/branding/$ID-ovirt-node
 fi
 
 # Firewalld - Set default zone ovirthostnode
@@ -184,7 +184,7 @@ firewall-cmd --runtime-to-permanent --quiet
 %postun host-node
 # In case of uninstall the host-node pkg, return the previous os-release
 if [ $1 = 0 ]; then
-    rm -f %{_prefix}/share/cockpit/branding/*-ovirt-node-%{ovirt_version}
+    rm -f %{_prefix}/share/cockpit/branding/*-ovirt-node
     rm -f /usr/lib/os-release /etc/os-release
     cp -pf /usr/lib/os.release.d/.host-node-previous-os-release /usr/lib/os-release
     ln -sf /usr/lib/os-release /etc/os-release

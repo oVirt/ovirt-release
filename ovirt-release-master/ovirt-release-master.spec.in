@@ -180,6 +180,8 @@ firewall-cmd --get-default-zone > /usr/lib/firewalld/zones/.host-node-previous-d
 firewall-cmd --reload --quiet
 firewall-cmd --set-default-zone="ovirthostnode" --quiet
 firewall-cmd --runtime-to-permanent --quiet
+# Restarting cockpit to load the new branding data
+systemctl restart cockpit.service >/dev/null 2>&1
 
 %postun host-node
 # In case of uninstall the host-node pkg, return the previous os-release
@@ -198,6 +200,8 @@ if [ $1 = 0 ]; then
     rm -f /usr/lib/firewalld/zones/.host-node-previous-default-zone
     firewall-cmd --reload --quiet
 fi
+# Restarting cockpit to reload the branding data
+systemctl restart cockpit.service >/dev/null 2>&1
 
 %files placeholder
 

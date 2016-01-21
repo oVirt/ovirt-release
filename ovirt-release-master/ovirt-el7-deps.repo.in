@@ -40,6 +40,6 @@ gpgcheck=0
 
 [centos-ovirt36]
 name=CentOS-$releasever - oVirt 3.6
-baseurl=http://mirror.centos.org/centos/$releasever/virt/$basearch/ovirt-3.6/
+baseurl=http://mirror.centos.org/centos/7/virt/$basearch/ovirt-3.6/
 gpgcheck=0
 enabled=1

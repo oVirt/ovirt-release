@@ -15,9 +15,9 @@ body.login-pf {
 #brand {
     font-size: 18pt;
     text-transform: uppercase;
-    content: "${NAME} <b>${PRETTY_NAME}</b>";
+    content: "<b>${PRETTY_NAME}</b>";
 }
 
 #index-brand {
-    content: "${NAME} <b>${PRETTY_NAME}</b>";
+    content: "<b>${PRETTY_NAME}</b>";
 }

@@ -67,7 +67,7 @@ Requires:	vdsm
 %description host-node
 oVirt Node distro dependencies, presets and required settings.
 
-%package placeholder
+%package -n ovirt-node-ng-image-update-placeholder
 Summary:	oVirt Node Image Update Placeholder
 Version:	@PACKAGE_RPM_VERSION@
 Release:	@PACKAGE_RPM_RELEASE@%{?release_suffix}
@@ -80,7 +80,7 @@ BuildArch:	noarch
 
 Requires:	%{name}-host-node = %{version}-%{release}
 
-%description placeholder
+%description -n ovirt-node-ng-image-update-placeholder
 A subpackage to be included into oVirt Node Next squashfs image to allow upgrading itself
 
 %prep
@@ -203,7 +203,7 @@ fi
 # Restarting cockpit to reload the branding data
 systemctl restart cockpit.service >/dev/null 2>&1
 
-%files placeholder
+%files -n ovirt-node-ng-image-update-placeholder
 
 %files host-node
 %ghost %attr(0644, root, root) %{_prefix}/lib/os.release.d/%{host_node_release_file}

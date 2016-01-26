@@ -217,6 +217,10 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %{_prefix}/share/ovirt-release-host-node/branding/branding.css
 
 %changelog
+* Tue Jan 23 2016 Fabian Deutsch <fdeutsch@redhat.com> - 4.0.0-0.0.master
+- Align package version ot the overall oVirt version
+- Rename the placeholder package
+
 * Thu Jan 14 2016 Douglas Schilling Landgraf <dougsland@redhat.com> - 002-0.6.master
 - Added host-node sub-package requirements
 

@@ -63,6 +63,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	cockpit
 Requires:	imgbased
 Requires:	vdsm
+Requires:	vdsm-cli
 
 %description host-node
 oVirt Node distro dependencies, presets and required settings.

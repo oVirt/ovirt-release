@@ -60,6 +60,10 @@ URL:    	http://www.ovirt.org
 BuildArch:	noarch
 
 Requires:	%{name} = %{version}-%{release}
+Requires(post):	systemd
+Requires(postun):	systemd
+BuildRequires:	systemd
+
 Requires:	cockpit
 Requires:	imgbased
 Requires:	vdsm
@@ -139,6 +143,9 @@ sed \
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo
 
 %post host-node
+%systemd_post cockpit.socket
+%systemd_post sshd.socket
+%systemd_post vdsmd.service
 #
 # Create the common os-release file
 
@@ -190,6 +197,9 @@ systemctl restart firewalld.service >/dev/null 2>&1
 systemctl restart cockpit.service >/dev/null 2>&1
 
 %postun host-node
+%systemd_postun cockpit.socket
+%systemd_postun sshd.socket
+%systemd_postun vdsmd.service
 # In case of uninstall the host-node pkg, return the previous os-release
 if [ $1 = 0 ]; then
     rm -f %{_prefix}/share/cockpit/branding/*-ovirt-node

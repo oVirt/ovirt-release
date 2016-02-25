@@ -171,15 +171,20 @@ if [ $1 = 1 ]; then
 fi
 
 # Firewalld - Set default zone ovirthostnode
-systemctl status firewalld.service >/dev/null 2>&1
-if [ $? -ne 0 ]; then
-    systemctl start firewalld.service >/dev/null 2>&1
-fi
-# --get-default-zone doesn't allow --quiet
-firewall-cmd --get-default-zone > /usr/lib/firewalld/zones/.host-node-previous-default-zone
-firewall-cmd --reload --quiet
-firewall-cmd --set-default-zone="ovirthostnode" --quiet
-firewall-cmd --runtime-to-permanent --quiet
+
+# systemctl status firewalld always return 0 in anaconda/kickstart so it's
+# not possible to determine if we should use firewalld-cmd or
+# firewalld-offline-cmd. As it's supported as well
+# the manual installation of release pkgs via dnf/yum we
+# will use the below workaround.
+#
+# For more info:
+# Running in chroot, ignoring request -- exit code 0
+# https://bugzilla.redhat.com/show_bug.cgi?id=1110675
+cp -auf /etc/firewalld/firewalld.conf /etc/firewalld/host-node-previous-firewalld.conf
+sed -i 's|^DefaultZone=.*|DefaultZone=ovirthostnode|g' /etc/firewalld/firewalld.conf
+systemctl restart firewalld.service >/dev/null 2>&1
+
 # Restarting cockpit to load the new branding data
 systemctl restart cockpit.service >/dev/null 2>&1
 
@@ -192,13 +197,9 @@ if [ $1 = 0 ]; then
     ln -sf /usr/lib/os-release /etc/os-release
     rm -f /usr/lib/os.release.d/.host-node-previous-os-release
     # Return original zone
-    systemctl status firewalld.service >/dev/null 2>&1
-    if [ $? -ne 0 ]; then
-        systemctl start firewalld.service >/dev/null 2>&1
-    fi
-    firewall-cmd --set-default-zone=`cat /usr/lib/firewalld/zones/.host-node-previous-default-zone` --quiet
-    rm -f /usr/lib/firewalld/zones/.host-node-previous-default-zone
-    firewall-cmd --reload --quiet
+    cp -auf /etc/firewalld/host-node-previous-firewalld.conf /etc/firewalld/firewalld.conf
+    rm -f /etc/firewalld/host-node-previous-firewalld.conf
+    systemctl restart firewalld.service >/dev/null 2>&1
 fi
 # Restarting cockpit to reload the branding data
 systemctl restart cockpit.service >/dev/null 2>&1

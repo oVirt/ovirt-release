@@ -59,7 +59,6 @@ URL:    	http://www.ovirt.org
 
 BuildArch:	noarch
 
-Requires:	%{name} = %{version}-%{release}
 Requires(post):	systemd
 Requires(postun):	systemd
 BuildRequires:	systemd

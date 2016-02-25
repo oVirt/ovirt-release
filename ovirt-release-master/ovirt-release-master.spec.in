@@ -63,6 +63,8 @@ Requires(post):	systemd
 Requires(postun):	systemd
 BuildRequires:	systemd
 
+Requires:       firewalld
+
 Requires:	cockpit
 Requires:	imgbased
 Requires:	vdsm
@@ -188,7 +190,8 @@ fi
 # For more info:
 # Running in chroot, ignoring request -- exit code 0
 # https://bugzilla.redhat.com/show_bug.cgi?id=1110675
-cp -auf /etc/firewalld/firewalld.conf /etc/firewalld/host-node-previous-firewalld.conf
+rm -f /etc/firewalld/host-node-previous-firewalld.conf
+cp -f /etc/firewalld/firewalld.conf /etc/firewalld/host-node-previous-firewalld.conf
 sed -i 's|^DefaultZone=.*|DefaultZone=ovirthostnode|g' /etc/firewalld/firewalld.conf
 systemctl restart firewalld.service >/dev/null 2>&1
 

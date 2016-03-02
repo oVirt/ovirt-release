@@ -29,14 +29,13 @@
 Name:		%{package_name}
 Version:	@PACKAGE_RPM_VERSION@
 Release:	@PACKAGE_RPM_RELEASE@%{?release_suffix}
-Summary:	oVirt repository configuration
+Summary:	The oVirt repository configuration
 Group:		System Environment/Base
 
 License:	ASL 2.0
 URL:		http://www.ovirt.org
 Source0:	http://resources.ovirt.org/pub/ovirt-master-snapshot-static/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
 
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
 BuildArch:	noarch
 
 BuildRequires:	automake
@@ -49,45 +48,42 @@ This package contains the yum configuration for oVirt repositories
 
 %global	host_node_release_file ovirt-release-host-node
 %package host-node
-Summary:	oVirt Node release file
+Summary:	The oVirt Node release file
 Version:	@PACKAGE_RPM_VERSION@
 Release:	@PACKAGE_RPM_RELEASE@%{?release_suffix}
-Group:  	System Environment/Base
-
+Group:		System Environment/Base
 License:	GPLv2
-URL:    	http://www.ovirt.org
-
+URL:		http://www.ovirt.org
 BuildArch:	noarch
+
+BuildRequires:	systemd
 
 Requires(post):	systemd
 Requires(postun):	systemd
-BuildRequires:	systemd
-
-Requires:       firewalld
 
 Requires:	cockpit
+Requires:	firewalld
 Requires:	imgbased
 Requires:	vdsm
 Requires:	vdsm-cli
 
 %description host-node
-oVirt Node distro dependencies, presets and required settings.
+oVirt Node distribution dependencies, presets and required settings.
 
 %package -n ovirt-node-ng-image-update-placeholder
-Summary:	oVirt Node Image Update Placeholder
+Summary:	The oVirt Node Image Update Placeholder
 Version:	@PACKAGE_RPM_VERSION@
 Release:	@PACKAGE_RPM_RELEASE@%{?release_suffix}
-Group:  	System Environment/Base
-
+Group:		System Environment/Base
 License:	GPLv2
-URL:    	http://www.ovirt.org
-
+URL:		http://www.ovirt.org
 BuildArch:	noarch
 
 Requires:	%{name}-host-node = %{version}-%{release}
 
 %description -n ovirt-node-ng-image-update-placeholder
-A subpackage to be included into oVirt Node Next squashfs image to allow upgrading itself
+A sub-package to be included into oVirt Node Next squashfs
+image to allow upgrading itself
 
 %prep
 %setup -q -n "%{package_name}-%{package_version}"
@@ -117,21 +113,19 @@ DIST=fc
 #Handling EL exception only (for now)
 DISTVER="$(rpm --eval "%%dist"|cut -c2-)"
 if rpm --eval "%%dist" | grep -qFi 'el'; then
-    DIST=el
+	DIST=el
 fi
 
 if [[ "${DISTVER::3}" == "el7" ]] ; then
-    # On some systems [el7_1], take only 3 1st chars: ${var::3}
-    install -m 644 "%{_datadir}/%{package_name}/ovirt-el7-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-elif [[ "${DISTVER}" == "fc22" ]]; then
-    install -m 644 "%{_datadir}/%{package_name}/ovirt-f22-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+	# On some systems [el7_1], take only 3 1st chars: ${var::3}
+	install -m 644 "%{_datadir}/%{package_name}/ovirt-el7-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc23" ]]; then
-    install -m 644 "%{_datadir}/%{package_name}/ovirt-f23-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+	install -m 644 "%{_datadir}/%{package_name}/ovirt-f23-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 fi
 
 sed \
-    -e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
-    <"%{_datadir}/%{package_name}/ovirt-snapshot.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
+	-e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
+	<"%{_datadir}/%{package_name}/ovirt-snapshot.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
 
 
 %files
@@ -172,11 +166,11 @@ EOF
 
 # Only on installation
 if [ $1 = 1 ]; then
-    cp -p /etc/os-release /usr/lib/os.release.d/.host-node-previous-os-release
-    ln -sf os.release.d/%{host_node_release_file} /usr/lib/os-release
-    ln -sf ../usr/lib/os-release /etc/os-release
-    source /etc/os-release
-    ln -sf %{_prefix}/share/ovirt-release-host-node/branding %{_prefix}/share/cockpit/branding/$ID-ovirt-node
+	cp -p /etc/os-release /usr/lib/os.release.d/.host-node-previous-os-release
+	ln -sf os.release.d/%{host_node_release_file} /usr/lib/os-release
+	ln -sf ../usr/lib/os-release /etc/os-release
+	source /etc/os-release
+	ln -sf %{_prefix}/share/ovirt-release-host-node/branding %{_prefix}/share/cockpit/branding/$ID-ovirt-node
 fi
 
 # Firewalld - Set default zone ovirthostnode
@@ -204,15 +198,15 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %systemd_postun vdsmd.service
 # In case of uninstall the host-node pkg, return the previous os-release
 if [ $1 = 0 ]; then
-    rm -f %{_prefix}/share/cockpit/branding/*-ovirt-node
-    rm -f /usr/lib/os-release /etc/os-release
-    cp -pf /usr/lib/os.release.d/.host-node-previous-os-release /usr/lib/os-release
-    ln -sf /usr/lib/os-release /etc/os-release
-    rm -f /usr/lib/os.release.d/.host-node-previous-os-release
-    # Return original zone
-    cp -auf /etc/firewalld/host-node-previous-firewalld.conf /etc/firewalld/firewalld.conf
-    rm -f /etc/firewalld/host-node-previous-firewalld.conf
-    systemctl restart firewalld.service >/dev/null 2>&1
+	rm -f %{_prefix}/share/cockpit/branding/*-ovirt-node
+	rm -f /usr/lib/os-release /etc/os-release
+	cp -pf /usr/lib/os.release.d/.host-node-previous-os-release /usr/lib/os-release
+	ln -sf /usr/lib/os-release /etc/os-release
+	rm -f /usr/lib/os.release.d/.host-node-previous-os-release
+	# Return original zone
+	cp -auf /etc/firewalld/host-node-previous-firewalld.conf /etc/firewalld/firewalld.conf
+	rm -f /etc/firewalld/host-node-previous-firewalld.conf
+	systemctl restart firewalld.service >/dev/null 2>&1
 fi
 # Restarting cockpit to reload the branding data
 systemctl restart cockpit.service >/dev/null 2>&1
@@ -223,7 +217,7 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %ghost %attr(0644, root, root) %{_prefix}/lib/os.release.d/%{host_node_release_file}
 %dir %{_prefix}/share/ovirt-release-host-node
 %dir %{_prefix}/share/ovirt-release-host-node/branding
-%{_prefix}/lib/systemd/system-preset/98-ovirt-host-node.preset
+%{_presetdir}/98-ovirt-host-node.preset
 %{_prefix}/lib/firewalld/zones/ovirthostnode.xml
 %{_prefix}/share/ovirt-release-host-node/branding/logo.png
 %{_prefix}/share/ovirt-release-host-node/branding/bg-login.png
@@ -231,7 +225,11 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %{_prefix}/share/ovirt-release-host-node/branding/branding.css
 
 %changelog
-* Tue Jan 23 2016 Fabian Deutsch <fdeutsch@redhat.com> - 4.0.0-0.0.master
+* Wed Mar  2 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.0.0-0.1.master
+- 4.0.0-0.1.master
+- Drop Fedora 22 support
+
+* Tue Jan 26 2016 Fabian Deutsch <fdeutsch@redhat.com> - 4.0.0-0.0.master
 - Align package version ot the overall oVirt version
 - Rename the placeholder package
 

@@ -1,0 +1,4 @@
+make
+autoconf
+gettext-devel
+automake

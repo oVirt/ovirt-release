@@ -65,7 +65,7 @@ Requires:	cockpit
 Requires:	firewalld
 Requires:	imgbased
 Requires:	vdsm
-Requires:	vdsm-cli
+Requires:	ovirt-hosted-engine-setup
 
 %description host-node
 oVirt Node distribution dependencies, presets and required settings.

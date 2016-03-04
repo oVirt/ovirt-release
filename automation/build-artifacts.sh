@@ -20,3 +20,7 @@ find \
     "$PWD/tmp.repos" \
     -iname \*.rpm \
     -exec mv {} exported-artifacts/ \;
+
+# Create a link to a predefined rpm name for easier consumption
+pushd exported-artifacts
+cp -vfl ovirt-release-master-4*.noarch.rpm ovirt-release-master.rpm

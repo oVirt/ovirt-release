@@ -19,18 +19,19 @@ dnl
 
 
 define([VERSION_NUMBER], [4.0.0])
-define([VERSION_SUFFIX], [_master])
-
-AC_INIT([ovirt-release-master], VERSION_NUMBER[]VERSION_SUFFIX, [infra@ovirt.org])
+define([VERSION_SUFFIX], [_prealpha2])
+define([OVIRT_VERSION_MAJOR], [4])
+define([OVIRT_VERSION_MINOR], [0])
+AC_INIT([ovirt-release][]OVIRT_VERSION_MAJOR[]OVIRT_VERSION_MINOR, VERSION_NUMBER[]VERSION_SUFFIX, [infra@ovirt.org])
 AM_INIT_AUTOMAKE
 
 PACKAGE_RPM_VERSION="VERSION_NUMBER"
 AC_SUBST([PACKAGE_RPM_VERSION])
 
-PACKAGE_RPM_RELEASE="0.1.$(echo VERSION_SUFFIX | sed 's/^_//')"
+PACKAGE_RPM_RELEASE="0.0.$(echo VERSION_SUFFIX | sed 's/^_//')"
 AC_SUBST([PACKAGE_RPM_RELEASE])
 
-OVIRT_SLOT="master"
+OVIRT_SLOT="OVIRT_VERSION_MAJOR.OVIRT_VERSION_MINOR[]VERSION_SUFFIX"
 AC_SUBST([OVIRT_SLOT])
 
 AC_ARG_WITH([ovirt-yum-repo],[AC_HELP_STRING([--with-ovirt-yum-repo],
@@ -63,7 +64,6 @@ AC_ARG_WITH([ovirt-yum-repo],[AC_HELP_STRING([--with-ovirt-yum-repo],
             [OVIRT_YUM_REPO="http://resources.ovirt.org"])
 AC_SUBST([OVIRT_YUM_REPO])
 
-PACKAGE_NAME=ovirt-release-${OVIRT_SLOT}
 PRODUCT_NAME=oVirt\ Packages\ Repository
 
 AC_CONFIG_FILES([
@@ -71,7 +71,8 @@ AC_CONFIG_FILES([
             host-node/Makefile
             ovirt-el7-deps.repo
             ovirt-f23-deps.repo
-            ovirt-release-master.spec
+            ovirt-release40.spec
+            ovirt.repo
             ovirt-snapshot.repo
 ])
 AC_OUTPUT

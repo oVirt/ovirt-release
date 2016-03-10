@@ -1,6 +1,6 @@
 #
 # ovirt-release -- repo files for oVirt projects
-# Copyright (C) 2014-2016 Red Hat, Inc.
+# Copyright (C) 2016 Red Hat, Inc.
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -35,6 +35,7 @@ Group:		System Environment/Base
 License:	ASL 2.0
 URL:		http://www.ovirt.org
 Source0:	http://resources.ovirt.org/pub/ovirt-master-snapshot-static/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
+Source1:	http://resources.ovirt.org/pub/keys/RPM-GPG-ovirt
 
 BuildArch:	noarch
 
@@ -85,6 +86,17 @@ Requires:	%{name}-host-node = %{version}-%{release}
 A sub-package to be included into oVirt Node Next squashfs
 image to allow upgrading itself
 
+
+%package snapshot
+Summary:	oVirt snapshot repository configuration
+Group:		System Environment/Base
+Requires:	%{package_name}
+
+
+%description snapshot
+This package contains the yum configuration for oVirt snapshot repositories
+
+
 %prep
 %setup -q -n "%{package_name}-%{package_version}"
 
@@ -102,6 +114,9 @@ rm -rf "%{buildroot}"
 %make_install
 #Allow ghost files
 install -d 755 "%{buildroot}%{_sysconfdir}/yum.repos.d"
+install -d "%{buildroot}%{_sysconfdir}/pki/rpm-gpg"
+install -m 644 "%{SOURCE1}" "%{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-ovirt-%{ovirt_version}"
+touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 
@@ -124,17 +139,35 @@ elif [[ "${DISTVER}" == "fc23" ]]; then
 fi
 
 sed \
+    -e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
+    <"%{_datadir}/%{package_name}/ovirt.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo"
+
+%post snapshot
+
+# Adjust repos as per dist and version
+DIST=fc
+#Fedora is good for both Fedora and Generic (and probably other based on Fedora)
+#Handling EL exception only (for now)
+DISTVER="$(rpm --eval "%%dist"|cut -c2-)"
+if rpm --eval "%%dist" | grep -qFi 'el'; then
+    DIST=el
+fi
+
+sed \
 	-e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
 	<"%{_datadir}/%{package_name}/ovirt-snapshot.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
 
 
 %files
-%defattr(-,root,root,-)
 %{_datadir}/%{package_name}/
+%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-ovirt-%{ovirt_version}
 # We do not know what distribution we are installed at,
 # we copy the actual files at post, but still wants this package to own them.
 # ghost in this case solves that issue
+%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
+
+%files snapshot
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo
 
 %post host-node
@@ -225,75 +258,5 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %{_prefix}/share/ovirt-release-host-node/branding/branding.css
 
 %changelog
-* Wed Mar  2 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.0.0-0.1.master
-- 4.0.0-0.1.master
-- Drop Fedora 22 support
-
-* Tue Jan 26 2016 Fabian Deutsch <fdeutsch@redhat.com> - 4.0.0-0.0.master
-- Align package version ot the overall oVirt version
-- Rename the placeholder package
-
-* Thu Jan 14 2016 Douglas Schilling Landgraf <dougsland@redhat.com> - 002-0.6.master
-- Added host-node sub-package requirements
-
-* Wed Dec 23 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 002-0.5.master
-- Add CentOS Virt SIG oVirt 3.6 repo as dependency for EL7 including openvswitch
-- Drop Fedora 21 support
-
-* Wed Dec 09 2015 Ryan Barry <rbarry@redhat.com> - 002-0.4.master
-- Add a host-node subpackage for next-gen node
-
-* Wed Nov 11 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 002-0.3.master
-- Allow ovirt-guest-agent sub packages to be installed from EPEL
-
-* Tue Nov 10 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 002-0.2.master
-- Updated Gluster repositories GPG key URL
-- Added Fedora 23
-
-* Fri Nov  6 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 002-0.1.master
-- Resolves: BZ#1278398
-
-* Fri Sep 18 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 002-0.0.master
-- Bumped version to 002 for 4.0 release cycle
-- Dropped EL 6 support
-- Add centos-openstack-kilo repository for openvswitch package on EL7
-
-* Tue Aug  4 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.11.master
-- Dropped Fedora 20
-
-* Thu Jul  9 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.10.master
-- Added pyxattr and userspace-rcu to EPEL 6 repository for Gluster 3.7.2
-
-* Fri May 22 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.9.master
-- Drop Gluster 3.7 Nightly repository since 3.7.0 GA is available
-- Add VirtIO-Win Stable repository
-
-* Mon Apr 27 2015 Max Kovgan <mkovgan@redhat.com> - 001-0.8.master
-- add overrides to urls/paths serving the repositories
-
-* Thu Apr 23 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.7.master
-- Add Fedora 22 support for 3.6.0
-- Move GlusterFS Nightly to GlusterFS 3.7 Nightly
-- Enable the whole virt-preview repo for Fedora 20 since also a newer qemu-kvm
-  is now required.
-
-* Fri Apr  3 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.6.master
-- Add userspace-rcu from EPEL, needed by Gluster 3.7
-
-* Wed Mar 25 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.5.master
-- Enable GlusterFS Nightly on all distributions required for VDSM starting
-  from https://gerrit.ovirt.org/39075
-
-* Wed Feb  4 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.4.master
-- Enable virt-preview repository on Fedora 20
-
-* Thu Dec 11 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.3.master
-- Use latest glusterfs also on Fedora
-- Enable rpm gpg check on glusterfs rpms
-
-* Mon Nov 10 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.2.master
-- Add EL7 support for 3.6.0
-
-* Mon Oct 20 2014 Sandro Bonazzola <sbonazzo@redhat.com> - 001-0.1.master
-- Add Fedora 21 support for 3.6.0
-- Provide oVirt master development repositories
+* Thu Mar 10 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.0.0-0.0.prealpha2
+- 4.0.0-0.0.master

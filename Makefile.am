@@ -25,19 +25,21 @@ SUBDIRS = \
 
 EXTRA_DIST = \
 	autogen.sh \
-	ovirt-release-master.spec \
-	ovirt-release-master.spec.in \
+	ovirt-release40.spec \
+	ovirt-release40.spec.in \
 	$(NULL)
 
 pkgdata_DATA = \
 	ovirt-el7-deps.repo \
 	ovirt-f23-deps.repo \
+	ovirt.repo \
 	ovirt-snapshot.repo \
 	$(NULL)
 
 dist_noinst_DATA = \
 	$(srcdir)/ovirt-el7-deps.repo.in \
 	$(srcdir)/ovirt-f23-deps.repo.in \
+	$(srcdir)/ovirt.repo.in \
 	$(srcdir)/ovirt-snapshot.repo.in \
 	$(NULL)
 

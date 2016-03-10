@@ -48,6 +48,46 @@ Requires:	tar
 %description
 This package contains the yum configuration for oVirt repositories
 
+%global	host_node_release_file ovirt-release-host-node
+%package host-node
+Summary:	The oVirt Node release file
+Version:	@PACKAGE_RPM_VERSION@
+Release:	@PACKAGE_RPM_RELEASE@%{?release_suffix}
+Group:		System Environment/Base
+License:	GPLv2
+URL:		http://www.ovirt.org
+BuildArch:	noarch
+
+BuildRequires:	systemd
+
+Requires(post):	systemd
+Requires(postun):	systemd
+
+Requires:	cockpit
+Requires:	firewalld
+Requires:	imgbased
+Requires:	vdsm
+Requires:	ovirt-hosted-engine-setup
+
+%description host-node
+oVirt Node distribution dependencies, presets and required settings.
+
+%package -n ovirt-node-ng-image-update-placeholder
+Summary:	The oVirt Node Image Update Placeholder
+Version:	@PACKAGE_RPM_VERSION@
+Release:	@PACKAGE_RPM_RELEASE@%{?release_suffix}
+Group:		System Environment/Base
+License:	GPLv2
+URL:		http://www.ovirt.org
+BuildArch:	noarch
+
+Requires:	%{name}-host-node = %{version}-%{release}
+
+%description -n ovirt-node-ng-image-update-placeholder
+A sub-package to be included into oVirt Node Next squashfs
+image to allow upgrading itself
+
+
 %package snapshot
 Summary:	oVirt snapshot repository configuration
 Group:		System Environment/Base
@@ -137,8 +177,97 @@ sed \
 %defattr(-,root,root,-)
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo
 
+%post host-node
+%systemd_post cockpit.socket
+%systemd_post sshd.socket
+%systemd_post vdsmd.service
+#
+# Create the common os-release file
+
+# Import os-release to get some fields
+# NAME, VERSION, ID, VERSION_ID, CPE_NAME
+. /etc/os-release || :
+
+install -d /usr/lib/os.release.d/
+cat << EOF >> /usr/lib/os.release.d/%{host_node_release_file}
+NAME="$NAME"
+VERSION="$VERSION"
+ID="$ID"
+ID_LIKE="$ID_LIKE"
+VERSION_ID="$VERSION_ID"
+VARIANT="oVirt Node %{package_version}"
+VARIANT_ID="ovirt-node"
+PRETTY_NAME="oVirt Node %{package_version}"
+ANSI_COLOR="$ANSI_COLOR"
+CPE_NAME="$CPE_NAME"
+HOME_URL="https://www.ovirt.org/"
+BUG_REPORT_URL="https://bugzilla.redhat.com/"
+EOF
+
+# Only on installation
+if [ $1 = 1 ]; then
+	cp -p /etc/os-release /usr/lib/os.release.d/.host-node-previous-os-release
+	ln -sf os.release.d/%{host_node_release_file} /usr/lib/os-release
+	ln -sf ../usr/lib/os-release /etc/os-release
+	source /etc/os-release
+	ln -sf %{_prefix}/share/ovirt-release-host-node/branding %{_prefix}/share/cockpit/branding/$ID-ovirt-node
+fi
+
+# Firewalld - Set default zone ovirthostnode
+
+# systemctl status firewalld always return 0 in anaconda/kickstart so it's
+# not possible to determine if we should use firewalld-cmd or
+# firewalld-offline-cmd. As it's supported as well
+# the manual installation of release pkgs via dnf/yum we
+# will use the below workaround.
+#
+# For more info:
+# Running in chroot, ignoring request -- exit code 0
+# https://bugzilla.redhat.com/show_bug.cgi?id=1110675
+rm -f /etc/firewalld/host-node-previous-firewalld.conf
+cp -f /etc/firewalld/firewalld.conf /etc/firewalld/host-node-previous-firewalld.conf
+sed -i 's|^DefaultZone=.*|DefaultZone=ovirthostnode|g' /etc/firewalld/firewalld.conf
+systemctl restart firewalld.service >/dev/null 2>&1
+
+# Restarting cockpit to load the new branding data
+systemctl restart cockpit.service >/dev/null 2>&1
+
+%postun host-node
+%systemd_postun cockpit.socket
+%systemd_postun sshd.socket
+%systemd_postun vdsmd.service
+# In case of uninstall the host-node pkg, return the previous os-release
+if [ $1 = 0 ]; then
+	rm -f %{_prefix}/share/cockpit/branding/*-ovirt-node
+	rm -f /usr/lib/os-release /etc/os-release
+	cp -pf /usr/lib/os.release.d/.host-node-previous-os-release /usr/lib/os-release
+	ln -sf /usr/lib/os-release /etc/os-release
+	rm -f /usr/lib/os.release.d/.host-node-previous-os-release
+	# Return original zone
+	cp -auf /etc/firewalld/host-node-previous-firewalld.conf /etc/firewalld/firewalld.conf
+	rm -f /etc/firewalld/host-node-previous-firewalld.conf
+	systemctl restart firewalld.service >/dev/null 2>&1
+fi
+# Restarting cockpit to reload the branding data
+systemctl restart cockpit.service >/dev/null 2>&1
+
+%files -n ovirt-node-ng-image-update-placeholder
+
+%files host-node
+%ghost %attr(0644, root, root) %{_prefix}/lib/os.release.d/%{host_node_release_file}
+%dir %{_prefix}/share/ovirt-release-host-node
+%dir %{_prefix}/share/ovirt-release-host-node/branding
+%{_presetdir}/98-ovirt-host-node.preset
+%{_prefix}/lib/firewalld/zones/ovirthostnode.xml
+%{_prefix}/share/ovirt-release-host-node/branding/logo.png
+%{_prefix}/share/ovirt-release-host-node/branding/bg-login.png
+%{_prefix}/share/ovirt-release-host-node/branding/favicon.ico
+%{_prefix}/share/ovirt-release-host-node/branding/branding.css
 
 %changelog
+* Wed Mar 9 2016 Tolik Litovsky <tlitovsk@redhat.com> - 004-1
+- Host and node support rpm backport from master
+
 * Wed Dec 23 2015 Sandro Bonazzola <sbonazzo@redhat.com> - 003-1
 - Add CentOS Virt SIG oVirt 3.6 repo as dependency for EL7 including openvswitch
 - Drop Fedora 21 support

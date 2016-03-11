@@ -48,7 +48,7 @@ Requires:	tar
 This package contains the yum configuration for oVirt repositories
 
 %global	host_node_release_file ovirt-release-host-node
-%package host-node
+%package -n ovirt-release-host-node
 Summary:	The oVirt Node release file
 Version:	@PACKAGE_RPM_VERSION@
 Release:	@PACKAGE_RPM_RELEASE@%{?release_suffix}
@@ -68,7 +68,7 @@ Requires:	imgbased
 Requires:	vdsm
 Requires:	ovirt-hosted-engine-setup
 
-%description host-node
+%description -n ovirt-release-host-node
 oVirt Node distribution dependencies, presets and required settings.
 
 %package -n ovirt-node-ng-image-update-placeholder
@@ -170,7 +170,7 @@ sed \
 %files snapshot
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo
 
-%post host-node
+%post -n ovirt-release-host-node
 %systemd_post cockpit.socket
 %systemd_post sshd.socket
 %systemd_post vdsmd.service
@@ -225,7 +225,7 @@ systemctl restart firewalld.service >/dev/null 2>&1
 # Restarting cockpit to load the new branding data
 systemctl restart cockpit.service >/dev/null 2>&1
 
-%postun host-node
+%postun -n ovirt-release-host-node
 %systemd_postun cockpit.socket
 %systemd_postun sshd.socket
 %systemd_postun vdsmd.service
@@ -246,7 +246,7 @@ systemctl restart cockpit.service >/dev/null 2>&1
 
 %files -n ovirt-node-ng-image-update-placeholder
 
-%files host-node
+%files -n ovirt-release-host-node
 %ghost %attr(0644, root, root) %{_prefix}/lib/os.release.d/%{host_node_release_file}
 %dir %{_prefix}/share/ovirt-release-host-node
 %dir %{_prefix}/share/ovirt-release-host-node/branding
@@ -258,5 +258,8 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %{_prefix}/share/ovirt-release-host-node/branding/branding.css
 
 %changelog
+* Fri Mar 10 2016 Fabian Deutsch <fdeutsch@redhat.com> - 4.0.0-0.1.prealpha2
+- Use ovirt-release-host-node
+
 * Thu Mar 10 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.0.0-0.0.prealpha2
 - 4.0.0-0.0.master

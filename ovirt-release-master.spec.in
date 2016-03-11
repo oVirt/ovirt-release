@@ -47,7 +47,7 @@ Requires:	tar
 This package contains the yum configuration for oVirt repositories
 
 %global	host_node_release_file ovirt-release-host-node
-%package host-node
+%package -n ovirt-release-host-node
 Summary:	The oVirt Node release file
 Version:	@PACKAGE_RPM_VERSION@
 Release:	@PACKAGE_RPM_RELEASE@%{?release_suffix}
@@ -67,7 +67,7 @@ Requires:	imgbased
 Requires:	vdsm
 Requires:	ovirt-hosted-engine-setup
 
-%description host-node
+%description -n ovirt-release-host-node
 oVirt Node distribution dependencies, presets and required settings.
 
 %package -n ovirt-node-ng-image-update-placeholder
@@ -79,7 +79,7 @@ License:	GPLv2
 URL:		http://www.ovirt.org
 BuildArch:	noarch
 
-Requires:	%{name}-host-node = %{version}-%{release}
+Requires:	ovirt-release-host-node = %{version}-%{release}
 
 %description -n ovirt-node-ng-image-update-placeholder
 A sub-package to be included into oVirt Node Next squashfs
@@ -137,7 +137,7 @@ sed \
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo
 
-%post host-node
+%post -n ovirt-release-host-node
 %systemd_post cockpit.socket
 %systemd_post sshd.socket
 %systemd_post vdsmd.service
@@ -192,7 +192,7 @@ systemctl restart firewalld.service >/dev/null 2>&1
 # Restarting cockpit to load the new branding data
 systemctl restart cockpit.service >/dev/null 2>&1
 
-%postun host-node
+%postun -n ovirt-release-host-node
 %systemd_postun cockpit.socket
 %systemd_postun sshd.socket
 %systemd_postun vdsmd.service
@@ -213,7 +213,7 @@ systemctl restart cockpit.service >/dev/null 2>&1
 
 %files -n ovirt-node-ng-image-update-placeholder
 
-%files host-node
+%files -n ovirt-release-host-node
 %ghost %attr(0644, root, root) %{_prefix}/lib/os.release.d/%{host_node_release_file}
 %dir %{_prefix}/share/ovirt-release-host-node
 %dir %{_prefix}/share/ovirt-release-host-node/branding
@@ -225,6 +225,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %{_prefix}/share/ovirt-release-host-node/branding/branding.css
 
 %changelog
+* Fri Mar 11 2016 Fabian Deutsch <fdeutsch@redhat.com> - 4.0.0-0.2.master
+- Rename ovirt-release-master-host-node to ovirt-release-host-node
+
 * Wed Mar  2 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.0.0-0.1.master
 - 4.0.0-0.1.master
 - Drop Fedora 22 support

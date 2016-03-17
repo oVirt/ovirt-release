@@ -52,7 +52,7 @@ This package contains the yum configuration for oVirt repositories
 %package -n ovirt-release-host-node
 Summary:	The oVirt Node release file
 Version:	@PACKAGE_RPM_VERSION@
-Release:	@PACKAGE_RPM_RELEASE@%{?release_suffix}
+Release:	@PACKAGE_RPM_RELEASE@%{?release_suffix}.el7
 Group:		System Environment/Base
 License:	GPLv2
 URL:		http://www.ovirt.org
@@ -75,7 +75,7 @@ oVirt Node distribution dependencies, presets and required settings.
 %package -n ovirt-node-ng-image-update-placeholder
 Summary:	The oVirt Node Image Update Placeholder
 Version:	@PACKAGE_RPM_VERSION@
-Release:	@PACKAGE_RPM_RELEASE@%{?release_suffix}
+Release:	@PACKAGE_RPM_RELEASE@%{?release_suffix}.el7
 Group:		System Environment/Base
 License:	GPLv2
 URL:		http://www.ovirt.org

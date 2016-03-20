@@ -14,7 +14,7 @@ baseurl=http://download.gluster.org/pub/gluster/glusterfs/LATEST/EPEL.repo/epel-
 enabled=1
 skip_if_unavailable=1
 gpgcheck=1
-gpgkey=https://download.gluster.org/pub/gluster/glusterfs/LATEST/pub.key
+gpgkey=https://download.gluster.org/pub/gluster/glusterfs/LATEST/rsa.pub
 
 [ovirt-@OVIRT_SLOT@-glusterfs-noarch-epel]
 name=GlusterFS is a clustered file-system capable of scaling to several petabytes.
@@ -22,7 +22,7 @@ baseurl=http://download.gluster.org/pub/gluster/glusterfs/LATEST/EPEL.repo/epel-
 enabled=1
 skip_if_unavailable=1
 gpgcheck=1
-gpgkey=https://download.gluster.org/pub/gluster/glusterfs/LATEST/pub.key
+gpgkey=https://download.gluster.org/pub/gluster/glusterfs/LATEST/rsa.pub
 
 [ovirt-@OVIRT_SLOT@-patternfly1-noarch-epel]
 name=Copr repo for patternfly1 owned by patternfly

@@ -265,6 +265,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %{_prefix}/share/ovirt-release-host-node/branding/branding.css
 
 %changelog
+* Wed Mar 23 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 006-1
+- GlusterFS signing key changed
+
 * Thu Mar 17 2016 Fabian Deutsch <fdeutsch@redhat.com> - 005-1
 - Rename ovirt-release-<branch>-host-node to ovirt-release-host-node
 

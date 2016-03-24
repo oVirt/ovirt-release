@@ -34,7 +34,7 @@ Group:		System Environment/Base
 
 License:	ASL 2.0
 URL:		http://www.ovirt.org
-Source0:	http://resources.ovirt.org/pub/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
+Source0:	http://resources.ovirt.org/pub/ovirt-3.6/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
 Source1:	http://resources.ovirt.org/pub/keys/RPM-GPG-ovirt
 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
@@ -265,6 +265,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %{_prefix}/share/ovirt-release-host-node/branding/branding.css
 
 %changelog
+* Thu Mar 24 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 007-1
+- Resolves: BZ#1294083
+
 * Wed Mar 23 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 006-1
 - GlusterFS signing key changed
 

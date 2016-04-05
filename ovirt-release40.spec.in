@@ -259,6 +259,8 @@ systemctl restart cockpit.service >/dev/null 2>&1
 
 %changelog
 * Tue Apr  5 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.0.0-0.2.alpha1
+- 4.0.0-0.2.alpha1
+
 * Fri Mar 10 2016 Fabian Deutsch <fdeutsch@redhat.com> - 4.0.0-0.1.prealpha2
 - Use ovirt-release-host-node
 

@@ -1,4 +1,4 @@
-[ovirt-@OVIRT_SLOT@-epel]
+c[ovirt-@OVIRT_SLOT@-epel]
 name=Extra Packages for Enterprise Linux 7 - $basearch
 #baseurl=http://download.fedoraproject.org/pub/epel/7/$basearch
 mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=epel-7&arch=$basearch
@@ -38,8 +38,8 @@ enabled=1
 skip_if_unavailable=1
 gpgcheck=0
 
-[centos-ovirt36]
-name=CentOS-$releasever - oVirt 3.6
-baseurl=http://mirror.centos.org/centos/7/virt/$basearch/ovirt-3.6/
+[centos-ovirt40-candidate]
+name=CentOS-$releasever - oVirt 4.0
+baseurl=http://cbs.centos.org/repos/virt7-ovirt-40-candidate/x86_64/os/
 gpgcheck=0
 enabled=1

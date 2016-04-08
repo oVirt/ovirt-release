@@ -68,6 +68,8 @@ Requires:	cockpit
 Requires:	firewalld
 Requires:	imgbased
 Requires:	vdsm
+Requires:	vdsm-gluster
+Requires:	glusterfs-rdma
 Requires:	ovirt-hosted-engine-setup
 
 %description -n ovirt-release-host-node

@@ -27,9 +27,10 @@
 
 
 Name:		%{package_name}
+Epoch:		1
 Version:	@PACKAGE_RPM_VERSION@
 Release:	@PACKAGE_RPM_RELEASE@%{?release_suffix}
-Summary:	oVirt repository configuration
+Summary:	The oVirt repository configuration
 Group:		System Environment/Base
 
 License:	ASL 2.0
@@ -265,6 +266,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %{_prefix}/share/ovirt-release-host-node/branding/branding.css
 
 %changelog
+* Wed Apr 13 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 3.6.5-0.0.master
+- Align package version ot the overall oVirt version
+
 * Thu Mar 24 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 007-1
 - Resolves: BZ#1294083
 

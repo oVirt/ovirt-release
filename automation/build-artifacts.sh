@@ -23,6 +23,6 @@ find \
 
 # Create a link to a predefined rpm name for easier consumption
 pushd exported-artifacts
-    cp -vfl ovirt-release36-0*.noarch.rpm ovirt-release36.rpm
-    cp -vfl ovirt-release36-snapshot-0*.noarch.rpm ovirt-release36-snapshot.rpm
+    cp -vfl ovirt-release36-3*.noarch.rpm ovirt-release36.rpm
+    cp -vfl ovirt-release36-snapshot-3*.noarch.rpm ovirt-release36-snapshot.rpm
 popd

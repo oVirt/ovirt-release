@@ -1,4 +1,5 @@
-make
 autoconf
-gettext-devel
 automake
+gettext-devel
+make
+yum

@@ -82,7 +82,7 @@ License:	GPLv2
 URL:		http://www.ovirt.org
 BuildArch:	noarch
 
-Requires:	ovirt-release-host-node = %{version}-%{release}
+Requires:	ovirt-release-host-node = %{epoch}:%{version}-%{release}
 
 %description -n ovirt-node-ng-image-update-placeholder
 A sub-package to be included into oVirt Node Next squashfs

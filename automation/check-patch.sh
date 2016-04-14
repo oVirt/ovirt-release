@@ -20,3 +20,6 @@ find \
     "$PWD/tmp.repos" \
     -iname \*.rpm \
     -exec mv {} exported-artifacts/ \;
+pushd exported-artifacts
+    yum --downloadonly install *.rpm
+popd

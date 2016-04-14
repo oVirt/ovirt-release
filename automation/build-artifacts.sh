@@ -23,4 +23,5 @@ find \
 
 # Create a link to a predefined rpm name for easier consumption
 pushd exported-artifacts
-cp -vfl ovirt-release-master-4*.noarch.rpm ovirt-release-master.rpm
+    cp -vfl ovirt-release-master-4*.noarch.rpm ovirt-release-master.rpm
+popd

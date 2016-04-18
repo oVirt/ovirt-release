@@ -92,7 +92,8 @@ image to allow upgrading itself
 %package snapshot
 Summary:	oVirt snapshot repository configuration
 Group:		System Environment/Base
-Requires:	%{package_name}
+Requires:	system-release
+Requires:	tar
 
 
 %description snapshot
@@ -121,6 +122,7 @@ install -m 644 "%{SOURCE1}" "%{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-ovir
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+cp -rl "%{buildroot}%{_datadir}/%{package_name}" "%{buildroot}%{_datadir}/%{package_name}-snapshot"
 
 %post
 
@@ -156,12 +158,27 @@ DIST=fc
 #Handling EL exception only (for now)
 DISTVER="$(rpm --eval "%%dist"|cut -c2-)"
 if rpm --eval "%%dist" | grep -qFi 'el'; then
-    DIST=el
+	DIST=el
+fi
+
+if [[ "${DISTVER}" == "el6" ]]; then
+	install -m 644 "%{_datadir}/%{package_name}-snapshot/ovirt-el6-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot-dependencies.repo"
+elif [[ "${DISTVER::3}" == "el7" ]] ; then
+	# On some systems [el7_1], take only 3 1st chars: ${var::3}
+	install -m 644 "%{_datadir}/%{package_name}-snapshot/ovirt-el7-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot-dependencies.repo"
+elif [[ "${DISTVER}" == "fc22" ]]; then
+	install -m 644 "%{_datadir}/%{package_name}-snapshot/ovirt-f22-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot-dependencies.repo"
+elif [[ "${DISTVER}" == "fc23" ]]; then
+	install -m 644 "%{_datadir}/%{package_name}-snapshot/ovirt-f23-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot-dependencies.repo"
 fi
 
 sed \
     -e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
-    <"%{_datadir}/%{package_name}/ovirt-snapshot.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
+    <"%{_datadir}/%{package_name}-snapshot/ovirt-snapshot.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
 
 
 %files
@@ -176,7 +193,9 @@ sed \
 
 %files snapshot
 %defattr(-,root,root,-)
+%{_datadir}/%{package_name}-snapshot/
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo
+%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot-dependencies.repo
 
 %post -n ovirt-release-host-node
 %systemd_post cockpit.socket

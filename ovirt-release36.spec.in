@@ -35,7 +35,7 @@ Group:		System Environment/Base
 
 License:	ASL 2.0
 URL:		http://www.ovirt.org
-Source0:	http://resources.ovirt.org/pub/ovirt-3.6-snapshot/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
+Source0:	http://resources.ovirt.org/pub/ovirt-3.6-pre/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
 Source1:	http://resources.ovirt.org/pub/keys/RPM-GPG-ovirt
 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
@@ -95,9 +95,18 @@ Group:		System Environment/Base
 Requires:	system-release
 Requires:	tar
 
-
 %description snapshot
 This package contains the yum configuration for oVirt snapshot repositories
+
+
+%package pre
+Summary:	oVirt pre-release repository configuration
+Group:		System Environment/Base
+Requires:	system-release
+Requires:	tar
+
+%description pre
+This package contains the yum configuration for oVirt pre-release repositories
 
 
 %prep
@@ -120,9 +129,11 @@ install -d 755 "%{buildroot}%{_sysconfdir}/yum.repos.d"
 install -d "%{buildroot}%{_sysconfdir}/pki/rpm-gpg"
 install -m 644 "%{SOURCE1}" "%{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-ovirt-%{ovirt_version}"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo"
+touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre.repo"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 cp -rl "%{buildroot}%{_datadir}/%{package_name}" "%{buildroot}%{_datadir}/%{package_name}-snapshot"
+cp -rl "%{buildroot}%{_datadir}/%{package_name}" "%{buildroot}%{_datadir}/%{package_name}-pre"
 
 %post
 
@@ -180,6 +191,35 @@ sed \
     -e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
     <"%{_datadir}/%{package_name}-snapshot/ovirt-snapshot.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
 
+%post pre
+
+# Adjust repos as per dist and version
+DIST=fc
+#Fedora is good for both Fedora and Generic (and probably other based on Fedora)
+#Handling EL exception only (for now)
+DISTVER="$(rpm --eval "%%dist"|cut -c2-)"
+if rpm --eval "%%dist" | grep -qFi 'el'; then
+	DIST=el
+fi
+
+if [[ "${DISTVER}" == "el6" ]]; then
+	install -m 644 "%{_datadir}/%{package_name}-pre/ovirt-el6-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre-dependencies.repo"
+elif [[ "${DISTVER::3}" == "el7" ]] ; then
+	# On some systems [el7_1], take only 3 1st chars: ${var::3}
+	install -m 644 "%{_datadir}/%{package_name}-pre/ovirt-el7-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre-dependencies.repo"
+elif [[ "${DISTVER}" == "fc22" ]]; then
+	install -m 644 "%{_datadir}/%{package_name}-pre/ovirt-f22-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre-dependencies.repo"
+elif [[ "${DISTVER}" == "fc23" ]]; then
+	install -m 644 "%{_datadir}/%{package_name}-pre/ovirt-f23-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre-dependencies.repo"
+fi
+
+sed \
+    -e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
+    <"%{_datadir}/%{package_name}-pre/ovirt-pre.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre.repo"
 
 %files
 %defattr(-,root,root,-)
@@ -196,6 +236,15 @@ sed \
 %{_datadir}/%{package_name}-snapshot/
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot-dependencies.repo
+
+
+%files pre
+%defattr(-,root,root,-)
+%{_datadir}/%{package_name}-pre/
+%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-ovirt-%{ovirt_version}
+%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo
+%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre.repo
+%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
 
 %post -n ovirt-release-host-node
 %systemd_post cockpit.socket

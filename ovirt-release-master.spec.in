@@ -175,20 +175,11 @@ if [ $1 = 1 ]; then
 	ln -sf %{_prefix}/share/ovirt-release-host-node/branding %{_prefix}/share/cockpit/branding/$ID-ovirt-node
 fi
 
-# Firewalld - Set default zone ovirthostnode
-
-# systemctl status firewalld always return 0 in anaconda/kickstart so it's
-# not possible to determine if we should use firewalld-cmd or
-# firewalld-offline-cmd. As it's supported as well
-# the manual installation of release pkgs via dnf/yum we
-# will use the below workaround.
-#
-# For more info:
-# Running in chroot, ignoring request -- exit code 0
-# https://bugzilla.redhat.com/show_bug.cgi?id=1110675
-rm -f /etc/firewalld/host-node-previous-firewalld.conf
-cp -f /etc/firewalld/firewalld.conf /etc/firewalld/host-node-previous-firewalld.conf
-sed -i 's|^DefaultZone=.*|DefaultZone=ovirthostnode|g' /etc/firewalld/firewalld.conf
+# Firewalld - add all services required for host
+firewall-offline-cmd --add-service=cockpit >/dev/null 2>&1
+firewall-offline-cmd --add-service=vdsm >/dev/null 2>&1
+firewall-offline-cmd --add-service=libvirt >/dev/null 2>&1
+firewall-offline-cmd --add-service=ssh >/dev/null 2>&1
 systemctl restart firewalld.service >/dev/null 2>&1
 
 # Restarting cockpit to load the new branding data
@@ -205,9 +196,10 @@ if [ $1 = 0 ]; then
 	cp -pf /usr/lib/os.release.d/.host-node-previous-os-release /usr/lib/os-release
 	ln -sf /usr/lib/os-release /etc/os-release
 	rm -f /usr/lib/os.release.d/.host-node-previous-os-release
-	# Return original zone
-	cp -auf /etc/firewalld/host-node-previous-firewalld.conf /etc/firewalld/firewalld.conf
-	rm -f /etc/firewalld/host-node-previous-firewalld.conf
+	firewall-offline-cmd --remove-service=cockpit >/dev/null 2>&1
+	firewall-offline-cmd --remove-service=vdsm >/dev/null 2>&1
+	firewall-offline-cmd --remove-service=libvirt >/dev/null 2>&1
+	firewall-offline-cmd --remove-service=ssh >/dev/null 2>&1
 	systemctl restart firewalld.service >/dev/null 2>&1
 fi
 # Restarting cockpit to reload the branding data
@@ -220,7 +212,6 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %{_prefix}/share/ovirt-release-host-node
 %dir %{_prefix}/share/ovirt-release-host-node/branding
 %{_presetdir}/98-ovirt-host-node.preset
-%{_prefix}/lib/firewalld/zones/ovirthostnode.xml
 %{_prefix}/share/ovirt-release-host-node/branding/logo.png
 %{_prefix}/share/ovirt-release-host-node/branding/bg-login.png
 %{_prefix}/share/ovirt-release-host-node/branding/favicon.ico

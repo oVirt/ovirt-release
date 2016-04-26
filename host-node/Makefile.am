@@ -16,7 +16,6 @@
 # also available at http://www.gnu.org/copyleft/gpl.html.
 brandingdir=$(prefix)/share/ovirt-release-host-node/branding
 systemdpresetdir=$(prefix)/lib/systemd/system-preset
-firewalldzonedir=$(prefix)/lib/firewalld/zones
 
 dist_branding_DATA = \
 	cockpit/branding/bg-login.png \
@@ -27,8 +26,4 @@ dist_branding_DATA = \
 
 dist_systemdpreset_DATA = \
 	systemd/system-preset/98-ovirt-host-node.preset \
-	$(NULL)
-
-dist_firewalldzone_DATA = \
-	firewalld/zones/ovirthostnode.xml \
 	$(NULL)

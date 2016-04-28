@@ -8,21 +8,12 @@ includepkgs=epel-release,python-uinput,puppet,python-lockfile,python-cpopen,pyth
 gpgcheck=1
 gpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
 
-[ovirt-@OVIRT_SLOT@-glusterfs-epel]
-name=GlusterFS is a clustered file-system capable of scaling to several petabytes.
-baseurl=http://download.gluster.org/pub/gluster/glusterfs/LATEST/EPEL.repo/epel-$releasever/$basearch/
-enabled=1
-skip_if_unavailable=1
+[ovirt-@OVIRT_SLOT@-centos-gluster37]
+name=CentOS-$releasever - Gluster 3.7
+baseurl=http://mirror.centos.org/centos/$releasever/storage/$basearch/gluster-3.7/
 gpgcheck=1
-gpgkey=https://download.gluster.org/pub/gluster/glusterfs/LATEST/rsa.pub
-
-[ovirt-@OVIRT_SLOT@-glusterfs-noarch-epel]
-name=GlusterFS is a clustered file-system capable of scaling to several petabytes.
-baseurl=http://download.gluster.org/pub/gluster/glusterfs/LATEST/EPEL.repo/epel-$releasever/noarch
 enabled=1
-skip_if_unavailable=1
-gpgcheck=1
-gpgkey=https://download.gluster.org/pub/gluster/glusterfs/LATEST/rsa.pub
+gpgkey=https://raw.githubusercontent.com/CentOS-Storage-SIG/centos-release-storage-common/master/RPM-GPG-KEY-CentOS-SIG-Storage
 
 [ovirt-@OVIRT_SLOT@-patternfly1-noarch-epel]
 name=Copr repo for patternfly1 owned by patternfly
@@ -43,3 +34,4 @@ name=CentOS-$releasever - oVirt 3.6
 baseurl=http://mirror.centos.org/centos/7/virt/$basearch/ovirt-3.6/
 gpgcheck=0
 enabled=1
+

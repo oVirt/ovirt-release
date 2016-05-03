@@ -250,8 +250,7 @@ sed \
 
 %post -n ovirt-release-host-node
 %systemd_post cockpit.socket
-%systemd_post sshd.socket
-%systemd_post vdsmd.service
+%systemd_post sshd.service
 #
 # Create the common os-release file
 
@@ -327,6 +326,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %{_prefix}/share/ovirt-release-host-node/branding/branding.css
 
 %changelog
+* Tue May 03 2016 Fabian Deutsch <fdeutsch@redhat.com> - 3.6.6-0.2
+- node: Fix ssh service
+
 * Wed Apr 13 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 3.6.5-0.0.master
 - Align package version ot the overall oVirt version
 

@@ -62,7 +62,7 @@ Requires(post):	systemd
 Requires(postun):	systemd
 
 Requires:	cockpit
-Requires:       cockpit-ovirt
+Requires:	cockpit-ovirt-dashboard
 Requires:	firewalld
 Requires:	imgbased
 Requires:	vdsm

@@ -71,6 +71,7 @@ Requires:	vdsm-gluster
 Requires:	glusterfs-rdma
 Requires:	ovirt-hosted-engine-setup
 Requires:	postfix
+Requires:	mailx
 
 %description -n ovirt-release-host-node
 oVirt Node distribution dependencies, presets and required settings.

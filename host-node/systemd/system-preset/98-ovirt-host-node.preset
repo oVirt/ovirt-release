@@ -2,3 +2,4 @@
 # https://fedoraproject.org/w/index.php?title=Starting_services_by_default&oldid=377748
 enable cockpit.socket
 enable sshd.service
+enable NetworkManager.service

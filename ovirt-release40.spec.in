@@ -205,7 +205,7 @@ sed \
 %post -n ovirt-release-host-node
 %systemd_post cockpit.socket
 %systemd_post sshd.socket
-%systemd_post vdsmd.service
+%systemd_post NetworkManager.service
 #
 # Create the common os-release file
 
@@ -283,7 +283,7 @@ sed -i -e "/def _check_NM/ s/$/\n        return/" \
 %postun -n ovirt-release-host-node
 %systemd_postun cockpit.socket
 %systemd_postun sshd.socket
-%systemd_postun vdsmd.service
+%systemd_postun NetworkManager.service
 # In case of uninstall the host-node pkg, return the previous os-release
 if [ $1 = 0 ]; then
 	rm -f %{_prefix}/share/cockpit/branding/*-ovirt-node

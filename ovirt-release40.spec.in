@@ -313,6 +313,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %{_prefix}/share/ovirt-release-host-node/branding/branding.css
 
 %changelog
+* Wed May 18 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.0.0-0.3.beta1
+- 4.0.0-0.3.beta1
+
 * Tue Apr  5 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.0.0-0.2.alpha1
 - 4.0.0-0.2.alpha1
 

@@ -245,6 +245,19 @@ systemctl restart firewalld.service >/dev/null 2>&1
 # Restarting cockpit to load the new branding data
 systemctl restart cockpit.service >/dev/null 2>&1
 
+#
+# NGN TEMPORARY HACKS
+# For each hack there must be a bug, and they must be removed at
+# some point in time
+#
+
+# Really ensure that myhostname is added
+# https://bugzilla.redhat.com/show_bug.cgi?id=132994
+sed -i.bak_ngn \
+  -e '/^hosts:/ s/myhostname//' \
+  -e '/^hosts:/ s/[[:blank:]]*$/ myhostname/' \
+  /etc/nsswitch.conf
+
 %postun -n ovirt-release-host-node
 %systemd_postun cockpit.socket
 %systemd_postun sshd.socket

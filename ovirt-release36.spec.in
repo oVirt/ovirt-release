@@ -376,6 +376,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %{_prefix}/share/ovirt-release-host-node/branding/branding.css
 
 %changelog
+* Mon May 23 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 3.6.6-1
+- 3.6.6 release
+
 * Wed May 11 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 3.6.6-0.3
 - node: Fix cockpit dependencies
 

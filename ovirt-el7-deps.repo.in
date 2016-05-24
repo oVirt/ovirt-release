@@ -9,8 +9,8 @@ gpgcheck=1
 gpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
 
 [ovirt-@OVIRT_SLOT@-centos-gluster37]
-name=CentOS-$releasever - Gluster 3.7
-baseurl=http://mirror.centos.org/centos/$releasever/storage/$basearch/gluster-3.7/
+name=CentOS-7 - Gluster 3.7
+baseurl=http://mirror.centos.org/centos/7/storage/$basearch/gluster-3.7/
 gpgcheck=1
 enabled=1
 gpgkey=https://raw.githubusercontent.com/CentOS-Storage-SIG/centos-release-storage-common/master/RPM-GPG-KEY-CentOS-SIG-Storage
@@ -30,7 +30,7 @@ skip_if_unavailable=1
 gpgcheck=0
 
 [centos-ovirt36]
-name=CentOS-$releasever - oVirt 3.6
+name=CentOS-7 - oVirt 3.6
 baseurl=http://mirror.centos.org/centos/7/virt/$basearch/ovirt-3.6/
 gpgcheck=0
 enabled=1

@@ -20,4 +20,9 @@ find \
     -exec mv {} exported-artifacts/ \;
 pushd exported-artifacts
     yum --downloadonly install *.rpm
+
+    # Create a link to a predefined rpm name for easier consumption
+    cp -vfl ovirt-release40-4*.noarch.rpm ovirt-release40.rpm
+    cp -vfl ovirt-release40-pre-4*.noarch.rpm ovirt-release40-pre.rpm
+    cp -vfl ovirt-release40-snapshot-4*.noarch.rpm ovirt-release40-snapshot.rpm
 popd

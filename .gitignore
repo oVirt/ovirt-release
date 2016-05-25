@@ -15,4 +15,4 @@ rpmbuild
 ## patterns
 *.spec
 *.repo
-ovirt-release-master-*.tar.gz
+ovirt-release40*.tar.gz

@@ -18,8 +18,8 @@ dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 dnl
 
 
-define([VERSION_NUMBER], [3.6.6])
-define([VERSION_SUFFIX], [])
+define([VERSION_NUMBER], [3.6.7])
+define([VERSION_SUFFIX], [_rc1])
 
 AC_INIT([ovirt-release36], VERSION_NUMBER[]VERSION_SUFFIX, [devel@ovirt.org])
 AM_INIT_AUTOMAKE
@@ -27,7 +27,7 @@ AM_INIT_AUTOMAKE
 PACKAGE_RPM_VERSION="VERSION_NUMBER"
 AC_SUBST([PACKAGE_RPM_VERSION])
 
-PACKAGE_RPM_RELEASE="1"
+PACKAGE_RPM_RELEASE="0.0.$(echo VERSION_SUFFIX | sed 's/^_//')"
 AC_SUBST([PACKAGE_RPM_RELEASE])
 
 OVIRT_SLOT="3.6"

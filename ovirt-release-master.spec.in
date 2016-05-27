@@ -201,6 +201,11 @@ systemctl restart firewalld.service >/dev/null 2>&1
 # Restarting cockpit to load the new branding data
 systemctl restart cockpit.service >/dev/null 2>&1
 
+# Only whitelist ovirt-node-ng-image-update and ovirt-engine-appliance
+sed -i \
+  -e "/name=/ a includepkgs=ovirt-node-ng-image-update ovirt-engine-appliance" \
+  "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
+
 #
 # NGN TEMPORARY HACKS
 # For each hack there must be a bug, and they must be removed at

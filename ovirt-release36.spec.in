@@ -81,12 +81,11 @@ Requires:	NetworkManager-config-server
 # Additional packages for EFI support
 # https://www.brianlane.com/creating-live-isos-with-livemedia-creator.html
 # http://lorax.readthedocs.org/en/latest/livemedia-creator.html#kickstarts
-Requires:       efibootmgr
-Requires:       grub2-efi
-Requires:       memtest86+
-Requires:       syslinux
-Requires:       efibootmgr
-Requires:       shim
+Requires:	efibootmgr
+Requires:	grub2-efi
+Requires:	memtest86+
+Requires:	syslinux
+Requires:	shim
 
 %description -n ovirt-release-host-node
 oVirt Node distribution dependencies, presets and required settings.
@@ -161,23 +160,23 @@ DIST=fc
 #Handling EL exception only (for now)
 DISTVER="$(rpm --eval "%%dist"|cut -c2-)"
 if rpm --eval "%%dist" | grep -qFi 'el'; then
-    DIST=el
+	DIST=el
 fi
 
 if [[ "${DISTVER}" == "el6" ]]; then
-    install -m 644 "%{_datadir}/%{package_name}/ovirt-el6-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+	install -m 644 "%{_datadir}/%{package_name}/ovirt-el6-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER::3}" == "el7" ]] ; then
-    # On some systems [el7_1], take only 3 1st chars: ${var::3}
-    install -m 644 "%{_datadir}/%{package_name}/ovirt-el7-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+	# On some systems [el7_1], take only 3 1st chars: ${var::3}
+	install -m 644 "%{_datadir}/%{package_name}/ovirt-el7-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc22" ]]; then
-    install -m 644 "%{_datadir}/%{package_name}/ovirt-f22-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+	install -m 644 "%{_datadir}/%{package_name}/ovirt-f22-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc23" ]]; then
-    install -m 644 "%{_datadir}/%{package_name}/ovirt-f23-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+	install -m 644 "%{_datadir}/%{package_name}/ovirt-f23-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 fi
 
 sed \
-    -e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
-    <"%{_datadir}/%{package_name}/ovirt.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo"
+	-e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
+	<"%{_datadir}/%{package_name}/ovirt.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo"
 
 %post snapshot
 
@@ -206,8 +205,8 @@ elif [[ "${DISTVER}" == "fc23" ]]; then
 fi
 
 sed \
-    -e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
-    <"%{_datadir}/%{package_name}-snapshot/ovirt-snapshot.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
+	-e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
+	<"%{_datadir}/%{package_name}-snapshot/ovirt-snapshot.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
 
 %post pre
 
@@ -236,8 +235,8 @@ elif [[ "${DISTVER}" == "fc23" ]]; then
 fi
 
 sed \
-    -e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
-    <"%{_datadir}/%{package_name}-pre/ovirt-pre.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre.repo"
+	-e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
+	<"%{_datadir}/%{package_name}-pre/ovirt-pre.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre.repo"
 
 %files
 %defattr(-,root,root,-)
@@ -320,9 +319,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 # Really ensure that myhostname is added
 # https://bugzilla.redhat.com/show_bug.cgi?id=132994
 sed -i.bak_ngn \
-  -e '/^hosts:/ s/myhostname//' \
-  -e '/^hosts:/ s/[[:blank:]]*$/ myhostname/' \
-  /etc/nsswitch.conf
+	-e '/^hosts:/ s/myhostname//' \
+	-e '/^hosts:/ s/[[:blank:]]*$/ myhostname/' \
+	/etc/nsswitch.conf
 
 # Enable NM support on NGN
 # Disable host-deploy NM check
@@ -337,7 +336,7 @@ EOF
 # Hack out NM check in he-setup
 # https://bugzilla.redhat.com/show_bug.cgi?id=1326798
 sed -i -e "/def _check_NM/ s/$/\n        return/" \
-  /usr/share/ovirt-hosted-engine-setup/plugins/ovirt-hosted-engine-setup/network/bridge.py
+	/usr/share/ovirt-hosted-engine-setup/plugins/ovirt-hosted-engine-setup/network/bridge.py
 
 # =======================
 # NGN TEMPORARY HACKS END
@@ -376,6 +375,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %{_prefix}/share/ovirt-release-host-node/branding/branding.css
 
 %changelog
+* Wed Jun  1 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 1:3.6.7-1
+- 3.6.7 release
+
 * Mon May 23 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 3.6.6-1
 - 3.6.6 release
 

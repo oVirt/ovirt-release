@@ -213,13 +213,6 @@ sed -i \
 # some point in time
 # ===================
 
-# Really ensure that myhostname is added
-# https://bugzilla.redhat.com/show_bug.cgi?id=132994
-sed -i.bak_ngn \
-  -e '/^hosts:/ s/myhostname//' \
-  -e '/^hosts:/ s/[[:blank:]]*$/ myhostname/' \
-  /etc/nsswitch.conf
-
 # Enable NM support on NGN
 # Disable host-deploy NM check
 # https://bugzilla.redhat.com/show_bug.cgi?id=1330144

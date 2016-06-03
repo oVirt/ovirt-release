@@ -222,11 +222,6 @@ cat <<EOF > %{_sysconfdir}/ovirt-host-deploy.conf.d/90-ngn-keep-networkmanager.c
 VDSM/disableNetworkManager=bool:False
 EOF
 
-# Hack out NM check in he-setup
-# https://bugzilla.redhat.com/show_bug.cgi?id=1326798
-sed -i -e "/def _check_NM/ s/$/\n        return/" \
-  /usr/share/ovirt-hosted-engine-setup/plugins/ovirt-hosted-engine-setup/network/bridge.py
-
 # =======================
 # NGN TEMPORARY HACKS END
 #

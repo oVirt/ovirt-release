@@ -5,12 +5,14 @@
 [[ -d tmp.repos ]] \
 || mkdir -p tmp.repos
 
+SUFFIX=".$(date -u +%Y%m%d%H%M)"
 
 autoreconf -ivf
 ./configure
 make dist
 rpmbuild \
     -D "_topdir $PWD/tmp.repos" \
+    -D "placeholder_release_suffix ${SUFFIX}" \
     -ta ovirt-release*.tar.gz
 
 mv *.tar.gz exported-artifacts

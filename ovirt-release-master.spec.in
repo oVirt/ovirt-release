@@ -97,8 +97,6 @@ License:	GPLv2
 URL:		http://www.ovirt.org
 BuildArch:	noarch
 
-Requires:	ovirt-release-host-node = %{version}-%{release}
-
 %description -n ovirt-node-ng-image-update-placeholder
 A sub-package to be included into oVirt Node Next squashfs
 image to allow upgrading itself
@@ -261,6 +259,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %{_prefix}/share/ovirt-release-host-node/branding/branding.css
 
 %changelog
+* Thu Jun 09 2016 Fabian Deutsch <fdeutsch@redhat.com> - 4.0.0-0.4.master
+- Drop placeholder requirements
+
 * Wed Mar 23 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.0.0-0.3.master
 - GlusterFS signing key changed
 

@@ -287,6 +287,12 @@ systemctl restart firewalld.service >/dev/null 2>&1
 # Restarting cockpit to load the new branding data
 systemctl restart cockpit.service >/dev/null 2>&1
 
+# Only whitelist ovirt-node-ng-image-update and ovirt-engine-appliance
+sed -i \
+  -e "/name=/ a includepkgs=ovirt-node-ng-image-update ovirt-engine-appliance" \
+  -e "/ovirt.*/,// s/enabled=.*/enabled=1/" \
+  "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}*.repo"
+
 #
 # NGN TEMPORARY HACKS
 # For each hack there must be a bug, and they must be removed at
@@ -352,6 +358,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %{_prefix}/share/ovirt-release-host-node/branding/branding.css
 
 %changelog
+* Tue Jun 14 2016 Fabian Deutsch <fdeutsch@redhat.com> - 4.0.0-2
+- node: Enable oVirt repos after whitelisting
+
 * Thu Jun  2 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.0.0-1
 - 4.0.0-1
 

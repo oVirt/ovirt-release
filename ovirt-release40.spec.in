@@ -148,6 +148,8 @@ touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencie
 cp -rl "%{buildroot}%{_datadir}/%{package_name}" "%{buildroot}%{_datadir}/%{package_name}-snapshot"
 cp -rl "%{buildroot}%{_datadir}/%{package_name}" "%{buildroot}%{_datadir}/%{package_name}-pre"
 
+install -d 755 "%{buildroot}/data/images/rhev"
+
 %post
 
 # Adjust repos as per dist and version
@@ -356,6 +358,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %{_prefix}/share/ovirt-release-host-node/branding/bg-login.png
 %{_prefix}/share/ovirt-release-host-node/branding/favicon.ico
 %{_prefix}/share/ovirt-release-host-node/branding/branding.css
+
+# Add a folder for local datastores
+%dir %attr(0755, 36, 36) /data/images/rhev
 
 %changelog
 * Tue Jun 15 2016 Fabian Deutsch <fdeutsch@redhat.com> - 4.0.0-3

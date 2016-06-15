@@ -154,10 +154,12 @@ sed \
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo
 
 %post -n ovirt-release-host-node
-%systemd_post cockpit.socket
-%systemd_post sshd.service
-%systemd_post NetworkManager.service
-%systemd_post imgbase-motd.service
+%define __default_units_wanted cockpit.socket sshd.service NetworkManager.service imgbase-motd.service
+# Make the defualt services default requirements of the target
+for UNIT in %{__default_units_wanted} ; do
+  ln -fs ../$UNIT %{_unitdir}/multi-user.target.wants/$UNIT
+done
+
 #
 # Create the common os-release file
 
@@ -227,10 +229,10 @@ EOF
 #
 
 %postun -n ovirt-release-host-node
-%systemd_postun cockpit.socket
-%systemd_postun sshd.service
-%systemd_postun NetworkManager.service
-%systemd_postun imgbase-motd.service
+for UNIT in %{__default_units_wanted} ; do
+  rm -f %{_unitdir}/multi-user.target.wants/$UNIT
+done
+
 # In case of uninstall the host-node pkg, return the previous os-release
 if [ $1 = 0 ]; then
 	rm -f %{_prefix}/share/cockpit/branding/*-ovirt-node

@@ -3,3 +3,4 @@
 enable cockpit.socket
 enable sshd.service
 enable NetworkManager.service
+enable imgbase-motd.service

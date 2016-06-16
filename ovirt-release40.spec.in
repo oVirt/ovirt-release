@@ -292,9 +292,11 @@ systemctl restart firewalld.service >/dev/null 2>&1
 systemctl restart cockpit.service >/dev/null 2>&1
 
 # Only whitelist ovirt-node-ng-image-update and ovirt-engine-appliance
+# set-enabled is needed to keep the repo enabled when post-processing
+# the image
 sed -i \
   -e "/name=/ a includepkgs=ovirt-node-ng-image-update ovirt-engine-appliance" \
-  -e "/ovirt.*/,// s/enabled=.*/enabled=1/" \
+  -e "1 i # imgbased: set-enabled" \
   "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}*.repo"
 
 #
@@ -366,6 +368,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, 36, 36) /data/images/rhev
 
 %changelog
+* Fri Jun 17 2016 Fabian Deutsch <fdeutsch@redhat.com> - 4.0.0-4
+- Enable repos on Node
+
 * Tue Jun 15 2016 Fabian Deutsch <fdeutsch@redhat.com> - 4.0.0-3
 - Preset imgbase-motd to enabled
 

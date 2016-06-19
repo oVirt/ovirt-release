@@ -207,10 +207,14 @@ systemctl restart cockpit.service >/dev/null 2>&1
 # Only whitelist ovirt-node-ng-image-update and ovirt-engine-appliance
 # set-enabled is needed to keep the repo enabled when post-processing
 # the image
-sed -i \
-  -e "/name=/ a includepkgs=ovirt-node-ng-image-update ovirt-engine-appliance" \
-  -e "1 i # imgbased: set-enabled" \
-  "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
+# The loop is required because sed -i does not work with multiple files
+for REPO in %{_sysconfdir}/yum.repos.d/ovirt-*.repo;
+do
+  sed -i \
+    -e "/name=/ a includepkgs=ovirt-node-ng-image-update iovirt-node-ng-image ovirt-engine-appliance" \
+    -e "1 i # imgbased: set-enabled" \
+    "$REPO"
+done
 
 #
 # NGN TEMPORARY HACKS
@@ -269,6 +273,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, 36, 36) /data/images/rhev
 
 %changelog
+* Sun Jun 19 2016 Fabian Deutsch <fdeutsch@redhat.com> - 4.0.0-0.7.master
+- Fix repo enablement
+
 * Tue Jun 15 2016 Fabian Deutsch <fdeutsch@redhat.com> - 4.0.0-0.6.master
 - Preset imgbase-motd to enabled
 

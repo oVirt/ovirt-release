@@ -299,7 +299,7 @@ systemctl restart cockpit.service >/dev/null 2>&1
 for REPO in %{_sysconfdir}/yum.repos.d/ovirt-*.repo;
 do
   sed -i \
-    -e "/name=/ a includepkgs=ovirt-node-ng-image-update iovirt-node-ng-image ovirt-engine-appliance" \
+    -e "/name=/ a includepkgs=ovirt-node-ng-image-update ovirt-node-ng-image ovirt-engine-appliance" \
     -e "1 i # imgbased: set-enabled" \
     "$REPO"
 done

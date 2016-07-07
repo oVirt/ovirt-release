@@ -73,6 +73,7 @@ Requires:	glusterfs-rdma
 Requires:	ovirt-hosted-engine-setup
 Requires:	postfix
 Requires:	mailx
+Requires:   dracut-fips
 
 # Hack to incldue the passive NM config: https://bugzilla.redhat.com/1326798
 Requires:	NetworkManager-config-server

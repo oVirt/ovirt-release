@@ -138,8 +138,8 @@ fi
 if [[ "${DISTVER::3}" == "el7" ]] ; then
 	# On some systems [el7_1], take only 3 1st chars: ${var::3}
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-el7-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-elif [[ "${DISTVER}" == "fc23" ]]; then
-	install -m 644 "%{_datadir}/%{package_name}/ovirt-f23-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+elif [[ "${DISTVER}" == "fc24" ]]; then
+	install -m 644 "%{_datadir}/%{package_name}/ovirt-f24-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 fi
 
 sed \
@@ -274,6 +274,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, 36, 36) /data/images/rhev
 
 %changelog
+* Wed Jul 20 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.1.0-0.0.master
+- Moved from Fedora 23 to Fedora 24
+
 * Sun Jun 19 2016 Fabian Deutsch <fdeutsch@redhat.com> - 4.0.0-0.7.master
 - Fix repo enablement
 

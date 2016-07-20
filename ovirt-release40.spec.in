@@ -87,11 +87,11 @@ Requires:	NetworkManager-config-server
 # Additional packages for EFI support
 # https://www.brianlane.com/creating-live-isos-with-livemedia-creator.html
 # http://lorax.readthedocs.org/en/latest/livemedia-creator.html#kickstarts
-Requires:       efibootmgr
-Requires:       grub2-efi
-Requires:       memtest86+
-Requires:       syslinux
-Requires:       shim
+Requires:	efibootmgr
+Requires:	grub2-efi
+Requires:	memtest86+
+Requires:	syslinux
+Requires:	shim
 
 %description -n ovirt-release-host-node
 oVirt Node distribution dependencies, presets and required settings.
@@ -177,8 +177,8 @@ elif [[ "${DISTVER}" == "fc23" ]]; then
 fi
 
 sed \
-    -e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
-    <"%{_datadir}/%{package_name}/ovirt.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo"
+	-e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
+	<"%{_datadir}/%{package_name}/ovirt.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo"
 
 %post snapshot
 
@@ -225,8 +225,8 @@ elif [[ "${DISTVER}" == "fc23" ]]; then
 fi
 
 sed \
-    -e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
-    <"%{_datadir}/%{package_name}-pre/ovirt-pre.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre.repo"
+	-e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
+	<"%{_datadir}/%{package_name}-pre/ovirt-pre.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre.repo"
 
 %files
 %{_datadir}/%{package_name}/
@@ -254,7 +254,7 @@ sed \
 %define __default_units_wanted cockpit.socket sshd.service NetworkManager.service imgbase-motd.service rsyslog.service auditd.service
 # Make the defualt services default requirements of the target
 for UNIT in %{__default_units_wanted} ; do
-  ln -fs ../$UNIT %{_unitdir}/multi-user.target.wants/$UNIT
+	ln -fs ../$UNIT %{_unitdir}/multi-user.target.wants/$UNIT
 done
 
 #
@@ -305,10 +305,10 @@ systemctl restart cockpit.service >/dev/null 2>&1
 # The loop is required because sed -i does not work with multiple files
 for REPO in %{_sysconfdir}/yum.repos.d/ovirt-*.repo;
 do
-  sed -i \
-    -e "/name=/ a includepkgs=ovirt-node-ng-image-update ovirt-node-ng-image ovirt-engine-appliance" \
-    -e "1 i # imgbased: set-enabled" \
-    "$REPO"
+	sed -i \
+		-e "/name=/ a includepkgs=ovirt-node-ng-image-update ovirt-node-ng-image ovirt-engine-appliance" \
+		-e "1 i # imgbased: set-enabled" \
+	"$REPO"
 done
 
 #
@@ -320,9 +320,9 @@ done
 # Really ensure that myhostname is added
 # https://bugzilla.redhat.com/show_bug.cgi?id=132994
 sed -i.bak_ngn \
-  -e '/^hosts:/ s/myhostname//' \
-  -e '/^hosts:/ s/[[:blank:]]*$/ myhostname/' \
-  /etc/nsswitch.conf
+	-e '/^hosts:/ s/myhostname//' \
+	-e '/^hosts:/ s/[[:blank:]]*$/ myhostname/' \
+	/etc/nsswitch.conf
 
 # Enable NM support on NGN
 # Disable host-deploy NM check
@@ -337,7 +337,7 @@ EOF
 # Hack out NM check in he-setup
 # https://bugzilla.redhat.com/show_bug.cgi?id=1326798
 sed -i -e "/def _check_NM/ s/$/\n        return/" \
-  /usr/share/ovirt-hosted-engine-setup/plugins/ovirt-hosted-engine-setup/network/bridge.py
+	/usr/share/ovirt-hosted-engine-setup/plugins/ovirt-hosted-engine-setup/network/bridge.py
 
 # =======================
 # NGN TEMPORARY HACKS END
@@ -345,7 +345,7 @@ sed -i -e "/def _check_NM/ s/$/\n        return/" \
 
 %postun -n ovirt-release-host-node
 for UNIT in %{__default_units_wanted} ; do
-  rm -f %{_unitdir}/multi-user.target.wants/$UNIT
+	rm -f %{_unitdir}/multi-user.target.wants/$UNIT
 done
 
 # In case of uninstall the host-node pkg, return the previous os-release
@@ -380,6 +380,10 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, 36, 36) /data/images/rhev
 
 %changelog
+* Wed Jul 20 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.0.2-1
+- Stretched the background image of Node's login page.
+- RPM linting
+
 * Tue Jul 12 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.0.1-1
 - Fix python-paramiko renaming in EPEL, Bug #1354336
 
@@ -389,7 +393,7 @@ systemctl restart cockpit.service >/dev/null 2>&1
 * Fri Jun 17 2016 Fabian Deutsch <fdeutsch@redhat.com> - 4.0.0-4
 - Enable repos on Node
 
-* Tue Jun 15 2016 Fabian Deutsch <fdeutsch@redhat.com> - 4.0.0-3
+* Wed Jun 15 2016 Fabian Deutsch <fdeutsch@redhat.com> - 4.0.0-3
 - Preset imgbase-motd to enabled
 
 * Tue Jun 14 2016 Fabian Deutsch <fdeutsch@redhat.com> - 4.0.0-2

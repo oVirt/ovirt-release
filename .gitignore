@@ -12,6 +12,3 @@ autom4te.cache
 rpmbuild
 .idea
 .project
-## patterns
-*.spec
-*.repo

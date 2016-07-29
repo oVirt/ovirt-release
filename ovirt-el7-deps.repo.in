@@ -29,9 +29,9 @@ enabled=1
 skip_if_unavailable=1
 gpgcheck=0
 
-[centos-ovirt40-candidate]
+[centos-ovirt40-release]
 name=CentOS-7 - oVirt 4.0
-baseurl=http://cbs.centos.org/repos/virt7-ovirt-40-candidate/x86_64/os/
+baseurl=http://cbs.centos.org/repos/virt7-ovirt-40-release/x86_64/os/
 gpgcheck=0
 enabled=1
 

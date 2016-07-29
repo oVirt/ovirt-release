@@ -380,6 +380,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, 36, 36) /data/images/rhev
 
 %changelog
+* Wed Jul 20 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.0.2-2
+- Move from CentOS Virt SIG candidate to release
+
 * Wed Jul 20 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.0.2-1
 - Stretched the background image of Node's login page.
 - RPM linting

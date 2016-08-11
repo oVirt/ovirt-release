@@ -281,6 +281,10 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, 36, 36) /data/images/rhev
 
 %changelog
+* Thu Aug 11 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.1.0-0.1.master
+- Moved from GlusterFS 3.7 to GlusterFS 3.8
+- Resolves: BZ#1366118
+
 * Wed Jul 20 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.1.0-0.0.master
 - Moved from Fedora 23 to Fedora 24
 

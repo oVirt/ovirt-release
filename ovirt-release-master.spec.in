@@ -65,6 +65,7 @@ Requires:	cockpit
 Requires:	cockpit-ovirt-dashboard
 Requires:	firewalld
 Requires:	imgbased
+Requires:	rng-tools
 Requires:	vdsm
 Requires:	vdsm-gluster
 Requires:	vdsm-hook-fcoe

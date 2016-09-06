@@ -64,6 +64,7 @@ Requires(postun):	systemd
 
 Requires:	cockpit
 Requires:	cockpit-ovirt-dashboard
+Requires:	ovirt-node-ng-nodectl
 Requires:	firewalld
 Requires:	imgbased
 Requires:	vdsm

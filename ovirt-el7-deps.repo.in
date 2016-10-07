@@ -31,7 +31,12 @@ gpgcheck=0
 
 [centos-ovirt41-candidate]
 name=CentOS-7 - oVirt 4.1
-baseurl=http://cbs.centos.org/repos/virt7-ovirt-41-candidate/x86_64/os/
+baseurl=http://cbs.centos.org/repos/virt7-ovirt-41-candidate/$basearch/os/
 gpgcheck=0
 enabled=1
 
+[centos-opstools-testing]
+name=CentOS-7 - OpsTools - testing repo
+baseurl=http://buildlogs.centos.org/centos/7/opstools/$basearch/
+gpgcheck=0
+enabled=1

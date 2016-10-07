@@ -2,4 +2,4 @@ ovirt-master-snapshot,http://resources.ovirt.org/pub/ovirt-master-snapshot/rpm/$
 ovirt-master-snapshot-static,http://resources.ovirt.org/pub/ovirt-master-snapshot-static/rpm/$distro
 centos-gluster,http://mirror.centos.org/centos/7/storage/x86_64/gluster-3.8/
 centos-extras,http://mirror.centos.org/centos/7/extras/x86_64/
-centos-ovirt40-candidate,http://cbs.centos.org/repos/virt7-ovirt-40-candidate/x86_64/os/
+centos-ovirt41-candidate,http://cbs.centos.org/repos/virt7-ovirt-41-candidate/x86_64/os/

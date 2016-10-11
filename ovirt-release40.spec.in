@@ -79,6 +79,7 @@ Requires:   vdsm-hook-vmfex-dev
 Requires:	glusterfs-rdma
 Requires:	ovirt-hosted-engine-setup
 Requires:	postfix
+Requires:	sysstat
 Requires:	mailx
 Requires:   dracut-fips
 

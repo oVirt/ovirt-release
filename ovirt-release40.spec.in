@@ -381,6 +381,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, 36, 36) /data/images/rhev
 
 %changelog
+* Wed Oct 12 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.0.5-2
+- Fix CentOS Virt SIG repository URL
+
 * Wed Sep 28 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.0.5-1
 - Bump to 4.0.5
 

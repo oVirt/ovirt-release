@@ -111,6 +111,15 @@ BuildArch:	noarch
 A sub-package to be included into oVirt Node Next squashfs
 image to allow upgrading itself
 
+%package experimental
+Summary:	oVirt experimental repository configuration
+Group:		System Environment/Base
+Requires:	system-release
+Requires:	tar
+
+%description experimental
+This package contains the yum configuration for oVirt experimental repositories
+
 %prep
 %setup -q -n "%{package_name}-%{package_version}"
 
@@ -128,8 +137,10 @@ rm -rf "%{buildroot}"
 %make_install
 #Allow ghost files
 install -d 755 "%{buildroot}%{_sysconfdir}/yum.repos.d"
+touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-experimental.repo"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+cp -rl "%{buildroot}%{_datadir}/%{package_name}" "%{buildroot}%{_datadir}/%{package_name}-experimental"
 
 install -d 755 "%{buildroot}/data/images/rhev"
 
@@ -155,15 +166,45 @@ sed \
 	-e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
 	<"%{_datadir}/%{package_name}/ovirt-snapshot.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
 
+%post experimental
+
+# Adjust repos as per dist and version
+DIST=fc
+#Fedora is good for both Fedora and Generic (and probably other based on Fedora)
+#Handling EL exception only (for now)
+DISTVER="$(rpm --eval "%%dist"|cut -c2-)"
+if rpm --eval "%%dist" | grep -qFi 'el'; then
+	DIST=el
+fi
+
+if [[ "${DISTVER::3}" == "el7" ]] ; then
+	# On some systems [el7_1], take only 3 1st chars: ${var::3}
+	install -m 644 "%{_datadir}/%{package_name}-experimental/ovirt-el7-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+elif [[ "${DISTVER}" == "fc24" ]]; then
+	install -m 644 "%{_datadir}/%{package_name}-experimental/ovirt-f24-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+fi
+
+sed \
+	-e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
+	<"%{_datadir}/%{package_name}-experimental/ovirt-experimental.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-experimental.repo"
+
 
 %files
-%defattr(-,root,root,-)
 %{_datadir}/%{package_name}/
 # We do not know what distribution we are installed at,
 # we copy the actual files at post, but still wants this package to own them.
 # ghost in this case solves that issue
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo
+%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-experimental.repo
+
+
+%files experimental
+%{_datadir}/%{package_name}-experimental/
+%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-experimental.repo
+%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
 
 %post -n ovirt-release-host-node
 %define __default_units_wanted cockpit.socket sshd.service NetworkManager.service imgbase-clean-grub.service imgbase-motd.service rsyslog.service auditd.service
@@ -283,6 +324,10 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, 36, 36) /data/images/rhev
 
 %changelog
+* Thu Nov 10 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.1.0-0.4.master
+- Add experimental repo
+- el7: Add CentOS oVirt common candidate repo
+
 * Fri Oct  7 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.1.0-0.3.master
 - Added CentOS OpsTool testing repo to dependencies repo for el7
 

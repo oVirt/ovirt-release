@@ -1,3 +1,4 @@
 autoconf
 automake
 gettext-devel
+systemd

@@ -64,7 +64,10 @@ Requires(postun):	systemd
 
 Requires:	cockpit
 Requires:	cockpit-ovirt-dashboard
+%if 0%{?rhel}
+# We don't build ovirt-node for Fedora yet
 Requires:	ovirt-node-ng-nodectl
+%endif
 Requires:	firewalld
 Requires:	imgbased
 Requires:	vdsm

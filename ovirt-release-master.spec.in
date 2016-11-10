@@ -296,7 +296,7 @@ systemctl restart cockpit.service >/dev/null 2>&1
 * Sun Jun 19 2016 Fabian Deutsch <fdeutsch@redhat.com> - 4.0.0-0.7.master
 - Fix repo enablement
 
-* Tue Jun 15 2016 Fabian Deutsch <fdeutsch@redhat.com> - 4.0.0-0.6.master
+* Wed Jun 15 2016 Fabian Deutsch <fdeutsch@redhat.com> - 4.0.0-0.6.master
 - Preset imgbase-motd to enabled
 
 * Tue Jun 14 2016 Fabian Deutsch <fdeutsch@redhat.com> - 4.0.0-0.5.master

@@ -21,5 +21,5 @@ find \
     -iname \*.rpm \
     -exec mv {} exported-artifacts/ \;
 pushd exported-artifacts
-    yum --downloadonly install *.rpm
+    yum --downloadonly install *noarch.rpm
 popd

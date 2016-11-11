@@ -21,7 +21,10 @@ find \
     -iname \*.rpm \
     -exec mv {} exported-artifacts/ \;
 
-# Create a link to a predefined rpm name for easier consumption
-pushd exported-artifacts
-    cp -vfl ovirt-release-master-4*.noarch.rpm ovirt-release-master.rpm
-popd
+# Create a link to a predefined rpm name for easier consumption on el7 only.
+# yum-repos has a symlink pointing to the el7 rpm.
+if rpm --eval "%%dist" | grep -qFi 'el'; then
+    pushd exported-artifacts
+        cp -vfl ovirt-release-master-4*.noarch.rpm ovirt-release-master.rpm
+    popd
+fi

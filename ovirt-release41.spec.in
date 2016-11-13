@@ -302,7 +302,7 @@ sed \
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
 
 %post -n ovirt-release-host-node
-%define __default_units_wanted cockpit.socket sshd.service NetworkManager.service imgbase-clean-grub.service imgbase-motd.service rsyslog.service auditd.service
+%define __default_units_wanted cockpit.socket sshd.service NetworkManager.service imgbase-clean-grub.service imgbase-motd.service imgbase-generate-iqn.service rsyslog.service auditd.service
 # Make the defualt services default requirements of the target
 for UNIT in %{__default_units_wanted} ; do
 	ln -fs ../$UNIT %{_unitdir}/multi-user.target.wants/$UNIT
@@ -430,6 +430,7 @@ systemctl restart cockpit.service >/dev/null 2>&1
 * Thu Nov 24 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.1.0-0.5.master
 - Add virt-preview repo for Fedora
 - Resolves: BZ#1398321
+- Add a workaround for random IQN name generation rhbz#1393661
 
 * Thu Nov 10 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.1.0-0.4.master
 - Add experimental repo

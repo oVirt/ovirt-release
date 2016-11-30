@@ -22,7 +22,6 @@ skip_if_unavailable=1
 gpgcheck=0
 
 [ovirt-@OVIRT_SLOT@-fedora-virt-preview-debuginfo]
-name=Fedora $releasever - $basearch - Debug
 name=Virtualization packages from Rawhide built for latest Fedora - Debug
 baseurl=http://fedorapeople.org/groups/virt/virt-preview/fedora-$releasever/debuginfo
 enabled=0

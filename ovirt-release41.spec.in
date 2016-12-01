@@ -34,7 +34,8 @@ Group:		System Environment/Base
 
 License:	ASL 2.0
 URL:		http://www.ovirt.org
-Source0:	http://resources.ovirt.org/pub/ovirt-master-snapshot-static/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
+Source0:	http://resources.ovirt.org/pub/ovirt-4.1-snapshot-static/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
+Source1:	http://resources.ovirt.org/pub/keys/RPM-GPG-ovirt
 
 BuildArch:	noarch
 
@@ -115,14 +116,15 @@ BuildArch:	noarch
 A sub-package to be included into oVirt Node Next squashfs
 image to allow upgrading itself
 
-%package experimental
-Summary:	oVirt experimental repository configuration
+%package pre
+Summary:	oVirt pre-release repository configuration
 Group:		System Environment/Base
 Requires:	system-release
 Requires:	tar
 
-%description experimental
-This package contains the yum configuration for oVirt experimental repositories
+%description pre
+This package contains the yum configuration for oVirt pre-release repositories
+
 
 %prep
 %setup -q -n "%{package_name}-%{package_version}"
@@ -141,10 +143,11 @@ rm -rf "%{buildroot}"
 %make_install
 #Allow ghost files
 install -d 755 "%{buildroot}%{_sysconfdir}/yum.repos.d"
-touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-experimental.repo"
-touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
+install -d "%{buildroot}%{_sysconfdir}/pki/rpm-gpg"
+install -m 644 "%{SOURCE1}" "%{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-ovirt-%{ovirt_version}"
+touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre.repo"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-cp -rl "%{buildroot}%{_datadir}/%{package_name}" "%{buildroot}%{_datadir}/%{package_name}-experimental"
+cp -rl "%{buildroot}%{_datadir}/%{package_name}" "%{buildroot}%{_datadir}/%{package_name}-pre"
 
 install -d 755 "%{buildroot}/data/images/rhev"
 
@@ -166,11 +169,8 @@ elif [[ "${DISTVER}" == "fc24" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-f24-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 fi
 
-sed \
-	-e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
-	<"%{_datadir}/%{package_name}/ovirt-snapshot.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
 
-%post experimental
+%post pre
 
 # Adjust repos as per dist and version
 DIST=fc
@@ -183,31 +183,31 @@ fi
 
 if [[ "${DISTVER::3}" == "el7" ]] ; then
 	# On some systems [el7_1], take only 3 1st chars: ${var::3}
-	install -m 644 "%{_datadir}/%{package_name}-experimental/ovirt-el7-deps.repo" \
-	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+	install -m 644 "%{_datadir}/%{package_name}-pre/ovirt-el7-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre-dependencies.repo"
 elif [[ "${DISTVER}" == "fc24" ]]; then
-	install -m 644 "%{_datadir}/%{package_name}-experimental/ovirt-f24-deps.repo" \
-	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+	install -m 644 "%{_datadir}/%{package_name}-pre/ovirt-f24-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre-dependencies.repo"
 fi
 
 sed \
 	-e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
-	<"%{_datadir}/%{package_name}-experimental/ovirt-experimental.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-experimental.repo"
-
+	<"%{_datadir}/%{package_name}-pre/ovirt-pre.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre.repo"
 
 %files
 %{_datadir}/%{package_name}/
+%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-ovirt-%{ovirt_version}
 # We do not know what distribution we are installed at,
 # we copy the actual files at post, but still wants this package to own them.
 # ghost in this case solves that issue
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
-%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo
-%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-experimental.repo
 
 
-%files experimental
-%{_datadir}/%{package_name}-experimental/
-%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-experimental.repo
+%files pre
+%{_datadir}/%{package_name}-pre/
+%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-ovirt-%{ovirt_version}
+%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo
+%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre.repo
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
 
 %post -n ovirt-release-host-node

@@ -13,7 +13,6 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Virtualization
 [centos-qemu-ev-test]
 name=CentOS-$releasever - QEMU EV Testing
 baseurl=http://buildlogs.centos.org/centos/$releasever/virt/$basearch/kvm-common/
-gpgcheck=1
+gpgcheck=0
 enabled=0
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Virtualization
 

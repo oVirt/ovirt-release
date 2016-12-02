@@ -88,6 +88,8 @@ Requires:	dracut-fips
 Requires:	screen
 Requires:	sysstat
 Requires:	tcpdump
+Requires:	net-snmp
+Requires:	net-snmp-utils
 
 # Hack to incldue the passive NM config: https://bugzilla.redhat.com/1326798
 Requires:	NetworkManager-config-server

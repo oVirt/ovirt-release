@@ -119,6 +119,14 @@ BuildArch:	noarch
 A sub-package to be included into oVirt Node Next squashfs
 image to allow upgrading itself
 
+%package experimental
+Summary:	oVirt experimental repository configuration
+Group:		System Environment/Base
+Requires:	system-release
+Requires:	tar
+
+%description experimental
+This package contains the yum configuration for oVirt experimental repositories
 
 %package snapshot
 Summary:	oVirt snapshot repository configuration
@@ -160,9 +168,11 @@ install -d 755 "%{buildroot}%{_sysconfdir}/yum.repos.d"
 install -d "%{buildroot}%{_sysconfdir}/pki/rpm-gpg"
 install -m 644 "%{SOURCE1}" "%{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-ovirt-%{ovirt_version}"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo"
+touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-experimental.repo"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre.repo"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+cp -rl "%{buildroot}%{_datadir}/%{package_name}" "%{buildroot}%{_datadir}/%{package_name}-experimental"
 cp -rl "%{buildroot}%{_datadir}/%{package_name}" "%{buildroot}%{_datadir}/%{package_name}-snapshot"
 cp -rl "%{buildroot}%{_datadir}/%{package_name}" "%{buildroot}%{_datadir}/%{package_name}-pre"
 
@@ -189,6 +199,30 @@ fi
 sed \
 	-e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
 	<"%{_datadir}/%{package_name}/ovirt.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo"
+
+%post experimental
+
+# Adjust repos as per dist and version
+DIST=fc
+#Fedora is good for both Fedora and Generic (and probably other based on Fedora)
+#Handling EL exception only (for now)
+DISTVER="$(rpm --eval "%%dist"|cut -c2-)"
+if rpm --eval "%%dist" | grep -qFi 'el'; then
+	DIST=el
+fi
+
+if [[ "${DISTVER::3}" == "el7" ]] ; then
+	# On some systems [el7_1], take only 3 1st chars: ${var::3}
+	install -m 644 "%{_datadir}/%{package_name}-experimental/ovirt-el7-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+elif [[ "${DISTVER}" == "fc24" ]]; then
+	install -m 644 "%{_datadir}/%{package_name}-experimental/ovirt-f24-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+fi
+
+sed \
+	-e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
+	<"%{_datadir}/%{package_name}-experimental/ovirt-experimental.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-experimental.repo"
 
 %post snapshot
 
@@ -246,6 +280,13 @@ sed \
 # ghost in this case solves that issue
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
+
+
+%files experimental
+%{_datadir}/%{package_name}-experimental/
+%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-experimental.repo
+%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
+
 
 %files snapshot
 %{_datadir}/%{package_name}-snapshot/
@@ -378,6 +419,10 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, 36, 36) /data/images/rhev
 
 %changelog
+* Wed Jan  4 2017 Rafael Martins <rmartins@redhat.com> - 4.1.0-0.7.master
+- Add experimental repo
+- el7: Add CentOS oVirt common candidate repo
+
 * Fri Dec 16 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.1.0-0.6.beta2
 - Updated GPG key
 - Resolves: BZ#1379763 - include screen by default on Node

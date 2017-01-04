@@ -1,0 +1,14 @@
+[ovirt-@OVIRT_SLOT@-experimental]
+name=Latest tested oVirt @OVIRT_SLOT@ experimenal repository
+baseurl=http://resources.ovirt.org/repos/ovirt/experimental/@OVIRT_SLOT@/latest.tested/rpm/@DIST@$releasever/
+enabled=1
+skip_if_unavailable=1
+gpgcheck=0
+
+[ovirt-@OVIRT_SLOT@-snapshot-static]
+name=Latest oVirt @OVIRT_SLOT@ additional nightly snapshot
+#baseurl=@OVIRT_YUM_REPO@/pub/ovirt-@OVIRT_SLOT@-snapshot-static/rpm/@DIST@$releasever/
+@URLKEY@=@OVIRT_YUM_REPO@@REPO_PATH_STATIC@@DIST@$releasever
+enabled=1
+skip_if_unavailable=1
+gpgcheck=0

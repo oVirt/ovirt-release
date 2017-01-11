@@ -382,6 +382,11 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, 36, 36) /data/images/rhev
 
 %changelog
+* Wed Jan 11 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.0.6.1-1
+- node: add sysstat
+- gpg key update
+- Resolves: BZ#1399124
+
 * Wed Nov 16 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.0.6-1
 - Bump to 4.0.6
 

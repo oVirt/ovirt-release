@@ -159,13 +159,14 @@ DIST=fc
 #Fedora is good for both Fedora and Generic (and probably other based on Fedora)
 #Handling EL exception only (for now)
 DISTVER="$(rpm --eval "%%dist"|cut -c2-)"
+ARCH="$(rpm --eval "%%_arch")"
 if rpm --eval "%%dist" | grep -qFi 'el'; then
 	DIST=el
 fi
 
 if [[ "${DISTVER::3}" == "el7" ]] ; then
 	# On some systems [el7_1], take only 3 1st chars: ${var::3}
-	install -m 644 "%{_datadir}/%{package_name}/ovirt-el7-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+	install -m 644 "%{_datadir}/%{package_name}/ovirt-el7-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc24" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-f24-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 fi
@@ -187,7 +188,7 @@ fi
 
 if [[ "${DISTVER::3}" == "el7" ]] ; then
 	# On some systems [el7_1], take only 3 1st chars: ${var::3}
-	install -m 644 "%{_datadir}/%{package_name}-experimental/ovirt-el7-deps.repo" \
+	install -m 644 "%{_datadir}/%{package_name}-experimental/ovirt-el7-${ARCH}-deps.repo" \
 	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc24" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}-experimental/ovirt-f24-deps.repo" \
@@ -333,6 +334,10 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, 36, 36) /data/images/rhev
 
 %changelog
+* Wed Jan 25 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.0-0.1.master
+- Split x86_64 and ppc64le dependencies for EL7 since they're on different
+  repositories
+
 * Tue Dec 20 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.0-0.0.master
 - Bumped version to 4.2.0
 

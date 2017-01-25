@@ -1,0 +1,49 @@
+[ovirt-@OVIRT_SLOT@-epel]
+name=Extra Packages for Enterprise Linux 7 - $basearch
+#baseurl=http://download.fedoraproject.org/pub/epel/7/$basearch
+mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=epel-7&arch=$basearch
+failovermethod=priority
+enabled=1
+includepkgs=epel-release,python-uinput,puppet,python-lockfile,python-cpopen,python-ordereddict,python-pthreading,python-inotify,python-argparse,novnc,python-ply,python-kitchen,python-daemon,python-websockify,livecd-tools,spice-html5,mom,python-IPy,python-ioprocess,ioprocess,safelease,python-paramiko,python2-paramiko,python2-crypto,libtomcrypt,libtommath,python-cheetah,python-ecdsa,python2-ecdsa,python-markdown,rubygem-rgen,ovirt-guest-agent*,userspace-rcu,protobuf-java,objenesis,python34*,hystrix-core,archaius-core,rxjava,jctools,hystrix-metrics-event-stream,jackson-core,python-simplejson
+gpgcheck=1
+gpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
+
+[ovirt-@OVIRT_SLOT@-centos-gluster38]
+name=CentOS-7 - Gluster 3.8
+baseurl=https://cbs.centos.org/repos/storage7-gluster-38-release/$basearch/os/
+gpgcheck=0
+enabled=1
+
+[ovirt-@OVIRT_SLOT@-patternfly1-noarch-epel]
+name=Copr repo for patternfly1 owned by patternfly
+baseurl=http://copr-be.cloud.fedoraproject.org/results/patternfly/patternfly1/epel-7-x86_64/
+# patternfly is noarch
+enabled=1
+skip_if_unavailable=1
+gpgcheck=0
+
+[virtio-win-stable]
+name=virtio-win builds roughly matching what was shipped in latest RHEL
+baseurl=http://fedorapeople.org/groups/virt/virtio-win/repo/stable
+enabled=1
+skip_if_unavailable=1
+gpgcheck=0
+
+[centos-ovirt41-candidate]
+name=CentOS-7 - oVirt 4.1
+baseurl=http://cbs.centos.org/repos/virt7-ovirt-41-candidate/$basearch/os/
+gpgcheck=0
+enabled=1
+
+[centos-ovirt-common-candidate]
+name=CentOS-7 - oVirt common
+baseurl=http://cbs.centos.org/repos/virt7-ovirt-common-candidate/$basearch/os/
+gpgcheck=0
+enabled=1
+
+[centos-opstools-testing]
+name=CentOS-7 - OpsTools - testing repo
+baseurl=http://buildlogs.centos.org/centos/7/opstools/$basearch/
+gpgcheck=0
+enabled=0
+#waiting for ppc64le builds to be ready

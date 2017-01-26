@@ -182,6 +182,7 @@ DIST=fc
 #Fedora is good for both Fedora and Generic (and probably other based on Fedora)
 #Handling EL exception only (for now)
 DISTVER="$(rpm --eval "%%dist"|cut -c2-)"
+ARCH="$(rpm --eval "%%_arch")"
 if rpm --eval "%%dist" | grep -qFi 'el'; then
 	DIST=el
 fi

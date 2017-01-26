@@ -22,7 +22,7 @@ enabled=1
 skip_if_unavailable=1
 gpgcheck=0
 
-[virtio-win-stable]
+[ovirt-@OVIRT_SLOT@-virtio-win-stable]
 name=virtio-win builds roughly matching what was shipped in latest RHEL
 baseurl=http://fedorapeople.org/groups/virt/virtio-win/repo/stable
 enabled=1

@@ -19,7 +19,7 @@ dnl
 
 
 define([VERSION_NUMBER], [4.1.0])
-define([VERSION_SUFFIX], [_rc1])
+define([VERSION_SUFFIX], [])
 define([OVIRT_VERSION_MAJOR], [4])
 define([OVIRT_VERSION_MINOR], [1])
 AC_INIT([ovirt-release][]OVIRT_VERSION_MAJOR[]OVIRT_VERSION_MINOR, VERSION_NUMBER[]VERSION_SUFFIX, [infra@ovirt.org])

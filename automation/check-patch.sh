@@ -21,6 +21,7 @@ find \
     -iname \*.rpm \
     -exec mv {} exported-artifacts/ \;
 pushd exported-artifacts
+    yum install -y ovirt-release-master-4*noarch.rpm
     yum --downloadonly install *noarch.rpm
 popd
 

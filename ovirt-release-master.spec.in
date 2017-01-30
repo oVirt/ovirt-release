@@ -63,6 +63,7 @@ Requires(postun):	systemd
 
 Requires:	cockpit
 Requires:	cockpit-ovirt-dashboard
+Requires:	gdeploy
 %if 0%{?rhel}
 # We don't build ovirt-node for Fedora yet
 Requires:	ovirt-node-ng-nodectl
@@ -335,6 +336,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, 36, 36) /data/images/rhev
 
 %changelog
+* Mon Jan 30 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.0-0.2.master
+- Resolves: BZ#1411640 - [HC] - Include gdeploy package in oVirt Node
+
 * Wed Jan 25 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.0-0.1.master
 - Split x86_64 and ppc64le dependencies for EL7 since they're on different
   repositories

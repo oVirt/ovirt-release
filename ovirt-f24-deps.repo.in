@@ -34,3 +34,14 @@ baseurl=http://fedorapeople.org/groups/virt/virt-preview/fedora-$releasever/SRPM
 enabled=0
 skip_if_unavailable=1
 gpgcheck=0
+
+[rnachimu-gdeploy]
+name=Copr repo for gdeploy owned by rnachimu
+baseurl=https://copr-be.cloud.fedoraproject.org/results/rnachimu/gdeploy/fedora-$releasever-$basearch/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/rnachimu/gdeploy/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1

@@ -34,6 +34,7 @@ pkgdata_DATA = \
 	ovirt-el7-x86_64-deps.repo \
 	ovirt-experimental.repo \
 	ovirt-f24-deps.repo \
+	ovirt-f25-deps.repo \
 	ovirt-snapshot.repo \
 	$(NULL)
 
@@ -42,6 +43,7 @@ dist_noinst_DATA = \
 	$(srcdir)/ovirt-el7-x86_64-deps.repo.in \
 	$(srcdir)/ovirt-experimental.repo.in \
 	$(srcdir)/ovirt-f24-deps.repo.in \
+	$(srcdir)/ovirt-f25-deps.repo.in \
 	$(srcdir)/ovirt-snapshot.repo.in \
 	$(NULL)
 

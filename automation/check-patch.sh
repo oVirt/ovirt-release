@@ -21,7 +21,15 @@ find \
     -iname \*.rpm \
     -exec mv {} exported-artifacts/ \;
 pushd exported-artifacts
-    yum --downloadonly install *.rpm
+    #Restoring sane yum environment
+    yum reinstall -y system-release yum
+    [[ -d /etc/dnf ]] && dnf -y reinstall dnf-conf
+    [[ -d /etc/dnf ]] && sed -i -re 's#^(reposdir *= *).*$#\1/etc/yum.repos.d#' '/etc/dnf/dnf.conf'
+    yum install -y ovirt-release40-4*noarch.rpm
+    rm -f /etc/yum/yum.conf
+    yum repolist enabled
+    yum --downloadonly install *noarch.rpm
+popd
 
     # Create a link to a predefined rpm name for easier consumption
     cp -vfl ovirt-release40-4*.noarch.rpm ovirt-release40.rpm

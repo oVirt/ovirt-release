@@ -74,9 +74,7 @@ Requires:	rng-tools
 Requires:	vdsm
 Requires:	vdsm-gluster
 Requires:	vdsm-hook-fcoe
-%if ! 0%{?rhel}
 Requires:	vdsm-hook-vhostmd
-%endif
 Requires:	vdsm-hook-openstacknet
 Requires:	vdsm-hook-ethtool-options
 Requires:	vdsm-hook-vmfex-dev

@@ -349,6 +349,7 @@ firewall-offline-cmd --add-service=vdsm >/dev/null 2>&1
 firewall-offline-cmd --add-service=libvirt >/dev/null 2>&1
 firewall-offline-cmd --add-service=libvirt-tls >/dev/null 2>&1
 firewall-offline-cmd --add-service=ssh >/dev/null 2>&1
+firewall-offline-cmd --add-service=glusterfs >/dev/null 2>&1
 systemctl restart firewalld.service >/dev/null 2>&1
 
 # Restarting cockpit to load the new branding data

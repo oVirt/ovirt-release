@@ -64,3 +64,14 @@ gpgkey=https://copr-be.cloud.fedoraproject.org/results/rnachimu/gdeploy/pubkey.g
 repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
+
+[msivak-mom-for-ovirt]
+name=Copr repo for mom-for-ovirt owned by msivak
+baseurl=https://copr-be.cloud.fedoraproject.org/results/msivak/mom-for-ovirt/epel-7-$basearch/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/msivak/mom-for-ovirt/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1

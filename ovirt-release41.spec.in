@@ -414,6 +414,11 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, 36, 36) /data/images/rhev
 
 %changelog
+* Thu Feb 16 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.1.1-0.1.master
+- Move Virt SIG repos from candidate to testing.
+- Resolves: BZ#1418630 - gluster firewalld service should be added to the
+  default firewall zone
+
 * Fri Feb 03 2017 Simone Tiraboschi <stirabos@redhat.com> - 4.1.1-0.0.master
 - Resolves: BZ#1411640 - [HC] - Include gdeploy package in oVirt Node
 

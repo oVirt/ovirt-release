@@ -29,15 +29,9 @@ enabled=1
 skip_if_unavailable=1
 gpgcheck=0
 
-[centos-ovirt41-candidate]
+[centos-ovirt41-testing]
 name=CentOS-7 - oVirt 4.1
-baseurl=http://cbs.centos.org/repos/virt7-ovirt-41-candidate/$basearch/os/
-gpgcheck=0
-enabled=1
-
-[centos-ovirt-common-candidate]
-name=CentOS-7 - oVirt common
-baseurl=http://cbs.centos.org/repos/virt7-ovirt-common-candidate/$basearch/os/
+baseurl=https://buildlogs.centos.org/centos/7/virt/$basearch/ovirt-4.1/
 gpgcheck=0
 enabled=1
 

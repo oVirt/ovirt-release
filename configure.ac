@@ -72,7 +72,6 @@ AC_CONFIG_FILES([
             ovirt-el7-ppc64le-deps.repo
             ovirt-el7-x86_64-deps.repo
             ovirt-experimental.repo
-            ovirt-f24-deps.repo
             ovirt-f25-deps.repo
             ovirt-release-master.spec
             ovirt-snapshot.repo

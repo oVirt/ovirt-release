@@ -166,8 +166,6 @@ fi
 if [[ "${DISTVER::3}" == "el7" ]] ; then
 	# On some systems [el7_1], take only 3 1st chars: ${var::3}
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-el7-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-elif [[ "${DISTVER}" == "fc24" ]]; then
-	install -m 644 "%{_datadir}/%{package_name}/ovirt-f24-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc25" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-f25-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 fi
@@ -191,9 +189,6 @@ fi
 if [[ "${DISTVER::3}" == "el7" ]] ; then
 	# On some systems [el7_1], take only 3 1st chars: ${var::3}
 	install -m 644 "%{_datadir}/%{package_name}-experimental/ovirt-el7-${ARCH}-deps.repo" \
-	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-elif [[ "${DISTVER}" == "fc24" ]]; then
-	install -m 644 "%{_datadir}/%{package_name}-experimental/ovirt-f24-deps.repo" \
 	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc25" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}-experimental/ovirt-f25-deps.repo" \
@@ -330,6 +325,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, 36, 36) /data/images/rhev
 
 %changelog
+* Thu Feb 23 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.0-0.4.master
+- Drop Fedora 24 support
+
 * Thu Feb  2 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.0-0.3.master
 - Add Fedora 25 support
 

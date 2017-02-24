@@ -15,13 +15,6 @@ gpgcheck=1
 enabled=1
 gpgkey=https://raw.githubusercontent.com/CentOS-Storage-SIG/centos-release-storage-common/master/RPM-GPG-KEY-CentOS-SIG-Storage
 
-[ovirt-@OVIRT_SLOT@-patternfly1-noarch-epel]
-name=Copr repo for patternfly1 owned by patternfly
-baseurl=http://copr-be.cloud.fedoraproject.org/results/patternfly/patternfly1/epel-7-$basearch/
-enabled=1
-skip_if_unavailable=1
-gpgcheck=0
-
 [ovirt-@OVIRT_SLOT@-virtio-win-stable]
 name=virtio-win builds roughly matching what was shipped in latest RHEL
 baseurl=http://fedorapeople.org/groups/virt/virtio-win/repo/stable

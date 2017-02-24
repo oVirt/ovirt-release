@@ -14,14 +14,6 @@ baseurl=https://cbs.centos.org/repos/storage7-gluster-38-release/$basearch/os/
 gpgcheck=0
 enabled=1
 
-[ovirt-@OVIRT_SLOT@-patternfly1-noarch-epel]
-name=Copr repo for patternfly1 owned by patternfly
-baseurl=http://copr-be.cloud.fedoraproject.org/results/patternfly/patternfly1/epel-7-x86_64/
-# patternfly is noarch
-enabled=1
-skip_if_unavailable=1
-gpgcheck=0
-
 [ovirt-@OVIRT_SLOT@-virtio-win-stable]
 name=virtio-win builds roughly matching what was shipped in latest RHEL
 baseurl=http://fedorapeople.org/groups/virt/virtio-win/repo/stable

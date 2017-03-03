@@ -414,6 +414,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, 36, 36) /data/images/rhev
 
 %changelog
+* Fri Mar  3 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.1.1-0.3.rc1
+- Fix el7 deps repo
+
 * Fri Mar  3 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.1.1-0.2.rc1
 - First 4.1.1 release candidate
 - Move to SIGs released repos

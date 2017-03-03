@@ -32,17 +32,15 @@ gpgcheck=0
 [ovirt-centos-ovirt41]
 name=CentOS-$releasever - oVirt 4.1
 baseurl=http://mirror.centos.org/centos/$releasever/virt/$basearch/ovirt-4.1/
-gpgcheck=1
+gpgcheck=0
 enabled=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Virtualization
 
 [centos-opstools-release]
 name=CentOS-7 - OpsTools - release
 baseurl=http://mirror.centos.org/centos/$releasever/opstools/$basearch/
-gpgcheck=1
+gpgcheck=0
 enabled=1
 skip_if_unavailable=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-OpsTools
 
 [rnachimu-gdeploy]
 name=Copr repo for gdeploy owned by rnachimu

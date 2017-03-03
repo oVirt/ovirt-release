@@ -29,17 +29,20 @@ enabled=1
 skip_if_unavailable=1
 gpgcheck=0
 
-[centos-ovirt41-testing]
-name=CentOS-7 - oVirt 4.1
-baseurl=https://buildlogs.centos.org/centos/7/virt/$basearch/ovirt-4.1/
-gpgcheck=0
+[ovirt-centos-ovirt41]
+name=CentOS-$releasever - oVirt 4.1
+baseurl=http://mirror.centos.org/centos/$releasever/virt/$basearch/ovirt-4.1/
+gpgcheck=1
 enabled=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Virtualization
 
-[centos-opstools-testing]
-name=CentOS-7 - OpsTools - testing repo
-baseurl=http://buildlogs.centos.org/centos/7/opstools/$basearch/
-gpgcheck=0
+[centos-opstools-release]
+name=CentOS-7 - OpsTools - release
+baseurl=http://mirror.centos.org/centos/$releasever/opstools/$basearch/
+gpgcheck=1
 enabled=1
+skip_if_unavailable=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-OpsTools
 
 [rnachimu-gdeploy]
 name=Copr repo for gdeploy owned by rnachimu

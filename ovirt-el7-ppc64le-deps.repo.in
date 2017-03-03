@@ -29,19 +29,19 @@ enabled=1
 skip_if_unavailable=1
 gpgcheck=0
 
-[centos-ovirt41-testing]
+[centos-ovirt41-release]
 name=CentOS-7 - oVirt 4.1
-baseurl=http://cbs.centos.org/repos/virt7-ovirt-41-testing/$basearch/os/
+baseurl=http://cbs.centos.org/repos/virt7-ovirt-41-release/$basearch/os/
 gpgcheck=0
 enabled=1
 
-[centos-ovirt-common-testing]
+[centos-ovirt-common-release]
 name=CentOS-7 - oVirt common
-baseurl=http://cbs.centos.org/repos/virt7-ovirt-common-testing/$basearch/os/
+baseurl=http://cbs.centos.org/repos/virt7-ovirt-common-release/$basearch/os/
 gpgcheck=0
 enabled=1
 
-[centos-opstools-testing]
+[centos-opstools-release]
 name=CentOS-7 - OpsTools - testing repo
 baseurl=http://buildlogs.centos.org/centos/7/opstools/$basearch/
 gpgcheck=0

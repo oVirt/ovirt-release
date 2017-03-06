@@ -305,7 +305,7 @@ sed \
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
 
 %post -n ovirt-release-host-node
-%define __default_units_wanted cockpit.socket sshd.service NetworkManager.service imgbase-clean-grub.service imgbase-motd.service imgbase-generate-iqn.service rsyslog.service auditd.service
+%define __default_units_wanted cockpit.socket sshd.service NetworkManager.service imgbase-clean-grub.service imgbase-motd.service imgbase-generate-iqn.service imgbase-config-vdsm.service rsyslog.service auditd.service
 # Make the defualt services default requirements of the target
 for UNIT in %{__default_units_wanted} ; do
 	ln -fs ../$UNIT %{_unitdir}/multi-user.target.wants/$UNIT

@@ -21,6 +21,12 @@ enabled=1
 skip_if_unavailable=1
 gpgcheck=0
 
+[centos-qemu-ev-release]
+name=CentOS-$releasever - QEMU EV
+baseurl=https://cbs.centos.org/repos/virt7-kvm-common-release/$basearch/os/
+gpgcheck=0
+enabled=1
+
 [centos-ovirt41-candidate]
 name=CentOS-7 - oVirt 4.1
 baseurl=http://cbs.centos.org/repos/virt7-ovirt-41-candidate/$basearch/os/

@@ -8,9 +8,9 @@ includepkgs=epel-release,python-uinput,puppet,python-lockfile,python-cpopen,pyth
 gpgcheck=1
 gpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
 
-[ovirt-@OVIRT_SLOT@-centos-gluster38]
-name=CentOS-7 - Gluster 3.8
-baseurl=http://mirror.centos.org/centos/7/storage/$basearch/gluster-3.8/
+[ovirt-@OVIRT_SLOT@-centos-gluster310]
+name=CentOS-7 - Gluster 3.10
+baseurl=http://mirror.centos.org/centos/7/storage/$basearch/gluster-3.10/
 gpgcheck=1
 enabled=1
 gpgkey=https://raw.githubusercontent.com/CentOS-Storage-SIG/centos-release-storage-common/master/RPM-GPG-KEY-CentOS-SIG-Storage

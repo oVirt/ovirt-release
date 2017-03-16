@@ -88,7 +88,6 @@ Requires:	sysstat
 Requires:	tcpdump
 Requires:	net-snmp
 Requires:	net-snmp-utils
-Requires:	cloud-utils-growpart
 
 # Hack to incldue the passive NM config: https://bugzilla.redhat.com/1326798
 Requires:	NetworkManager-config-server

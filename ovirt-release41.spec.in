@@ -414,6 +414,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, 36, 36) /data/images/rhev
 
 %changelog
+* Thu Mar 16 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.1.1-0.5.rc3
+- 4.1.1_rc3
+
 * Thu Mar  9 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.1.1-0.4.rc2
 - Enabling imgbase-config-vdsm unit on node
 

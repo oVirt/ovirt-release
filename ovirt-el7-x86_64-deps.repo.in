@@ -29,15 +29,15 @@ gpgcheck=1
 enabled=1
 gpgkey=https://git.centos.org/raw/rpms!centos-release-virt-common/56a0a05d06676fe220e61ab8e31927feeede1128/SOURCES!RPM-GPG-KEY-CentOS-SIG-Virtualization
 
-[centos-ovirt41-candidate]
-name=CentOS-7 - oVirt 4.1
-baseurl=http://cbs.centos.org/repos/virt7-ovirt-41-candidate/$basearch/os/
+[centos-ovirt42-testing]
+name=CentOS-7 - oVirt 4.2
+baseurl=http://cbs.centos.org/repos/virt7-ovirt-42-testing/$basearch/os/
 gpgcheck=0
 enabled=1
 
-[centos-ovirt-common-candidate]
+[centos-ovirt-common-testing]
 name=CentOS-7 - oVirt common
-baseurl=http://cbs.centos.org/repos/virt7-ovirt-common-candidate/$basearch/os/
+baseurl=http://cbs.centos.org/repos/virt7-ovirt-common-testing/$basearch/os/
 gpgcheck=0
 enabled=1
 

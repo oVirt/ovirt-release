@@ -95,12 +95,14 @@ Requires:	NetworkManager-config-server
 # Additional packages for EFI support
 # https://www.brianlane.com/creating-live-isos-with-livemedia-creator.html
 # http://lorax.readthedocs.org/en/latest/livemedia-creator.html#kickstarts
+# Architecture dependent dependencies
+%ifarch x86_64
 Requires:       efibootmgr
 Requires:       grub2-efi
 Requires:       memtest86+
-Requires:       syslinux
-Requires:       efibootmgr
 Requires:       shim
+Requires:       syslinux
+%endif
 
 %description -n ovirt-release-host-node
 oVirt Node distribution dependencies, presets and required settings.

@@ -47,6 +47,13 @@ baseurl=http://buildlogs.centos.org/centos/7/opstools/$basearch/
 gpgcheck=0
 enabled=1
 
+[centos-opstools-release]
+name=CentOS-7 - OpsTools - release
+baseurl=http://mirror.centos.org/centos/$releasever/opstools/$basearch/
+gpgcheck=0
+enabled=1
+skip_if_unavailable=1
+
 [rnachimu-gdeploy]
 name=Copr repo for gdeploy owned by rnachimu
 baseurl=https://copr-be.cloud.fedoraproject.org/results/rnachimu/gdeploy/epel-7-$basearch/

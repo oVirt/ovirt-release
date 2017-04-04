@@ -34,7 +34,7 @@ Group:		System Environment/Base
 
 License:	ASL 2.0
 URL:		http://www.ovirt.org
-Source0:	http://resources.ovirt.org/pub/ovirt-4.1-pre/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
+Source0:	http://resources.ovirt.org/pub/ovirt-4.1/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
 Source1:	http://resources.ovirt.org/pub/keys/RPM-GPG-ovirt-v2
 
 BuildArch:	noarch
@@ -414,6 +414,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, 36, 36) /data/images/rhev
 
 %changelog
+* Tue Apr  4 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.1.1.1-1
+- 4.1.1.1
+
 * Thu Mar 30 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.1.1.1-0.0.rc1
 - 4.1.1.1_rc1
 

@@ -75,5 +75,6 @@ AC_CONFIG_FILES([
             ovirt-f25-deps.repo
             ovirt-release-master.spec
             ovirt-snapshot.repo
+            ovirt-tested.repo
 ])
 AC_OUTPUT

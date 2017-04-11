@@ -35,6 +35,7 @@ pkgdata_DATA = \
 	ovirt-experimental.repo \
 	ovirt-f25-deps.repo \
 	ovirt-snapshot.repo \
+	ovirt-tested.repo \
 	$(NULL)
 
 dist_noinst_DATA = \
@@ -43,6 +44,7 @@ dist_noinst_DATA = \
 	$(srcdir)/ovirt-experimental.repo.in \
 	$(srcdir)/ovirt-f25-deps.repo.in \
 	$(srcdir)/ovirt-snapshot.repo.in \
+	$(srcdir)/ovirt-tested.repo.in \
 	$(NULL)
 
 # vim: ts=2

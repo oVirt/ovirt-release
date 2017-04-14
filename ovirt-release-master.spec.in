@@ -62,6 +62,7 @@ Requires(post):	systemd
 Requires(postun):	systemd
 
 Requires:	cockpit
+Requires:	cockpit-dashboard
 Requires:	cockpit-ovirt-dashboard
 Requires:	gdeploy
 %if 0%{?rhel}

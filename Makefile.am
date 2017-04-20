@@ -47,4 +47,4 @@ dist_noinst_DATA = \
 	$(srcdir)/ovirt-tested.repo.in \
 	$(NULL)
 
-# vim: ts=2
+# vim: ts=8

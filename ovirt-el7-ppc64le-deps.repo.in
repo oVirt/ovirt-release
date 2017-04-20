@@ -48,14 +48,14 @@ gpgcheck=0
 enabled=0
 #waiting for ppc64le builds to be ready
 
-[rnachimu-gdeploy]
-name=Copr repo for gdeploy owned by rnachimu
+[sac-gdeploy]
+name=Copr repo for gdeploy owned by sac
 # gdeploy is noarch
-baseurl=https://copr-be.cloud.fedoraproject.org/results/rnachimu/gdeploy/epel-7-x86_64/
+baseurl=https://copr-be.cloud.fedoraproject.org/results/sac/gdeploy/epel-7-x86_64/
 type=rpm-md
 skip_if_unavailable=True
 gpgcheck=1
-gpgkey=https://copr-be.cloud.fedoraproject.org/results/rnachimu/gdeploy/pubkey.gpg
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/sac/gdeploy/pubkey.gpg
 repo_gpgcheck=0
 enabled=1
 enabled_metadata=1

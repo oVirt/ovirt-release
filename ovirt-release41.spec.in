@@ -63,7 +63,10 @@ Requires(post):	systemd
 Requires(postun):	systemd
 
 Requires:	cockpit
+%if 0%{?rhel} || 0%{?fedora} >= 25
+#cockpit-dashboard is not available in fedora 24
 Requires:	cockpit-dashboard
+%endif
 Requires:	cockpit-ovirt-dashboard
 Requires:	gdeploy
 %if 0%{?rhel}

@@ -182,6 +182,8 @@ if [[ "${DISTVER::3}" == "el7" ]] ; then
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-el7-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc25" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-f25-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+elif [[ "${DISTVER}" == "fc26" ]]; then
+	install -m 644 "%{_datadir}/%{package_name}/ovirt-f26-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 fi
 
 sed \
@@ -207,6 +209,9 @@ if [[ "${DISTVER::3}" == "el7" ]] ; then
 elif [[ "${DISTVER}" == "fc25" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}-experimental/ovirt-f25-deps.repo" \
 	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+elif [[ "${DISTVER}" == "fc26" ]]; then
+	install -m 644 "%{_datadir}/%{package_name}-experimental/ovirt-f26-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 fi
 
 sed \
@@ -231,6 +236,9 @@ if [[ "${DISTVER::3}" == "el7" ]] ; then
 	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc25" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-f25-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+elif [[ "${DISTVER}" == "fc26" ]]; then
+	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-f26-deps.repo" \
 	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 fi
 
@@ -370,6 +378,10 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, 36, 36) /data/images/rhev
 
 %changelog
+* Fri May 26 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.0-0.5.master
+- Add Fedora 26 support
+- Move to latest virtio-win
+
 * Thu Feb 23 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.0-0.4.master
 - Drop Fedora 24 support
 

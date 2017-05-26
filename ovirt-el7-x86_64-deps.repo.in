@@ -15,9 +15,9 @@ gpgcheck=1
 enabled=1
 gpgkey=https://raw.githubusercontent.com/CentOS-Storage-SIG/centos-release-storage-common/master/RPM-GPG-KEY-CentOS-SIG-Storage
 
-[ovirt-@OVIRT_SLOT@-virtio-win-stable]
-name=virtio-win builds roughly matching what was shipped in latest RHEL
-baseurl=http://fedorapeople.org/groups/virt/virtio-win/repo/stable
+[ovirt-@OVIRT_SLOT@-virtio-win-latest]
+name=virtio-win builds roughly matching what will be shipped in upcoming RHEL
+baseurl=http://fedorapeople.org/groups/virt/virtio-win/repo/latest
 enabled=1
 skip_if_unavailable=1
 gpgcheck=0

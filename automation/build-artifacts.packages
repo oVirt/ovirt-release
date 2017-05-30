@@ -1,4 +1,5 @@
 autoconf
 automake
 gettext-devel
+git
 systemd

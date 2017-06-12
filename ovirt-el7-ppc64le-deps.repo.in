@@ -39,12 +39,11 @@ baseurl=http://cbs.centos.org/repos/virt7-ovirt-common-testing/$basearch/os/
 gpgcheck=0
 enabled=1
 
-[centos-opstools-testing]
-name=CentOS-7 - OpsTools - testing repo
-baseurl=http://buildlogs.centos.org/centos/7/opstools/$basearch/
+[opstools7-fluentd-012-testing]
+name=CentOS-7 - OpsTools - fluentd testing repo
+baseurl=https://cbs.centos.org/repos/opstools7-fluentd-012-testing/$basearch/os
 gpgcheck=0
-enabled=0
-#waiting for ppc64le builds to be ready
+enabled=1
 
 [sac-gdeploy]
 name=Copr repo for gdeploy owned by sac

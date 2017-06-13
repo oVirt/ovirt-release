@@ -28,6 +28,11 @@ pushd exported-artifacts
     yum install -y ovirt-release-master-4*noarch.rpm
     rm -f /etc/yum/yum.conf
     yum repolist enabled
-    yum --downloadonly install *noarch.rpm
+    DISTVER="$(rpm --eval "%dist"|cut -c2-)"
+    if [[ "${DISTVER}" == "fc26" ]]; then
+        yum --downloadonly install --skip-broken *noarch.rpm
+    else
+        yum --downloadonly install *noarch.rpm
+    fi
 popd
 

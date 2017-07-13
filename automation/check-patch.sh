@@ -22,6 +22,7 @@ find \
     -exec mv {} exported-artifacts/ \;
 pushd exported-artifacts
     #Restoring sane yum environment
+    rm -f /etc/yum.conf
     yum reinstall -y system-release yum
     [[ -d /etc/dnf ]] && dnf -y reinstall dnf-conf
     [[ -d /etc/dnf ]] && sed -i -re 's#^(reposdir *= *).*$#\1/etc/yum.repos.d#' '/etc/dnf/dnf.conf'

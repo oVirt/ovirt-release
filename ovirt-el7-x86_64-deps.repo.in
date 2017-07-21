@@ -23,8 +23,8 @@ skip_if_unavailable=1
 gpgcheck=0
 
 [centos-qemu-ev-release]
-name=CentOS-$releasever - QEMU EV
-baseurl=http://mirror.centos.org/centos/$releasever/virt/$basearch/kvm-common/
+name=CentOS-7 - QEMU EV
+baseurl=http://mirror.centos.org/centos/7/virt/$basearch/kvm-common/
 gpgcheck=1
 enabled=1
 gpgkey=https://git.centos.org/raw/rpms/centos-release-virt-common.git/c7-extras/SOURCES!RPM-GPG-KEY-CentOS-SIG-Virtualization
@@ -61,7 +61,7 @@ enabled=1
 
 [centos-opstools-release]
 name=CentOS-7 - OpsTools - release
-baseurl=http://mirror.centos.org/centos/$releasever/opstools/$basearch/
+baseurl=http://mirror.centos.org/centos/7/opstools/$basearch/
 gpgcheck=0
 enabled=1
 skip_if_unavailable=1

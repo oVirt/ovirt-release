@@ -22,7 +22,7 @@ skip_if_unavailable=1
 gpgcheck=0
 
 [centos-qemu-ev-release]
-name=CentOS-$releasever - QEMU EV
+name=CentOS-7 - QEMU EV
 baseurl=https://cbs.centos.org/repos/virt7-kvm-common-release/$basearch/os/
 gpgcheck=0
 enabled=1

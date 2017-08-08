@@ -45,8 +45,7 @@ enabled=1
 name=CentOS-7 - OpsTools - testing repo
 baseurl=http://buildlogs.centos.org/centos/7/opstools/$basearch/
 gpgcheck=0
-enabled=0
-#waiting for ppc64le builds to be ready
+enabled=1
 
 [sac-gdeploy]
 name=Copr repo for gdeploy owned by sac

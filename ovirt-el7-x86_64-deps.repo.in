@@ -59,6 +59,12 @@ baseurl=https://cbs.centos.org/repos/opstools7-sensu-common-testing/$basearch/os
 gpgcheck=0
 enabled=1
 
+[opstools7-common-testing]
+name=CentOS-7 - OpsTools - common testing repo
+baseurl=https://cbs.centos.org/repos/opstools7-common-testing/$basearch/os
+gpgcheck=0
+enabled=1
+
 [centos-opstools-release]
 name=CentOS-7 - OpsTools - release
 baseurl=http://mirror.centos.org/centos/7/opstools/$basearch/

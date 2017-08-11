@@ -45,6 +45,13 @@ baseurl=https://cbs.centos.org/repos/opstools7-fluentd-012-testing/$basearch/os
 gpgcheck=0
 enabled=1
 
+[opstools7-common-testing]
+name=CentOS-7 - OpsTools - common testing repo
+baseurl=https://cbs.centos.org/repos/opstools7-common-testing/$basearch/os
+gpgcheck=0
+enabled=1
+
+
 [sac-gdeploy]
 name=Copr repo for gdeploy owned by sac
 # gdeploy is noarch

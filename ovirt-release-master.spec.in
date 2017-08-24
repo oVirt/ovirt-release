@@ -134,15 +134,6 @@ BuildArch:	noarch
 A sub-package to be included into oVirt Node Next squashfs
 image to allow upgrading itself
 
-%package experimental
-Summary:	oVirt experimental repository configuration
-Group:		System Environment/Base
-Requires:	system-release
-Requires:	tar
-
-%description experimental
-This package contains the yum configuration for oVirt experimental repositories
-
 %package tested
 Summary:	oVirt tested repository configuration
 Group:		System Environment/Base
@@ -169,11 +160,9 @@ rm -rf "%{buildroot}"
 %make_install
 #Allow ghost files
 install -d 755 "%{buildroot}%{_sysconfdir}/yum.repos.d"
-touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-experimental.repo"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-tested.repo"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-cp -rl "%{buildroot}%{_datadir}/%{package_name}" "%{buildroot}%{_datadir}/%{package_name}-experimental"
 cp -rl "%{buildroot}%{_datadir}/%{package_name}" "%{buildroot}%{_datadir}/%{package_name}-tested"
 
 install -d 755 "%{buildroot}/data/images/rhev"
@@ -202,34 +191,6 @@ fi
 sed \
 	-e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
 	<"%{_datadir}/%{package_name}/ovirt-snapshot.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
-
-%post experimental
-
-# Adjust repos as per dist and version
-DIST=fc
-#Fedora is good for both Fedora and Generic (and probably other based on Fedora)
-#Handling EL exception only (for now)
-DISTVER="$(rpm --eval "%%dist"|cut -c2-)"
-ARCH="$(rpm --eval "%%_arch")"
-if rpm --eval "%%dist" | grep -qFi 'el'; then
-	DIST=el
-fi
-
-if [[ "${DISTVER::3}" == "el7" ]] ; then
-	# On some systems [el7_1], take only 3 1st chars: ${var::3}
-	install -m 644 "%{_datadir}/%{package_name}-experimental/ovirt-el7-${ARCH}-deps.repo" \
-	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-elif [[ "${DISTVER}" == "fc25" ]]; then
-	install -m 644 "%{_datadir}/%{package_name}-experimental/ovirt-f25-deps.repo" \
-	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-elif [[ "${DISTVER}" == "fc26" ]]; then
-	install -m 644 "%{_datadir}/%{package_name}-experimental/ovirt-f26-deps.repo" \
-	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-fi
-
-sed \
-	-e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
-	<"%{_datadir}/%{package_name}-experimental/ovirt-experimental.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-experimental.repo"
 
 %post tested
 
@@ -267,13 +228,7 @@ sed \
 # ghost in this case solves that issue
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo
-%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-experimental.repo
 
-
-%files experimental
-%{_datadir}/%{package_name}-experimental/
-%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-experimental.repo
-%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
 
 %files tested
 %{_datadir}/%{package_name}-tested/

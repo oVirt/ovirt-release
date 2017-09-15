@@ -385,6 +385,11 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, 36, 36) /data/images/rhev
 
 %changelog
+* Fri Sep 15 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.0.6-2
+- Fixed CentOS Virt SIG URL for 4.0 (supported only until CentOS 7.3.1611)
+- added dist tag to release
+- updated gpg key with current one
+
 * Wed Nov 16 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.0.6-1
 - Bump to 4.0.6
 

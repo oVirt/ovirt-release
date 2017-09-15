@@ -1,4 +1,3 @@
-ovirt-36-snapshot,http://resources.ovirt.org/pub/ovirt-3.6-snapshot/rpm/$distro
-ovirt-36-snapshot-static,http://resources.ovirt.org/pub/ovirt-3.6-snapshot-static/rpm/$distro
+ovirt-36,http://resources.ovirt.org/pub/ovirt-3.6/rpm/$distro
 centos-gluster,http://mirror.centos.org/centos/7/storage/x86_64/gluster-3.7/
 centos-extras,http://mirror.centos.org/centos/7/extras/x86_64/

@@ -375,6 +375,10 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %{_prefix}/share/ovirt-release-host-node/branding/branding.css
 
 %changelog
+* Fri Sep 15 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 1:3.6.7-2
+- Fixed CentOS Virt SIG URL for 3.6 (supported only until CentOS 7.3.1611)
+- added dist tag to release
+
 * Wed Jun  1 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 1:3.6.7-1
 - 3.6.7 release
 

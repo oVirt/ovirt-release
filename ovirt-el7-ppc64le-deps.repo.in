@@ -32,9 +32,9 @@ baseurl=https://cbs.centos.org/repos/storage7-gluster-310-release/$basearch/os/
 gpgcheck=0
 enabled=1
 
-[ovirt-@OVIRT_SLOT@-virtio-win-stable]
-name=virtio-win builds roughly matching what was shipped in latest RHEL
-baseurl=http://fedorapeople.org/groups/virt/virtio-win/repo/stable
+[ovirt-@OVIRT_SLOT@-virtio-win-latest]
+name=virtio-win builds roughly matching what will be shipped in upcoming RHEL
+baseurl=http://fedorapeople.org/groups/virt/virtio-win/repo/latest
 enabled=1
 skip_if_unavailable=1
 gpgcheck=0
@@ -63,21 +63,15 @@ baseurl=https://cbs.centos.org/repos/opstools7-fluentd-012-testing/$basearch/os
 gpgcheck=0
 enabled=1
 
+[opstools7-perfmon-common-testing]
+name=CentOS-7 - OpsTools - perfmon testing repo
+baseurl=https://cbs.centos.org/repos/opstools7-perfmon-common-testing/$basearch/os
+gpgcheck=0
+enabled=1
+
 [opstools7-common-testing]
 name=CentOS-7 - OpsTools - common testing repo
 baseurl=https://cbs.centos.org/repos/opstools7-common-testing/$basearch/os
 gpgcheck=0
 enabled=1
 
-
-[sac-gdeploy]
-name=Copr repo for gdeploy owned by sac
-# gdeploy is noarch
-baseurl=https://copr-be.cloud.fedoraproject.org/results/sac/gdeploy/epel-7-x86_64/
-type=rpm-md
-skip_if_unavailable=True
-gpgcheck=1
-gpgkey=https://copr-be.cloud.fedoraproject.org/results/sac/gdeploy/pubkey.gpg
-repo_gpgcheck=0
-enabled=1
-enabled_metadata=1

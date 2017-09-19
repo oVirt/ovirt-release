@@ -28,10 +28,9 @@ gpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
 
 [ovirt-@OVIRT_SLOT@-centos-gluster310]
 name=CentOS-7 - Gluster 3.10
-baseurl=http://mirror.centos.org/centos/7/storage/$basearch/gluster-3.10/
-gpgcheck=1
+baseurl=https://cbs.centos.org/repos/storage7-gluster-310-release/$basearch/os/
+gpgcheck=0
 enabled=1
-gpgkey=https://raw.githubusercontent.com/CentOS-Storage-SIG/centos-release-storage-common/master/RPM-GPG-KEY-CentOS-SIG-Storage
 
 [ovirt-@OVIRT_SLOT@-virtio-win-latest]
 name=virtio-win builds roughly matching what will be shipped in upcoming RHEL
@@ -42,10 +41,9 @@ gpgcheck=0
 
 [centos-qemu-ev-release]
 name=CentOS-7 - QEMU EV
-baseurl=http://mirror.centos.org/centos/7/virt/$basearch/kvm-common/
-gpgcheck=1
+baseurl=https://cbs.centos.org/repos/virt7-kvm-common-release/$basearch/os/
+gpgcheck=0
 enabled=1
-gpgkey=https://git.centos.org/raw/rpms/centos-release-virt-common.git/c7-extras/SOURCES!RPM-GPG-KEY-CentOS-SIG-Virtualization
 
 [centos-ovirt42-testing]
 name=CentOS-7 - oVirt 4.2
@@ -71,12 +69,6 @@ baseurl=https://cbs.centos.org/repos/opstools7-perfmon-common-testing/$basearch/
 gpgcheck=0
 enabled=1
 
-[opstools7-sensu-common-testing]
-name=CentOS-7 - OpsTools - sensu testing repo
-baseurl=https://cbs.centos.org/repos/opstools7-sensu-common-testing/$basearch/os
-gpgcheck=0
-enabled=1
-
 [opstools7-common-testing]
 name=CentOS-7 - OpsTools - common testing repo
 baseurl=https://cbs.centos.org/repos/opstools7-common-testing/$basearch/os
@@ -89,17 +81,6 @@ baseurl=http://mirror.centos.org/centos/7/opstools/$basearch/
 gpgcheck=0
 enabled=1
 skip_if_unavailable=1
-
-[sac-gdeploy]
-name=Copr repo for gdeploy owned by sac
-baseurl=https://copr-be.cloud.fedoraproject.org/results/sac/gdeploy/epel-7-$basearch/
-type=rpm-md
-skip_if_unavailable=True
-gpgcheck=1
-gpgkey=https://copr-be.cloud.fedoraproject.org/results/sac/gdeploy/pubkey.gpg
-repo_gpgcheck=0
-enabled=1
-enabled_metadata=1
 
 [centos-sclo-rh-release]
 name=CentOS-7 - SCLo rh

@@ -62,36 +62,16 @@ BuildRequires:	systemd
 Requires(post):	systemd
 Requires(postun):	systemd
 
-Requires:	cockpit
-Requires:	cockpit-dashboard
-Requires:	cockpit-ovirt-dashboard
-Requires:	gdeploy
 %if 0%{?rhel}
 # We don't build ovirt-node for Fedora yet
 Requires:	ovirt-node-ng-nodectl
 %endif
 Requires:	firewalld
+Requires:	gdeploy
 Requires:	imgbased
-Requires:	rng-tools
-Requires:	vdsm
-Requires:	vdsm-gluster
-Requires:	vdsm-hook-fcoe
-Requires:	vdsm-hook-vhostmd
-Requires:	vdsm-hook-openstacknet
-Requires:	vdsm-hook-ethtool-options
-Requires:	vdsm-hook-vfio-mdev
-Requires:	vdsm-hook-vmfex-dev
-Requires:	glusterfs-rdma
-Requires:	ovirt-hosted-engine-setup
-Requires:	postfix
-Requires:	mailx
-Requires:	dracut-fips
-Requires:	screen
-Requires:	sysstat
-Requires:	tcpdump
-Requires:	net-snmp
-Requires:	net-snmp-utils
+Requires:	ovirt-host
 Requires:	python-ovirt-engine-sdk4
+Requires:	vdsm-gluster
 
 # Hack for avoiding add host failures due to missing m2crypto on node.
 # VDSM removed m2crypto as dependency in https://gerrit.ovirt.org/#/c/76027/
@@ -103,9 +83,6 @@ Requires:	m2crypto
 # Keep including ntpd, since older versions of node which are upgraded may
 # still have a configuration for it instead of chronyd
 Requires:   ntp
-
-# Hack to incldue the passive NM config: https://bugzilla.redhat.com/1326798
-Requires:	NetworkManager-config-server
 
 # Additional packages for EFI support
 # https://www.brianlane.com/creating-live-isos-with-livemedia-creator.html

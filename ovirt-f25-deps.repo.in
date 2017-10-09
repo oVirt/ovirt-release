@@ -38,3 +38,16 @@ gpgkey=https://copr-be.cloud.fedoraproject.org/results/sbonazzo/python-ovsdbapp/
 repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
+
+[mlibra-ovirt-cockpit-sso]
+name=Copr repo for ovirt-cockpit-sso owned by mlibra
+baseurl=
+ https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-cockpit-sso/fedora-$releasever-$basearch/
+ https://people.redhat.com/mlibra/repos/ovirt-cockpit-sso/fedora-$releasever-$basearch/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-cockpit-sso/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1

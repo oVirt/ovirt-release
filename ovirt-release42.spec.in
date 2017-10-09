@@ -1,6 +1,6 @@
 #
 # ovirt-release -- repo files for oVirt projects
-# Copyright (C) 2014-2016 Red Hat, Inc.
+# Copyright (C) 2014-2017 Red Hat, Inc.
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -190,6 +190,8 @@ elif [[ "${DISTVER}" == "fc25" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-f25-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc26" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-f26-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+elif [[ "${DISTVER}" == "fc27" ]]; then
+	install -m 644 "%{_datadir}/%{package_name}/ovirt-f27-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 fi
 
 sed \
@@ -245,6 +247,9 @@ elif [[ "${DISTVER}" == "fc25" ]]; then
 	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc26" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-f26-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+elif [[ "${DISTVER}" == "fc27" ]]; then
+	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-f27-deps.repo" \
 	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 fi
 
@@ -416,5 +421,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, 36, 36) /data/images/rhev
 
 %changelog
+* Mon Oct 09 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.0-0.1.master
+- Add Fedora 27 support
+- Add ovirt-cockpit-sso repo
+
 * Mon Sep 04 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.0-0.0.master
 - Initial import

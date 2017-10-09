@@ -1,0 +1,53 @@
+[ovirt-@OVIRT_SLOT@-virtio-win-latest]
+name=virtio-win builds roughly matching what will be shipped in upcoming RHEL
+baseurl=http://fedorapeople.org/groups/virt/virtio-win/repo/latest
+enabled=1
+skip_if_unavailable=1
+gpgcheck=0
+
+# Fedora Virt preview repository
+# Details: https://fedoraproject.org/wiki/Virtualization_Preview_Repository
+[ovirt-@OVIRT_SLOT@-fedora-virt-preview]
+name=Virtualization packages from Rawhide built for latest Fedora
+baseurl=http://fedorapeople.org/groups/virt/virt-preview/fedora-$releasever/$basearch
+enabled=1
+skip_if_unavailable=1
+gpgcheck=0
+
+[ovirt-@OVIRT_SLOT@-fedora-virt-preview-debuginfo]
+name=Virtualization packages from Rawhide built for latest Fedora - Debug
+baseurl=http://fedorapeople.org/groups/virt/virt-preview/fedora-$releasever/debuginfo
+enabled=0
+skip_if_unavailable=1
+gpgcheck=0
+
+[ovirt-@OVIRT_SLOT@-fedora-virt-preview-source]
+name=Virtualization packages from Rawhide built for latest Fedora - Source
+baseurl=http://fedorapeople.org/groups/virt/virt-preview/fedora-$releasever/SRPMS
+enabled=0
+skip_if_unavailable=1
+gpgcheck=0
+
+[sbonazzo-python-ovsdbapp]
+name=Copr repo for python-ovsdbapp owned by sbonazzo
+baseurl=https://copr-be.cloud.fedoraproject.org/results/sbonazzo/python-ovsdbapp/fedora-$releasever-$basearch/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/sbonazzo/python-ovsdbapp/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+
+[mlibra-ovirt-cockpit-sso]
+name=Copr repo for ovirt-cockpit-sso owned by mlibra
+baseurl=
+ https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-cockpit-sso/fedora-$releasever-$basearch/
+ https://people.redhat.com/mlibra/repos/ovirt-cockpit-sso/fedora-$releasever-$basearch/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-cockpit-sso/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1

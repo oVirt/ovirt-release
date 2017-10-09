@@ -1,6 +1,6 @@
 #
 # ovirt-release -- repo files for oVirt projects
-# Copyright (C) 2012-2016 Red Hat, Inc.
+# Copyright (C) 2012-2017 Red Hat, Inc.
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -34,6 +34,7 @@ pkgdata_DATA = \
 	ovirt-el7-x86_64-deps.repo \
 	ovirt-f25-deps.repo \
 	ovirt-f26-deps.repo \
+	ovirt-f27-deps.repo \
 	ovirt-pre.repo \
 	ovirt.repo \
 	ovirt-snapshot.repo \
@@ -45,6 +46,7 @@ dist_noinst_DATA = \
 	$(srcdir)/ovirt-el7-x86_64-deps.repo.in \
 	$(srcdir)/ovirt-f25-deps.repo.in \
 	$(srcdir)/ovirt-f26-deps.repo.in \
+	$(srcdir)/ovirt-f27-deps.repo.in \
 	$(srcdir)/ovirt-pre.repo.in \
 	$(srcdir)/ovirt.repo.in \
 	$(srcdir)/ovirt-snapshot.repo.in \

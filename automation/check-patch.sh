@@ -31,6 +31,12 @@ pushd exported-artifacts
     yum repolist enabled
     DISTVER="$(rpm --eval "%dist"|cut -c2-)"
     if [[ "${DISTVER}" == "fc26" ]]; then
+        # Fedora 26 support is broken, just provide a hint on what's missing
+        # without causing the test to fail.
+        yum --downloadonly install --skip-broken *noarch.rpm
+    elif [[ "${DISTVER}" == "fc27" ]]; then
+        # Fedora 27 support is broken, just provide a hint on what's missing
+        # without causing the test to fail.
         yum --downloadonly install --skip-broken *noarch.rpm
     else
         yum --downloadonly install *noarch.rpm

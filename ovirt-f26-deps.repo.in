@@ -28,6 +28,30 @@ enabled=0
 skip_if_unavailable=1
 gpgcheck=0
 
+[ovirt-@OVIRT_SLOT@-glusterfs-fedora]
+name=GlusterFS is a clustered file-system capable of scaling to several petabytes.
+baseurl=http://download.gluster.org/pub/gluster/glusterfs/3.12/LATEST/Fedora/fedora-$releasever/$basearch/
+enabled=1
+skip_if_unavailable=1
+gpgcheck=1
+gpgkey=http://download.gluster.org/pub/gluster/glusterfs/3.12/rsa.pub
+
+[ovirt-@OVIRT_SLOT@-glusterfs-noarch-fedora]
+name=GlusterFS is a clustered file-system capable of scaling to several petabytes.
+baseurl=http://download.gluster.org/pub/gluster/glusterfs/3.12/LATEST/Fedora/fedora-$releasever/noarch
+enabled=1
+skip_if_unavailable=1
+gpgcheck=1
+gpgkey=http://download.gluster.org/pub/gluster/glusterfs/3.12/rsa.pub
+
+[ovirt-@OVIRT_SLOT@-glusterfs-source-fedora]
+name=GlusterFS is a clustered file-system capable of scaling to several petabytes. - Source
+baseurl=http://download.gluster.org/pub/gluster/glusterfs/3.12/LATEST/Fedora/fedora-$releasever/SRPMS
+enabled=0
+skip_if_unavailable=1
+gpgcheck=1
+gpgkey=http://download.gluster.org/pub/gluster/glusterfs/3.12/rsa.pub
+
 [sbonazzo-python-ovsdbapp]
 name=Copr repo for python-ovsdbapp owned by sbonazzo
 baseurl=https://copr-be.cloud.fedoraproject.org/results/sbonazzo/python-ovsdbapp/fedora-$releasever-$basearch/

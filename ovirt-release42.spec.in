@@ -421,6 +421,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, 36, 36) /data/images/rhev
 
 %changelog
+* Mon Oct 30 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.0-0.2.beta
+- Beta release
+
 * Mon Oct 09 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.0-0.1.master
 - Add Fedora 27 support
 - Add ovirt-cockpit-sso repo

@@ -111,7 +111,13 @@ Requires:	NetworkManager-config-server
 # Architecture dependent dependencies
 %if 0%{?is_x86}
 Requires:	efibootmgr
+
+%if 0%{?fedora}
+Requires:   grub2-efi
+%else
 Requires:	grub2-efi-x64
+%endif
+
 Requires:	memtest86+
 Requires:	shim
 Requires:	syslinux

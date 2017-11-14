@@ -80,10 +80,6 @@ Requires:	vdsm-gluster
 # Change requested here: https://bugzilla.redhat.com/1464199
 Requires:	m2crypto
 
-# Keep including ntpd, since older versions of node which are upgraded may
-# still have a configuration for it instead of chronyd
-Requires:   ntp
-
 # Additional packages for EFI support
 # https://www.brianlane.com/creating-live-isos-with-livemedia-creator.html
 # http://lorax.readthedocs.org/en/latest/livemedia-creator.html#kickstarts

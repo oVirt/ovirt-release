@@ -74,16 +74,3 @@ name=CentOS-7 - OpsTools - common testing repo
 baseurl=https://cbs.centos.org/repos/opstools7-common-testing/$basearch/os
 gpgcheck=0
 enabled=1
-
-[mlibra-ovirt-cockpit-sso]
-name=Copr repo for ovirt-cockpit-sso owned by mlibra
-baseurl=
- https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-cockpit-sso/epel-7-$basearch/
- https://people.redhat.com/mlibra/repos/ovirt-cockpit-sso/epel-7-$basearch/
-type=rpm-md
-skip_if_unavailable=True
-gpgcheck=1
-gpgkey=https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-cockpit-sso/pubkey.gpg
-repo_gpgcheck=0
-enabled=1
-enabled_metadata=1

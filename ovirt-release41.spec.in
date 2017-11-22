@@ -98,6 +98,7 @@ Requires:	tcpdump
 Requires:	net-snmp
 Requires:	net-snmp-utils
 Requires:	python-ovirt-engine-sdk4
+Requires:	ovirt-host
 
 # Keep including ntpd, since older versions of node which are upgraded may
 # still have a configuration for it instead of chronyd

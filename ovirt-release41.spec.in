@@ -395,6 +395,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, 36, 36) /data/images/rhev
 
 %changelog
+* Thu Nov 30 2017 Lev Veyde <lveyde@redhat.com> - 4.1.8-0.4.rc4
+- 4.1.8-0.4.rc4
+
 * Sun Nov 26 2017 Lev Veyde <lveyde@redhat.com> - 4.1.8-0.3.rc3
 - 4.1.8-0.3.rc3
 

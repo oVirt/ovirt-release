@@ -41,11 +41,12 @@ enabled=1
 skip_if_unavailable=1
 gpgcheck=0
 
-[centos-qemu-ev-release]
-name=CentOS-7 - QEMU EV
-baseurl=https://cbs.centos.org/repos/virt7-kvm-common-release/$basearch/os/
-gpgcheck=0
+[ovirt-@OVIRT_SLOT@-centos-qemu-ev]
+name=CentOS-$releasever - QEMU EV
+baseurl=http://mirror.centos.org/centos/$releasever/virt/$basearch/kvm-common/
+gpgcheck=1
 enabled=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Virtualization
 
 [centos-ovirt42-testing]
 name=CentOS-7 - oVirt 4.2

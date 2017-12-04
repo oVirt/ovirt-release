@@ -12,7 +12,6 @@ autoreconf -ivf
 make dist
 rpmbuild \
     -D "_topdir $PWD/tmp.repos" \
-    -D "release_suffix ${SUFFIX}" \
     -ta ovirt-release*.tar.gz
 
 mv *.tar.gz exported-artifacts

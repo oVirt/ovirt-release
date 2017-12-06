@@ -46,7 +46,7 @@ name=CentOS-7 - QEMU EV
 baseurl=http://mirror.centos.org/centos/7/virt/$basearch/kvm-common/
 gpgcheck=1
 enabled=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Virtualization
+gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-Virtualization
 
 [ovirt-@OVIRT_SLOT@-centos-opstools]
 name=CentOS-7 - OpsTools - release

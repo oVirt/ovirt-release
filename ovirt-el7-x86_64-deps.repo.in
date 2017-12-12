@@ -62,16 +62,9 @@ gpgcheck=1
 enabled=1
 gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-SCLo
 
-
-
-[centos-ovirt42-testing]
+[ovirt-@OVIRT_SLOT@-centos-ovirt42]
 name=CentOS-7 - oVirt 4.2
-baseurl=http://cbs.centos.org/repos/virt7-ovirt-42-testing/$basearch/os/
-gpgcheck=0
+baseurl=http://mirror.centos.org/centos/7/virt/$basearch/ovirt-4.2/
+gpgcheck=1
 enabled=1
-
-[centos-ovirt-common-testing]
-name=CentOS-7 - oVirt common
-baseurl=http://cbs.centos.org/repos/virt7-ovirt-common-testing/$basearch/os/
-gpgcheck=0
-enabled=1
+gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-Virtualization

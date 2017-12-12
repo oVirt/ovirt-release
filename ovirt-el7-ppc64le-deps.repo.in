@@ -45,15 +45,15 @@ baseurl=https://cbs.centos.org/repos/virt7-kvm-common-release/$basearch/os/
 gpgcheck=0
 enabled=1
 
-[centos-ovirt42-testing]
+[centos-ovirt42-release]
 name=CentOS-7 - oVirt 4.2
-baseurl=http://cbs.centos.org/repos/virt7-ovirt-42-testing/$basearch/os/
+baseurl=http://cbs.centos.org/repos/virt7-ovirt-42-release/$basearch/os/
 gpgcheck=0
 enabled=1
 
-[centos-ovirt-common-testing]
+[centos-ovirt-common-release]
 name=CentOS-7 - oVirt common
-baseurl=http://cbs.centos.org/repos/virt7-ovirt-common-testing/$basearch/os/
+baseurl=http://cbs.centos.org/repos/virt7-ovirt-common-release/$basearch/os/
 gpgcheck=0
 enabled=1
 

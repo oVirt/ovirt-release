@@ -189,8 +189,6 @@ fi
 if [[ "${DISTVER::3}" == "el7" ]] ; then
 	# On some systems [el7_1], take only 3 1st chars: ${var::3}
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-el7-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-elif [[ "${DISTVER}" == "fc25" ]]; then
-	install -m 644 "%{_datadir}/%{package_name}/ovirt-f25-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc26" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-f26-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc27" ]]; then
@@ -217,9 +215,6 @@ if [[ "${DISTVER::3}" == "el7" ]] ; then
 	# On some systems [el7_1], take only 3 1st chars: ${var::3}
 	install -m 644 "%{_datadir}/%{package_name}-snapshot/ovirt-el7-${ARCH}-deps.repo" \
 	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot-dependencies.repo"
-elif [[ "${DISTVER}" == "fc25" ]]; then
-	install -m 644 "%{_datadir}/%{package_name}-snapshot/ovirt-f25-deps.repo" \
-	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot-dependencies.repo"
 elif [[ "${DISTVER}" == "fc26" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}-snapshot/ovirt-f26-deps.repo" \
 	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot-dependencies.repo"
@@ -244,9 +239,6 @@ fi
 if [[ "${DISTVER::3}" == "el7" ]] ; then
 	# On some systems [el7_1], take only 3 1st chars: ${var::3}
 	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-el7-${ARCH}-deps.repo" \
-	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-elif [[ "${DISTVER}" == "fc25" ]]; then
-	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-f25-deps.repo" \
 	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc26" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-f26-deps.repo" \
@@ -275,9 +267,6 @@ fi
 if [[ "${DISTVER::3}" == "el7" ]] ; then
 	# On some systems [el7_1], take only 3 1st chars: ${var::3}
 	install -m 644 "%{_datadir}/%{package_name}-pre/ovirt-el7-${ARCH}-deps.repo" \
-	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre-dependencies.repo"
-elif [[ "${DISTVER}" == "fc25" ]]; then
-	install -m 644 "%{_datadir}/%{package_name}-pre/ovirt-f25-deps.repo" \
 	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre-dependencies.repo"
 elif [[ "${DISTVER}" == "fc26" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}-pre/ovirt-f26-deps.repo" \

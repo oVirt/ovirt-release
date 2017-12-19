@@ -5,7 +5,6 @@
 [[ -d tmp.repos ]] \
 || mkdir -p tmp.repos
 
-SUFFIX=".$(date -u +%Y%m%d%H%M%S).git$(git rev-parse --short HEAD)"
 
 autoreconf -ivf
 ./configure

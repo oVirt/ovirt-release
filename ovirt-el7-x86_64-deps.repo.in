@@ -52,3 +52,10 @@ gpgkey=https://copr-be.cloud.fedoraproject.org/results/sac/gdeploy/pubkey.gpg
 repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
+
+[ovirt-@OVIRT_SLOT@-centos-qemu-ev]
+name=CentOS-7 - QEMU EV
+baseurl=http://mirror.centos.org/centos/7/virt/$basearch/kvm-common/
+gpgcheck=1
+enabled=1
+gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-Virtualization

@@ -5,12 +5,14 @@
 [[ -d tmp.repos ]] \
 || mkdir -p tmp.repos
 
+SUFFIX=".$(date -u +%Y%m%d%H%M%S).git$(git rev-parse --short HEAD)"
 
 autoreconf -ivf
 ./configure
 make distcheck
 rpmbuild \
     -D "_topdir $PWD/tmp.repos" \
+    -D "release_suffix ${SUFFIX}" \
     -ta ovirt-release*.tar.gz
 
 mv *.tar.gz exported-artifacts
@@ -24,7 +26,7 @@ pushd exported-artifacts
     yum reinstall -y system-release yum
     [[ -d /etc/dnf ]] && [[ -x /usr/bin/dnf ]] && dnf -y reinstall dnf-conf
     [[ -d /etc/dnf ]] && sed -i -re 's#^(reposdir *= *).*$#\1/etc/yum.repos.d#' '/etc/dnf/dnf.conf'
-    yum install -y ovirt-release42-4*noarch.rpm
+    yum install -y ovirt-release42-pre-4*noarch.rpm
     rm -f /etc/yum/yum.conf
     yum repolist enabled
     DISTVER="$(rpm --eval "%dist"|cut -c2-)"

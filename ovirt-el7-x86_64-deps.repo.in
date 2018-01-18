@@ -21,7 +21,9 @@ includepkgs=
  python-ordereddict,
  python-paramiko,
  python-ply,
- rubygem-rgen
+ rubygem-rgen,
+ nbdkit,
+ nbdkit-devel
 
 gpgcheck=1
 gpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7

@@ -1,6 +1,6 @@
 dnl
 dnl ovirt-release -- repo files for oVirt projects
-dnl Copyright (C) 2014-2017 Red Hat, Inc.
+dnl Copyright (C) 2014-2018 Red Hat, Inc.
 dnl
 dnl This library is free software; you can redistribute it and/or
 dnl modify it under the terms of the GNU Lesser General Public
@@ -19,7 +19,7 @@ dnl
 
 
 define([VERSION_NUMBER], [4.1.9])
-define([VERSION_SUFFIX], [_rc2])
+define([VERSION_SUFFIX], [])
 define([OVIRT_VERSION_MAJOR], [4])
 define([OVIRT_VERSION_MINOR], [1])
 AC_INIT([ovirt-release][]OVIRT_VERSION_MAJOR[]OVIRT_VERSION_MINOR, VERSION_NUMBER[]VERSION_SUFFIX, [infra@ovirt.org])
@@ -28,7 +28,7 @@ AM_INIT_AUTOMAKE
 PACKAGE_RPM_VERSION="VERSION_NUMBER"
 AC_SUBST([PACKAGE_RPM_VERSION])
 
-PACKAGE_RPM_RELEASE="0.2.$(echo VERSION_SUFFIX | sed 's/^_//')"
+PACKAGE_RPM_RELEASE="1"
 AC_SUBST([PACKAGE_RPM_RELEASE])
 
 OVIRT_SLOT="OVIRT_VERSION_MAJOR.OVIRT_VERSION_MINOR"

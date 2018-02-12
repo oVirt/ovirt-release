@@ -1,6 +1,6 @@
 dnl
 dnl ovirt-release -- repo files for oVirt projects
-dnl Copyright (C) 2014-2017 Red Hat, Inc.
+dnl Copyright (C) 2014-2018 Red Hat, Inc.
 dnl
 dnl This library is free software; you can redistribute it and/or
 dnl modify it under the terms of the GNU Lesser General Public
@@ -18,7 +18,7 @@ dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 dnl
 
 
-define([VERSION_NUMBER], [4.2.1])
+define([VERSION_NUMBER], [4.3.0])
 define([VERSION_SUFFIX], [_master])
 
 AC_INIT([ovirt-release-master], VERSION_NUMBER[]VERSION_SUFFIX, [infra@ovirt.org])
@@ -71,7 +71,7 @@ AC_CONFIG_FILES([
             host-node/Makefile
             ovirt-el7-ppc64le-deps.repo
             ovirt-el7-x86_64-deps.repo
-            ovirt-f26-deps.repo
+            ovirt-f28-deps.repo
             ovirt-f27-deps.repo
             ovirt-release-master.spec
             ovirt-snapshot.repo

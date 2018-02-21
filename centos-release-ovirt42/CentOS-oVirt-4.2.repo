@@ -10,7 +10,7 @@ gpgcheck=1
 enabled=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Virtualization
 
-[centos-ovirt41-testing]
+[centos-ovirt42-testing]
 name=CentOS-$releasever - oVirt 4.2 Testing
 baseurl=http://buildlogs.centos.org/centos/$releasever/virt/$basearch/ovirt-4.2/
 gpgcheck=0

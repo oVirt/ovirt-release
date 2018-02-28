@@ -5,7 +5,7 @@
 
 [centos-ovirt42]
 name=CentOS-$releasever - oVirt 4.2
-baseurl=http://mirror.centos.org/centos/$releasever/virt/$basearch/ovirt-4.2/
+baseurl=http://mirror.centos.org/$contentdir/$releasever/virt/$basearch/ovirt-4.2/
 gpgcheck=1
 enabled=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Virtualization

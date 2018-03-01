@@ -50,6 +50,17 @@ repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
 
+[sbonazzo-ovirt-fluentd]
+name=Copr repo for ovirt-fluentd owned by sbonazzo
+baseurl=https://copr-be.cloud.fedoraproject.org/results/sbonazzo/ovirt-fluentd/fedora-$releasever-$basearch/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/sbonazzo/ovirt-fluentd/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+
 [mlibra-ovirt-cockpit-sso]
 name=Copr repo for ovirt-cockpit-sso owned by mlibra
 baseurl=

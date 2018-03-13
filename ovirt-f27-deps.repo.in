@@ -73,3 +73,14 @@ gpgkey=https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-cockpit-sso/
 repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
+
+[rhawalsh-dm-vdo]
+name=Copr repo for dm-vdo owned by rhawalsh
+baseurl=https://copr-be.cloud.fedoraproject.org/results/rhawalsh/dm-vdo/fedora-$releasever-$basearch/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/rhawalsh/dm-vdo/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1

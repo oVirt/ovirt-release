@@ -7,6 +7,14 @@
 
 SUFFIX=".$(date -u +%Y%m%d%H%M%S).git$(git rev-parse --short HEAD)"
 
+DISTVER="$(rpm --eval "%dist"|cut -c2-3)"
+PACKAGER=""
+if [[ "${DISTVER}" == "el" ]]; then
+    PACKAGER=yum
+else
+    PACKAGER=dnf
+fi
+
 autoreconf -ivf
 ./configure
 make distcheck
@@ -23,24 +31,24 @@ find \
 pushd exported-artifacts
     #Restoring sane yum environment
     rm -f /etc/yum.conf
-    yum reinstall -y system-release yum
+    ${PACKAGER} reinstall -y system-release ${PACKAGER}
     [[ -d /etc/dnf ]] && [[ -x /usr/bin/dnf ]] && dnf -y reinstall dnf-conf
     [[ -d /etc/dnf ]] && sed -i -re 's#^(reposdir *= *).*$#\1/etc/yum.repos.d#' '/etc/dnf/dnf.conf'
-    yum install -y ovirt-release-master-4*noarch.rpm
+    ${PACKAGER} install -y ovirt-release-master-4*noarch.rpm
     rm -f /etc/yum/yum.conf
-    yum repolist enabled
+    ${PACKAGER} repolist enabled
     DISTVER="$(rpm --eval "%dist"|cut -c2-)"
-    yum clean all
+    ${PACKAGER} clean all
     if [[ "${DISTVER}" == "fc27" ]]; then
         # Fedora 27 support is broken, just provide a hint on what's missing
         # without causing the test to fail.
-        yum --downloadonly install *noarch.rpm || true
+        ${PACKAGER} --downloadonly install *noarch.rpm || true
     elif [[ "${DISTVER}" == "fc28" ]]; then
         # Fedora 28 support is broken, just provide a hint on what's missing
         # without causing the test to fail.
-        yum --downloadonly install *noarch.rpm || true
+        ${PACKAGER} --downloadonly install *noarch.rpm || true
     else
-        yum --downloadonly install *noarch.rpm
+        ${PACKAGER} --downloadonly install *noarch.rpm
     fi
 popd
 

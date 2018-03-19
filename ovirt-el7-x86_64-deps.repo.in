@@ -25,7 +25,9 @@ includepkgs=
  python-ply,
  rubygem-rgen,
  nbdkit,
- nbdkit-devel
+ nbdkit-devel,
+ nbdkit-plugin-python-common,
+ nbdkit-plugin-python2
 
 gpgcheck=1
 gpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7

@@ -96,6 +96,7 @@ Requires:       grub2-efi-x64
 Requires:       memtest86+
 Requires:       shim
 Requires:       syslinux
+Requires:       iotop
 %endif
 
 %description -n ovirt-release-host-node

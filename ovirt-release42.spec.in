@@ -414,6 +414,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, 36, 36) /data/images/rhev
 
 %changelog
+* Thu Mar 29 2018 Lev Veyde <lveyde@redhat.com> - 4.2.2-2
+- 4.2.2 GA re-spin
+
 * Tue Mar 27 2018 Lev Veyde <lveyde@redhat.com> - 4.2.2-1
 - 4.2.2 GA
 

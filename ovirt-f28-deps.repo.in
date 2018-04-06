@@ -5,10 +5,32 @@ enabled=1
 skip_if_unavailable=1
 gpgcheck=0
 
+# Fedora Virt preview repository
+# Details: https://fedoraproject.org/wiki/Virtualization_Preview_Repository
+[ovirt-@OVIRT_SLOT@-fedora-virt-preview]
+name=Virtualization packages from Rawhide built for latest Fedora
+baseurl=http://fedorapeople.org/groups/virt/virt-preview/fedora-$releasever/$basearch
+enabled=1
+skip_if_unavailable=1
+gpgcheck=0
+
+[ovirt-@OVIRT_SLOT@-fedora-virt-preview-debuginfo]
+name=Virtualization packages from Rawhide built for latest Fedora - Debug
+baseurl=http://fedorapeople.org/groups/virt/virt-preview/fedora-$releasever/debuginfo
+enabled=0
+skip_if_unavailable=1
+gpgcheck=0
+
+[ovirt-@OVIRT_SLOT@-fedora-virt-preview-source]
+name=Virtualization packages from Rawhide built for latest Fedora - Source
+baseurl=http://fedorapeople.org/groups/virt/virt-preview/fedora-$releasever/SRPMS
+enabled=0
+skip_if_unavailable=1
+gpgcheck=0
+
 [sbonazzo-python-ovsdbapp]
-#fc28 is rawhide
 name=Copr repo for python-ovsdbapp owned by sbonazzo
-baseurl=https://copr-be.cloud.fedoraproject.org/results/sbonazzo/python-ovsdbapp/fedora-rawhide-$basearch/
+baseurl=https://copr-be.cloud.fedoraproject.org/results/sbonazzo/python-ovsdbapp/fedora-$releasever-$basearch/
 type=rpm-md
 skip_if_unavailable=True
 gpgcheck=1
@@ -19,7 +41,7 @@ enabled_metadata=1
 
 [sbonazzo-ovirt-katello]
 name=Copr repo for ovirt-katello owned by sbonazzo
-baseurl=https://copr-be.cloud.fedoraproject.org/results/sbonazzo/ovirt-katello/fedora-rawhide-$basearch/
+baseurl=https://copr-be.cloud.fedoraproject.org/results/sbonazzo/ovirt-katello/fedora-$releasever-$basearch/
 type=rpm-md
 skip_if_unavailable=True
 gpgcheck=1
@@ -40,7 +62,7 @@ enabled=1
 enabled_metadata=1
 
 [mlibra-ovirt-cockpit-sso]
-#Missing rawhide / fc28
+# Fedora 28 doesn't exist yet as of April 6th 2018
 name=Copr repo for ovirt-cockpit-sso owned by mlibra
 baseurl=
  https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-cockpit-sso/fedora-27-$basearch/
@@ -49,6 +71,18 @@ type=rpm-md
 skip_if_unavailable=True
 gpgcheck=1
 gpgkey=https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-cockpit-sso/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+
+[rhawalsh-dm-vdo]
+# Fedora 28 doesn't exist yet as of April 6th 2018
+name=Copr repo for dm-vdo owned by rhawalsh
+baseurl=https://copr-be.cloud.fedoraproject.org/results/rhawalsh/dm-vdo/fedora-27-$basearch/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/rhawalsh/dm-vdo/pubkey.gpg
 repo_gpgcheck=0
 enabled=1
 enabled_metadata=1

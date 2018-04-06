@@ -71,6 +71,7 @@ AC_CONFIG_FILES([
             host-node/Makefile
             ovirt-el7-ppc64le-deps.repo
             ovirt-el7-x86_64-deps.repo
+            ovirt-f29-deps.repo
             ovirt-f28-deps.repo
             ovirt-f27-deps.repo
             ovirt-release-master.spec

@@ -1,6 +1,6 @@
 #
 # ovirt-release -- repo files for oVirt projects
-# Copyright (C) 2014-2017 Red Hat, Inc.
+# Copyright (C) 2014-2018 Red Hat, Inc.
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -162,6 +162,8 @@ fi
 if [[ "${DISTVER::3}" == "el7" ]] ; then
 	# On some systems [el7_1], take only 3 1st chars: ${var::3}
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-el7-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+elif [[ "${DISTVER}" == "fc29" ]]; then
+	install -m 644 "%{_datadir}/%{package_name}/ovirt-f29-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc28" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-f28-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc27" ]]; then
@@ -187,6 +189,9 @@ fi
 if [[ "${DISTVER::3}" == "el7" ]] ; then
 	# On some systems [el7_1], take only 3 1st chars: ${var::3}
 	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-el7-${ARCH}-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+elif [[ "${DISTVER}" == "fc29" ]]; then
+	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-f29-deps.repo" \
 	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc28" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-f28-deps.repo" \

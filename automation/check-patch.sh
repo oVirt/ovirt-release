@@ -7,6 +7,7 @@
 
 SUFFIX=".$(date -u +%Y%m%d%H%M%S).git$(git rev-parse --short HEAD)"
 
+ARCH="$(rpm --eval "%_arch")"
 DISTVER="$(rpm --eval "%dist"|cut -c2-3)"
 PACKAGER=""
 if [[ "${DISTVER}" == "el" ]]; then
@@ -54,6 +55,9 @@ pushd exported-artifacts
         ${PACKAGER} --downloadonly install *noarch.rpm || true
     else
         ${PACKAGER} --downloadonly install *noarch.rpm
+        if [[ "${ARCH}" == "x86_64" ]]; then
+            ${PACKAGER} --downloadonly install ovirt-engine
+        fi
     fi
 popd
 

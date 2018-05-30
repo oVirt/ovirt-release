@@ -414,6 +414,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, 36, 36) /data/images/rhev
 
 %changelog
+* Wed May 30 2018 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.3.1-1
+- 4.2.3.1 Async
+
 * Fri May 04 2018 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.3-1
 - 4.2.3 GA
 

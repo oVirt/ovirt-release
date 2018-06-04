@@ -3,4 +3,4 @@ automake
 gettext-devel
 git
 make
-dnf
+yum

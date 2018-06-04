@@ -50,23 +50,11 @@ repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
 
-[sbonazzo-ovirt-fluentd]
-name=Copr repo for ovirt-fluentd owned by sbonazzo
-baseurl=https://copr-be.cloud.fedoraproject.org/results/sbonazzo/ovirt-fluentd/fedora-$releasever-$basearch/
-type=rpm-md
-skip_if_unavailable=True
-gpgcheck=1
-gpgkey=https://copr-be.cloud.fedoraproject.org/results/sbonazzo/ovirt-fluentd/pubkey.gpg
-repo_gpgcheck=0
-enabled=1
-enabled_metadata=1
-
 [mlibra-ovirt-cockpit-sso]
-# Fedora 28 doesn't exist yet as of April 6th 2018
 name=Copr repo for ovirt-cockpit-sso owned by mlibra
 baseurl=
- https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-cockpit-sso/fedora-27-$basearch/
- https://people.redhat.com/mlibra/repos/ovirt-cockpit-sso/fedora-27-$basearch/
+ https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-cockpit-sso/fedora-28-$basearch/
+ https://people.redhat.com/mlibra/repos/ovirt-cockpit-sso/fedora-28-$basearch/
 type=rpm-md
 skip_if_unavailable=True
 gpgcheck=1
@@ -75,10 +63,24 @@ repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
 
+
+[mlibra-ovirt-web-ui]
+name=Copr repo for ovirt-web-ui owned by mlibra
+baseurl=
+ https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-web-ui/fedora-$releasever-$basearch/
+ http://people.redhat.com/mlibra/repos/ovirt-web-ui/fedora-$releasever-$basearch/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-web-ui/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+
+
 [rhawalsh-dm-vdo]
-# Fedora 28 doesn't exist yet as of April 6th 2018
 name=Copr repo for dm-vdo owned by rhawalsh
-baseurl=https://copr-be.cloud.fedoraproject.org/results/rhawalsh/dm-vdo/fedora-27-$basearch/
+baseurl=https://copr-be.cloud.fedoraproject.org/results/rhawalsh/dm-vdo/fedora-28-$basearch/
 type=rpm-md
 skip_if_unavailable=True
 gpgcheck=1

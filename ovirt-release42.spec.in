@@ -190,8 +190,6 @@ fi
 if [[ "${DISTVER::3}" == "el7" ]] ; then
 	# On some systems [el7_1], take only 3 1st chars: ${var::3}
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-el7-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-elif [[ "${DISTVER}" == "fc26" ]]; then
-	install -m 644 "%{_datadir}/%{package_name}/ovirt-f26-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc27" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-f27-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 fi
@@ -216,8 +214,8 @@ if [[ "${DISTVER::3}" == "el7" ]] ; then
 	# On some systems [el7_1], take only 3 1st chars: ${var::3}
 	install -m 644 "%{_datadir}/%{package_name}-snapshot/ovirt-el7-${ARCH}-deps.repo" \
 	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot-dependencies.repo"
-elif [[ "${DISTVER}" == "fc26" ]]; then
-	install -m 644 "%{_datadir}/%{package_name}-snapshot/ovirt-f26-deps.repo" \
+elif [[ "${DISTVER}" == "fc27" ]]; then
+	install -m 644 "%{_datadir}/%{package_name}-snapshot/ovirt-f27-deps.repo" \
 	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot-dependencies.repo"
 fi
 
@@ -240,9 +238,6 @@ fi
 if [[ "${DISTVER::3}" == "el7" ]] ; then
 	# On some systems [el7_1], take only 3 1st chars: ${var::3}
 	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-el7-${ARCH}-deps.repo" \
-	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-elif [[ "${DISTVER}" == "fc26" ]]; then
-	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-f26-deps.repo" \
 	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc27" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-f27-deps.repo" \
@@ -269,8 +264,8 @@ if [[ "${DISTVER::3}" == "el7" ]] ; then
 	# On some systems [el7_1], take only 3 1st chars: ${var::3}
 	install -m 644 "%{_datadir}/%{package_name}-pre/ovirt-el7-${ARCH}-deps.repo" \
 	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre-dependencies.repo"
-elif [[ "${DISTVER}" == "fc26" ]]; then
-	install -m 644 "%{_datadir}/%{package_name}-pre/ovirt-f26-deps.repo" \
+elif [[ "${DISTVER}" == "fc27" ]]; then
+	install -m 644 "%{_datadir}/%{package_name}-pre/ovirt-f27-deps.repo" \
 	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre-dependencies.repo"
 fi
 
@@ -414,6 +409,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, 36, 36) /data/images/rhev
 
 %changelog
+* Tue Jun 26 2018 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.4-1
+- 4.2.4 GA
+
 * Mon Jun 18 2018 Lev Veyde <lveyde@redhat.com> - 4.2.4-0.5.rc5
 - 4.2.4 RC5
 

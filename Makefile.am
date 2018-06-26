@@ -32,7 +32,6 @@ EXTRA_DIST = \
 pkgdata_DATA = \
 	ovirt-el7-ppc64le-deps.repo \
 	ovirt-el7-x86_64-deps.repo \
-	ovirt-f26-deps.repo \
 	ovirt-f27-deps.repo \
 	ovirt-pre.repo \
 	ovirt.repo \
@@ -43,7 +42,6 @@ pkgdata_DATA = \
 dist_noinst_DATA = \
 	$(srcdir)/ovirt-el7-ppc64le-deps.repo.in \
 	$(srcdir)/ovirt-el7-x86_64-deps.repo.in \
-	$(srcdir)/ovirt-f26-deps.repo.in \
 	$(srcdir)/ovirt-f27-deps.repo.in \
 	$(srcdir)/ovirt-pre.repo.in \
 	$(srcdir)/ovirt.repo.in \

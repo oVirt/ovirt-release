@@ -6,7 +6,6 @@ failovermethod=priority
 enabled=1
 includepkgs=
  epel-release,
- ioprocess,
  libtomcrypt,
  libtommath,
  ovirt-guest-agent*,
@@ -15,7 +14,6 @@ includepkgs=
  python2-ecdsa,
  python34*,
  python-ecdsa,
- python-ioprocess,
  python-ordereddict,
  python-ply,
  rubygem-rgen

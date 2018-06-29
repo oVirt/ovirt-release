@@ -12,7 +12,6 @@ includepkgs=
  puppet,
  python2-crypto,
  python2-ecdsa,
- python34*,
  python-ecdsa,
  python-ordereddict,
  python-ply,

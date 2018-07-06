@@ -5,7 +5,11 @@ mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=epel-7&arch=$basearch
 failovermethod=priority
 enabled=1
 includepkgs=
+ ansible,
+ ansible-doc,
  epel-release,
+ facter,
+ hiera,
  libtomcrypt,
  libtommath,
  ovirt-guest-agent*,
@@ -15,7 +19,9 @@ includepkgs=
  python-ecdsa,
  python-ordereddict,
  python-ply,
- rubygem-rgen
+ ruby-augeas,
+ rubygem-rgen,
+ ruby-shadow
 
 gpgcheck=1
 gpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7

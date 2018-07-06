@@ -8,8 +8,14 @@ includepkgs=
  ansible,
  ansible-doc,
  epel-release,
+ facter,
+ hiera,
  libtomcrypt,
  libtommath,
+ nbdkit,
+ nbdkit-devel,
+ nbdkit-plugin-python2,
+ nbdkit-plugin-python-common,
  ovirt-guest-agent*,
  puppet,
  python2-crypto,
@@ -17,11 +23,9 @@ includepkgs=
  python-ecdsa,
  python-ordereddict,
  python-ply,
+ ruby-augeas,
  rubygem-rgen,
- nbdkit,
- nbdkit-devel,
- nbdkit-plugin-python-common,
- nbdkit-plugin-python2
+ ruby-shadow
 
 gpgcheck=1
 gpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7

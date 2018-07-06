@@ -22,7 +22,6 @@ includepkgs=
  python2-ecdsa,
  python-ecdsa,
  python-ordereddict,
- python-ply,
  ruby-augeas,
  rubygem-rgen,
  ruby-shadow

@@ -16,7 +16,6 @@ includepkgs=
  puppet,
  python2-crypto,
  python2-ecdsa,
- python-ecdsa,
  python-ordereddict,
  ruby-augeas,
  rubygem-rgen,

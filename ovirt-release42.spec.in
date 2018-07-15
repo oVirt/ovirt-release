@@ -356,10 +356,18 @@ systemctl restart cockpit.service >/dev/null 2>&1
 # The loop is required because sed -i does not work with multiple files
 for REPO in %{_sysconfdir}/yum.repos.d/ovirt-*.repo;
 do
-	sed -i \
-		-e "/name=/ a includepkgs=ovirt-node-ng-image-update ovirt-node-ng-image ovirt-engine-appliance" \
-		-e "1 i # imgbased: set-enabled" \
-	"$REPO"
+    python << EOF
+from six.moves import configparser
+cp = configparser.ConfigParser()
+cp.optionxform = str
+cp.read("$REPO")
+for s in cp.sections():
+    cp.remove_option(s, "includepkgs")
+    cp.set(s, "includepkgs", "ovirt-node-ng-image-update ovirt-node-ng-image ovirt-engine-appliance")
+with open("$REPO", "w") as f:
+    f.write("# imgbased: set-enabled\n")
+    cp.write(f)
+EOF
 done
 
 #

@@ -417,7 +417,7 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %{_prefix}/share/ovirt-release-host-node/branding/branding.css
 
 # Add a folder for local datastores
-%dir %attr(0755, 36, 36) /data/images/rhev
+%dir %attr(0755, vdsm, kvm) /data/images/rhev
 
 %changelog
 * Thu Jul 05 2018 Lev Veyde <lveyde@redhat.com> - 4.2.5-0.2.rc2

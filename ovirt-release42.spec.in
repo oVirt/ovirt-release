@@ -61,7 +61,10 @@ BuildArch:	noarch
 BuildRequires:	systemd
 
 Requires(post):	systemd
+Requires(post):	python-six
+Requires(post):	firewalld
 Requires(postun):	systemd
+Requires(postun):	firewalld
 
 %if 0%{?rhel}
 # We don't build ovirt-node for Fedora yet

@@ -38,7 +38,6 @@ enabled=1
 name=virtio-win builds roughly matching what will be shipped in upcoming RHEL
 baseurl=http://fedorapeople.org/groups/virt/virtio-win/repo/latest
 enabled=1
-skip_if_unavailable=1
 gpgcheck=0
 
 [centos-qemu-ev-release]
@@ -82,7 +81,7 @@ name=CentOS-7 - OpsTools - release
 baseurl=http://mirror.centos.org/centos/7/opstools/$basearch/
 gpgcheck=0
 enabled=1
-skip_if_unavailable=1
+
 
 [centos-sclo-rh-release]
 name=CentOS-7 - SCLo rh

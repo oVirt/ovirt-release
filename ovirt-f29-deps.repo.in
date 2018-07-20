@@ -2,7 +2,6 @@
 name=virtio-win builds roughly matching what will be shipped in upcoming RHEL
 baseurl=http://fedorapeople.org/groups/virt/virtio-win/repo/latest
 enabled=1
-skip_if_unavailable=1
 gpgcheck=0
 
 # Fedora Virt preview repository
@@ -12,7 +11,6 @@ gpgcheck=0
 name=Copr repo for python-ovsdbapp owned by sbonazzo
 baseurl=https://copr-be.cloud.fedoraproject.org/results/sbonazzo/python-ovsdbapp/fedora-rawhide-$basearch/
 type=rpm-md
-skip_if_unavailable=True
 gpgcheck=1
 gpgkey=https://copr-be.cloud.fedoraproject.org/results/sbonazzo/python-ovsdbapp/pubkey.gpg
 repo_gpgcheck=0
@@ -23,7 +21,6 @@ enabled_metadata=1
 name=Copr repo for ovirt-katello owned by sbonazzo
 baseurl=https://copr-be.cloud.fedoraproject.org/results/sbonazzo/ovirt-katello/fedora-rawhide-$basearch/
 type=rpm-md
-skip_if_unavailable=True
 gpgcheck=1
 gpgkey=https://copr-be.cloud.fedoraproject.org/results/sbonazzo/ovirt-katello/pubkey.gpg
 repo_gpgcheck=0
@@ -37,7 +34,6 @@ baseurl=
  https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-cockpit-sso/fedora-28-$basearch/
  https://people.redhat.com/mlibra/repos/ovirt-cockpit-sso/fedora-28-$basearch/
 type=rpm-md
-skip_if_unavailable=True
 gpgcheck=1
 gpgkey=https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-cockpit-sso/pubkey.gpg
 repo_gpgcheck=0
@@ -51,7 +47,6 @@ baseurl=
  https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-web-ui/fedora-28-$basearch/
  http://people.redhat.com/mlibra/repos/ovirt-web-ui/fedora-28-$basearch/
 type=rpm-md
-skip_if_unavailable=True
 gpgcheck=1
 gpgkey=https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-web-ui/pubkey.gpg
 repo_gpgcheck=0
@@ -64,7 +59,6 @@ enabled_metadata=1
 name=Copr repo for dm-vdo owned by rhawalsh
 baseurl=https://copr-be.cloud.fedoraproject.org/results/rhawalsh/dm-vdo/fedora-28-$basearch/
 type=rpm-md
-skip_if_unavailable=True
 gpgcheck=1
 gpgkey=https://copr-be.cloud.fedoraproject.org/results/rhawalsh/dm-vdo/pubkey.gpg
 repo_gpgcheck=0

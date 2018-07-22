@@ -65,10 +65,7 @@ Requires(post):	firewalld
 Requires(postun):	systemd
 Requires(postun):	firewalld
 
-%if 0%{?rhel}
-# We don't build ovirt-node for Fedora yet
 Requires:	ovirt-node-ng-nodectl
-%endif
 Requires:	firewalld
 Requires:	gdeploy
 Requires:	imgbased

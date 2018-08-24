@@ -89,3 +89,13 @@ baseurl=http://mirror.centos.org/centos/7/sclo/$basearch/rh/
 gpgcheck=1
 enabled=1
 gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-SCLo
+
+[ovirtwebui-ovirt-web-ui]
+name=Copr repo for ovirt-web-ui owned by ovirtwebui
+baseurl=https://copr-be.cloud.fedoraproject.org/results/ovirtwebui/ovirt-web-ui/epel-7-$basearch/
+type=rpm-md
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/ovirtwebui/ovirt-web-ui/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1

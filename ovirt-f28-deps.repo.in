@@ -56,19 +56,15 @@ repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
 
-
-[mlibra-ovirt-web-ui]
-name=Copr repo for ovirt-web-ui owned by mlibra
-baseurl=
- https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-web-ui/fedora-$releasever-$basearch/
- http://people.redhat.com/mlibra/repos/ovirt-web-ui/fedora-$releasever-$basearch/
+[ovirtwebui-ovirt-web-ui]
+name=Copr repo for ovirt-web-ui owned by ovirtwebui
+baseurl=https://copr-be.cloud.fedoraproject.org/results/ovirtwebui/ovirt-web-ui/fedora-$releasever-$basearch/
 type=rpm-md
 gpgcheck=1
-gpgkey=https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-web-ui/pubkey.gpg
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/ovirtwebui/ovirt-web-ui/pubkey.gpg
 repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
-
 
 [rhawalsh-dm-vdo]
 name=Copr repo for dm-vdo owned by rhawalsh

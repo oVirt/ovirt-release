@@ -71,3 +71,13 @@ name=CentOS-7 - OpsTools - common testing repo
 baseurl=https://cbs.centos.org/repos/opstools7-common-testing/$basearch/os
 gpgcheck=0
 enabled=1
+
+[mdbarroso-python-ovsdbapp]
+name=Copr repo for python-ovsdbapp owned by mdbarroso
+baseurl=https://copr-be.cloud.fedoraproject.org/results/mdbarroso/ovsdbapp/epel-7-$basearch/
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/mdbarroso/ovsdbapp/pubkey.gpg
+gpgcheck=1
+type=rpm-md
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1

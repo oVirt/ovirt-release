@@ -7,16 +7,6 @@ gpgcheck=0
 # Fedora Virt preview repository
 # is not needed because fc29 is rawhide
 
-[sbonazzo-python-ovsdbapp]
-name=Copr repo for python-ovsdbapp owned by sbonazzo
-baseurl=https://copr-be.cloud.fedoraproject.org/results/sbonazzo/python-ovsdbapp/fedora-rawhide-$basearch/
-type=rpm-md
-gpgcheck=1
-gpgkey=https://copr-be.cloud.fedoraproject.org/results/sbonazzo/python-ovsdbapp/pubkey.gpg
-repo_gpgcheck=0
-enabled=1
-enabled_metadata=1
-
 [sbonazzo-ovirt-katello]
 name=Copr repo for ovirt-katello owned by sbonazzo
 baseurl=https://copr-be.cloud.fedoraproject.org/results/sbonazzo/ovirt-katello/fedora-rawhide-$basearch/
@@ -58,6 +48,16 @@ baseurl=https://copr-be.cloud.fedoraproject.org/results/rhawalsh/dm-vdo/fedora-2
 type=rpm-md
 gpgcheck=1
 gpgkey=https://copr-be.cloud.fedoraproject.org/results/rhawalsh/dm-vdo/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+
+[mdbarroso-python-ovsdbapp]
+name=Copr repo for python-ovsdbapp owned by mdbarroso
+baseurl=https://copr-be.cloud.fedoraproject.org/results/mdbarroso/ovsdbapp/fedora-29-$basearch/
+type=rpm-md
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/mdbarroso/ovsdbapp/pubkey.gpg
+gpgcheck=1
 repo_gpgcheck=0
 enabled=1
 enabled_metadata=1

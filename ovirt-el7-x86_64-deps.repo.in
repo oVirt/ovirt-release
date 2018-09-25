@@ -100,12 +100,3 @@ repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
 
-[mdbarroso-python-ovsdbapp]
-name=Copr repo for python-ovsdbapp owned by mdbarroso
-baseurl=https://copr-be.cloud.fedoraproject.org/results/mdbarroso/ovsdbapp/epel-7-$basearch/
-type=rpm-md
-gpgkey=https://copr-be.cloud.fedoraproject.org/results/mdbarroso/ovsdbapp/pubkey.gpg
-gpgcheck=1
-repo_gpgcheck=0
-enabled=1
-enabled_metadata=1

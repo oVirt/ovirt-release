@@ -16,6 +16,7 @@ includepkgs=
  nbdkit-devel,
  nbdkit-plugin-python2,
  nbdkit-plugin-python-common,
+ nbdkit-plugin-vddk,
  ovirt-guest-agent*,
  puppet,
  python2-crypto,

@@ -31,9 +31,11 @@ gpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
 
 [ovirt-@OVIRT_SLOT@-centos-gluster312]
 name=CentOS-7 - Gluster 3.12
-baseurl=https://cbs.centos.org/repos/storage7-gluster-312-release/$basearch/os/
-gpgcheck=0
+baseurl=http://mirror.centos.org/centos/7/storage/$basearch/gluster-3.12/
+gpgcheck=1
 enabled=1
+gpgkey=https://raw.githubusercontent.com/CentOS-Storage-SIG/centos-release-storage-common/master/RPM-GPG-KEY-CentOS-SIG-Storage
+
 
 [ovirt-@OVIRT_SLOT@-virtio-win-latest]
 name=virtio-win builds roughly matching what will be shipped in upcoming RHEL
@@ -41,11 +43,12 @@ baseurl=http://fedorapeople.org/groups/virt/virtio-win/repo/latest
 enabled=1
 gpgcheck=0
 
-[centos-qemu-ev-release]
+[ovirt-@OVIRT_SLOT@-centos-qemu-ev]
 name=CentOS-7 - QEMU EV
-baseurl=https://cbs.centos.org/repos/virt7-kvm-common-release/$basearch/os/
-gpgcheck=0
+baseurl=http://mirror.centos.org/centos/7/virt/$basearch/kvm-common/
+gpgcheck=1
 enabled=1
+gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-Virtualization
 
 [centos-ovirt43-testing]
 name=CentOS-7 - oVirt 4.3

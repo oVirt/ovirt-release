@@ -25,8 +25,8 @@ SUBDIRS = \
 
 EXTRA_DIST = \
 	autogen.sh \
-	ovirt-release-master.spec \
-	ovirt-release-master.spec.in \
+	ovirt-release43.spec \
+	ovirt-release43.spec.in \
 	$(NULL)
 
 pkgdata_DATA = \
@@ -34,8 +34,7 @@ pkgdata_DATA = \
 	ovirt-el7-x86_64-deps.repo \
 	ovirt-f29-deps.repo \
 	ovirt-f28-deps.repo \
-	ovirt-snapshot.repo \
-	ovirt-tested.repo \
+	ovirt-pre.repo \
 	$(NULL)
 
 dist_noinst_DATA = \
@@ -43,8 +42,6 @@ dist_noinst_DATA = \
 	$(srcdir)/ovirt-el7-x86_64-deps.repo.in \
 	$(srcdir)/ovirt-f29-deps.repo.in \
 	$(srcdir)/ovirt-f28-deps.repo.in \
-	$(srcdir)/ovirt-snapshot.repo.in \
-	$(srcdir)/ovirt-tested.repo.in \
 	$(NULL)
 
 # vim: ts=8

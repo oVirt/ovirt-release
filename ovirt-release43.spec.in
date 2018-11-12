@@ -36,6 +36,7 @@ Group:		System Environment/Base
 License:	ASL 2.0
 URL:		http://www.ovirt.org
 Source0:	http://resources.ovirt.org/pub/ovirt-master-snapshot/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
+Source1:	http://resources.ovirt.org/pub/keys/RPM-GPG-ovirt-v2
 
 BuildArch:	noarch
 
@@ -85,18 +86,18 @@ Requires:	m2crypto
 # http://lorax.readthedocs.org/en/latest/livemedia-creator.html#kickstarts
 # Architecture dependent dependencies
 %if 0%{?is_x86}
-Requires:       efibootmgr
+Requires:	efibootmgr
 
 %if 0%{?fedora}
-Requires:       grub2-efi
+Requires:	grub2-efi
 %else
-Requires:       grub2-efi-x64
+Requires:	grub2-efi-x64
 %endif
 
-Requires:       memtest86+
-Requires:       shim
-Requires:       syslinux
-Requires:       iotop
+Requires:	memtest86+
+Requires:	shim
+Requires:	syslinux
+Requires:	iotop
 %endif
 
 %description -n ovirt-release-host-node
@@ -115,14 +116,15 @@ BuildArch:	noarch
 A sub-package to be included into oVirt Node Next squashfs
 image to allow upgrading itself
 
-%package tested
-Summary:	oVirt tested repository configuration
+%package pre
+Summary:	oVirt pre-release repository configuration
 Group:		System Environment/Base
 Requires:	system-release
 Requires:	tar
 
-%description tested
-This package contains the yum configuration for oVirt tested repositories
+%description pre
+This package contains the yum configuration for oVirt pre-release repositories
+
 
 %prep
 %setup -q -n "%{package_name}-%{package_version}"
@@ -141,10 +143,11 @@ rm -rf "%{buildroot}"
 %make_install
 #Allow ghost files
 install -d 755 "%{buildroot}%{_sysconfdir}/yum.repos.d"
-touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-tested.repo"
-touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
+install -d "%{buildroot}%{_sysconfdir}/pki/rpm-gpg"
+install -m 644 "%{SOURCE1}" "%{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-ovirt-%{ovirt_version}"
+touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre.repo"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-cp -rl "%{buildroot}%{_datadir}/%{package_name}" "%{buildroot}%{_datadir}/%{package_name}-tested"
+cp -rl "%{buildroot}%{_datadir}/%{package_name}" "%{buildroot}%{_datadir}/%{package_name}-pre"
 
 install -d 755 "%{buildroot}/data/images/rhev"
 
@@ -169,11 +172,7 @@ elif [[ "${DISTVER}" == "fc28" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-f28-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 fi
 
-sed \
-	-e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
-	<"%{_datadir}/%{package_name}/ovirt-snapshot.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
-
-%post tested
+%post pre
 
 # Adjust repos as per dist and version
 DIST=fc
@@ -187,33 +186,35 @@ fi
 
 if [[ "${DISTVER::3}" == "el7" ]] ; then
 	# On some systems [el7_1], take only 3 1st chars: ${var::3}
-	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-el7-${ARCH}-deps.repo" \
-	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+	install -m 644 "%{_datadir}/%{package_name}-pre/ovirt-el7-${ARCH}-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre-dependencies.repo"
 elif [[ "${DISTVER}" == "fc29" ]]; then
-	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-f29-deps.repo" \
-	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+	install -m 644 "%{_datadir}/%{package_name}-pre/ovirt-f29-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre-dependencies.repo"
 elif [[ "${DISTVER}" == "fc28" ]]; then
-	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-f28-deps.repo" \
-	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+	install -m 644 "%{_datadir}/%{package_name}-pre/ovirt-f28-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre-dependencies.repo"
 fi
 
 sed \
 	-e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
-	<"%{_datadir}/%{package_name}-tested/ovirt-tested.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-tested.repo"
+	<"%{_datadir}/%{package_name}-pre/ovirt-pre.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre.repo"
 
 
 %files
 %{_datadir}/%{package_name}/
+%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-ovirt-%{ovirt_version}
 # We do not know what distribution we are installed at,
 # we copy the actual files at post, but still wants this package to own them.
 # ghost in this case solves that issue
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo
 
-
-%files tested
-%{_datadir}/%{package_name}-tested/
-%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-tested.repo
+%files pre
+%{_datadir}/%{package_name}-pre/
+%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-ovirt-%{ovirt_version}
+%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo
+%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre.repo
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
 
 
@@ -221,7 +222,7 @@ sed \
 %define __default_units_wanted cockpit.socket sshd.service NetworkManager.service imgbase-clean-grub.service imgbase-motd.service imgbase-generate-iqn.service imgbase-config-vdsm.service imgbase-relabel-dev.service imgbase-fix-new-kernel.service rsyslog.service auditd.service
 # Make the defualt services default requirements of the target
 for UNIT in %{__default_units_wanted} ; do
-  ln -fs ../$UNIT %{_unitdir}/multi-user.target.wants/$UNIT
+	ln -fs ../$UNIT %{_unitdir}/multi-user.target.wants/$UNIT
 done
 
 #
@@ -300,7 +301,7 @@ done
 
 %postun -n ovirt-release-host-node
 for UNIT in %{__default_units_wanted} ; do
-  rm -f %{_unitdir}/multi-user.target.wants/$UNIT
+	rm -f %{_unitdir}/multi-user.target.wants/$UNIT
 done
 
 # In case of uninstall the host-node pkg, return the previous os-release
@@ -335,35 +336,5 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, vdsm, kvm) /data/images/rhev
 
 %changelog
-* Fri May 11 2018 Sandro Bonazzola <sbonazzo@redhat.com> - 4.3.0-0.1.master
-- Switch to CentOS Virt SIG oVirt 4.3 branch
-
-* Mon Feb 12 2018 Sandro Bonazzola <sbonazzo@redhat.com> - 4.3.0-0.0.master
-- Bumped version to 4.3.0
-
-* Thu Dec 14 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.1-0.0.master
-- Bumped version to 4.2.1
-
-* Mon Oct 09 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.0-0.6.master
-- Add Fedora 27 support
-- Add ovirt-cockpit-sso repo
-
-* Fri May 26 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.0-0.5.master
-- Add Fedora 26 support
-- Move to latest virtio-win
-
-* Thu Feb 23 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.0-0.4.master
-- Drop Fedora 24 support
-
-* Thu Feb  2 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.0-0.3.master
-- Add Fedora 25 support
-
-* Mon Jan 30 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.0-0.2.master
-- Resolves: BZ#1411640 - [HC] - Include gdeploy package in oVirt Node
-
-* Wed Jan 25 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.0-0.1.master
-- Split x86_64 and ppc64le dependencies for EL7 since they're on different
-  repositories
-
-* Tue Dec 20 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.0-0.0.master
-- Bumped version to 4.2.0
+* Mon Nov 12 2018 Sandro Bonazzola <sbonazzo@redhat.com> - 4.3.0-0.0.master
+- Initial 4.3 branching

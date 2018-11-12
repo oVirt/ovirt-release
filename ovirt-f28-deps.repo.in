@@ -46,12 +46,12 @@ repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
 
-[ovirtwebui-ovirt-web-ui]
-name=Copr repo for ovirt-web-ui owned by ovirtwebui
-baseurl=https://copr-be.cloud.fedoraproject.org/results/ovirtwebui/ovirt-web-ui/fedora-$releasever-$basearch/
+[ovirtwebui-ovirt-web-ui-master]
+name=Copr repo for ovirt-web-ui-master owned by ovirtwebui
+baseurl=https://copr-be.cloud.fedoraproject.org/results/ovirtwebui/ovirt-web-ui-master/fedora-$releasever-$basearch/
 type=rpm-md
 gpgcheck=1
-gpgkey=https://copr-be.cloud.fedoraproject.org/results/ovirtwebui/ovirt-web-ui/pubkey.gpg
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/ovirtwebui/ovirt-web-ui-master/pubkey.gpg
 repo_gpgcheck=0
 enabled=1
 enabled_metadata=1

@@ -5,7 +5,16 @@ enabled=1
 gpgcheck=0
 
 # Fedora Virt preview repository
-# is not needed because fc29 is rawhide
+# Details: https://fedoraproject.org/wiki/Virtualization_Preview_Repository
+[group_virtmaint-sig-virt-preview]
+name=Copr repo for virt-preview owned by @virtmaint-sig
+baseurl=https://copr-be.cloud.fedoraproject.org/results/@virtmaint-sig/virt-preview/fedora-$releasever-$basearch/
+type=rpm-md
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/@virtmaint-sig/virt-preview/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
 
 [sbonazzo-ovirt-katello]
 name=Copr repo for ovirt-katello owned by sbonazzo

@@ -29,11 +29,13 @@ includepkgs=
 gpgcheck=1
 gpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
 
-[ovirt-@OVIRT_SLOT@-centos-gluster312]
-name=CentOS-7 - Gluster 3.12
-baseurl=https://cbs.centos.org/repos/storage7-gluster-312-release/$basearch/os/
-gpgcheck=0
+[ovirt-@OVIRT_SLOT@-centos-gluster5]
+name=CentOS-$releasever - Gluster 5
+mirrorlist=http://mirrorlist.centos.org?arch=$basearch&release=$releasever&repo=storage-gluster-5
+#baseurl=http://mirror.centos.org/$contentdir/$releasever/storage/$basearch/gluster-5/
+gpgcheck=1
 enabled=1
+gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-Storage
 
 [ovirt-@OVIRT_SLOT@-virtio-win-latest]
 name=virtio-win builds roughly matching what will be shipped in upcoming RHEL

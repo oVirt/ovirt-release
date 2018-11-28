@@ -35,9 +35,16 @@ pushd exported-artifacts
         # without causing the test to fail.
         ${PACKAGER} --downloadonly install *noarch.rpm || true
     else
-        ${PACKAGER} --downloadonly install *noarch.rpm
-        if [[ "${ARCH}" == "x86_64" ]]; then
-            ${PACKAGER} --downloadonly install ovirt-engine
+        if [[ $(${PACKAGER} repolist enabled|grep -v ovirt|grep epel) ]] ; then
+            ${PACKAGER} --downloadonly --disablerepo=epel install *noarch.rpm
+            if [[ "${ARCH}" == "x86_64" ]]; then
+                ${PACKAGER} --downloadonly --disablerepo=epel install ovirt-engine
+            fi
+        else
+            ${PACKAGER} --downloadonly install *noarch.rpm
+            if [[ "${ARCH}" == "x86_64" ]]; then
+                ${PACKAGER} --downloadonly install ovirt-engine
+            fi
         fi
     fi
 popd

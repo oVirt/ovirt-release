@@ -44,7 +44,11 @@ pushd exported-artifacts
         # without causing the test to fail.
         ${PACKAGER} --downloadonly install --skip-broken *noarch.rpm
     else
-        ${PACKAGER} --downloadonly install *noarch.rpm
+        if [[ $(${PACKAGER} repolist enabled|grep -v ovirt|grep epel) ]] ; then
+            ${PACKAGER} --downloadonly --disablerepo=epel install *noarch.rpm
+        else
+            ${PACKAGER} --downloadonly install *noarch.rpm
+        fi
     fi
 popd
 

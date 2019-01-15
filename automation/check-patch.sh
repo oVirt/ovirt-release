@@ -24,10 +24,6 @@ pushd exported-artifacts
     [[ -e /etc/dnf/dnf.conf ]] && echo "deltarpm=False" >> /etc/dnf/dnf.conf
     ${PACKAGER} install -y ovirt-release43-pre-4*noarch.rpm
     rm -f /etc/yum/yum.conf
-    if [[ "${DISTVER}" == "el" ]]; then
-        #Enable CR repo
-        sed -i "s:enabled=0:enabled=1:" /etc/yum.repos.d/CentOS-CR.repo
-    fi
     ${PACKAGER} repolist enabled
     ${PACKAGER} clean all
     if [[ "${DISTVER}" == "fc28" ]]; then

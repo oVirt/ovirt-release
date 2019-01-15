@@ -35,7 +35,7 @@ Group:		System Environment/Base
 
 License:	ASL 2.0
 URL:		http://www.ovirt.org
-Source0:	http://resources.ovirt.org/pub/ovirt-master-snapshot/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
+Source0:	http://resources.ovirt.org/pub/ovirt-4.3-snapshot/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
 Source1:	http://resources.ovirt.org/pub/keys/RPM-GPG-ovirt-v2
 
 BuildArch:	noarch
@@ -116,6 +116,25 @@ BuildArch:	noarch
 A sub-package to be included into oVirt Node Next squashfs
 image to allow upgrading itself
 
+%package tested
+Summary:	oVirt tested repository configuration
+Group:		System Environment/Base
+Requires:	system-release
+Requires:	tar
+
+%description tested
+This package contains the yum configuration for oVirt tested repositories
+
+%package snapshot
+Summary:	oVirt snapshot repository configuration
+Group:		System Environment/Base
+Requires:	system-release
+Requires:	tar
+
+%description snapshot
+This package contains the yum configuration for oVirt snapshot repositories
+
+
 %package pre
 Summary:	oVirt pre-release repository configuration
 Group:		System Environment/Base
@@ -145,9 +164,14 @@ rm -rf "%{buildroot}"
 install -d 755 "%{buildroot}%{_sysconfdir}/yum.repos.d"
 install -d "%{buildroot}%{_sysconfdir}/pki/rpm-gpg"
 install -m 644 "%{SOURCE1}" "%{buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-ovirt-%{ovirt_version}"
+touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre.repo"
+touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-tested.repo"
+touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+cp -rl "%{buildroot}%{_datadir}/%{package_name}" "%{buildroot}%{_datadir}/%{package_name}-snapshot"
 cp -rl "%{buildroot}%{_datadir}/%{package_name}" "%{buildroot}%{_datadir}/%{package_name}-pre"
+cp -rl "%{buildroot}%{_datadir}/%{package_name}" "%{buildroot}%{_datadir}/%{package_name}-tested"
 
 install -d 755 "%{buildroot}/data/images/rhev"
 
@@ -171,6 +195,66 @@ elif [[ "${DISTVER}" == "fc29" ]]; then
 elif [[ "${DISTVER}" == "fc28" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-f28-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 fi
+
+sed \
+	-e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
+	<"%{_datadir}/%{package_name}/ovirt.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo"
+
+%post snapshot
+
+# Adjust repos as per dist and version
+DIST=fc
+#Fedora is good for both Fedora and Generic (and probably other based on Fedora)
+#Handling EL exception only (for now)
+DISTVER="$(rpm --eval "%%dist"|cut -c2-)"
+ARCH="$(rpm --eval "%%_arch")"
+if rpm --eval "%%dist" | grep -qFi 'el'; then
+	DIST=el
+fi
+
+if [[ "${DISTVER::3}" == "el7" ]] ; then
+	# On some systems [el7_1], take only 3 1st chars: ${var::3}
+	install -m 644 "%{_datadir}/%{package_name}-snapshot/ovirt-el7-${ARCH}-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot-dependencies.repo"
+elif [[ "${DISTVER}" == "fc29" ]]; then
+	install -m 644 "%{_datadir}/%{package_name}-snapshot/ovirt-f29-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot-dependencies.repo"
+elif [[ "${DISTVER}" == "fc28" ]]; then
+	install -m 644 "%{_datadir}/%{package_name}-snapshot/ovirt-f28-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot-dependencies.repo"
+fi
+
+sed \
+	-e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
+	<"%{_datadir}/%{package_name}-snapshot/ovirt-snapshot.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
+
+%post tested
+
+# Adjust repos as per dist and version
+DIST=fc
+#Fedora is good for both Fedora and Generic (and probably other based on Fedora)
+#Handling EL exception only (for now)
+DISTVER="$(rpm --eval "%%dist"|cut -c2-)"
+ARCH="$(rpm --eval "%%_arch")"
+if rpm --eval "%%dist" | grep -qFi 'el'; then
+	DIST=el
+fi
+
+if [[ "${DISTVER::3}" == "el7" ]] ; then
+	# On some systems [el7_1], take only 3 1st chars: ${var::3}
+	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-el7-${ARCH}-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+elif [[ "${DISTVER}" == "fc29" ]]; then
+	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-f29-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+elif [[ "${DISTVER}" == "fc28" ]]; then
+	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-f28-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+fi
+
+sed \
+	-e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
+	<"%{_datadir}/%{package_name}-tested/ovirt-tested.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-tested.repo"
 
 %post pre
 
@@ -207,8 +291,13 @@ sed \
 # We do not know what distribution we are installed at,
 # we copy the actual files at post, but still wants this package to own them.
 # ghost in this case solves that issue
+%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
+
+%files snapshot
+%{_datadir}/%{package_name}-snapshot/
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo
+%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot-dependencies.repo
 
 %files pre
 %{_datadir}/%{package_name}-pre/
@@ -217,6 +306,10 @@ sed \
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre.repo
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
 
+%files tested
+%{_datadir}/%{package_name}-tested/
+%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-tested.repo
+%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
 
 %post -n ovirt-release-host-node
 %define __default_units_wanted cockpit.socket sshd.service NetworkManager.service imgbase-clean-grub.service imgbase-motd.service imgbase-generate-iqn.service imgbase-config-vdsm.service imgbase-relabel-dev.service imgbase-fix-new-kernel.service rsyslog.service auditd.service

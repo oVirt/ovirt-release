@@ -35,6 +35,9 @@ pkgdata_DATA = \
 	ovirt-f29-deps.repo \
 	ovirt-f28-deps.repo \
 	ovirt-pre.repo \
+	ovirt.repo \
+	ovirt-snapshot.repo \
+	ovirt-tested.repo \
 	$(NULL)
 
 dist_noinst_DATA = \
@@ -42,6 +45,10 @@ dist_noinst_DATA = \
 	$(srcdir)/ovirt-el7-x86_64-deps.repo.in \
 	$(srcdir)/ovirt-f29-deps.repo.in \
 	$(srcdir)/ovirt-f28-deps.repo.in \
+	$(srcdir)/ovirt-pre.repo.in \
+	$(srcdir)/ovirt.repo.in \
+	$(srcdir)/ovirt-snapshot.repo.in \
+	$(srcdir)/ovirt-tested.repo.in \
 	$(NULL)
 
 # vim: ts=8

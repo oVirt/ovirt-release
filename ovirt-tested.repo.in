@@ -1,0 +1,15 @@
+[ovirt-@OVIRT_SLOT@-tested]
+name=oVirt @OVIRT_SLOT@ tested repository
+baseurl=http://resources.ovirt.org/repos/ovirt/tested/@OVIRT_SLOT@/rpm/@DIST@$releasever/
+enabled=1
+skip_if_unavailable=1
+gpgcheck=0
+
+[ovirt-@OVIRT_SLOT@-tested-static]
+#still needed for ovirt-engine-wildfly and other static deps
+name=Latest oVirt @OVIRT_SLOT@ additional tested packages
+#baseurl=@OVIRT_YUM_REPO@/pub/ovirt-@OVIRT_SLOT@-snapshot-static/rpm/@DIST@$releasever/
+@URLKEY@=@OVIRT_YUM_REPO@@REPO_PATH_STATIC@@DIST@$releasever
+enabled=1
+skip_if_unavailable=1
+gpgcheck=0

@@ -74,6 +74,9 @@ AC_CONFIG_FILES([
             ovirt-f29-deps.repo
             ovirt-f28-deps.repo
             ovirt-pre.repo
+            ovirt.repo
+            ovirt-snapshot.repo
+            ovirt-tested.repo
             ovirt-release43.spec
 ])
 AC_OUTPUT

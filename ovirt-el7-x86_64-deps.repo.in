@@ -60,12 +60,6 @@ baseurl=http://cbs.centos.org/repos/virt7-ovirt-common-testing/$basearch/os/
 gpgcheck=0
 enabled=1
 
-[opstools7-fluentd-012-testing]
-name=CentOS-7 - OpsTools - fluentd testing repo
-baseurl=https://cbs.centos.org/repos/opstools7-fluentd-012-testing/$basearch/os
-gpgcheck=0
-enabled=1
-
 [opstools7-perfmon-common-testing]
 name=CentOS-7 - OpsTools - perfmon testing repo
 baseurl=https://cbs.centos.org/repos/opstools7-perfmon-common-testing/$basearch/os

@@ -1,6 +1,6 @@
 #
 # ovirt-release -- repo files for oVirt projects
-# Copyright (C) 2014-2018 Red Hat, Inc.
+# Copyright (C) 2014-2019 Red Hat, Inc.
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -35,7 +35,7 @@ Group:		System Environment/Base
 
 License:	ASL 2.0
 URL:		http://www.ovirt.org
-Source0:	http://resources.ovirt.org/pub/ovirt-4.2-snapshot/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
+Source0:	http://resources.ovirt.org/pub/ovirt-4.2/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
 Source1:	http://resources.ovirt.org/pub/keys/RPM-GPG-ovirt-v2
 
 BuildArch:	noarch
@@ -420,6 +420,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, vdsm, kvm) /data/images/rhev
 
 %changelog
+* Mon Jan 21 2019 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.8-1
+- 4.2.8 GA
+
 * Mon Jan 07 2019 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.8-0.3.rc3
 - 4.2.8 RC3
 

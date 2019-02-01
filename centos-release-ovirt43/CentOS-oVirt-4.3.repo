@@ -1,0 +1,32 @@
+# CentOS-oVirt-4.3.repo
+#
+# Please see http://wiki.centos.org/SpecialInterestGroup/Virtualization for more
+# information
+
+[centos-ovirt43]
+name=CentOS-$releasever - oVirt 4.3
+mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=virt-ovirt-4.3
+#baseurl=http://mirror.centos.org/$contentdir/$releasever/virt/$basearch/ovirt-4.3/
+gpgcheck=1
+enabled=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Virtualization
+
+[centos-ovirt43-testing]
+name=CentOS-$releasever - oVirt 4.3 Testing
+baseurl=http://buildlogs.centos.org/centos/$releasever/virt/$basearch/ovirt-4.3/
+gpgcheck=0
+enabled=0
+
+[centos-ovirt43-debuginfo]
+name=CentOS-$releasever - oVirt 4.3 Debug
+baseurl=http://debuginfo.centos.org/centos/7/virt/$basearch/
+gpgcheck=1
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Virtualization
+
+[centos-ovirt43-source]
+name=CentOS-$releasever - oVirt 4.3 Source
+baseurl=http://vault.centos.org/centos/7/virt/Source/ovirt-4.3/
+gpgcheck=1
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Virtualization

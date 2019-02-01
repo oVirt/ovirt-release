@@ -1,7 +1,7 @@
 Summary: QEMU Enterprise Virtualization packages from the CentOS Virtualization SIG repository
 Name: centos-release-qemu-ev
 Version: 1.0
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: GPLv2
 URL: http://wiki.centos.org/SpecialInterestGroup/Virtualization
 Source0: CentOS-QEMU-EV.repo
@@ -29,6 +29,10 @@ install -D -m 644 %{SOURCE0} %{buildroot}%{_sysconfdir}/yum.repos.d/CentOS-QEMU-
 %license COPYING
 
 %changelog
+* Fri Feb 01 2019 Sandro Bonazzola <sbonazzo@redhat.com> - 1.0-4
+- Using mirrorlist in centos-release-* packages
+  See https://lists.centos.org/pipermail/centos-devel/2018-December/017152.html
+
 * Wed Feb 28 2018 Sandro Bonazzola <sbonazzo@redhat.com> - 1.0-3
 - add altarch support
 

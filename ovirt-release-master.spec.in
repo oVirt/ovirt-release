@@ -163,6 +163,8 @@ fi
 if [[ "${DISTVER::3}" == "el7" ]] ; then
 	# On some systems [el7_1], take only 3 1st chars: ${var::3}
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-el7-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+elif [[ "${DISTVER}" == "fc30" ]]; then
+	install -m 644 "%{_datadir}/%{package_name}/ovirt-f30-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc29" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-f29-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc28" ]]; then
@@ -188,6 +190,9 @@ fi
 if [[ "${DISTVER::3}" == "el7" ]] ; then
 	# On some systems [el7_1], take only 3 1st chars: ${var::3}
 	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-el7-${ARCH}-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+elif [[ "${DISTVER}" == "fc30" ]]; then
+	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-f30-deps.repo" \
 	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc29" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-f29-deps.repo" \
@@ -335,35 +340,11 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, vdsm, kvm) /data/images/rhev
 
 %changelog
+* Mon Feb 04 2019 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.0-0.0.master
+- Bumped version to 4.4.0
+
 * Fri May 11 2018 Sandro Bonazzola <sbonazzo@redhat.com> - 4.3.0-0.1.master
 - Switch to CentOS Virt SIG oVirt 4.3 branch
 
 * Mon Feb 12 2018 Sandro Bonazzola <sbonazzo@redhat.com> - 4.3.0-0.0.master
 - Bumped version to 4.3.0
-
-* Thu Dec 14 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.1-0.0.master
-- Bumped version to 4.2.1
-
-* Mon Oct 09 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.0-0.6.master
-- Add Fedora 27 support
-- Add ovirt-cockpit-sso repo
-
-* Fri May 26 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.0-0.5.master
-- Add Fedora 26 support
-- Move to latest virtio-win
-
-* Thu Feb 23 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.0-0.4.master
-- Drop Fedora 24 support
-
-* Thu Feb  2 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.0-0.3.master
-- Add Fedora 25 support
-
-* Mon Jan 30 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.0-0.2.master
-- Resolves: BZ#1411640 - [HC] - Include gdeploy package in oVirt Node
-
-* Wed Jan 25 2017 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.0-0.1.master
-- Split x86_64 and ppc64le dependencies for EL7 since they're on different
-  repositories
-
-* Tue Dec 20 2016 Sandro Bonazzola <sbonazzo@redhat.com> - 4.2.0-0.0.master
-- Bumped version to 4.2.0

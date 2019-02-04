@@ -25,10 +25,14 @@ pushd exported-artifacts
     ${PACKAGER} install -y ovirt-release43-4*noarch.rpm
     ${PACKAGER} install -y ovirt-release43-snapshot-4*noarch.rpm
     rm -f /etc/yum/yum.conf
+    if [[ "${DISTVER}" == "el" ]]; then
+        #Enable CR repo
+        sed -i "s:enabled=0:enabled=1:" /etc/yum.repos.d/CentOS-CR.repo
+    fi
     ${PACKAGER} repolist enabled
     ${PACKAGER} clean all
-    if [[ "${DISTVER}" == "fc28" ]]; then
-        # Fedora 28 support is broken, just provide a hint on what's missing
+    if [[ "$(rpm --eval "%_arch")" == "s390x" ]]; then
+        # s390x support is broken, just provide a hint on what's missing
         # without causing the test to fail.
         ${PACKAGER} --downloadonly install *noarch.rpm || true
     else

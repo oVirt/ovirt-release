@@ -103,3 +103,15 @@ gpgkey=https://copr-be.cloud.fedoraproject.org/results/mdbarroso/openvswitch/pub
 repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
+
+# This repo provides only x86-64 repos but all the packages are noarch.
+[sac-gluster-ansible]
+name=Copr repo for gluster-ansible owned by sac
+baseurl=https://copr-be.cloud.fedoraproject.org/results/sac/gluster-ansible/fedora-$releasever-x86_64/
+type=rpm-md
+skip_if_unavailable=False
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/sac/gluster-ansible/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1

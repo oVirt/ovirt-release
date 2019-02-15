@@ -1,6 +1,6 @@
 #
 # ovirt-release -- repo files for oVirt projects
-# Copyright (C) 2014-2018 Red Hat, Inc.
+# Copyright (C) 2014-2019 Red Hat, Inc.
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -429,6 +429,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, vdsm, kvm) /data/images/rhev
 
 %changelog
+* Fri Feb 15 2019 Sandro Bonazzola <sbonazzo@redhat.com> - 4.3.1-0.1.rc1
+- 4.3.1-0.1.rc1
+
 * Wed Feb 06 2019 Gobinda Das <godas@redhat.com> - 4.3.0-2
 - Include gluster-ansible role from copr repo for CentOS and Fedora
 

@@ -4,7 +4,7 @@ enable cockpit.socket
 enable sshd.service
 enable NetworkManager.service
 enable irqbalance.service
-enable imgbase-motd.service
+enable imgbase-setup.service
 enable libvirtd.service
 enable ovirt-vmconsole-host-sshd.service
 enable tuned.service

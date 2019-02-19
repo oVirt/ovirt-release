@@ -223,7 +223,7 @@ sed \
 
 
 %post -n ovirt-release-host-node
-%define __default_units_wanted cockpit.socket sshd.service NetworkManager.service imgbase-clean-grub.service imgbase-motd.service imgbase-generate-iqn.service imgbase-config-vdsm.service imgbase-relabel-dev.service imgbase-fix-new-kernel.service rsyslog.service auditd.service
+%define __default_units_wanted cockpit.socket sshd.service NetworkManager.service imgbase-setup.service rsyslog.service auditd.service
 # Make the defualt services default requirements of the target
 for UNIT in %{__default_units_wanted} ; do
   ln -fs ../$UNIT %{_unitdir}/multi-user.target.wants/$UNIT

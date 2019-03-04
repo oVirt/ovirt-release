@@ -68,7 +68,7 @@ Requires(postun):	firewalld
 
 Requires:	ovirt-node-ng-nodectl
 Requires:	firewalld
-Requires:	gluster-ansible
+Requires:	gluster-ansible-roles
 Requires:	imgbased
 Requires:	ovirt-host
 Requires:	python-ovirt-engine-sdk4
@@ -429,6 +429,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, vdsm, kvm) /data/images/rhev
 
 %changelog
+* Mon Mar 04 2019 Sandro Bonazzola <sbonazzo@redhat.com> - 4.3.2-0.1.rc1
+- 4.3.2-0.1.rc1
+
 * Thu Feb 28 2019 Sandro Bonazzola <sbonazzo@redhat.com> - 4.3.1-1
 - 4.3.1-1
 

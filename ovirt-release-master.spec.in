@@ -67,7 +67,7 @@ Requires(postun):	firewalld
 
 Requires:	ovirt-node-ng-nodectl
 Requires:	firewalld
-Requires:	gluster-ansible
+Requires:	gluster-ansible-roles
 Requires:	imgbased
 Requires:	ovirt-host
 Requires:	python-ovirt-engine-sdk4

@@ -1,0 +1,84 @@
+[ovirt-@OVIRT_SLOT@-virtio-win-latest]
+name=virtio-win builds roughly matching what will be shipped in upcoming RHEL
+baseurl=http://fedorapeople.org/groups/virt/virtio-win/repo/latest
+enabled=1
+gpgcheck=0
+
+# Fedora Virt preview repository
+# Details: https://fedoraproject.org/wiki/Virtualization_Preview_Repository
+[group_virtmaint-sig-virt-preview]
+name=Copr repo for virt-preview owned by @virtmaint-sig
+baseurl=https://copr-be.cloud.fedoraproject.org/results/@virtmaint-sig/virt-preview/fedora-$releasever-$basearch/
+type=rpm-md
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/@virtmaint-sig/virt-preview/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+
+[sbonazzo-ovirt-katello]
+name=Copr repo for ovirt-katello owned by sbonazzo
+baseurl=https://copr-be.cloud.fedoraproject.org/results/sbonazzo/ovirt-katello/fedora-rawhide-$basearch/
+type=rpm-md
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/sbonazzo/ovirt-katello/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+
+[mlibra-ovirt-cockpit-sso]
+# Fedora 29 / rawhide doesn't exist yet as of June 4th 2018
+name=Copr repo for ovirt-cockpit-sso owned by mlibra
+baseurl=
+ https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-cockpit-sso/fedora-28-$basearch/
+ https://people.redhat.com/mlibra/repos/ovirt-cockpit-sso/fedora-28-$basearch/
+type=rpm-md
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-cockpit-sso/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+
+[ovirtwebui-ovirt-web-ui-master]
+name=Copr repo for ovirt-web-ui-master owned by ovirtwebui
+baseurl=https://copr-be.cloud.fedoraproject.org/results/ovirtwebui/ovirt-web-ui-master/fedora-$releasever-$basearch/
+type=rpm-md
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/ovirtwebui/ovirt-web-ui-master/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+
+
+[rhawalsh-dm-vdo]
+# Fedora 29/ rawhide doesn't exist yet as of June 4th 2018
+name=Copr repo for dm-vdo owned by rhawalsh
+baseurl=https://copr-be.cloud.fedoraproject.org/results/rhawalsh/dm-vdo/fedora-29-$basearch/
+type=rpm-md
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/rhawalsh/dm-vdo/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+
+[mdbarroso-python-ovsdbapp]
+name=Copr repo for python-ovsdbapp owned by mdbarroso
+baseurl=https://copr-be.cloud.fedoraproject.org/results/mdbarroso/ovsdbapp/fedora-29-$basearch/
+type=rpm-md
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/mdbarroso/ovsdbapp/pubkey.gpg
+gpgcheck=1
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+
+# This repo provides only fc28 x86-64 repos but all the packages are noarch.
+[sac-gluster-ansible]
+name=Copr repo for gluster-ansible owned by sac
+baseurl=https://copr-be.cloud.fedoraproject.org/results/sac/gluster-ansible/fedora-28-x86_64/
+type=rpm-md
+skip_if_unavailable=False
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/sac/gluster-ansible/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled

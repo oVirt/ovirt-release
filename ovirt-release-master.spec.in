@@ -163,6 +163,8 @@ fi
 if [[ "${DISTVER::3}" == "el7" ]] ; then
 	# On some systems [el7_1], take only 3 1st chars: ${var::3}
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-el7-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+elif [[ "${DISTVER}" == "fc31" ]]; then
+	install -m 644 "%{_datadir}/%{package_name}/ovirt-f31-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc30" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-f30-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc29" ]]; then
@@ -190,6 +192,9 @@ fi
 if [[ "${DISTVER::3}" == "el7" ]] ; then
 	# On some systems [el7_1], take only 3 1st chars: ${var::3}
 	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-el7-${ARCH}-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+elif [[ "${DISTVER}" == "fc31" ]]; then
+	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-f31-deps.repo" \
 	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc30" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-f30-deps.repo" \
@@ -340,6 +345,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, vdsm, kvm) /data/images/rhev
 
 %changelog
+* Thu Mar 21 2019 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.0-0.2.master
+- Add Fedora 31 support
+
 * Wed Feb 06 2019 Gobinda Das <godas@redhat.com> - 4.4.0-0.1.master
 - Include gluster-ansible role from copr repo for CentOS and Fedora
 

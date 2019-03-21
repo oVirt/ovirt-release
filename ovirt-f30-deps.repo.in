@@ -81,4 +81,4 @@ gpgcheck=1
 gpgkey=https://copr-be.cloud.fedoraproject.org/results/sac/gluster-ansible/pubkey.gpg
 repo_gpgcheck=0
 enabled=1
-enabled
+enabled_metadata=1

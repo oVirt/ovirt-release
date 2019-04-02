@@ -45,8 +45,8 @@ gpgcheck=0
 enabled=1
 
 [centos-ovirt43-testing]
-name=CentOS-7 - oVirt 4.3
-baseurl=http://cbs.centos.org/repos/virt7-ovirt-43-testing/$basearch/os/
+name=CentOS-7 - oVirt 4.4
+baseurl=http://cbs.centos.org/repos/virt7-ovirt-44-testing/$basearch/os/
 gpgcheck=0
 enabled=1
 

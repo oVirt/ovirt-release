@@ -27,11 +27,9 @@ enabled=1
 enabled_metadata=1
 
 [mlibra-ovirt-cockpit-sso]
-# Fedora 29 / rawhide doesn't exist yet as of June 4th 2018
+# Fedora 30 / rawhide doesn't exist yet as of May 9th 2019
 name=Copr repo for ovirt-cockpit-sso owned by mlibra
-baseurl=
- https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-cockpit-sso/fedora-28-$basearch/
- https://people.redhat.com/mlibra/repos/ovirt-cockpit-sso/fedora-28-$basearch/
+baseurl=https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-cockpit-sso/fedora-29-$basearch/
 type=rpm-md
 gpgcheck=1
 gpgkey=https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-cockpit-sso/pubkey.gpg
@@ -49,11 +47,10 @@ repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
 
-
 [rhawalsh-dm-vdo]
-# Fedora 29/ rawhide doesn't exist yet as of June 4th 2018
+# Fedora 30 / rawhide doesn't exist yet as of June 4th 2018
 name=Copr repo for dm-vdo owned by rhawalsh
-baseurl=https://copr-be.cloud.fedoraproject.org/results/rhawalsh/dm-vdo/fedora-28-$basearch/
+baseurl=https://copr-be.cloud.fedoraproject.org/results/rhawalsh/dm-vdo/fedora-29-$basearch/
 type=rpm-md
 gpgcheck=1
 gpgkey=https://copr-be.cloud.fedoraproject.org/results/rhawalsh/dm-vdo/pubkey.gpg
@@ -71,12 +68,11 @@ repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
 
-# This repo provides only fc28 x86-64 repos but all the packages are noarch.
+# This repo provides only x86-64 repos but all the packages are noarch.
 [sac-gluster-ansible]
 name=Copr repo for gluster-ansible owned by sac
-baseurl=https://copr-be.cloud.fedoraproject.org/results/sac/gluster-ansible/fedora-28-x86_64/
+baseurl=https://copr-be.cloud.fedoraproject.org/results/sac/gluster-ansible/fedora-$releasever-x86_64/
 type=rpm-md
-skip_if_unavailable=False
 gpgcheck=1
 gpgkey=https://copr-be.cloud.fedoraproject.org/results/sac/gluster-ansible/pubkey.gpg
 repo_gpgcheck=0

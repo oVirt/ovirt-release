@@ -9,6 +9,15 @@ if [[ "${DISTVER}" == "el" ]]; then
 else
     PACKAGER=dnf
 fi
+export PACKAGER
+
+on_exit() {
+    ${PACKAGER} --verbose clean all
+}
+
+trap on_exit EXIT
+
+
 
 find \
     "$PWD/tmp.repos" \

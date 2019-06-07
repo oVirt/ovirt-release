@@ -18,7 +18,7 @@ enabled_metadata=1
 
 [sbonazzo-ovirt-katello]
 name=Copr repo for ovirt-katello owned by sbonazzo
-baseurl=https://copr-be.cloud.fedoraproject.org/results/sbonazzo/ovirt-katello/fedora-rawhide-$basearch/
+baseurl=https://copr-be.cloud.fedoraproject.org/results/sbonazzo/ovirt-katello/fedora-$releasever-$basearch/
 type=rpm-md
 gpgcheck=1
 gpgkey=https://copr-be.cloud.fedoraproject.org/results/sbonazzo/ovirt-katello/pubkey.gpg
@@ -27,9 +27,8 @@ enabled=1
 enabled_metadata=1
 
 [mlibra-ovirt-cockpit-sso]
-# Fedora 30 / rawhide doesn't exist yet as of May 9th 2019
 name=Copr repo for ovirt-cockpit-sso owned by mlibra
-baseurl=https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-cockpit-sso/fedora-29-$basearch/
+baseurl=https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-cockpit-sso/fedora-$releasever-$basearch/
 type=rpm-md
 gpgcheck=1
 gpgkey=https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-cockpit-sso/pubkey.gpg
@@ -48,9 +47,8 @@ enabled=1
 enabled_metadata=1
 
 [rhawalsh-dm-vdo]
-# Fedora 30 / rawhide doesn't exist yet as of June 4th 2018
 name=Copr repo for dm-vdo owned by rhawalsh
-baseurl=https://copr-be.cloud.fedoraproject.org/results/rhawalsh/dm-vdo/fedora-29-$basearch/
+baseurl=https://copr-be.cloud.fedoraproject.org/results/rhawalsh/dm-vdo/fedora-$releasever-$basearch/
 type=rpm-md
 gpgcheck=1
 gpgkey=https://copr-be.cloud.fedoraproject.org/results/rhawalsh/dm-vdo/pubkey.gpg
@@ -58,12 +56,12 @@ repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
 
-[mdbarroso-python-ovsdbapp]
-name=Copr repo for python-ovsdbapp owned by mdbarroso
-baseurl=https://copr-be.cloud.fedoraproject.org/results/mdbarroso/ovsdbapp/fedora-29-$basearch/
+[mdbarroso-ovsdbapp]
+name=Copr repo for ovsdbapp owned by mdbarroso
+baseurl=https://copr-be.cloud.fedoraproject.org/results/mdbarroso/ovsdbapp/fedora-$releasever-$basearch/
 type=rpm-md
-gpgkey=https://copr-be.cloud.fedoraproject.org/results/mdbarroso/ovsdbapp/pubkey.gpg
 gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/mdbarroso/ovsdbapp/pubkey.gpg
 repo_gpgcheck=0
 enabled=1
 enabled_metadata=1

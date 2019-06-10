@@ -1,6 +1,6 @@
 #
 # ovirt-release -- repo files for oVirt projects
-# Copyright (C) 2012-2018 Red Hat, Inc.
+# Copyright (C) 2012-2019 Red Hat, Inc.
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -35,7 +35,6 @@ pkgdata_DATA = \
 	ovirt-f31-deps.repo \
 	ovirt-f30-deps.repo \
 	ovirt-f29-deps.repo \
-	ovirt-f28-deps.repo \
 	ovirt-snapshot.repo \
 	ovirt-tested.repo \
 	$(NULL)
@@ -46,7 +45,6 @@ dist_noinst_DATA = \
 	$(srcdir)/ovirt-f31-deps.repo.in \
 	$(srcdir)/ovirt-f30-deps.repo.in \
 	$(srcdir)/ovirt-f29-deps.repo.in \
-	$(srcdir)/ovirt-f28-deps.repo.in \
 	$(srcdir)/ovirt-snapshot.repo.in \
 	$(srcdir)/ovirt-tested.repo.in \
 	$(NULL)

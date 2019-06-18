@@ -19,7 +19,7 @@ dnl
 
 
 define([VERSION_NUMBER], [4.3.5])
-define([VERSION_SUFFIX], [_rc1])
+define([VERSION_SUFFIX], [_rc2])
 define([OVIRT_VERSION_MAJOR], [4])
 define([OVIRT_VERSION_MINOR], [3])
 AC_INIT([ovirt-release][]OVIRT_VERSION_MAJOR[]OVIRT_VERSION_MINOR, VERSION_NUMBER[]VERSION_SUFFIX, [infra@ovirt.org])
@@ -28,7 +28,7 @@ AM_INIT_AUTOMAKE
 PACKAGE_RPM_VERSION="VERSION_NUMBER"
 AC_SUBST([PACKAGE_RPM_VERSION])
 
-PACKAGE_RPM_RELEASE="0.1.$(echo VERSION_SUFFIX | sed 's/^_//')"
+PACKAGE_RPM_RELEASE="0.2.$(echo VERSION_SUFFIX | sed 's/^_//')"
 AC_SUBST([PACKAGE_RPM_RELEASE])
 
 OVIRT_SLOT="OVIRT_VERSION_MAJOR.OVIRT_VERSION_MINOR"
@@ -72,7 +72,6 @@ AC_CONFIG_FILES([
             ovirt-el7-ppc64le-deps.repo
             ovirt-el7-x86_64-deps.repo
             ovirt-f29-deps.repo
-            ovirt-f28-deps.repo
             ovirt-pre.repo
             ovirt.repo
             ovirt-snapshot.repo

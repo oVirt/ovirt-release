@@ -2,7 +2,6 @@
 
 ./automation/build-artifacts.sh
 
-ARCH="$(rpm --eval "%_arch")"
 DISTVER="$(rpm --eval "%dist"|cut -c2-3)"
 PACKAGER=""
 if [[ "${DISTVER}" == "el" ]]; then
@@ -10,6 +9,15 @@ if [[ "${DISTVER}" == "el" ]]; then
 else
     PACKAGER=dnf
 fi
+export PACKAGER
+
+on_exit() {
+    ${PACKAGER} --verbose clean all
+}
+
+trap on_exit EXIT
+
+
 
 find \
     "$PWD/tmp.repos" \
@@ -33,6 +41,21 @@ pushd exported-artifacts
     ${PACKAGER} clean all
     if [[ "$(rpm --eval "%_arch")" == "s390x" ]]; then
         # s390x support is broken, just provide a hint on what's missing
+        # without causing the test to fail.
+        ${PACKAGER} --downloadonly install *noarch.rpm || true
+    elif
+     [[ "$(rpm --eval "%dist")" == ".fc31" ]]; then
+        # fc31 support is broken, just provide a hint on what's missing
+        # without causing the test to fail.
+        ${PACKAGER} --downloadonly install *noarch.rpm || true
+    elif
+     [[ "$(rpm --eval "%dist")" == ".fc30" ]]; then
+        # fc30 support is broken, just provide a hint on what's missing
+        # without causing the test to fail.
+        ${PACKAGER} --downloadonly install *noarch.rpm || true
+    elif
+     [[ "$(rpm --eval "%dist")" == ".fc29" ]]; then
+        # fc29 support is broken, just provide a hint on what's missing
         # without causing the test to fail.
         ${PACKAGER} --downloadonly install *noarch.rpm || true
     else

@@ -76,3 +76,19 @@ gpgkey=https://copr-be.cloud.fedoraproject.org/results/sac/gluster-ansible/pubke
 repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
+
+[glusterfs-fedora]
+name=GlusterFS is a clustered file-system capable of scaling to several petabytes.
+baseurl=http://download.gluster.org/pub/gluster/glusterfs/6/LATEST/Fedora/fedora-$releasever/$basearch/
+enabled=1
+skip_if_unavailable=1
+gpgcheck=1
+gpgkey=http://download.gluster.org/pub/gluster/glusterfs/6/rsa.pub
+
+[glusterfs-noarch-fedora]
+name=GlusterFS is a clustered file-system capable of scaling to several petabytes.
+baseurl=http://download.gluster.org/pub/gluster/glusterfs/6/LATEST/Fedora/fedora-$releasever/noarch
+enabled=1
+skip_if_unavailable=1
+gpgcheck=1
+gpgkey=http://download.gluster.org/pub/gluster/glusterfs/6/rsa.pub

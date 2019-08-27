@@ -31,7 +31,7 @@ pushd exported-artifacts
     [[ -d /etc/dnf ]] && sed -i -re 's#^(reposdir *= *).*$#\1/etc/yum.repos.d#' '/etc/dnf/dnf.conf'
     [[ -e /etc/dnf/dnf.conf ]] && echo "deltarpm=False" >> /etc/dnf/dnf.conf
     ${PACKAGER} install -y ovirt-release43-4*noarch.rpm
-    ${PACKAGER} install -y ovirt-release43-snapshot-4*noarch.rpm
+    ${PACKAGER} install -y ovirt-release43-pre-4*noarch.rpm
     rm -f /etc/yum/yum.conf
     if [[ "${DISTVER}" == "el" ]]; then
         #Enable CR repo

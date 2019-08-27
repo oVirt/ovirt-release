@@ -36,6 +36,15 @@ pushd exported-artifacts
     if [[ "${DISTVER}" == "el" ]]; then
         #Enable CR repo
         sed -i "s:enabled=0:enabled=1:" /etc/yum.repos.d/CentOS-CR.repo
+
+        # On EL7 enable Virt SIG testing repos
+        echo "
+[centos-ovirt43-testing]
+name=CentOS-\$releasever - oVirt 4.3 Testing
+baseurl=http://buildlogs.centos.org/centos/\$releasever/virt/\$basearch/ovirt-4.3/
+gpgcheck=0
+enabled=1
+" >/etc/yum.repos.d/CentOS-oVirt-4.3.repo
     fi
     ${PACKAGER} repolist enabled
     ${PACKAGER} clean all

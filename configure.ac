@@ -35,9 +35,9 @@ OVIRT_SLOT="OVIRT_VERSION_MAJOR.OVIRT_VERSION_MINOR"
 AC_SUBST([OVIRT_SLOT])
 
 AC_ARG_WITH([ovirt-yum-repo],[AC_HELP_STRING([--with-ovirt-yum-repo],
-            [Specify yum repo. default: "http://resources.ovirt.org"])],
+            [Specify yum repo. default: "https://resources.ovirt.org"])],
             [OVIRT_YUM_REPO="$withval"],
-            [OVIRT_YUM_REPO="http://resources.ovirt.org"])
+            [OVIRT_YUM_REPO="https://resources.ovirt.org"])
 AC_SUBST([OVIRT_YUM_REPO])
 
 AC_ARG_WITH([repo-url-key],[AC_HELP_STRING([--with-repo-url-key],
@@ -59,9 +59,9 @@ AC_ARG_WITH([repo-path-static],[AC_HELP_STRING([--with-repo-path-static],
 AC_SUBST([REPO_PATH_STATIC])
 
 AC_ARG_WITH([ovirt-yum-repo],[AC_HELP_STRING([--with-ovirt-yum-repo],
-            [Specify yum repo. default: "http://resources.ovirt.org"])],
+            [Specify yum repo. default: "https://resources.ovirt.org"])],
             [OVIRT_YUM_REPO="$withval"],
-            [OVIRT_YUM_REPO="http://resources.ovirt.org"])
+            [OVIRT_YUM_REPO="https://resources.ovirt.org"])
 AC_SUBST([OVIRT_YUM_REPO])
 
 PRODUCT_NAME=oVirt\ Packages\ Repository

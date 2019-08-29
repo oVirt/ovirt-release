@@ -34,9 +34,9 @@ Summary:	The oVirt repository configuration
 Group:		System Environment/Base
 
 License:	ASL 2.0
-URL:		http://www.ovirt.org
-Source0:	http://resources.ovirt.org/pub/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
-Source1:	http://resources.ovirt.org/pub/keys/RPM-GPG-ovirt-v2
+URL:		https://www.ovirt.org
+Source0:	https://resources.ovirt.org/pub/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
+Source1:	https://resources.ovirt.org/pub/keys/RPM-GPG-ovirt-v2
 
 BuildArch:	noarch
 
@@ -55,7 +55,7 @@ Version:	@PACKAGE_RPM_VERSION@
 Release:	@PACKAGE_RPM_RELEASE@%{?release_suffix}%{?dist}
 Group:		System Environment/Base
 License:	GPLv2
-URL:		http://www.ovirt.org
+URL:		https://www.ovirt.org
 BuildArch:	noarch
 
 BuildRequires:	systemd
@@ -109,7 +109,7 @@ Version:	@PACKAGE_RPM_VERSION@
 Release:	@PACKAGE_RPM_RELEASE@%{?release_suffix}%{?placeholder_release_suffix}%{?dist}
 Group:		System Environment/Base
 License:	GPLv2
-URL:		http://www.ovirt.org
+URL:		https://www.ovirt.org
 BuildArch:	noarch
 
 %description -n ovirt-node-ng-image-update-placeholder

@@ -1,6 +1,6 @@
 [ovirt-@OVIRT_SLOT@-tested]
 name=oVirt @OVIRT_SLOT@ tested repository
-baseurl=http://resources.ovirt.org/repos/ovirt/tested/master/rpm/@DIST@$releasever/
+baseurl=https://resources.ovirt.org/repos/ovirt/tested/master/rpm/@DIST@$releasever/
 enabled=1
 gpgcheck=0
 

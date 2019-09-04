@@ -418,6 +418,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, vdsm, kvm) /data/images/rhev
 
 %changelog
+* Wed Sep 04 2019 Sandro Bonazzola <sbonazzo@redhat.com> - 4.3.6-0.5.rc5
+- 4.3.6-0.5.rc5
+
 * Tue Aug 27 2019 Sandro Bonazzola <sbonazzo@redhat.com> - 4.3.6-0.4.rc4
 - 4.3.6-0.4.rc4
 

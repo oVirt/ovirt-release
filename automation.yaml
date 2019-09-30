@@ -5,7 +5,7 @@ archs:
   - s390x:
       distro: [fc29, fc30]
   - x86_64:
-      distro: [el7, fc29, fc30]
+      distro: [el7, el8, fc29, fc30]
 
 release_branches:
   master:

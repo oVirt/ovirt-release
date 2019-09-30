@@ -2,9 +2,9 @@
 
 ./automation/build-artifacts.sh
 
-DISTVER="$(rpm --eval "%dist"|cut -c2-3)"
+DISTVER="$(rpm --eval "%dist"|cut -c2-4)"
 PACKAGER=""
-if [[ "${DISTVER}" == "el" ]]; then
+if [[ "${DISTVER}" == "el7" ]]; then
     PACKAGER=yum
 else
     PACKAGER=dnf
@@ -32,7 +32,7 @@ pushd exported-artifacts
     [[ -e /etc/dnf/dnf.conf ]] && echo "deltarpm=False" >> /etc/dnf/dnf.conf
     ${PACKAGER} install -y ovirt-release-master-4*noarch.rpm
     rm -f /etc/yum/yum.conf
-    if [[ "${DISTVER}" == "el" ]]; then
+    if [[ "${DISTVER}" == "el7" ]]; then
         #Enable CR repo
         sed -i "s:enabled=0:enabled=1:" /etc/yum.repos.d/CentOS-CR.repo
     fi
@@ -57,6 +57,11 @@ pushd exported-artifacts
         # fc29 support is broken, just provide a hint on what's missing
         # without causing the test to fail.
         ${PACKAGER} --downloadonly install *noarch.rpm || true
+    elif
+     [[ "$(rpm --eval "%dist")" == ".el8" ]]; then
+        # el8 support is broken, just provide a hint on what's missing
+        # without causing the test to fail.
+        ${PACKAGER} --downloadonly install *noarch.rpm || true
     else
         if [[ $(${PACKAGER} repolist enabled|grep -v ovirt|grep epel) ]] ; then
             ${PACKAGER} --downloadonly --disablerepo=epel install *noarch.rpm
@@ -71,4 +76,3 @@ pushd exported-artifacts
         fi
     fi
 popd
-

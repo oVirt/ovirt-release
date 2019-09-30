@@ -85,18 +85,18 @@ Requires:	m2crypto
 # http://lorax.readthedocs.org/en/latest/livemedia-creator.html#kickstarts
 # Architecture dependent dependencies
 %if 0%{?is_x86}
-Requires:       efibootmgr
+Requires:	efibootmgr
 
 %if 0%{?fedora}
-Requires:       grub2-efi
+Requires:	grub2-efi
 %else
-Requires:       grub2-efi-x64
+Requires:	grub2-efi-x64
 %endif
 
-Requires:       memtest86+
-Requires:       shim
-Requires:       syslinux
-Requires:       iotop
+Requires:	memtest86+
+Requires:	shim
+Requires:	syslinux
+Requires:	iotop
 %endif
 
 %description -n ovirt-release-host-node
@@ -163,6 +163,8 @@ fi
 if [[ "${DISTVER::3}" == "el7" ]] ; then
 	# On some systems [el7_1], take only 3 1st chars: ${var::3}
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-el7-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+elif [[ "${DISTVER::3}" == "el8" ]] ; then
+	install -m 644 "%{_datadir}/%{package_name}/ovirt-el8-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc31" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-f31-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc30" ]]; then
@@ -190,6 +192,9 @@ fi
 if [[ "${DISTVER::3}" == "el7" ]] ; then
 	# On some systems [el7_1], take only 3 1st chars: ${var::3}
 	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-el7-${ARCH}-deps.repo" \
+	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+elif [[ "${DISTVER::3}" == "el8" ]] ; then
+	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-el8-${ARCH}-deps.repo" \
 	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc31" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-f31-deps.repo" \

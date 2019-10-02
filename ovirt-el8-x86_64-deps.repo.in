@@ -35,6 +35,18 @@ includepkgs=
 gpgcheck=1
 gpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8
 
+
+[ovirt-@OVIRT_SLOT@-epel-testing]
+name=Extra Packages for Enterprise Linux $releasever - Testing - $basearch
+#baseurl=https://download.fedoraproject.org/pub/epel/testing/8/Everything/$basearch
+metalink=https://mirrors.fedoraproject.org/metalink?repo=testing-epel8&arch=$basearch
+failovermethod=priority
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
+includepkgs=collectd*
+
+
 [glusterfs-rhel8]
 name=GlusterFS is a clustered file-system capable of scaling to several petabytes.
 baseurl=https://download.gluster.org/pub/gluster/glusterfs/6/LATEST/RHEL/el-$releasever/$basearch/

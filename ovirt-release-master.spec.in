@@ -60,7 +60,6 @@ BuildArch:	noarch
 BuildRequires:	systemd
 
 Requires(post):	systemd
-Requires(post):	python-six
 Requires(post):	firewalld
 Requires(postun):	systemd
 Requires(postun):	firewalld
@@ -282,11 +281,16 @@ systemctl restart cockpit.service >/dev/null 2>&1
 # set-enabled is needed to keep the repo enabled when post-processing
 # the image
 # The loop is required because sed -i does not work with multiple files
+PYTHON=$(command -v python3 || command -v python)
+
 for REPO in %{_sysconfdir}/yum.repos.d/ovirt-*.repo;
 do
-    python << EOF
-from six.moves import configparser
-cp = configparser.ConfigParser()
+    $PYTHON << EOF
+try:
+    from ConfigParser import ConfigParser
+except ImportError:
+    from configparser import ConfigParser
+cp = ConfigParser()
 cp.optionxform = str
 cp.read("$REPO")
 for s in cp.sections():

@@ -35,7 +35,6 @@ includepkgs=
 gpgcheck=1
 gpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8
 
-
 [ovirt-@OVIRT_SLOT@-epel-testing]
 name=Extra Packages for Enterprise Linux $releasever - Testing - $basearch
 #baseurl=https://download.fedoraproject.org/pub/epel/testing/8/Everything/$basearch
@@ -46,16 +45,15 @@ gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-8
 includepkgs=collectd*
 
-
-[glusterfs-rhel8]
-name=GlusterFS is a clustered file-system capable of scaling to several petabytes.
+[ovirt-@OVIRT_SLOT@-glusterfs-6-rhel8]
+name=GlusterFS 6 packages for $basearch
 baseurl=https://download.gluster.org/pub/gluster/glusterfs/6/LATEST/RHEL/el-$releasever/$basearch/
 enabled=1
 gpgcheck=1
 gpgkey=https://download.gluster.org/pub/gluster/glusterfs/6/rsa.pub
 
-[glusterfs-noarch-rhel8]
-name=GlusterFS is a clustered file-system capable of scaling to several petabytes.
+[ovirt-@OVIRT_SLOT@-glusterfs-6-noarch-rhel8]
+name=GlusterFS 6 noarch packages
 baseurl=https://download.gluster.org/pub/gluster/glusterfs/6/LATEST/RHEL/el-$releasever/noarch
 enabled=1
 gpgcheck=1
@@ -73,6 +71,16 @@ baseurl=https://copr-be.cloud.fedoraproject.org/results/sbonazzo/EL8_collection/
 type=rpm-md
 gpgcheck=1
 gpgkey=https://copr-be.cloud.fedoraproject.org/results/sbonazzo/EL8_collection/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+
+[ovirt-@OVIRT_SLOT@-copr:copr.fedorainfracloud.org:sac:gluster-ansible]
+name=Copr repo for gluster-ansible owned by sac
+baseurl=https://copr-be.cloud.fedoraproject.org/results/sac/gluster-ansible/epel-8-x86_64/
+type=rpm-md
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/sac/gluster-ansible/pubkey.gpg
 repo_gpgcheck=0
 enabled=1
 enabled_metadata=1

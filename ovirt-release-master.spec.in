@@ -77,13 +77,6 @@ Requires:	python3-ovirt-engine-sdk4
 Requires:	python-ovirt-engine-sdk4
 %endif
 
-# Hack for avoiding add host failures due to missing m2crypto on node.
-# VDSM removed m2crypto as dependency in https://gerrit.ovirt.org/#/c/76027/
-# but it's still needed by ovirt-host-deploy runtime for certificates
-# enrollment.
-# Change requested here: https://bugzilla.redhat.com/1464199
-Requires:	m2crypto
-
 # Additional packages for EFI support
 # https://www.brianlane.com/creating-live-isos-with-livemedia-creator.html
 # http://lorax.readthedocs.org/en/latest/livemedia-creator.html#kickstarts

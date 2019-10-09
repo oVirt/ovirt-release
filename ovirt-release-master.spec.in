@@ -69,8 +69,13 @@ Requires:	firewalld
 Requires:	gluster-ansible-roles
 Requires:	imgbased
 Requires:	ovirt-host
-Requires:	python-ovirt-engine-sdk4
 Requires:	vdsm-gluster
+
+%if 0%{?fedora} >= 30 || 0%{?rhel} >= 8
+Requires:	python3-ovirt-engine-sdk4
+%else
+Requires:	python-ovirt-engine-sdk4
+%endif
 
 # Hack for avoiding add host failures due to missing m2crypto on node.
 # VDSM removed m2crypto as dependency in https://gerrit.ovirt.org/#/c/76027/

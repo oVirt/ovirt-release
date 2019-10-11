@@ -362,6 +362,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %endif
 
 %changelog
+* Fri Oct 11 2019 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.0-0.3.master
+- Add EL8 support
+
 * Thu Mar 21 2019 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.0-0.2.master
 - Add Fedora 31 support
 

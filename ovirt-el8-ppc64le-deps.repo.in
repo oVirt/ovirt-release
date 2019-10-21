@@ -25,7 +25,8 @@ includepkgs=
  python-ordereddict,
  ruby-augeas,
  rubygem-rgen,
- ruby-shadow
+ ruby-shadow,
+ sshpass
 
 gpgcheck=1
 gpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8

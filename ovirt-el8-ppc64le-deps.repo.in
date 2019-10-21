@@ -29,6 +29,7 @@ includepkgs=
  sshpass
  qpid-proton-c
  python3-qpid-proton
+ python3-lockfile
 
 gpgcheck=1
 gpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8

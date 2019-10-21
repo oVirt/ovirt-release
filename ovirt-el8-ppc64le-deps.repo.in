@@ -27,6 +27,8 @@ includepkgs=
  rubygem-rgen,
  ruby-shadow,
  sshpass
+ qpid-proton-c
+ python3-qpid-proton
 
 gpgcheck=1
 gpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8

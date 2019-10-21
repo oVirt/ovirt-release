@@ -43,6 +43,9 @@ BuildRequires:	automake
 BuildRequires:	autoconf
 Requires:	system-release
 Requires:	tar
+%if 0%{?fedora} >= 30 || 0%{?rhel} >= 8
+Requires:	python3
+%endif
 
 %description
 This package contains the yum configuration for oVirt repositories

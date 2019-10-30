@@ -88,3 +88,13 @@ gpgkey=https://copr-be.cloud.fedoraproject.org/results/mdbarroso/ovsdbapp/pubkey
 repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
+
+[ovirt-@OVIRT_SLOT@-copr:copr.fedorainfracloud.org:nmstate:nmstate-git-fedora]
+name=Copr repo for nmstate-stable owned by nmstate
+baseurl=https://copr-be.cloud.fedoraproject.org/results/nmstate/nmstate-git-fedora/epel-8-$basearch/
+type=rpm-md
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/nmstate/nmstate-git-fedora/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1

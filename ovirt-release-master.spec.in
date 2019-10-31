@@ -257,6 +257,10 @@ HOME_URL="https://www.ovirt.org/"
 BUG_REPORT_URL="https://bugzilla.redhat.com/"
 EOF
 
+if [[ -n $PLATFORM_ID ]]; then
+    echo "PLATFORM_ID=\"$PLATFORM_ID\"" >> /usr/lib/os.release.d/%{host_node_release_file}
+fi
+
 # Only on installation
 if [ $1 = 1 ]; then
 	cp -p /etc/os-release /usr/lib/os.release.d/.host-node-previous-os-release

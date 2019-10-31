@@ -31,7 +31,6 @@ includepkgs=
 gpgcheck=1
 gpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
 
-
 [ovirt-@OVIRT_SLOT@-centos-gluster6]
 name=CentOS-$releasever - Gluster 6
 baseurl=http://mirror.centos.org/altarch/7/storage/$basearch/gluster-6/
@@ -51,7 +50,7 @@ baseurl=https://cbs.centos.org/repos/virt7-kvm-common-release/$basearch/os/
 gpgcheck=0
 enabled=1
 
-[centos-ovirt43-testing]
+[centos-ovirt44-testing]
 name=CentOS-7 - oVirt 4.4
 baseurl=http://cbs.centos.org/repos/virt7-ovirt-44-testing/$basearch/os/
 gpgcheck=0
@@ -63,15 +62,15 @@ baseurl=http://cbs.centos.org/repos/virt7-ovirt-common-testing/$basearch/os/
 gpgcheck=0
 enabled=1
 
-[opstools7-perfmon-common-testing]
-name=CentOS-7 - OpsTools - perfmon testing repo
-baseurl=https://cbs.centos.org/repos/opstools7-perfmon-common-testing/$basearch/os
+[ovirt-@OVIRT_SLOT@-centos-opstools-testing]
+name=CentOS-7 - OpsTools - tesing
+baseurl=https://buildlogs.centos.org/centos/7/opstools/$basearch/
 gpgcheck=0
 enabled=1
 
-[opstools7-common-testing]
-name=CentOS-7 - OpsTools - common testing repo
-baseurl=https://cbs.centos.org/repos/opstools7-common-testing/$basearch/os
+[centos-opstools-release]
+name=CentOS-7 - OpsTools - release
+baseurl=http://mirror.centos.org/altarch/7/opstools/$basearch/
 gpgcheck=0
 enabled=1
 

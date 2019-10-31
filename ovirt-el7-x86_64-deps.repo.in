@@ -67,15 +67,9 @@ baseurl=http://cbs.centos.org/repos/virt7-ovirt-common-testing/$basearch/os/
 gpgcheck=0
 enabled=1
 
-[opstools7-perfmon-common-testing]
-name=CentOS-7 - OpsTools - perfmon testing repo
-baseurl=https://cbs.centos.org/repos/opstools7-perfmon-common-testing/$basearch/os
-gpgcheck=0
-enabled=1
-
-[opstools7-common-testing]
-name=CentOS-7 - OpsTools - common testing repo
-baseurl=https://cbs.centos.org/repos/opstools7-common-testing/$basearch/os
+[ovirt-@OVIRT_SLOT@-centos-opstools-testing]
+name=CentOS-7 - OpsTools - tesing
+baseurl=https://buildlogs.centos.org/centos/7/opstools/$basearch/
 gpgcheck=0
 enabled=1
 

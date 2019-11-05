@@ -345,10 +345,7 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %{_prefix}/share/ovirt-release-host-node
 %dir %{_prefix}/share/ovirt-release-host-node/branding
 %{_presetdir}/98-ovirt-host-node.preset
-%{_prefix}/share/ovirt-release-host-node/branding/logo.png
-%{_prefix}/share/ovirt-release-host-node/branding/bg-login.png
-%{_prefix}/share/ovirt-release-host-node/branding/favicon.ico
-%{_prefix}/share/ovirt-release-host-node/branding/branding.css
+%{_prefix}/share/ovirt-release-host-node/branding/*
 
 # Add a folder for local datastores
 %dir %attr(0755, vdsm, kvm) /data/images/rhev

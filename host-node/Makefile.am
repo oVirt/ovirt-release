@@ -1,4 +1,4 @@
-# Copyright (C) 2015-2016 Red Hat, Inc.
+# Copyright (C) 2015-2019 Red Hat, Inc.
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,10 +18,11 @@ brandingdir=$(prefix)/share/ovirt-release-host-node/branding
 systemdpresetdir=$(prefix)/lib/systemd/system-preset
 
 dist_branding_DATA = \
-	cockpit/branding/bg-login.png \
-	cockpit/branding/branding.css \
-	cockpit/branding/favicon.ico \
-	cockpit/branding/logo.png \
+    cockpit/branding/branding.css \
+    cockpit/branding/favicon.ico \
+    cockpit/branding/ovirt_landing_bg_bottom_left.png \
+    cockpit/branding/ovirt_landing_bg_top_right.png \
+    cockpit/branding/ovirt_logo.png \
 	$(NULL)
 
 dist_systemdpreset_DATA = \

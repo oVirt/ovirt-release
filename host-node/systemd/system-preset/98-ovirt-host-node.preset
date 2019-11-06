@@ -9,3 +9,4 @@ enable libvirtd.service
 enable ovirt-vmconsole-host-sshd.service
 enable tuned.service
 disable goferd.service
+disable *

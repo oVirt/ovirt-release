@@ -26,6 +26,12 @@
 %global	repo_url_key @REPO_URL_KEY@
 %define is_x86 %(test %{_arch} = x86_64 && echo 1 || echo 0)
 
+%if 0%{?fedora} || 0%{?rhel} >= 8
+%global with_node 1
+%else
+%global with_node 0
+%endif
+
 
 Name:		%{package_name}
 Version:	@PACKAGE_RPM_VERSION@
@@ -50,6 +56,9 @@ Requires:	python3
 %description
 This package contains the yum configuration for oVirt repositories
 
+
+%if %{with_node}
+# node supported targets
 %global	host_node_release_file ovirt-release-host-node
 %package -n ovirt-release-host-node
 Summary:	The oVirt Node release file
@@ -114,6 +123,7 @@ BuildArch:	noarch
 %description -n ovirt-node-ng-image-update-placeholder
 A sub-package to be included into oVirt Node Next squashfs
 image to allow upgrading itself
+%endif # node supported targets
 
 %package tested
 Summary:	oVirt tested repository configuration
@@ -146,7 +156,12 @@ touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.re
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 cp -rl "%{buildroot}%{_datadir}/%{package_name}" "%{buildroot}%{_datadir}/%{package_name}-tested"
 
+%if %{with_node}
 install -d 755 "%{buildroot}/data/images/rhev"
+%else
+rm -f "%{buildroot}/usr/lib/systemd/system-preset/98-ovirt-host-node.preset"
+rm -rf "%{buildroot}/usr/share/ovirt-release-host-node"
+%endif
 
 %post
 
@@ -226,7 +241,7 @@ sed \
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-tested.repo
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
 
-
+%if %{with_node}
 %post -n ovirt-release-host-node
 %define __default_units_wanted cockpit.socket sshd.service NetworkManager.service imgbase-setup.service rsyslog.service auditd.service
 # Make the defualt services default requirements of the target
@@ -349,6 +364,7 @@ systemctl restart cockpit.service >/dev/null 2>&1
 
 # Add a folder for local datastores
 %dir %attr(0755, vdsm, kvm) /data/images/rhev
+%endif
 
 %changelog
 * Thu Mar 21 2019 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.0-0.2.master

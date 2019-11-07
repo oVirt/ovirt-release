@@ -3,6 +3,7 @@
 ./automation/build-artifacts.sh
 
 DISTVER="$(rpm --eval "%dist"|cut -c2-4)"
+ARCH="$(rpm --eval "%_arch")"
 PACKAGER=""
 if [[ "${DISTVER}" == "el7" ]]; then
     PACKAGER=yum
@@ -38,7 +39,7 @@ pushd exported-artifacts
     fi
     ${PACKAGER} repolist enabled
     ${PACKAGER} clean all
-    if [[ "$(rpm --eval "%_arch")" == "s390x" ]]; then
+    if [[ "${ARCH}" == "s390x" ]]; then
         # s390x support is broken, just provide a hint on what's missing
         # without causing the test to fail.
         ${PACKAGER} --downloadonly install *noarch.rpm || true

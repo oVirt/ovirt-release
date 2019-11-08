@@ -54,11 +54,6 @@ pushd exported-artifacts
         # without causing the test to fail.
         ${PACKAGER} --downloadonly install *noarch.rpm || true
     elif
-     [[ "$(rpm --eval "%dist")" == ".fc29" ]]; then
-        # fc29 support is broken, just provide a hint on what's missing
-        # without causing the test to fail.
-        ${PACKAGER} --downloadonly install *noarch.rpm || true
-    elif
      [[ "$(rpm --eval "%dist")" == ".el8" ]]; then
         # el8 support is broken, just provide a hint on what's missing
         # without causing the test to fail.

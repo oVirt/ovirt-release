@@ -184,8 +184,6 @@ elif [[ "${DISTVER}" == "fc31" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-f31-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc30" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-f30-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-elif [[ "${DISTVER}" == "fc29" ]]; then
-	install -m 644 "%{_datadir}/%{package_name}/ovirt-f29-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 fi
 
 sed \
@@ -216,9 +214,6 @@ elif [[ "${DISTVER}" == "fc31" ]]; then
 	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc30" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-f30-deps.repo" \
-	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-elif [[ "${DISTVER}" == "fc29" ]]; then
-	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-f29-deps.repo" \
 	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 fi
 

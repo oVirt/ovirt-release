@@ -26,6 +26,16 @@ repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
 
+[ondramachacek-ansible-runner-service]
+name=Copr repo for ansible-runner-service owned by ondramachacek
+baseurl=https://copr-be.cloud.fedoraproject.org/results/ondramachacek/ansible-runner-service/fedora-$releasever-$basearch/
+type=rpm-md
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/ondramachacek/ansible-runner-service/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+
 [mlibra-ovirt-cockpit-sso]
 name=Copr repo for ovirt-cockpit-sso owned by mlibra
 baseurl=https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-cockpit-sso/fedora-$releasever-$basearch/

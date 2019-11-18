@@ -1,2 +1,1 @@
-ovirt-master-snapshot,https://resources.ovirt.org/pub/ovirt-master-snapshot/rpm/$distro
-ovirt-master-snapshot-static,https://resources.ovirt.org/pub/ovirt-master-snapshot-static/rpm/$distro
+ovirt-44-pre,https://resources.ovirt.org/pub/ovirt-4.4-pre/rpm/$distro

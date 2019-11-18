@@ -49,11 +49,12 @@ baseurl=http://fedorapeople.org/groups/virt/virtio-win/repo/latest
 enabled=1
 gpgcheck=0
 
-[centos-qemu-ev-release]
+[ovirt-@OVIRT_SLOT@-centos-qemu-ev]
 name=CentOS-7 - QEMU EV
-baseurl=https://cbs.centos.org/repos/virt7-kvm-common-release/$basearch/os/
-gpgcheck=0
+baseurl=http://mirror.centos.org/centos/7/virt/$basearch/kvm-common/
+gpgcheck=1
 enabled=1
+gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-Virtualization
 
 [centos-ovirt44-testing]
 name=CentOS-7 - oVirt 4.4

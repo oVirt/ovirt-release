@@ -98,3 +98,13 @@ gpgkey=https://copr-be.cloud.fedoraproject.org/results/nmstate/nmstate-git-fedor
 repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
+
+[ovirt-@OVIRT_SLOT@-copr:copr.fedorainfracloud.org:networkmanager:NetworkManager-1.20]
+name=Copr repo for NetworkManager-1.20 owned by networkmanager
+baseurl=https://copr-be.cloud.fedoraproject.org/results/networkmanager/NetworkManager-1.20/epel-8-$basearch/
+type=rpm-md
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/networkmanager/NetworkManager-1.20/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1

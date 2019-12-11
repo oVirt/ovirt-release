@@ -414,5 +414,8 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %endif
 
 %changelog
+* Wed Dec 11 2019 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.0-0.1.alpha
+- Alpha build
+
 * Thu Nov 21 2019 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.0-0.0.alpha
 - Alpha build

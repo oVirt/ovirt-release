@@ -96,3 +96,9 @@ enabled=1
 enabled_metadata=1
 module_hotfixes=1
 
+[ovirt-@OVIRT_SLOT@-centos-ovirt44-testing]
+name=CentOS-8 - oVirt 4.4 - testing
+baseurl=http://cbs.centos.org/repos/virt8-ovirt-44-testing/$basearch/os/
+gpgcheck=0
+enabled=1
+

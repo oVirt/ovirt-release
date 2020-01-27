@@ -2,10 +2,8 @@
 archs:
   - ppc64le:
       distro: el7
-  - s390x:
-      distro: fc29
   - x86_64:
-      distro: [el7, fc29]
+      distro: el7
 
 release_branches:
   ovirt-4.3:

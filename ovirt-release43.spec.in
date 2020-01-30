@@ -190,8 +190,6 @@ fi
 if [[ "${DISTVER::3}" == "el7" ]] ; then
 	# On some systems [el7_1], take only 3 1st chars: ${var::3}
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-el7-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-elif [[ "${DISTVER}" == "fc29" ]]; then
-	install -m 644 "%{_datadir}/%{package_name}/ovirt-f29-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 fi
 
 sed \
@@ -213,9 +211,6 @@ fi
 if [[ "${DISTVER::3}" == "el7" ]] ; then
 	# On some systems [el7_1], take only 3 1st chars: ${var::3}
 	install -m 644 "%{_datadir}/%{package_name}-snapshot/ovirt-el7-${ARCH}-deps.repo" \
-	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot-dependencies.repo"
-elif [[ "${DISTVER}" == "fc29" ]]; then
-	install -m 644 "%{_datadir}/%{package_name}-snapshot/ovirt-f29-deps.repo" \
 	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot-dependencies.repo"
 fi
 
@@ -239,9 +234,6 @@ if [[ "${DISTVER::3}" == "el7" ]] ; then
 	# On some systems [el7_1], take only 3 1st chars: ${var::3}
 	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-el7-${ARCH}-deps.repo" \
 	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-elif [[ "${DISTVER}" == "fc29" ]]; then
-	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-f29-deps.repo" \
-	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 fi
 
 sed \
@@ -263,9 +255,6 @@ fi
 if [[ "${DISTVER::3}" == "el7" ]] ; then
 	# On some systems [el7_1], take only 3 1st chars: ${var::3}
 	install -m 644 "%{_datadir}/%{package_name}-pre/ovirt-el7-${ARCH}-deps.repo" \
-	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre-dependencies.repo"
-elif [[ "${DISTVER}" == "fc29" ]]; then
-	install -m 644 "%{_datadir}/%{package_name}-pre/ovirt-f29-deps.repo" \
 	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre-dependencies.repo"
 fi
 
@@ -418,6 +407,10 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, vdsm, kvm) /data/images/rhev
 
 %changelog
+* Thu Jan 30 2020 Sandro Bonazzola <sbonazzo@redhat.com> - 4.3.8-1
+- 4.3.9-0.1.rc1
+- Drop Fedora 29 support due to EOL
+
 * Mon Jan 27 2020 Sandro Bonazzola <sbonazzo@redhat.com> - 4.3.8-1
 - 4.3.8-1
 

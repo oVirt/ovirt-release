@@ -55,9 +55,12 @@ pushd exported-artifacts
         ${PACKAGER} --downloadonly install *noarch.rpm || true
     elif
      [[ "$(rpm --eval "%dist")" == ".el8" ]]; then
-        # el8 support is broken, just provide a hint on what's missing
+        # el8 engine support is broken, just provide a hint on what's missing
         # without causing the test to fail.
         ${PACKAGER} --downloadonly install *noarch.rpm || true
+        if [[ "${ARCH}" == "x86_64" ]]; then
+            ${PACKAGER} --downloadonly install ovirt-engine || true
+        fi
     else
         if [[ $(${PACKAGER} repolist enabled|grep -v ovirt|grep epel) ]] ; then
             ${PACKAGER} --downloadonly --disablerepo=epel install *noarch.rpm

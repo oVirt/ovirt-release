@@ -34,19 +34,11 @@ includepkgs=
 gpgcheck=1
 gpgkey=https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8
 
-[ovirt-@OVIRT_SLOT@-glusterfs-6-rhel8]
-name=GlusterFS 6 packages for $basearch
-baseurl=https://download.gluster.org/pub/gluster/glusterfs/6/LATEST/RHEL/el-$releasever/$basearch/
+[ovirt-@OVIRT_SLOT@-glusterfs-7-testing]
+name=GlusterFS 7 testing packages for $basearch
+baseurl=https://cbs.centos.org/repos/storage8-gluster-7-testing/$basearch/os/
 enabled=1
-gpgcheck=1
-gpgkey=https://download.gluster.org/pub/gluster/glusterfs/6/rsa.pub
-
-[ovirt-@OVIRT_SLOT@-glusterfs-6-noarch-rhel8]
-name=GlusterFS 6 noarch packages
-baseurl=https://download.gluster.org/pub/gluster/glusterfs/6/LATEST/RHEL/el-$releasever/noarch
-enabled=1
-gpgcheck=1
-gpgkey=https://download.gluster.org/pub/gluster/glusterfs/6/rsa.pub
+gpgcheck=0
 
 [ovirt-@OVIRT_SLOT@-virtio-win-latest]
 name=virtio-win builds roughly matching what will be shipped in upcoming RHEL

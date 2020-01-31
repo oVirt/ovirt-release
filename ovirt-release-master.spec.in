@@ -180,6 +180,9 @@ if [[ "${DISTVER::3}" == "el7" ]] ; then
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-el7-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER::3}" == "el8" ]] ; then
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-el8-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+	if [ -f /etc/yum.repos.d/CentOS-PowerTools.repo ] ; then
+		sed -i "s:enabled=0:enabled=1:" /etc/yum.repos.d/CentOS-PowerTools.repo
+	fi
 elif [[ "${DISTVER}" == "fc31" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-f31-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 elif [[ "${DISTVER}" == "fc30" ]]; then
@@ -209,6 +212,9 @@ if [[ "${DISTVER::3}" == "el7" ]] ; then
 elif [[ "${DISTVER::3}" == "el8" ]] ; then
 	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-el8-${ARCH}-deps.repo" \
 	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+	if [ -f /etc/yum.repos.d/CentOS-PowerTools.repo ] ; then
+		sed -i "s:enabled=0:enabled=1:" /etc/yum.repos.d/CentOS-PowerTools.repo
+	fi
 elif [[ "${DISTVER}" == "fc31" ]]; then
 	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-f31-deps.repo" \
 	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"

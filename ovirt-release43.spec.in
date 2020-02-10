@@ -407,7 +407,10 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, vdsm, kvm) /data/images/rhev
 
 %changelog
-* Thu Jan 30 2020 Sandro Bonazzola <sbonazzo@redhat.com> - 4.3.8-1
+* Mon Feb 10 2020 Lev Veyde <lveyde@redhat.com> - 4.3.9-0.2.rc2
+- 4.3.9-0.2.rc2
+
+* Thu Jan 30 2020 Sandro Bonazzola <sbonazzo@redhat.com> - 4.3.9-0.1.rc1
 - 4.3.9-0.1.rc1
 - Drop Fedora 29 support due to EOL
 

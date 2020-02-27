@@ -44,6 +44,12 @@ baseurl=https://cbs.centos.org/repos/storage8-gluster-7-testing/$basearch/os/
 enabled=1
 gpgcheck=0
 
+[ovirt-@OVIRT_SLOT@-advanced-virtualization-testing]
+name=Advanced Virtualization testing packages for $basearch
+baseurl=https://cbs.centos.org/repos/virt8-advanced-virtualization-testing/$basearch/os/
+enabled=1
+gpgcheck=0
+
 [ovirt-@OVIRT_SLOT@-virtio-win-latest]
 name=virtio-win builds roughly matching what will be shipped in upcoming RHEL
 baseurl=http://fedorapeople.org/groups/virt/virtio-win/repo/latest

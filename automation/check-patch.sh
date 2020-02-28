@@ -4,12 +4,7 @@
 
 DISTVER="$(rpm --eval "%dist"|cut -c2-4)"
 ARCH="$(rpm --eval "%_arch")"
-PACKAGER=""
-if [[ "${DISTVER}" == "el7" ]]; then
-    PACKAGER=yum
-else
-    PACKAGER=dnf
-fi
+PACKAGER=dnf
 export PACKAGER
 
 on_exit() {
@@ -33,10 +28,6 @@ pushd exported-artifacts
     [[ -e /etc/dnf/dnf.conf ]] && echo "deltarpm=False" >> /etc/dnf/dnf.conf
     ${PACKAGER} install -y ovirt-release44-pre-4*noarch.rpm
     rm -f /etc/yum/yum.conf
-    if [[ "${DISTVER}" == "el7" ]]; then
-        #Enable CR repo
-        sed -i "s:enabled=0:enabled=1:" /etc/yum.repos.d/CentOS-CR.repo
-    fi
     ${PACKAGER} repolist enabled
     ${PACKAGER} clean all
     if [[ "${ARCH}" == "s390x" ]]; then

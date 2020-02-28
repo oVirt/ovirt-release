@@ -175,10 +175,7 @@ if rpm --eval "%%dist" | grep -qFi 'el'; then
 	DIST=el
 fi
 
-if [[ "${DISTVER::3}" == "el7" ]] ; then
-	# On some systems [el7_1], take only 3 1st chars: ${var::3}
-	install -m 644 "%{_datadir}/%{package_name}/ovirt-el7-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-elif [[ "${DISTVER::3}" == "el8" ]] ; then
+if [[ "${DISTVER::3}" == "el8" ]] ; then
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-el8-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 	if [ -f /etc/yum.repos.d/CentOS-PowerTools.repo ] ; then
 		sed -i "s:enabled=0:enabled=1:" /etc/yum.repos.d/CentOS-PowerTools.repo
@@ -205,11 +202,7 @@ if rpm --eval "%%dist" | grep -qFi 'el'; then
 	DIST=el
 fi
 
-if [[ "${DISTVER::3}" == "el7" ]] ; then
-	# On some systems [el7_1], take only 3 1st chars: ${var::3}
-	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-el7-${ARCH}-deps.repo" \
-	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-elif [[ "${DISTVER::3}" == "el8" ]] ; then
+if [[ "${DISTVER::3}" == "el8" ]] ; then
 	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-el8-${ARCH}-deps.repo" \
 	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 	if [ -f /etc/yum.repos.d/CentOS-PowerTools.repo ] ; then

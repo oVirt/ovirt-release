@@ -2,7 +2,6 @@
 name=Extra Packages for Enterprise Linux 8 - $basearch
 #baseurl=http://download.fedoraproject.org/pub/epel/8/$basearch
 metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-$releasever&arch=$basearch&infra=$infra&content=$contentdir
-failovermethod=priority
 enabled=1
 includepkgs=
  ansible

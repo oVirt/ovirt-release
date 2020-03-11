@@ -412,7 +412,10 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %endif
 
 %changelog
-* Fri Feb 28 2020 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.0-0.5.alpha
+* Wed Mar 11 2020 Lev Veyde <lveyde@redhat.com> - 4.4.0-0.7.alpha
+- Alpha refresh
+
+* Fri Feb 28 2020 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.0-0.6.alpha
 - Alpha refresh
 
 * Wed Feb 26 2020 Lev Veyde <lveyde@redhat.com> - 4.4.0-0.5.alpha

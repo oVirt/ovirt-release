@@ -36,6 +36,16 @@ repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
 
+[mnecas-ansible-runner-service]
+name=Copr repo for ansible-runner owned by mnecas
+baseurl=https://copr-be.cloud.fedoraproject.org/results/mnecas/ansible-runner/fedora-$releasever-$basearch/
+type=rpm-md
+gpgcheck=1
+gpgkey=https://copr-be.cloud.fedoraproject.org/results/mnecas/ansible-runner/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+
 [mlibra-ovirt-cockpit-sso]
 name=Copr repo for ovirt-cockpit-sso owned by mlibra
 baseurl=https://copr-be.cloud.fedoraproject.org/results/mlibra/ovirt-cockpit-sso/fedora-$releasever-$basearch/

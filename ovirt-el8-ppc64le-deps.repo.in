@@ -104,3 +104,10 @@ baseurl=https://buildlogs.centos.org/centos/8/virt/$basearch/ovirt-44/
 gpgcheck=0
 enabled=1
 
+[ovirt-@OVIRT_SLOT@-centos-opstools]
+name=CentOS-8 - OpsTools - collectd
+mirrorlist=http://mirrorlist.centos.org/?arch=$basearch&release=$releasever&repo=opstools-collectd-5
+gpgcheck=1
+enabled=1
+gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-OpsTools
+

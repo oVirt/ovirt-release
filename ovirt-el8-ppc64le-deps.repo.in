@@ -99,11 +99,12 @@ gpgcheck=1
 gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-Virtualization
 module_hotfixes=1
 
-[ovirt-@OVIRT_SLOT@-centos-ovirt44-testing]
-name=CentOS-8 - oVirt 4.4 - testing
-baseurl=https://buildlogs.centos.org/centos/8/virt/$basearch/ovirt-44/
-gpgcheck=0
+[ovirt-@OVIRT_SLOT@-centos-ovirt44]
+name=CentOS-8 - oVirt 4.4
+mirrorlist=http://mirrorlist.centos.org/?arch=$basearch&release=8&repo=virt-ovirt-44
 enabled=1
+gpgcheck=1
+gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-Virtualization
 
 [ovirt-@OVIRT_SLOT@-centos-opstools]
 name=CentOS-8 - OpsTools - collectd

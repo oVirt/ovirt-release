@@ -96,3 +96,14 @@ gpgkey=https://copr-be.cloud.fedoraproject.org/results/sac/gluster-ansible/pubke
 repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
+
+[ovirt-imageio-preview]
+name=Copr repo for ovirt-imageio-preview owned by nsoffer
+baseurl=https://download.copr.fedorainfracloud.org/results/nsoffer/ovirt-imageio-preview/fedora-$releasever-$basearch/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://download.copr.fedorainfracloud.org/results/nsoffer/ovirt-imageio-preview/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1

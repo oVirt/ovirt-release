@@ -407,6 +407,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, vdsm, kvm) /data/images/rhev
 
 %changelog
+* Tue Apr 21 2020 Lev Veyde <lveyde@redhat.com> - 4.3.10-1
+- 4.3.10-1
+
 * Tue Mar 24 2020 Lev Veyde <lveyde@redhat.com> - 4.3.9.1-1
 - 4.3.9.1-1
 

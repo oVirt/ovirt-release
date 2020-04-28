@@ -26,7 +26,8 @@ find \
 pushd exported-artifacts
     #Restoring sane yum environment
     rm -f /etc/yum.conf
-    ${PACKAGER} reinstall -y system-release ${PACKAGER}
+    ${PACKAGER} reinstall -y system-release || ${PACKAGER} install -y system-release
+    ${PACKAGER} reinstall -y ${PACKAGER}
     [[ -d /etc/dnf ]] && [[ -x /usr/bin/dnf ]] && dnf -y reinstall dnf-conf
     [[ -d /etc/dnf ]] && sed -i -re 's#^(reposdir *= *).*$#\1/etc/yum.repos.d#' '/etc/dnf/dnf.conf'
     [[ -e /etc/dnf/dnf.conf ]] && echo "deltarpm=False" >> /etc/dnf/dnf.conf

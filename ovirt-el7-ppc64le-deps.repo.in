@@ -59,6 +59,14 @@ gpgcheck=1
 enabled=1
 gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-Virtualization
 
+[ovirt-@OVIRT_SLOT@-centos-ovirt-common]
+name=CentOS-7 - oVirt common
+baseurl=http://mirror.centos.org/altarch/7/virt/$basearch/ovirt-common/
+gpgcheck=1
+enabled=1
+gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-Virtualization
+
+
 [ovirt-@OVIRT_SLOT@-centos-opstools]
 name=CentOS-7 - OpsTools - release
 baseurl=http://mirror.centos.org/altarch/7/opstools/$basearch/

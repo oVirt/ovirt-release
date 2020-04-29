@@ -14,16 +14,6 @@ repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
 
-[ondramachacek-ansible-runner-service]
-name=Copr repo for ansible-runner-service owned by ondramachacek
-baseurl=https://copr-be.cloud.fedoraproject.org/results/ondramachacek/ansible-runner-service/fedora-31-$basearch/
-type=rpm-md
-gpgcheck=1
-gpgkey=https://copr-be.cloud.fedoraproject.org/results/ondramachacek/ansible-runner-service/pubkey.gpg
-repo_gpgcheck=0
-enabled=1
-enabled_metadata=1
-
 [mnecas-ansible-runner-service]
 name=Copr repo for ansible-runner owned by mnecas
 baseurl=https://copr-be.cloud.fedoraproject.org/results/mnecas/ansible-runner/fedora-31-$basearch/

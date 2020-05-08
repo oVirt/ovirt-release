@@ -52,7 +52,7 @@ gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-Storage
 
 [ovirt-@OVIRT_SLOT@-virtio-win-latest]
 name=virtio-win builds roughly matching what will be shipped in upcoming RHEL
-baseurl=http://fedorapeople.org/groups/virt/virtio-win/repo/latest
+baseurl=https://fedorapeople.org/groups/virt/virtio-win/repo/latest
 enabled=1
 gpgcheck=0
 

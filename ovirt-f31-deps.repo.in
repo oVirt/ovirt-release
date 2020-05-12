@@ -95,3 +95,14 @@ gpgkey=https://download.copr.fedorainfracloud.org/results/nsoffer/ovirt-imageio-
 repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
+
+[ioprocess-preview]
+name=Copr repo for ioprocess-preview owned by nsoffer
+baseurl=https://download.copr.fedorainfracloud.org/results/nsoffer/ioprocess-preview/fedora-$releasever-$basearch/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://download.copr.fedorainfracloud.org/results/nsoffer/ioprocess-preview/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1

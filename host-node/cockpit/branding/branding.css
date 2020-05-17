@@ -1,54 +1,49 @@
 body.login-pf {
-    background-image: url(ovirt_landing_bg_bottom_left.png);
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-top: 4px solid #00659c;
-    background-repeat: no-repeat;
-    background-color: #131822;
-    padding: 0;
+  background-image: url(ovirt_landing_bg_bottom_left.png);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-top: 4px solid #00659c;
+  background-repeat: no-repeat;
+  background-color: #131822;
+  padding: 0;
 }
 
 #badge:after {
-    content: "";
-    background-image: url(ovirt_logo.png);
-    width: 80px;
-    height: 30px;
-    border: 0px;
-    display: block;
-    position: absolute;
-    top: 50px;
-    right: 50px;
-    margin:0;
+  content: "";
+  background-image: url(ovirt_logo.png);
+  width: 80px;
+  height: 30px;
+  border: 0px;
+  display: block;
+  position: fixed;
+  top: 50px;
+  right: 50px;
+  margin: 0;
 }
 
 #badge {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-image: url(ovirt_landing_bg_top_right.png);
-    width: 561px;
-    height: 413px;
-    background-repeat: no-repeat;
-    margin-top:0px !important;
-    margin-right:0px !important;
+  position: fixed !important;
+  background: url(ovirt_landing_bg_top_right.png) no-repeat top right fixed;
+  width: 100%;
+  height: 100%;
 }
 
 #brand {
-    font-size: 18pt;
-    text-transform: uppercase;
+  font-size: 18pt;
+  text-transform: uppercase;
 }
 
 .container {
-    background-color: rgba(0,0,0,0.25) !important;
+  background-color: rgba(0, 0, 0, 0.25) !important;
 }
 
 #brand:before {
-    content: "<b>${PRETTY_NAME}</b>";
+  content: "<b>${PRETTY_NAME}</b>";
 }
 
 #index-brand:before {
-    content: "<b>${PRETTY_NAME}</b>";
+  content: "<b>${PRETTY_NAME}</b>";
 }

@@ -5,6 +5,8 @@
 [[ -d tmp.repos ]] \
 || mkdir -p tmp.repos
 
+ARCH="$(rpm --eval "%_arch")"
+echo "Architecture is : ${ARCH}"
 
 autoreconf -ivf
 ./configure

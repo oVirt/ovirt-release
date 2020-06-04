@@ -1,0 +1,32 @@
+# CentOS-Advanced-Virtualization.repo
+#
+# Please see http://wiki.centos.org/SpecialInterestGroup/Virtualization for more
+# information
+
+[centos-advanced-virtualization]
+name=CentOS-$releasever - Advanced Virtualization
+mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=virt-advanced-virtualization
+#baseurl=http://mirror.centos.org/$contentdir/$releasever/virt/$basearch/advanced-virtualization/
+gpgcheck=1
+enabled=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Virtualization
+
+[centos-advanced-virtualization-test]
+name=CentOS-$releasever - Advanced Virtualization Testing
+baseurl=http://buildlogs.centos.org/centos/$releasever/virt/$basearch/advanced-virtualization/
+gpgcheck=0
+enabled=0
+
+[centos-advanced-virtualization-debuginfo]
+name=CentOS-$releasever - Advanced Virtualization Debug
+baseurl=http://debuginfo.centos.org/centos/$releasever/virt/$basearch/
+gpgcheck=1
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Virtualization
+
+[centos-advanced-virtualization-source]
+name=CentOS-$releasever - Advanced Virtualization Source
+baseurl=http://vault.centos.org/centos/$releasever/virt/Source/advanced-virtualization/
+gpgcheck=1
+enabled=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Virtualization

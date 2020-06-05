@@ -190,7 +190,11 @@ if rpm --eval "%%dist" | grep -qFi 'el'; then
 fi
 
 if [[ "${DISTVER::3}" == "el8" ]] ; then
-	install -m 644 "%{_datadir}/%{package_name}/ovirt-el8-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+	if [ -f /etc/dnf/vars/stream ] ; then
+		install -m 644 "%{_datadir}/%{package_name}/ovirt-el8-stream-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+	else
+		install -m 644 "%{_datadir}/%{package_name}/ovirt-el8-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+	fi
 	if [ -f /etc/yum.repos.d/CentOS-PowerTools.repo ] ; then
 		sed -i "s:enabled=0:enabled=1:" /etc/yum.repos.d/CentOS-PowerTools.repo
 	fi
@@ -217,8 +221,11 @@ if rpm --eval "%%dist" | grep -qFi 'el'; then
 fi
 
 if [[ "${DISTVER::3}" == "el8" ]] ; then
-	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-el8-${ARCH}-deps.repo" \
-	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+	if [ -f /etc/dnf/vars/stream ] ; then
+		install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-el8-stream-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+	else
+		install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-el8-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+	fi
 	if [ -f /etc/yum.repos.d/CentOS-PowerTools.repo ] ; then
 		sed -i "s:enabled=0:enabled=1:" /etc/yum.repos.d/CentOS-PowerTools.repo
 	fi
@@ -247,8 +254,11 @@ if rpm --eval "%%dist" | grep -qFi 'el'; then
 fi
 
 if [[ "${DISTVER::3}" == "el8" ]] ; then
-	install -m 644 "%{_datadir}/%{package_name}-pre/ovirt-el8-${ARCH}-deps.repo" \
-	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre-dependencies.repo"
+	if [ -f /etc/dnf/vars/stream ] ; then
+		install -m 644 "%{_datadir}/%{package_name}-pre/ovirt-el8-stream-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre-dependencies.repo"
+	else
+		install -m 644 "%{_datadir}/%{package_name}-pre/ovirt-el8-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre-dependencies.repo"
+	fi
 	if [ -f /etc/yum.repos.d/CentOS-PowerTools.repo ] ; then
 		sed -i "s:enabled=0:enabled=1:" /etc/yum.repos.d/CentOS-PowerTools.repo
 	fi

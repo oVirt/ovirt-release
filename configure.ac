@@ -71,6 +71,8 @@ AC_CONFIG_FILES([
             host-node/Makefile
             ovirt-el8-ppc64le-deps.repo
             ovirt-el8-x86_64-deps.repo
+            ovirt-el8-stream-ppc64le-deps.repo
+            ovirt-el8-stream-x86_64-deps.repo
             ovirt-f31-deps.repo
             ovirt-f30-deps.repo
             ovirt-pre.repo

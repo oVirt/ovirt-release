@@ -52,6 +52,16 @@ pushd exported-artifacts
         if [[ "${ARCH}" == "x86_64" ]]; then
             ${PACKAGER} --downloadonly install ovirt-engine ovirt-engine-setup-plugin-websocket-proxy || true
         fi
+        echo "Testing CentOS Stream"
+        ${PACKAGER} install centos-release-stream
+        ${PACKAGER} remove ovirt-release-master
+        ${PACKAGER} install -y ovirt-release-master-4*noarch.rpm
+        ${PACKAGER} repolist enabled
+        ${PACKAGER} clean all
+        ${PACKAGER} --downloadonly install *noarch.rpm || true
+        if [[ "${ARCH}" == "x86_64" ]]; then
+            ${PACKAGER} --downloadonly install ovirt-engine ovirt-engine-setup-plugin-websocket-proxy || true
+        fi
     else
         if [[ $(${PACKAGER} repolist enabled|grep -v ovirt|grep epel) ]] ; then
             ${PACKAGER} --downloadonly --disablerepo=epel install *noarch.rpm

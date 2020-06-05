@@ -18,7 +18,7 @@ dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 dnl
 
 
-define([VERSION_NUMBER], [4.4.0])
+define([VERSION_NUMBER], [4.4.1])
 define([VERSION_SUFFIX], [_master])
 
 AC_INIT([ovirt-release-master], VERSION_NUMBER[]VERSION_SUFFIX, [infra@ovirt.org])
@@ -27,7 +27,7 @@ AM_INIT_AUTOMAKE
 PACKAGE_RPM_VERSION="VERSION_NUMBER"
 AC_SUBST([PACKAGE_RPM_VERSION])
 
-PACKAGE_RPM_RELEASE="0.3.$(echo VERSION_SUFFIX | sed 's/^_//')"
+PACKAGE_RPM_RELEASE="0.0.$(echo VERSION_SUFFIX | sed 's/^_//')"
 AC_SUBST([PACKAGE_RPM_RELEASE])
 
 OVIRT_SLOT="master"
@@ -71,6 +71,8 @@ AC_CONFIG_FILES([
             host-node/Makefile
             ovirt-el8-ppc64le-deps.repo
             ovirt-el8-x86_64-deps.repo
+            ovirt-el8-stream-ppc64le-deps.repo
+            ovirt-el8-stream-x86_64-deps.repo
             ovirt-f31-deps.repo
             ovirt-f30-deps.repo
             ovirt-release-master.spec

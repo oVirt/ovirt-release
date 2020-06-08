@@ -422,6 +422,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %endif
 
 %changelog
+* Mon Jun 08 2020 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.1-0.5.rc4
+- RC4 build
+
 * Tue Jun 02 2020 Lev Veyde <lveyde@redhat.com> - 4.4.1-0.4.rc3
 - RC3 build
 

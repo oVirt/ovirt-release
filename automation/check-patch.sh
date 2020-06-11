@@ -26,16 +26,7 @@ find \
 pushd exported-artifacts
     #Restoring sane yum environment
     rm -f /etc/yum.conf
-    ARCH="$(rpm --eval "%_arch")"
-    if [[ "${DISTVER}" == "el" ]]; then
-        if [[ "$ARCH" == "x86_64" ]] ; then
-            ${PACKAGER} reinstall -y system-release || ${PACKAGER} reinstall -y http://mirror.centos.org/centos/7/os/x86_64/Packages/centos-release-7-8.2003.0.el7.centos.x86_64.rpm
-        elif [[ "$ARCH" == "ppc64le" ]] ; then
-            ${PACKAGER} reinstall -y system-release || ${PACKAGER} reinstall -y http://mirror.centos.org/altarch/7/os/ppc64le/Packages/centos-release-7-8.2003.0.el7.centos.ppc64le.rpm
-        fi
-    else
-        ${PACKAGER} reinstall -y system-release || ${PACKAGER} install -y system-release
-    fi
+    ${PACKAGER} reinstall -y system-release || ${PACKAGER} install -y system-release
     ${PACKAGER} reinstall -y ${PACKAGER}
     [[ -d /etc/dnf ]] && [[ -x /usr/bin/dnf ]] && dnf -y reinstall dnf-conf
     [[ -d /etc/dnf ]] && sed -i -re 's#^(reposdir *= *).*$#\1/etc/yum.repos.d#' '/etc/dnf/dnf.conf'

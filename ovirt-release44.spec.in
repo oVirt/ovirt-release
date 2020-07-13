@@ -422,6 +422,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %endif
 
 %changelog
+* Mon Jul 13 2020 Lev Veyde <lveyde@redhat.com> - 4.4.1.1-1
+- 4.4.1.1 GA
+
 * Tue Jul 07 2020 Lev Veyde <lveyde@redhat.com> - 4.4.1-1
 - 4.4.1 GA
 

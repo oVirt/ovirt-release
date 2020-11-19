@@ -423,6 +423,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %endif
 
 %changelog
+* Thu Nov 19 2020 Lev Veyde <lveyde@redhat.com> - 4.4.4-0.2.rc2
+- 4.4.4 RC2
+
 * Wed Nov 11 2020 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.4-0.1.rc1
 - 4.4.4 RC1
 

@@ -53,8 +53,16 @@ pushd exported-artifacts
             ${PACKAGER} --downloadonly install ovirt-engine ovirt-engine-setup-plugin-websocket-proxy || true
         fi
         echo "Testing CentOS Stream"
-        ${PACKAGER} install -y centos-release-stream
         ${PACKAGER} remove -y ovirt-release44-pre-4\*
+        ${PACKAGER} install -y centos-release-stream
+        ${PACKAGER} repolist enabled
+        ${PACKAGER} --releasever=8-stream --disablerepo=* --enablerepo=Stream-BaseOS download centos-stream-repos
+        ${PACKAGER} install -y centos-stream-release
+        rpm -e --nodeps centos-linux-repos
+        rpm -i centos-stream-repo*
+        rm -fv centos-stream-repo*
+        ls -l /etc/yum.repos.d/
+        ${PACKAGER} distro-sync -y
         ${PACKAGER} install -y ovirt-release44-pre-4*noarch.rpm
         ${PACKAGER} repolist enabled
         ${PACKAGER} clean all

@@ -107,3 +107,10 @@ name=CentOS-8 - OpsTools - collectd
 baseurl=https://buildlogs.centos.org/centos/8/opstools/$basearch/collectd-5/
 gpgcheck=0
 enabled=1
+
+[ovirt-@OVIRT_SLOT@-centos-nfv-openvswitch-testing]
+name=CentOS-$releasever - NFV OpenvSwitch Testing
+baseurl=http://buildlogs.centos.org/centos/$releasever/nfv/$basearch/openvswitch-2/
+gpgcheck=0
+enabled=1
+module_hotfixes=1

@@ -87,14 +87,3 @@ name=CentOS-8 - OpsTools - collectd
 baseurl=https://buildlogs.centos.org/centos/8/opstools/$basearch/collectd-5/
 gpgcheck=0
 enabled=1
-
-[ovirt-@OVIRT_SLOT@-copr:copr.fedorainfracloud.org:dominik:OpenvSwitch]
-name=Copr repo for OpenvSwitch owned by dominik
-baseurl=https://download.copr.fedorainfracloud.org/results/dominik/OpenvSwitch/centos-stream-$basearch/
-type=rpm-md
-skip_if_unavailable=True
-gpgcheck=1
-gpgkey=https://download.copr.fedorainfracloud.org/results/dominik/OpenvSwitch/pubkey.gpg
-repo_gpgcheck=0
-enabled=1
-enabled_metadata=1

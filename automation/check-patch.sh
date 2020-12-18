@@ -26,7 +26,7 @@ pushd exported-artifacts
     [[ -d /etc/dnf ]] && [[ -x /usr/bin/dnf ]] && dnf -y reinstall dnf-conf
     [[ -d /etc/dnf ]] && sed -i -re 's#^(reposdir *= *).*$#\1/etc/yum.repos.d#' '/etc/dnf/dnf.conf'
     [[ -e /etc/dnf/dnf.conf ]] && echo "deltarpm=False" >> /etc/dnf/dnf.conf
-    ${PACKAGER} install -y ovirt-release44-4*noarch.rpm
+    ${PACKAGER} install -y ovirt-release44-pre-4*noarch.rpm
     rm -f /etc/yum/yum.conf
     ${PACKAGER} repolist enabled
     ${PACKAGER} clean all
@@ -48,7 +48,7 @@ pushd exported-artifacts
             ${PACKAGER} --downloadonly install ovirt-engine ovirt-engine-setup-plugin-websocket-proxy || true
         fi
         echo "Testing CentOS Stream"
-        ${PACKAGER} remove -y ovirt-release44-4\*
+        ${PACKAGER} remove -y ovirt-release44-pre-4\*
         ${PACKAGER} install -y centos-release-stream
         ${PACKAGER} repolist enabled
         ${PACKAGER} --releasever=8-stream --disablerepo=* --enablerepo=Stream-BaseOS download centos-stream-repos
@@ -58,7 +58,7 @@ pushd exported-artifacts
         rm -fv centos-stream-repo*
         ls -l /etc/yum.repos.d/
         ${PACKAGER} distro-sync -y
-        ${PACKAGER} install -y ovirt-release44-4*noarch.rpm
+        ${PACKAGER} install -y ovirt-release44-pre-4*noarch.rpm
         ${PACKAGER} repolist enabled
         ${PACKAGER} clean all
         ${PACKAGER} --downloadonly install *noarch.rpm || true

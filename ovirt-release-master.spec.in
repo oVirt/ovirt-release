@@ -191,8 +191,6 @@ if [[ "${DISTVER::3}" == "el8" ]] ; then
 	if [ -f /etc/yum.repos.d/CentOS-Stream-PowerTools.repo ] ; then
 		sed -i "s:enabled=0:enabled=1:" /etc/yum.repos.d/CentOS-Stream-PowerTools.repo
 	fi
-elif [[ "${DISTVER}" == "fc31" ]]; then
-	install -m 644 "%{_datadir}/%{package_name}/ovirt-f31-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 fi
 
 sed \
@@ -226,9 +224,6 @@ if [[ "${DISTVER::3}" == "el8" ]] ; then
 	if [ -f /etc/yum.repos.d/CentOS-Stream-PowerTools.repo ] ; then
 		sed -i "s:enabled=0:enabled=1:" /etc/yum.repos.d/CentOS-Stream-PowerTools.repo
 	fi
-elif [[ "${DISTVER}" == "fc31" ]]; then
-	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-f31-deps.repo" \
-	"%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 fi
 
 sed \
@@ -378,6 +373,7 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %changelog
 * Mon Dec 14 2020 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.5-0.0.master
 - Bumped version to 4.4.5
+- Dropped Fedora 31 support
 
 * Fri Oct 11 2019 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.0-0.3.master
 - Add EL8 support

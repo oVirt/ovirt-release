@@ -86,26 +86,6 @@ repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
 
-[ovirt-@OVIRT_SLOT@-copr:copr.fedorainfracloud.org:nmstate:nmstate-0.3]
-name=Copr repo for nmstate-stable owned by nmstate
-baseurl=https://copr-be.cloud.fedoraproject.org/results/nmstate/nmstate-0.3/epel-8-$basearch/
-type=rpm-md
-gpgcheck=1
-gpgkey=https://copr-be.cloud.fedoraproject.org/results/nmstate/nmstate-0.3/pubkey.gpg
-repo_gpgcheck=0
-enabled=1
-enabled_metadata=1
-
-[ovirt-@OVIRT_SLOT@-copr:copr.fedorainfracloud.org:networkmanager:NetworkManager-1.26]
-name=Copr repo for NetworkManager-1.26 owned by networkmanager
-baseurl=https://copr-be.cloud.fedoraproject.org/results/networkmanager/NetworkManager-1.26/epel-8-$basearch/
-type=rpm-md
-gpgcheck=1
-gpgkey=https://copr-be.cloud.fedoraproject.org/results/networkmanager/NetworkManager-1.26/pubkey.gpg
-repo_gpgcheck=0
-enabled=1
-enabled_metadata=1
-
 [ovirt-@OVIRT_SLOT@-advanced-virtualization]
 name=Advanced Virtualization packages for $basearch
 mirrorlist=http://mirrorlist.centos.org/?arch=$basearch&release=8&repo=virt-advanced-virtualization

@@ -36,11 +36,9 @@ pushd exported-artifacts
         ${PACKAGER} --downloadonly install *noarch.rpm || true
     elif
      [[ "$(rpm --eval "%dist")" == ".el8" ]]; then
-        # el8 engine support is broken, just provide a hint on what's missing
-        # without causing the test to fail.
-        ${PACKAGER} --downloadonly install *noarch.rpm || true
+        ${PACKAGER} --downloadonly install *noarch.rpm
         if [[ "${ARCH}" == "x86_64" ]]; then
-            ${PACKAGER} --downloadonly install ovirt-engine ovirt-engine-setup-plugin-websocket-proxy || true
+            ${PACKAGER} --downloadonly install ovirt-engine ovirt-engine-setup-plugin-websocket-proxy
         fi
         echo "Testing CentOS Stream"
         ${PACKAGER} remove ovirt-release-master

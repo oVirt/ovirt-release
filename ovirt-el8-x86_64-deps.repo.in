@@ -42,10 +42,10 @@ includepkgs=
 gpgcheck=1
 gpgkey=https://download.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8
 
-[ovirt-@OVIRT_SLOT@-centos-gluster7]
-name=CentOS-$releasever - Gluster 7
-mirrorlist=http://mirrorlist.centos.org?arch=$basearch&release=$releasever&repo=storage-gluster-7
-#baseurl=http://mirror.centos.org/$contentdir/$releasever/storage/$basearch/gluster-7/
+[ovirt-@OVIRT_SLOT@-centos-gluster8]
+name=CentOS-$releasever - Gluster 8
+mirrorlist=http://mirrorlist.centos.org?arch=$basearch&release=$releasever&repo=storage-gluster-8
+#baseurl=http://mirror.centos.org/$contentdir/$releasever/storage/$basearch/gluster-8/
 gpgcheck=1
 enabled=1
 gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-Storage

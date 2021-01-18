@@ -42,9 +42,9 @@ includepkgs=
 gpgcheck=1
 gpgkey=https://download.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8
 
-[ovirt-@OVIRT_SLOT@-glusterfs-7-testing]
-name=GlusterFS 7 testing packages for $basearch
-baseurl=https://buildlogs.centos.org/centos/8/storage/$basearch/gluster-7/
+[ovirt-@OVIRT_SLOT@-glusterfs-8-testing]
+name=GlusterFS 8 testing packages for $basearch
+baseurl=https://buildlogs.centos.org/centos/8/storage/$basearch/gluster-8/
 enabled=1
 gpgcheck=0
 

@@ -91,13 +91,13 @@ enabled=1
 gpgcheck=0
 module_hotfixes=1
 
-[ovirt-@OVIRT_SLOT@-centos-ovirt44-testing]
-name=CentOS-8 - oVirt 4.4 - testing
-baseurl=https://buildlogs.centos.org/centos/8/virt/$basearch/ovirt-44/
+[ovirt-@OVIRT_SLOT@-centos-stream-ovirt44-testing]
+name=CentOS-8-Stream - oVirt 4.4 - testing
+baseurl=https://buildlogs.centos.org/centos/8-stream/virt/$basearch/ovirt-44/
 gpgcheck=0
 enabled=1
 
-[ovirt-@OVIRT_SLOT@-centos-opstools]
+[ovirt-@OVIRT_SLOT@-centos-opstools-testing]
 name=CentOS-8 - OpsTools - collectd
 baseurl=https://buildlogs.centos.org/centos/8/opstools/$basearch/collectd-5/
 gpgcheck=0
@@ -131,4 +131,3 @@ baseurl=http://buildlogs.centos.org/centos/$releasever/nfv/$basearch/openvswitch
 gpgcheck=0
 enabled=1
 module_hotfixes=1
-

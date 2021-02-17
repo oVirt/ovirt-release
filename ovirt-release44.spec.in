@@ -425,6 +425,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %endif
 
 %changelog
+* Wed Feb 17 2021 Lev Veyde <lveyde@redhat.com> - 4.4.5-0.6.rc6
+- 4.4.5 RC6
+
 * Wed Feb 10 2021 Lev Veyde <lveyde@redhat.com> - 4.4.5-0.5.rc5
 - 4.4.5 RC5
 

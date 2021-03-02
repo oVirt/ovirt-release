@@ -425,6 +425,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %endif
 
 %changelog
+* Tue Mar 02 2021 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.5-0.8.rc8
+- 4.4.5 RC8
+
 * Wed Feb 24 2021 Lev Veyde <lveyde@redhat.com> - 4.4.5-0.7.rc7
 - 4.4.5 RC7
 

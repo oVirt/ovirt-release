@@ -371,6 +371,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %endif
 
 %changelog
+* Tue Mar 02 2021 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.6-0.0.master
+- Bumped version to 4.4.6
+
 * Mon Dec 14 2020 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.5-0.0.master
 - Bumped version to 4.4.5
 - Dropped Fedora 31 support

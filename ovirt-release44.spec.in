@@ -173,6 +173,10 @@ cp -rl "%{buildroot}%{_datadir}/%{package_name}" "%{buildroot}%{_datadir}/%{pack
 
 %if %{with_node}
 install -d 755 "%{buildroot}/data/images/rhev"
+install -p -d -m 755 %{buildroot}/etc/dnf/protected.d/
+touch ovirt-release-host-node.conf
+echo ovirt-release-host-node > ovirt-release-host-node.conf
+install -p -c -m 0644 ovirt-release-host-node.conf %{buildroot}/etc/dnf/protected.d/
 %else
 rm -f "%{buildroot}/usr/lib/systemd/system-preset/98-ovirt-host-node.preset"
 rm -rf "%{buildroot}/usr/share/ovirt-release-host-node"
@@ -419,6 +423,7 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %{_prefix}/share/ovirt-release-host-node/branding
 %{_presetdir}/98-ovirt-host-node.preset
 %{_prefix}/share/ovirt-release-host-node/branding/*
+/etc/dnf/protected.d/ovirt-release-host-node.conf
 
 # Add a folder for local datastores
 %dir %attr(0755, vdsm, kvm) /data/images/rhev

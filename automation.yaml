@@ -8,3 +8,5 @@ archs:
 release_branches:
   ovirt-4.4:
     - ovirt-4.4
+  ovirt-4.4.5.z:
+    - ovirt-4.4

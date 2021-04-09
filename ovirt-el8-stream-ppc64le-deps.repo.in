@@ -76,6 +76,20 @@ enabled=1
 gpgcheck=0
 module_hotfixes=1
 
+[ovirt-@OVIRT_SLOT@-centos-stream-advanced-virtualization-testing]
+name=Advanced Virtualization CentOS Stream testing packages for $basearch
+baseurl=https://buildlogs.centos.org/centos/8-stream/virt/$basearch/advancedvirt-common/
+enabled=1
+gpgcheck=0
+module_hotfixes=1
+
+[ovirt-@OVIRT_SLOT@-centos-stream-advanced-virtualization]
+name=Advanced Virtualization CentOS Stream testing packages for $basearch
+baseurl=http://mirror.centos.org/centos/8-stream/virt/$basearch/advancedvirt-common/
+enabled=1
+gpgcheck=0
+module_hotfixes=1
+
 [ovirt-@OVIRT_SLOT@-centos-stream-ovirt44-testing]
 name=CentOS-8-Stream - oVirt 4.4 - testing
 baseurl=https://buildlogs.centos.org/centos/8-stream/virt/$basearch/ovirt-44/
@@ -88,9 +102,10 @@ baseurl=https://buildlogs.centos.org/centos/8/opstools/$basearch/collectd-5/
 gpgcheck=0
 enabled=1
 
-[ovirt-@OVIRT_SLOT@-centos-nfv-openvswitch-testing]
+[ovirt-@OVIRT_SLOT@-centos-stream-nfv-openvswitch-testing]
 name=CentOS-$releasever - NFV OpenvSwitch Testing
-baseurl=http://buildlogs.centos.org/centos/$releasever/nfv/$basearch/openvswitch-2/
+baseurl=https://buildlogs.centos.org/centos/8-stream/nfv/$basearch/openvswitch-2/
 gpgcheck=0
 enabled=1
 module_hotfixes=1
+

@@ -42,11 +42,13 @@ includepkgs=
 gpgcheck=1
 gpgkey=https://download.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8
 
-[ovirt-@OVIRT_SLOT@-glusterfs-8-testing]
-name=GlusterFS 8 testing packages for $basearch
-baseurl=https://buildlogs.centos.org/centos/8/storage/$basearch/gluster-8/
+[ovirt-@OVIRT_SLOT@-centos-gluster8]
+name=CentOS-$releasever - Gluster 8
+mirrorlist=http://mirrorlist.centos.org?arch=$basearch&release=$releasever&repo=storage-gluster-8
+#baseurl=http://mirror.centos.org/$contentdir/$releasever/storage/$basearch/gluster-8/
+gpgcheck=1
 enabled=1
-gpgcheck=0
+gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-Storage
 
 [ovirt-@OVIRT_SLOT@-virtio-win-latest]
 name=virtio-win builds roughly matching what will be shipped in upcoming RHEL
@@ -84,51 +86,31 @@ repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
 
-[ovirt-@OVIRT_SLOT@-advanced-virtualization-testing]
-name=Advanced Virtualization testing packages for $basearch
-baseurl=https://buildlogs.centos.org/centos/8/virt/$basearch/advanced-virtualization/
+[ovirt-@OVIRT_SLOT@-centos-stream-advanced-virtualization]
+name=Advanced Virtualization CentOS Stream packages for $basearch
+baseurl=http://mirror.centos.org/centos/8-stream/virt/$basearch/advancedvirt-common/
 enabled=1
-gpgcheck=0
+gpgcheck=1
+gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-Virtualization
 module_hotfixes=1
 
-[ovirt-@OVIRT_SLOT@-centos-ovirt44-testing]
-name=CentOS-8 - oVirt 4.4 - testing
-baseurl=https://buildlogs.centos.org/centos/8/virt/$basearch/ovirt-44/
-gpgcheck=0
+[ovirt-@OVIRT_SLOT@-centos-stream-ovirt44]
+name=CentOS-8 Stream - oVirt 4.4
+baseurl=http://mirror.centos.org/centos/8-stream/virt/$basearch/ovirt-44/
 enabled=1
+gpgcheck=1
+gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-Virtualization
 
 [ovirt-@OVIRT_SLOT@-centos-opstools]
 name=CentOS-8 - OpsTools - collectd
-baseurl=https://buildlogs.centos.org/centos/8/opstools/$basearch/collectd-5/
-gpgcheck=0
-enabled=1
-
-[ovirt-@OVIRT_SLOT@-ovirt-imageio-preview]
-name=Copr repo for ovirt-imageio-preview owned by nsoffer
-baseurl=https://download.copr.fedorainfracloud.org/results/nsoffer/ovirt-imageio-preview/epel-8-$basearch/
-type=rpm-md
-skip_if_unavailable=True
+mirrorlist=http://mirrorlist.centos.org/?arch=$basearch&release=$releasever&repo=opstools-collectd-5
 gpgcheck=1
-gpgkey=https://download.copr.fedorainfracloud.org/results/nsoffer/ovirt-imageio-preview/pubkey.gpg
-repo_gpgcheck=0
 enabled=1
-enabled_metadata=1
+gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-OpsTools
 
-[ovirt-@OVIRT_SLOT@-ioprocess-preview]
-name=Copr repo for iprocess-preview owned by nsoffer
-baseurl=https://download.copr.fedorainfracloud.org/results/nsoffer/ioprocess-preview/epel-8-$basearch/
-type=rpm-md
-skip_if_unavailable=True
-gpgcheck=1
-gpgkey=https://download.copr.fedorainfracloud.org/results/nsoffer/ioprocess-preview/pubkey.gpg
-repo_gpgcheck=0
-enabled=1
-enabled_metadata=1
-
-[ovirt-@OVIRT_SLOT@-centos-nfv-openvswitch]
+[ovirt-@OVIRT_SLOT@-centos-stream-nfv-openvswitch]
 name=CentOS-$releasever - NFV OpenvSwitch
-#baseurl=http://mirror.centos.org/centos/$releasever/nfv/$basearch/openvswitch-2/
-mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=nfv-openvswitch-2
+baseurl=http://mirror.centos.org/centos/8-stream/nfv/$basearch/openvswitch-2/
 gpgcheck=1
 enabled=1
 gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-NFV

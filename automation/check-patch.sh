@@ -2,7 +2,6 @@
 
 ./automation/build-artifacts.sh
 
-DISTVER="$(rpm --eval "%dist"|cut -c2-4)"
 ARCH="$(rpm --eval "%_arch")"
 PACKAGER=dnf
 export PACKAGER
@@ -33,39 +32,34 @@ pushd exported-artifacts
     if [[ "${ARCH}" == "s390x" ]]; then
         # s390x support is broken, just provide a hint on what's missing
         # without causing the test to fail.
-        ${PACKAGER} --downloadonly install *noarch.rpm || true
+        ${PACKAGER} --downloadonly install ./*noarch.rpm || true
     elif
      [[ "$(rpm --eval "%dist")" == ".el8" ]]; then
-        ${PACKAGER} --downloadonly install *noarch.rpm
+        ${PACKAGER} --downloadonly install ./*noarch.rpm
         if [[ "${ARCH}" == "x86_64" ]]; then
             ${PACKAGER} --downloadonly install ovirt-engine ovirt-engine-setup-plugin-websocket-proxy
         fi
         echo "Testing CentOS Stream"
-        ${PACKAGER} remove -y ovirt-release44-pre-4\*
-        ${PACKAGER} install -y centos-release-stream
+        ${PACKAGER} remove ovirt-release44-pre-4\*
         ${PACKAGER} repolist enabled
-        ${PACKAGER} --releasever=8-stream --disablerepo=* --enablerepo=Stream-BaseOS download centos-stream-repos
-        ${PACKAGER} install -y centos-stream-release
-        rpm -e --nodeps centos-linux-repos
-        rpm -i centos-stream-repo*
-        rm -fv centos-stream-repo*
+        ${PACKAGER} swap centos-linux-repos centos-stream-repos
         ls -l /etc/yum.repos.d/
         ${PACKAGER} distro-sync -y
         ${PACKAGER} install -y ovirt-release44-pre-4*noarch.rpm
         ${PACKAGER} repolist enabled
         ${PACKAGER} clean all
-        ${PACKAGER} --downloadonly install *noarch.rpm || true
+        ${PACKAGER} --downloadonly install ./*noarch.rpm || true
         if [[ "${ARCH}" == "x86_64" ]]; then
             ${PACKAGER} --downloadonly install ovirt-engine ovirt-engine-setup-plugin-websocket-proxy || true
         fi
     else
         if [[ $(${PACKAGER} repolist enabled|grep -v ovirt|grep epel) ]] ; then
-            ${PACKAGER} --downloadonly --disablerepo=epel install *noarch.rpm
+            ${PACKAGER} --downloadonly --disablerepo=epel install ./*noarch.rpm
             if [[ "${ARCH}" == "x86_64" ]]; then
                 ${PACKAGER} --downloadonly --disablerepo=epel install ovirt-engine ovirt-engine-setup-plugin-websocket-proxy
             fi
         else
-            ${PACKAGER} --downloadonly install *noarch.rpm
+            ${PACKAGER} --downloadonly install ./*noarch.rpm
             if [[ "${ARCH}" == "x86_64" ]]; then
                 ${PACKAGER} --downloadonly install ovirt-engine ovirt-engine-setup-plugin-websocket-proxy
             fi

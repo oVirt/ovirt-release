@@ -27,6 +27,7 @@ EXTRA_DIST = \
 	autogen.sh \
 	ovirt-release44.spec \
 	ovirt-release44.spec.in \
+	node-optional.repo \
 	$(NULL)
 
 pkgdata_DATA = \
@@ -38,6 +39,7 @@ pkgdata_DATA = \
 	ovirt.repo \
 	ovirt-snapshot.repo \
 	ovirt-tested.repo \
+	node-optional.repo \
 	$(NULL)
 
 dist_noinst_DATA = \

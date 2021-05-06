@@ -14,5 +14,5 @@ rpmbuild
 .project
 ## patterns
 *.spec
-*.repo
+ovirt*.repo
 ovirt-release44-*.tar.gz

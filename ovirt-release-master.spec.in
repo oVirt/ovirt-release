@@ -140,6 +140,7 @@ rm -rf "%{buildroot}"
 %make_install
 #Allow ghost files
 install -d 755 "%{buildroot}%{_sysconfdir}/yum.repos.d"
+
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-tested.repo"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
@@ -293,10 +294,14 @@ systemctl restart firewalld.service >/dev/null 2>&1
 # Restarting cockpit to load the new branding data
 systemctl restart cockpit.service >/dev/null 2>&1
 
-# Only whitelist ovirt-node-ng-image-update and ovirt-engine-appliance
-# set-enabled is needed to keep the repo enabled when post-processing
-# the image
-# The loop is required because sed -i does not work with multiple files
+# Only whitelist:
+# - ovirt-node-ng-image-update
+# - ovirt-engine-appliance
+# - vdsm-hooks and their deps (bz #1947759)
+# set-enabled is needed to keep the repo enabled when post-processing the image
+
+install -m 644 "%{_datadir}/%{package_name}/node-optional.repo" "%{_sysconfdir}/yum.repos.d/node-optional.repo"
+
 PYTHON=$(command -v python3 || command -v python)
 
 for REPO in %{_sysconfdir}/yum.repos.d/ovirt-*.repo;
@@ -311,12 +316,21 @@ cp.optionxform = str
 cp.read("$REPO")
 for s in cp.sections():
     cp.remove_option(s, "includepkgs")
-    cp.set(s, "includepkgs", "ovirt-node-ng-image-update ovirt-node-ng-image ovirt-engine-appliance")
+    cp.set(s, "includepkgs", (
+		"ovirt-node-ng-image-update "
+		"ovirt-node-ng-image "
+		"ovirt-engine-appliance "
+		"vdsm-hook-fcoe "
+		"vdsm-hook-vhostmd "
+		"vdsm-hook-openstacknet "
+		"vdsm-hook-ethtool-options")
+	)
 with open("$REPO", "w") as f:
     f.write("# imgbased: set-enabled\n")
     cp.write(f)
 EOF
 done
+
 
 #
 # NGN TEMPORARY HACKS
@@ -359,11 +373,16 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %{_prefix}/share/ovirt-release-host-node/branding/*
 /etc/dnf/protected.d/ovirt-release-host-node.conf
 
+
 # Add a folder for local datastores
 %dir %attr(0755, vdsm, kvm) /data/images/rhev
 %endif
 
 %changelog
+* Thu May 06 2021 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.7-0.0.master
+- Bumped version to 4.4.7
+- Resolves BZ#1947759
+
 * Tue Mar 02 2021 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.6-0.0.master
 - Bumped version to 4.4.6
 

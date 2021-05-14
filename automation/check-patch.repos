@@ -1,2 +1,2 @@
-ovirt-master-snapshot,https://resources.ovirt.org/pub/ovirt-master-snapshot/rpm/$distro
-ovirt-master-snapshot-static,https://resources.ovirt.org/pub/ovirt-master-snapshot-static/rpm/$distro
+ovirt-master-snapshot,https://resources.ovirt.org/pub/ovirt-master-snapshot/rpm/el8
+ovirt-master-snapshot-static,https://resources.ovirt.org/pub/ovirt-master-snapshot-static/rpm/el8

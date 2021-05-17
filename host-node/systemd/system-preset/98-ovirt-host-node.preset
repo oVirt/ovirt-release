@@ -7,5 +7,6 @@ enable irqbalance.service
 enable imgbase-setup.service
 enable libvirtd.service
 enable tuned.service
+enable rhsmcertd.service
 disable goferd.service
 disable *

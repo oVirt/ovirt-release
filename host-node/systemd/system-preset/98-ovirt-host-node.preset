@@ -9,5 +9,4 @@ enable libvirtd.service
 enable tuned.service
 enable sysstat.service
 enable rhsmcertd.service
-disable goferd.service
 disable *

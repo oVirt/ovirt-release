@@ -109,6 +109,19 @@ enabled=1
 priority=2
 gpgcheck=1
 gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-Storage
+includepkgs=ceph-common
+ gperftools-libs
+ leveldb
+ libcephfs2
+ liboath
+ libradosstriper1
+ librgw2
+ libunwind
+ python3-ceph-argparse
+ python3-cephfs
+ python3-rados
+ python3-rbd
+ python3-rgw
 
 [ovirt-@OVIRT_SLOT@-openstack-train]
 name=OpenStack Train Repository
@@ -117,4 +130,34 @@ gpgcheck=1
 enabled=1
 module_hotfixes=1
 gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-Cloud
-
+includepkgs=python3-os-brick
+ python-oslo-concurrency-lang
+ python-oslo-i18n-lang
+ python-oslo-log-lang
+ python-oslo-privsep-lang
+ python-oslo-utils-lang
+ python3-iso8601
+ python3-os-win
+ python3-oslo-concurrency
+ python3-oslo-config
+ python3-oslo-context
+ python3-oslo-i18n
+ python3-oslo-log
+ python3-oslo-privsep
+ python3-oslo-serialization
+ python3-oslo-service
+ python3-oslo-utils
+ python3-paste
+ python3-paste-deploy
+ python3-pyparsing
+ python3-retrying
+ python3-tempita
+ python3-yappi
+ python3-eventlet
+ python3-fasteners
+ python3-oslo-privsep
+ python3-msgpack
+ python3-webob
+ python3-routes
+ python3-rfc3986
+ python3-repoze-lru

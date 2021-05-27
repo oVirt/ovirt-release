@@ -173,6 +173,7 @@ gpgcheck=0
 enabled=1
 module_hotfixes=1
 includepkgs=python3-os-brick
+ python3-cinderlib
  python-oslo-concurrency-lang
  python-oslo-i18n-lang
  python-oslo-log-lang

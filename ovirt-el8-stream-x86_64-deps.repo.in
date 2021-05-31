@@ -118,7 +118,7 @@ module_hotfixes=1
 
 [ovirt-@OVIRT_SLOT@-centos-ceph-pacific]
 name=Ceph packages for $basearch
-baseurl=http://mirror.centos.org/centos/8-stream/storage/x86_64/ceph-pacific/
+baseurl=http://mirror.centos.org/centos/8/storage/ppc64le/ceph-pacific
 enabled=1
 priority=2
 gpgcheck=1
@@ -130,7 +130,11 @@ includepkgs=ceph-common
  liboath
  libradosstriper1
  librgw2
+ librbd1
+ librados2
+ fmt
  libunwind
+ python3-ceph-common
  python3-ceph-argparse
  python3-cephfs
  python3-rados
@@ -145,22 +149,12 @@ enabled=1
 module_hotfixes=1
 gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-Cloud
 includepkgs=python3-os-brick
- python-oslo-concurrency-lang
- python-oslo-i18n-lang
- python-oslo-log-lang
- python-oslo-privsep-lang
- python-oslo-utils-lang
+ python3-cinderlib
+ openstack-cinder
+ python3-oslo-*
+ python-oslo-*
  python3-iso8601
  python3-os-win
- python3-oslo-concurrency
- python3-oslo-config
- python3-oslo-context
- python3-oslo-i18n
- python3-oslo-log
- python3-oslo-privsep
- python3-oslo-serialization
- python3-oslo-service
- python3-oslo-utils
  python3-paste
  python3-paste-deploy
  python3-pyparsing
@@ -175,3 +169,50 @@ includepkgs=python3-os-brick
  python3-routes
  python3-rfc3986
  python3-repoze-lru
+ python3-osprofiler
+ python3-cinderclient
+ python3-cinder
+ python3-tooz
+ python3-taskflow
+ python3-swiftclient
+ python3-simplejson
+ python3-oauth2client
+ python3-novaclient
+ python3-migrate
+ python3-keystonemiddleware
+ python3-keystoneclient
+ python3-keystoneauth1
+ python3-google-api-client
+ python3-glanceclient
+ python3-etcd3gw
+ python3-defusedxml
+ python3-cursive
+ python3-castellan
+ python3-barbicanclient
+ python3-zake
+ python3-warlock
+ python3-uritemplate
+ python3-google-api-client
+ python3-tenacity
+ python3-statsd
+ python3-sqlparse
+ python3-redis
+ python3-pyngus
+ python3-pycadf
+ python3-os-service-types
+ python3-kombu
+ python3-keyring
+ python3-futurist
+ python3-automaton
+ python3-amqp
+ python3-alembic
+ python3-rsa
+ python3-cachetools
+ python3-vine
+ python3-secretstorage
+ python3-memcached
+ python3-kazoo
+ python3-editor
+ python3-dogpile-cache
+ python-pycadf-common
+ python3-jeepney

@@ -4,6 +4,7 @@ name=Latest oVirt @OVIRT_SLOT@ nightly snapshot
 @URLKEY@=@OVIRT_YUM_REPO@@REPO_PATH_NORMAL@@DIST@$releasever
 enabled=1
 gpgcheck=0
+countme=1
 
 [ovirt-@OVIRT_SLOT@-snapshot-static]
 name=Latest oVirt @OVIRT_SLOT@ additional nightly snapshot
@@ -11,3 +12,4 @@ name=Latest oVirt @OVIRT_SLOT@ additional nightly snapshot
 @URLKEY@=@OVIRT_YUM_REPO@@REPO_PATH_STATIC@@DIST@$releasever
 enabled=1
 gpgcheck=0
+countme=1

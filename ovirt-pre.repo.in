@@ -3,6 +3,7 @@ name=oVirt @OVIRT_SLOT@ Pre-Release
 baseurl=https://resources.ovirt.org/pub/ovirt-@OVIRT_SLOT@-pre/rpm/@DIST@$releasever/
 #mirrorlist=https://resources.ovirt.org/pub/yum-repo/mirrorlist-ovirt-@OVIRT_SLOT@-pre-@DIST@$releasever
 enabled=1
+countme=1
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-ovirt-@OVIRT_SLOT@
 
@@ -11,5 +12,6 @@ name=Latest oVirt @OVIRT_SLOT@ Release
 #baseurl=https://resources.ovirt.org/pub/ovirt-@OVIRT_SLOT@/rpm/@DIST@$releasever/
 mirrorlist=https://resources.ovirt.org/pub/yum-repo/mirrorlist-ovirt-@OVIRT_SLOT@-@DIST@$releasever
 enabled=1
+countme=1
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-ovirt-@OVIRT_SLOT@

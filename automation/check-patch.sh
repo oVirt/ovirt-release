@@ -48,9 +48,15 @@ pushd exported-artifacts
         ${PACKAGER} install -y ovirt-release-master-4*noarch.rpm
         ${PACKAGER} repolist enabled
         ${PACKAGER} clean all
-        ${PACKAGER} --downloadonly install ./*noarch.rpm || true
+        ${PACKAGER} --downloadonly install ./*noarch.rpm
+        # check cinderlib integration packages till ovirt-host will require them
+        # https://bugzilla.redhat.com/1955375
+        ${PACKAGER} --downloadonly install ceph-common python3-os-brick
         if [[ "${ARCH}" == "x86_64" ]]; then
-            ${PACKAGER} --downloadonly install ovirt-engine ovirt-engine-setup-plugin-websocket-proxy || true
+            ${PACKAGER} --downloadonly install ovirt-engine ovirt-engine-setup-plugin-websocket-proxy
+            # check cinderlib integration packages till ovirt-engine will require them
+            # https://bugzilla.redhat.com/1955375
+            ${PACKAGER} --downloadonly install python3-cinderlib ceph-common
         fi
     else
         if [[ $(${PACKAGER} repolist enabled|grep -v ovirt|grep epel) ]] ; then

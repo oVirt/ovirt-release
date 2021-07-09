@@ -4,6 +4,7 @@ name=Latest oVirt @OVIRT_SLOT@ Release
 mirrorlist=https://mirrorlist.ovirt.org/mirrorlist-ovirt-@OVIRT_SLOT@-@DIST@$releasever
 enabled=1
 countme=1
+fastestmirror=1
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-ovirt-@OVIRT_SLOT@
 

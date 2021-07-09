@@ -5,6 +5,7 @@ name=Latest oVirt @OVIRT_SLOT@ nightly snapshot
 enabled=1
 gpgcheck=0
 countme=1
+fastestmirror=1
 
 [ovirt-@OVIRT_SLOT@-snapshot-static]
 name=Latest oVirt @OVIRT_SLOT@ additional nightly snapshot
@@ -13,3 +14,4 @@ name=Latest oVirt @OVIRT_SLOT@ additional nightly snapshot
 enabled=1
 gpgcheck=0
 countme=1
+fastestmirror=1

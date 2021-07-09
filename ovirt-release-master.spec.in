@@ -1,6 +1,6 @@
 #
 # ovirt-release -- repo files for oVirt projects
-# Copyright (C) 2014-2019 Red Hat, Inc.
+# Copyright (C) 2014-2021 Red Hat, Inc.
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -379,6 +379,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %endif
 
 %changelog
+* Fri Jul 09 2021 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.8-0.0.master
+- Bumped version to 4.4.8
+
 * Thu May 06 2021 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.7-0.0.master
 - Bumped version to 4.4.7
 - Resolves BZ#1947759

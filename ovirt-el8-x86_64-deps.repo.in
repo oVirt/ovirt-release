@@ -76,16 +76,6 @@ repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
 
-[ovirt-@OVIRT_SLOT@-copr:copr.fedorainfracloud.org:mdbarroso:ovsdbapp]
-name=Copr repo for ovsdbapp owned by mdbarroso
-baseurl=https://copr-be.cloud.fedoraproject.org/results/mdbarroso/ovsdbapp/epel-8-$basearch/
-type=rpm-md
-gpgcheck=1
-gpgkey=https://copr-be.cloud.fedoraproject.org/results/mdbarroso/ovsdbapp/pubkey.gpg
-repo_gpgcheck=0
-enabled=1
-enabled_metadata=1
-
 [ovirt-@OVIRT_SLOT@-advanced-virtualization]
 name=Advanced Virtualization packages for $basearch
 mirrorlist=http://mirrorlist.centos.org/?arch=$basearch&release=8&repo=virt-advanced-virtualization

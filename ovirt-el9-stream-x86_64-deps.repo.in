@@ -1,0 +1,9 @@
+[copr:copr.fedorainfracloud.org:sbonazzo:EL9Collection]
+name=Copr repo for EL9Collection owned by sbonazzo
+baseurl=https://download.copr.fedorainfracloud.org/results/sbonazzo/EL9Collection/centos-stream-9-$basearch/
+type=rpm-md
+gpgcheck=1
+gpgkey=https://download.copr.fedorainfracloud.org/results/sbonazzo/EL9Collection/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1

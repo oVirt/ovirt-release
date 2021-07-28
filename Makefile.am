@@ -35,6 +35,7 @@ pkgdata_DATA = \
 	ovirt-el8-x86_64-deps.repo \
 	ovirt-el8-stream-ppc64le-deps.repo \
 	ovirt-el8-stream-x86_64-deps.repo \
+	ovirt-el9-stream-x86_64-deps.repo \
 	ovirt-snapshot.repo \
 	ovirt-tested.repo \
 	node-optional.repo \
@@ -45,6 +46,7 @@ dist_noinst_DATA = \
 	$(srcdir)/ovirt-el8-x86_64-deps.repo.in \
 	$(srcdir)/ovirt-el8-stream-ppc64le-deps.repo.in \
 	$(srcdir)/ovirt-el8-stream-x86_64-deps.repo.in \
+	$(srcdir)/ovirt-el9-stream-x86_64-deps.repo.in \
 	$(srcdir)/ovirt-snapshot.repo.in \
 	$(srcdir)/ovirt-tested.repo.in \
 	$(NULL)

@@ -244,11 +244,7 @@ fi
 
 sed \
 	-e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
-	<"%{_datadir}/%{package_name}-tested/ovirt-tested.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-tested.repo"
-
-
-
-
+	<"%{_datadir}/%{package_name}-snapshot/ovirt-snapshot.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
 
 %post tested
 
@@ -324,7 +320,6 @@ sed \
 # we copy the actual files at post, but still wants this package to own them.
 # ghost in this case solves that issue
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
-%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo
 
 %files snapshot
 %{_datadir}/%{package_name}-snapshot/

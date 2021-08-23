@@ -133,6 +133,15 @@ Requires:	tar
 %description tested
 This package contains the yum configuration for oVirt tested repositories
 
+%package snapshot
+Summary:	oVirt snapshot repository configuration
+Group:		System Environment/Base
+Requires:	system-release
+Requires:	tar
+
+%description snapshot
+This package contains the yum configuration for oVirt snapshot repositories
+
 %prep
 %setup -q -n "%{package_name}-%{package_version}"
 
@@ -156,6 +165,7 @@ touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-pre.repo"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-tested.repo"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+cp -rl "%{buildroot}%{_datadir}/%{package_name}" "%{buildroot}%{_datadir}/%{package_name}-snapshot"
 cp -rl "%{buildroot}%{_datadir}/%{package_name}" "%{buildroot}%{_datadir}/%{package_name}-pre"
 cp -rl "%{buildroot}%{_datadir}/%{package_name}" "%{buildroot}%{_datadir}/%{package_name}-tested"
 
@@ -202,6 +212,43 @@ fi
 sed \
 	-e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
 	<"%{_datadir}/%{package_name}/ovirt.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}.repo"
+
+%post snapshot
+
+# Adjust repos as per dist and version
+DIST=fc
+#Fedora is good for both Fedora and Generic (and probably other based on Fedora)
+#Handling EL exception only (for now)
+DISTVER="$(rpm --eval "%%dist"|cut -c2-)"
+ARCH="$(rpm --eval "%%_arch")"
+if rpm --eval "%%dist" | grep -qFi 'el'; then
+	DIST=el
+fi
+
+if [[ "${DISTVER::3}" == "el8" ]] ; then
+	if [ -f /etc/dnf/vars/stream ] ; then
+		install -m 644 "%{_datadir}/%{package_name}-snapshot/ovirt-el8-stream-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+	else
+		install -m 644 "%{_datadir}/%{package_name}-snapshot/ovirt-el8-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+	fi
+	if [ -f /etc/yum.repos.d/CentOS-PowerTools.repo ] ; then
+		sed -i "s:enabled=0:enabled=1:" /etc/yum.repos.d/CentOS-PowerTools.repo
+	fi
+	if [ -f /etc/yum.repos.d/CentOS-Linux-PowerTools.repo ] ; then
+		sed -i "s:enabled=0:enabled=1:" /etc/yum.repos.d/CentOS-Linux-PowerTools.repo
+	fi
+	if [ -f /etc/yum.repos.d/CentOS-Stream-PowerTools.repo ] ; then
+		sed -i "s:enabled=0:enabled=1:" /etc/yum.repos.d/CentOS-Stream-PowerTools.repo
+	fi
+fi
+
+sed \
+	-e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
+	<"%{_datadir}/%{package_name}-tested/ovirt-tested.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-tested.repo"
+
+
+
+
 
 %post tested
 
@@ -278,6 +325,11 @@ sed \
 # ghost in this case solves that issue
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo
+
+%files snapshot
+%{_datadir}/%{package_name}-snapshot/
+%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo
+%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot-dependencies.repo
 
 %files pre
 %{_datadir}/%{package_name}-pre/

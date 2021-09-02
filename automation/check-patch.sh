@@ -58,6 +58,20 @@ pushd exported-artifacts
             # https://bugzilla.redhat.com/1955375
             ${PACKAGER} --downloadonly install python3-cinderlib ceph-common
         fi
+    elif
+     [[ "$(rpm --eval "%dist")" == ".el9" ]]; then
+        # el9 support is broken since we just started working on it, just provide a hint on what's missing
+        # without causing the test to fail.
+        ${PACKAGER} --downloadonly install ./*noarch.rpm || true
+        # check cinderlib integration packages till ovirt-host will require them
+        # https://bugzilla.redhat.com/1955375
+        ${PACKAGER} --downloadonly install ceph-common python3-os-brick || true
+        if [[ "${ARCH}" == "x86_64" ]]; then
+            ${PACKAGER} --downloadonly install ovirt-engine ovirt-engine-setup-plugin-websocket-proxy || true
+            # check cinderlib integration packages till ovirt-engine will require them
+            # https://bugzilla.redhat.com/1955375
+            ${PACKAGER} --downloadonly install python3-cinderlib ceph-common || true
+        fi
     else
         if [[ $(${PACKAGER} repolist enabled|grep -v ovirt|grep epel) ]] ; then
             ${PACKAGER} --downloadonly --disablerepo=epel install ./*noarch.rpm

@@ -76,6 +76,8 @@ AC_CONFIG_FILES([
             ovirt-el8-x86_64-deps.repo
             ovirt-el8-stream-ppc64le-deps.repo
             ovirt-el8-stream-x86_64-deps.repo
+            ovirt-el9-stream-aarch64-deps.repo
+            ovirt-el9-stream-ppc64le-deps.repo
             ovirt-el9-stream-x86_64-deps.repo
             ovirt-release-master.spec
             ovirt-snapshot.repo

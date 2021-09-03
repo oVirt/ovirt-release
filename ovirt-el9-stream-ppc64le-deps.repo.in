@@ -1,0 +1,5 @@
+[ovirt-@OVIRT_SLOT@-centos-stream-ovirt45-testing]
+name=CentOS Stream 9 - oVirt 4.5 - testing
+baseurl=https://buildlogs.centos.org/centos/9-stream/virt/$basearch/ovirt-45/
+gpgcheck=0
+enabled=1

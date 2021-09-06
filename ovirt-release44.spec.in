@@ -139,6 +139,7 @@ Summary:	oVirt snapshot repository configuration
 Group:		System Environment/Base
 Requires:	system-release
 Requires:	tar
+Requires:	python3
 
 %description snapshot
 This package contains the yum configuration for oVirt snapshot repositories

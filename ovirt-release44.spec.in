@@ -129,6 +129,7 @@ Summary:	oVirt tested repository configuration
 Group:		System Environment/Base
 Requires:	system-release
 Requires:	tar
+Requires:	python3
 
 %description tested
 This package contains the yum configuration for oVirt tested repositories

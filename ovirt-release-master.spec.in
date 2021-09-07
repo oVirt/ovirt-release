@@ -217,9 +217,9 @@ fi
 
 if [[ "${DISTVER::3}" == "el8" ]] ; then
 	if [ -f /etc/dnf/vars/stream ] ; then
-		install -m 644 "%{_datadir}/%{package_name}/ovirt-el8-stream-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+		install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-el8-stream-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 	else
-		install -m 644 "%{_datadir}/%{package_name}/ovirt-el8-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+		install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-el8-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 	fi
 	if [ -f /etc/yum.repos.d/CentOS-PowerTools.repo ] ; then
 		sed -i "s:enabled=0:enabled=1:" /etc/yum.repos.d/CentOS-PowerTools.repo
@@ -230,6 +230,10 @@ if [[ "${DISTVER::3}" == "el8" ]] ; then
 	if [ -f /etc/yum.repos.d/CentOS-Stream-PowerTools.repo ] ; then
 		sed -i "s:enabled=0:enabled=1:" /etc/yum.repos.d/CentOS-Stream-PowerTools.repo
 	fi
+fi
+
+if [[ "${DISTVER::3}" == "el9" ]] ; then
+	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-el9-stream-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 fi
 
 sed \

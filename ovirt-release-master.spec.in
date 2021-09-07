@@ -392,34 +392,5 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %endif
 
 %changelog
-* Fri Jul 09 2021 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.8-0.0.master
-- Bumped version to 4.4.8
-
-* Thu May 06 2021 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.7-0.0.master
-- Bumped version to 4.4.7
-- Resolves BZ#1947759
-
-* Tue Mar 02 2021 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.6-0.0.master
-- Bumped version to 4.4.6
-
-* Mon Dec 14 2020 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.5-0.0.master
-- Bumped version to 4.4.5
-- Dropped Fedora 31 support
-
-* Fri Oct 11 2019 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.0-0.3.master
-- Add EL8 support
-
-* Thu Mar 21 2019 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.0-0.2.master
-- Add Fedora 31 support
-
-* Wed Feb 06 2019 Gobinda Das <godas@redhat.com> - 4.4.0-0.1.master
-- Include gluster-ansible role from copr repo for CentOS and Fedora
-
-* Mon Feb 04 2019 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.0-0.0.master
-- Bumped version to 4.4.0
-
-* Fri May 11 2018 Sandro Bonazzola <sbonazzo@redhat.com> - 4.3.0-0.1.master
-- Switch to CentOS Virt SIG oVirt 4.3 branch
-
-* Mon Feb 12 2018 Sandro Bonazzola <sbonazzo@redhat.com> - 4.3.0-0.0.master
-- Bumped version to 4.3.0
+* Tue Sep 07 2021 Sandro Bonazzola <sbonazzo@redhat.com> - 4.5.0
+- Bumped version to 4.5.0

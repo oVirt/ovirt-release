@@ -81,9 +81,9 @@ enabled=1
 gpgcheck=0
 module_hotfixes=1
 
-[ovirt-@OVIRT_SLOT@-centos-ovirt44-testing]
-name=CentOS-8 - oVirt 4.4 - testing
-baseurl=https://buildlogs.centos.org/centos/8/virt/$basearch/ovirt-44/
+[ovirt-@OVIRT_SLOT@-centos-ovirt45-testing]
+name=CentOS-8 - oVirt 4.5 - testing
+baseurl=https://buildlogs.centos.org/centos/8-stream/virt/$basearch/ovirt-45/
 gpgcheck=0
 enabled=1
 
@@ -162,6 +162,8 @@ includepkgs=python3-os-brick
  python3-os-win
  python3-paste
  python3-paste-deploy
+ python3-pbr
+ python3-funcsigs
  python3-pyparsing
  python3-retrying
  python3-tempita

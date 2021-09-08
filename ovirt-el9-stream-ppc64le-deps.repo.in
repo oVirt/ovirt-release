@@ -9,3 +9,10 @@ name=CentOS Stream 9 - Glusterfs 9 - testing
 baseurl=https://buildlogs.centos.org/centos/9-stream/storage/$basearch/gluster-9/
 gpgcheck=0
 enabled=1
+
+[ovirt-@OVIRT_SLOT@-centos-stream-nfv-openvswitch2-testing]
+name=CentOS Stream 9 - NFV OpenVSwitch 2 - testing
+baseurl=https://buildlogs.centos.org/centos/9-stream/nfv/$basearch/openvswitch-2/
+gpgcheck=0
+enabled=1
+module_hotfixes=1

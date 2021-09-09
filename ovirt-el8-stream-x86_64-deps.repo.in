@@ -42,12 +42,6 @@ includepkgs=
 gpgcheck=1
 gpgkey=https://download.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8
 
-[ovirt-@OVIRT_SLOT@-glusterfs-8-testing]
-name=GlusterFS 8 testing packages for $basearch
-baseurl=https://buildlogs.centos.org/centos/8/storage/$basearch/gluster-8/
-enabled=1
-gpgcheck=0
-
 [ovirt-@OVIRT_SLOT@-virtio-win-latest]
 name=virtio-win builds roughly matching what will be shipped in upcoming RHEL
 baseurl=https://fedorapeople.org/groups/virt/virtio-win/repo/latest
@@ -74,13 +68,8 @@ repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
 
-[ovirt-@OVIRT_SLOT@-advanced-virtualization-testing]
-name=Advanced Virtualization testing packages for $basearch
-baseurl=https://buildlogs.centos.org/centos/8/virt/$basearch/advanced-virtualization/
-enabled=1
-gpgcheck=0
-module_hotfixes=1
-
+# Once CentOS Stream will start providing 8.6 content we can drop this repo as
+# advanced virtualization is going to be included in AppStream.
 [ovirt-@OVIRT_SLOT@-centos-stream-advanced-virtualization-testing]
 name=Advanced Virtualization CentOS Stream testing packages for $basearch
 baseurl=https://buildlogs.centos.org/centos/8-stream/virt/$basearch/advancedvirt-common/
@@ -88,18 +77,24 @@ enabled=1
 gpgcheck=0
 module_hotfixes=1
 
-[ovirt-@OVIRT_SLOT@-centos-stream-advanced-virtualization]
-name=Advanced Virtualization CentOS Stream testing packages for $basearch
-baseurl=http://mirror.centos.org/centos/8-stream/virt/$basearch/advancedvirt-common/
-enabled=1
-gpgcheck=0
-module_hotfixes=1
-
 [ovirt-@OVIRT_SLOT@-centos-stream-ovirt45-testing]
-name=CentOS-8-Stream - oVirt 4.5 - testing
+name=CentOS Stream 8 - oVirt 4.5 - testing
 baseurl=https://buildlogs.centos.org/centos/8-stream/virt/$basearch/ovirt-45/
 gpgcheck=0
 enabled=1
+
+[ovirt-@OVIRT_SLOT@-centos-stream-gluster9-testing]
+name=CentOS Stream 8 - Glusterfs 9 - testing
+baseurl=https://buildlogs.centos.org/centos/8-stream/storage/$basearch/gluster-9/
+gpgcheck=0
+enabled=1
+
+[ovirt-@OVIRT_SLOT@-centos-stream-nfv-openvswitch2-testing]
+name=CentOS Stream 8 - NFV OpenVSwitch 2 - testing
+baseurl=https://buildlogs.centos.org/centos/8-stream/nfv/$basearch/openvswitch-2/
+gpgcheck=0
+enabled=1
+module_hotfixes=1
 
 [ovirt-@OVIRT_SLOT@-centos-opstools-testing]
 name=CentOS-8 - OpsTools - collectd
@@ -107,37 +102,8 @@ baseurl=https://buildlogs.centos.org/centos/8/opstools/$basearch/collectd-5/
 gpgcheck=0
 enabled=1
 
-[ovirt-@OVIRT_SLOT@-ovirt-imageio-preview]
-name=Copr repo for ovirt-imageio-preview owned by nsoffer
-baseurl=https://download.copr.fedorainfracloud.org/results/nsoffer/ovirt-imageio-preview/epel-8-$basearch/
-type=rpm-md
-skip_if_unavailable=True
-gpgcheck=1
-gpgkey=https://download.copr.fedorainfracloud.org/results/nsoffer/ovirt-imageio-preview/pubkey.gpg
-repo_gpgcheck=0
-enabled=1
-enabled_metadata=1
-
-[ovirt-@OVIRT_SLOT@-ioprocess-preview]
-name=Copr repo for iprocess-preview owned by nsoffer
-baseurl=https://download.copr.fedorainfracloud.org/results/nsoffer/ioprocess-preview/epel-8-$basearch/
-type=rpm-md
-skip_if_unavailable=True
-gpgcheck=1
-gpgkey=https://download.copr.fedorainfracloud.org/results/nsoffer/ioprocess-preview/pubkey.gpg
-repo_gpgcheck=0
-enabled=1
-enabled_metadata=1
-
-[ovirt-@OVIRT_SLOT@-centos-stream-nfv-openvswitch-testing]
-name=CentOS-$releasever - NFV OpenvSwitch Testing
-baseurl=https://buildlogs.centos.org/centos/8-stream/nfv/$basearch/openvswitch-2/
-gpgcheck=0
-enabled=1
-module_hotfixes=1
-
-[ovirt-@OVIRT_SLOT@-centos-ceph-pacific]
-name=Ceph packages for $basearch
+[ovirt-@OVIRT_SLOT@-centos-stream-ceph-pacific]
+name=CentOS Stream 8 - Ceph packages for $basearch
 baseurl=http://mirror.centos.org/centos/8-stream/storage/$basearch/ceph-pacific
 enabled=1
 priority=2
@@ -160,9 +126,9 @@ includepkgs=ceph-common
  python3-rbd
  python3-rgw
 
-[ovirt-@OVIRT_SLOT@-openstack-victoria]
-name=OpenStack Victoria Repository
-baseurl=http://mirror.centos.org/centos/$releasever/cloud/$basearch/openstack-victoria/
+[ovirt-@OVIRT_SLOT@-centos-stream-openstack-victoria]
+name=CentOS Stream 8 - OpenStack Victoria Repository
+baseurl=http://mirror.centos.org/centos/8-stream/cloud/$basearch/openstack-victoria/
 gpgcheck=0
 enabled=1
 module_hotfixes=1
@@ -265,3 +231,25 @@ includepkgs=python3-os-brick
  python3-six
  python3-requests
  python3-psutil
+
+[ovirt-@OVIRT_SLOT@-ovirt-imageio-preview]
+name=Copr repo for ovirt-imageio-preview owned by nsoffer
+baseurl=https://download.copr.fedorainfracloud.org/results/nsoffer/ovirt-imageio-preview/epel-8-$basearch/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://download.copr.fedorainfracloud.org/results/nsoffer/ovirt-imageio-preview/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+
+[ovirt-@OVIRT_SLOT@-ioprocess-preview]
+name=Copr repo for iprocess-preview owned by nsoffer
+baseurl=https://download.copr.fedorainfracloud.org/results/nsoffer/ioprocess-preview/epel-8-$basearch/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://download.copr.fedorainfracloud.org/results/nsoffer/ioprocess-preview/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1

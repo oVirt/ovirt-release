@@ -16,3 +16,9 @@ baseurl=https://buildlogs.centos.org/centos/9-stream/nfv/$basearch/openvswitch-2
 gpgcheck=0
 enabled=1
 module_hotfixes=1
+
+[ovirt-@OVIRT_SLOT@-centos-stream-ceph-pacific-testing]
+name=CentOS Stream 9 - Ceph Pacific - testing
+baseurl=https://buildlogs.centos.org/centos/9-stream/storage/$basearch/ceph-pacific/
+gpgcheck=0
+enabled=1

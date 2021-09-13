@@ -203,6 +203,7 @@ includepkgs=python3-os-brick
  python3-tabulate
  python3-networkx
  libzstd
+ libzstd-devel
  python3-pydot
  python3-pygraphviz
  python3-pandas

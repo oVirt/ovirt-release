@@ -317,7 +317,7 @@ systemctl restart cockpit.service >/dev/null 2>&1
 # - vdsm-hooks and their deps (bz #1947759)
 # set-enabled is needed to keep the repo enabled when post-processing the image
 
-install -m 644 "%{_datadir}/%{package_name}/node-optional.repo" "%{_sysconfdir}/yum.repos.d/node-optional.repo"
+install -m 644 "%{_datadir}/%{package_name}/node-optional%{dist}.repo" "%{_sysconfdir}/yum.repos.d/node-optional.repo"
 
 PYTHON=$(command -v python3 || command -v python)
 

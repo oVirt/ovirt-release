@@ -270,13 +270,19 @@ done
 # NAME, VERSION, ID, VERSION_ID, CPE_NAME
 . /etc/os-release || :
 
+%if 0%{?rhel} < 9
+VERSION_ID="8.6.2109.0"
+%else
+VERSION_ID="9.0.2109.0"
+%endif
+
 install -d /usr/lib/os.release.d/
-cat << EOF >> /usr/lib/os.release.d/%{host_node_release_file}
+cat << EOF > /usr/lib/os.release.d/%{host_node_release_file}
 NAME="$NAME"
 VERSION="$VERSION"
 ID="$ID"
 ID_LIKE="$ID_LIKE"
-VERSION_ID="8.6.2109.0"
+VERSION_ID="$VERSION_ID"
 VARIANT="oVirt Node %{package_version}"
 VARIANT_ID="ovirt-node"
 PRETTY_NAME="oVirt Node %{package_short_version}"

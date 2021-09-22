@@ -49,10 +49,12 @@ pushd exported-artifacts
         ${PACKAGER} repolist enabled
         ${PACKAGER} clean all
         ${PACKAGER} --downloadonly install ./*noarch.rpm
-        # check cinderlib integration packages till ovirt-host will require them
-        # https://bugzilla.redhat.com/1955375
-        ${PACKAGER} --downloadonly install ceph-common python3-os-brick
         if [[ "${ARCH}" == "x86_64" ]]; then
+            # check cinderlib integration packages till ovirt-host will require them
+            # https://bugzilla.redhat.com/1955375
+            # Not testing on ppc64le, reported issue: https://lists.centos.org/pipermail/centos-devel/2021-September/077339.html
+            ${PACKAGER} --downloadonly install ceph-common python3-os-brick
+
             ${PACKAGER} --downloadonly install ovirt-engine ovirt-engine-setup-plugin-websocket-proxy
             # check cinderlib integration packages till ovirt-engine will require them
             # https://bugzilla.redhat.com/1955375

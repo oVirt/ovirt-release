@@ -167,14 +167,13 @@ rm -rf "%{buildroot}/usr/share/ovirt-release-host-node"
 
 %post
 
-# Adjust repos as per dist and version
-DIST=fc
-#Fedora is good for both Fedora and Generic (and probably other based on Fedora)
-#Handling EL exception only (for now)
 DISTVER="$(rpm --eval "%%dist"|cut -c2-)"
 ARCH="$(rpm --eval "%%_arch")"
 if rpm --eval "%%dist" | grep -qFi 'el'; then
 	DIST=el
+else
+	echo "Unsupported distribution: ${DISTVER}"
+	exit 1
 fi
 
 if [[ "${DISTVER::3}" == "el8" ]] ; then
@@ -205,14 +204,13 @@ sed \
 
 %post tested
 
-# Adjust repos as per dist and version
-DIST=fc
-#Fedora is good for both Fedora and Generic (and probably other based on Fedora)
-#Handling EL exception only (for now)
 DISTVER="$(rpm --eval "%%dist"|cut -c2-)"
 ARCH="$(rpm --eval "%%_arch")"
 if rpm --eval "%%dist" | grep -qFi 'el'; then
 	DIST=el
+else
+	echo "Unsupported distribution: ${DISTVER}"
+	exit 1
 fi
 
 if [[ "${DISTVER::3}" == "el8" ]] ; then
@@ -248,12 +246,14 @@ sed \
 # ghost in this case solves that issue
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo
+%doc README.md
 
 
 %files tested
 %{_datadir}/%{package_name}-tested/
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-tested.repo
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
+%doc README.md
 
 %if %{with_node}
 %post -n ovirt-release-host-node
@@ -402,5 +402,5 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %endif
 
 %changelog
-* Tue Sep 07 2021 Sandro Bonazzola <sbonazzo@redhat.com> - 4.5.0
+* Tue Sep 07 2021 Sandro Bonazzola <sbonazzo@redhat.com> - 4.5.0-0.0.master
 - Bumped version to 4.5.0

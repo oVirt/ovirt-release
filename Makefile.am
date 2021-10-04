@@ -29,6 +29,7 @@ EXTRA_DIST = \
 	ovirt-release-master.spec.in \
 	node-optional.el8.repo \
 	node-optional.el9.repo \
+	README.md \
 	$(NULL)
 
 pkgdata_DATA = \

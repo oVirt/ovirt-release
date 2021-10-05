@@ -2,10 +2,10 @@
 
 [onn-baseos]
 name = oVirt Node Optional packages from CentOS Stream $releasever - BaseOS
-baseurl = https://composes.stream.centos.org/production/latest-CentOS-Stream/compose/BaseOS/$basearch/os/
-gpgcheck = 0
+baseurl = http://mirror.stream.centos.org/9-stream/BaseOS/$basearch/os/
+gpgcheck = 1
 enabled = 1
-#gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
 includepkgs = fcoe-utils
 
 [onn-sap]

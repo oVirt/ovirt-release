@@ -39,6 +39,12 @@ baseurl=https://buildlogs.centos.org/centos/9-stream/storage/$basearch/ceph-paci
 gpgcheck=0
 enabled=1
 
+[ovirt-@OVIRT_SLOT@-centos-stream-openstack-yoga]
+name=CentOS Stream 9 - OpenStack Yoga Repository
+baseurl=https://buildlogs.centos.org/9-stream/cloud/$basearch/openstack-yoga/
+gpgcheck=0
+enabled=1
+
 [ovirt-@OVIRT_SLOT@-ovirt-imageio-preview]
 name=Copr repo for ovirt-imageio-preview owned by nsoffer
 baseurl=https://download.copr.fedorainfracloud.org/results/nsoffer/ovirt-imageio-preview/centos-stream-9-$basearch/

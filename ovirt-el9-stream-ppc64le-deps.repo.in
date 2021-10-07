@@ -18,7 +18,7 @@ enabled=1
 module_hotfixes=1
 
 [ovirt-@OVIRT_SLOT@-centos-stream-opstools-collectd5-testing]
-name=CentOS-8 - OpsTools - collectd
+name=CentOS Stream 9 - OpsTools - Collectd 5 - testing
 baseurl=https://buildlogs.centos.org/9-stream/opstools/$basearch/collectd-5/
 gpgcheck=0
 enabled=1

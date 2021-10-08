@@ -50,11 +50,6 @@ pushd exported-artifacts
         ${PACKAGER} clean all
         ${PACKAGER} --downloadonly install ./*noarch.rpm
         if [[ "${ARCH}" == "x86_64" ]]; then
-            # check cinderlib integration packages till ovirt-host will require them
-            # https://bugzilla.redhat.com/1955375
-            # Not testing on ppc64le, reported issue: https://lists.centos.org/pipermail/centos-devel/2021-September/077339.html
-            ${PACKAGER} --downloadonly install ceph-common python3-os-brick
-
             ${PACKAGER} --downloadonly install ovirt-engine ovirt-engine-setup-plugin-websocket-proxy
             # check cinderlib integration packages till ovirt-engine will require them
             # https://bugzilla.redhat.com/1955375
@@ -64,15 +59,12 @@ pushd exported-artifacts
      [[ "$(rpm --eval "%dist")" == ".el9" ]]; then
         # el9 support is broken since we just started working on it, just provide a hint on what's missing
         # without causing the test to fail.
-        ${PACKAGER} --downloadonly install ./*noarch.rpm || true
-        # check cinderlib integration packages till ovirt-host will require them
-        # https://bugzilla.redhat.com/1955375
-        ${PACKAGER} --downloadonly install ceph-common python3-os-brick || true
+        ${PACKAGER} --downloadonly install ./*noarch.rpm
         if [[ "${ARCH}" == "x86_64" ]]; then
             ${PACKAGER} --downloadonly install ovirt-engine ovirt-engine-setup-plugin-websocket-proxy || true
             # check cinderlib integration packages till ovirt-engine will require them
             # https://bugzilla.redhat.com/1955375
-            ${PACKAGER} --downloadonly install python3-cinderlib ceph-common || true
+            ${PACKAGER} --downloadonly install python3-cinderlib ceph-common
         fi
     else
         if [[ $(${PACKAGER} repolist enabled|grep -v ovirt|grep epel) ]] ; then

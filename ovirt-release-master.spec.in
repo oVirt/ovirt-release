@@ -203,6 +203,7 @@ if [[ "${DISTVER::3}" == "el9" ]] ; then
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-el9-stream-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 	%if 0%{?centos} >= 9
 	dnf config-manager --set-enabled resilientstorage
+	dnf config-manager --set-enabled crb
 	%endif
 fi
 
@@ -243,6 +244,7 @@ if [[ "${DISTVER::3}" == "el9" ]] ; then
 	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-el9-stream-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 	%if 0%{?centos} >= 9
 	dnf config-manager --set-enabled resilientstorage
+	dnf config-manager --set-enabled crb
 	%endif
 fi
 

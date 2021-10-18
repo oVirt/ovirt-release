@@ -46,6 +46,9 @@ BuildRequires:	autoconf
 Requires:	system-release
 Requires:	tar
 Requires:	python3
+%if 0%{?centos} >= 9
+Requires(post): python3-dnf-plugins-core
+%endif
 
 %description
 This package contains the yum configuration for oVirt repositories
@@ -127,6 +130,9 @@ Group:		System Environment/Base
 Requires:	system-release
 Requires:	tar
 Requires:	python3
+%if 0%{?centos} >= 9
+Requires(post): python3-dnf-plugins-core
+%endif
 
 %description tested
 This package contains the yum configuration for oVirt tested repositories
@@ -195,6 +201,9 @@ fi
 
 if [[ "${DISTVER::3}" == "el9" ]] ; then
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-el9-stream-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+	%if 0%{?centos} >= 9
+	dnf config-manager --set-enabled resilientstorage
+	%endif
 fi
 
 
@@ -232,6 +241,9 @@ fi
 
 if [[ "${DISTVER::3}" == "el9" ]] ; then
 	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-el9-stream-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+	%if 0%{?centos} >= 9
+	dnf config-manager --set-enabled resilientstorage
+	%endif
 fi
 
 sed \

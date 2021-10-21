@@ -1,4 +1,5 @@
-# oVirt Hosted Engine Setup
+# oVirt Release
+[![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-release/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-release/)
 
 Welcome to the oVirt Release source repository.
 

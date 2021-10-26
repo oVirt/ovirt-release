@@ -46,9 +46,7 @@ BuildRequires:	autoconf
 Requires:	system-release
 Requires:	tar
 Requires:	python3
-%if 0%{?centos} >= 9
 Requires(post): python3-dnf-plugins-core
-%endif
 
 %description
 This package contains the yum configuration for oVirt repositories
@@ -197,6 +195,9 @@ if [[ "${DISTVER::3}" == "el8" ]] ; then
 	if [ -f /etc/yum.repos.d/CentOS-Stream-PowerTools.repo ] ; then
 		sed -i "s:enabled=0:enabled=1:" /etc/yum.repos.d/CentOS-Stream-PowerTools.repo
 	fi
+	if [ -f /etc/yum.repos.d/almalinux-powertools.repo ] ; then
+		dnf config-manager --set-enabled powertools
+	fi
 fi
 
 if [[ "${DISTVER::3}" == "el9" ]] ; then
@@ -237,6 +238,9 @@ if [[ "${DISTVER::3}" == "el8" ]] ; then
 	fi
 	if [ -f /etc/yum.repos.d/CentOS-Stream-PowerTools.repo ] ; then
 		sed -i "s:enabled=0:enabled=1:" /etc/yum.repos.d/CentOS-Stream-PowerTools.repo
+	fi
+	if [ -f /etc/yum.repos.d/almalinux-powertools.repo ] ; then
+		dnf config-manager --set-enabled powertools
 	fi
 fi
 

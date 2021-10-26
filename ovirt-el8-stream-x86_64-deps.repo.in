@@ -106,7 +106,6 @@ enabled=1
 name=CentOS Stream 8 - Ceph packages for $basearch
 baseurl=http://mirror.centos.org/centos/8-stream/storage/$basearch/ceph-pacific
 enabled=1
-priority=2
 gpgcheck=0
 
 [ovirt-@OVIRT_SLOT@-centos-stream-openstack-yoga-testing]

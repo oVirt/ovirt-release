@@ -15,3 +15,14 @@ enabled=1
 gpgcheck=0
 countme=1
 fastestmirror=1
+
+[copr:copr.fedorainfracloud.org:ovirt:ovirt-master-snapshot]
+name=Copr repo for ovirt-master-snapshot owned by ovirt
+baseurl=https://download.copr.fedorainfracloud.org/results/ovirt/ovirt-master-snapshot/centos-stream-$releasever-$basearch/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://download.copr.fedorainfracloud.org/results/ovirt/ovirt-master-snapshot/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1

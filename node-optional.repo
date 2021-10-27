@@ -6,7 +6,7 @@ mirrorlist = http://mirrorlist.centos.org/?release=$stream&arch=$basearch&repo=B
 gpgcheck = 1
 enabled = 1
 gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
-includepkgs = fcoe-utils
+includepkgs = dnf-plugin-subscription-manager fcoe-utils python3-librepo subscription-manager usermode
 
 [onn-appstream]
 name = oVirt Node Optional packages from CentOS Stream $releasever - AppStream

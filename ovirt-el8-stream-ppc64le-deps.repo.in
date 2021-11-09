@@ -78,9 +78,9 @@ baseurl=https://buildlogs.centos.org/centos/8-stream/virt/$basearch/ovirt-45/
 gpgcheck=0
 enabled=1
 
-[ovirt-@OVIRT_SLOT@-centos-stream-gluster9-testing]
-name=CentOS Stream 8 - Glusterfs 9 - testing
-baseurl=https://buildlogs.centos.org/centos/8-stream/storage/$basearch/gluster-9/
+[ovirt-@OVIRT_SLOT@-centos-stream-gluster10-testing]
+name=CentOS Stream 8 - Glusterfs 10 - testing
+baseurl=https://buildlogs.centos.org/centos/8-stream/storage/$basearch/gluster-10/
 gpgcheck=0
 enabled=1
 

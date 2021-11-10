@@ -128,9 +128,7 @@ Group:		System Environment/Base
 Requires:	system-release
 Requires:	tar
 Requires:	python3
-%if 0%{?centos} >= 9
 Requires(post): python3-dnf-plugins-core
-%endif
 
 %description tested
 This package contains the yum configuration for oVirt tested repositories

@@ -171,6 +171,7 @@ rm -rf "%{buildroot}/usr/share/ovirt-release-host-node"
 
 DISTVER="$(rpm --eval "%%dist"|cut -c2-)"
 ARCH="$(rpm --eval "%%_arch")"
+ID="$(source /etc/os-release && echo $ID)"
 if rpm --eval "%%dist" | grep -qFi 'el'; then
 	DIST=el
 else
@@ -200,10 +201,10 @@ fi
 
 if [[ "${DISTVER::3}" == "el9" ]] ; then
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-el9-stream-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-	%if 0%{?centos} >= 9
-	dnf config-manager --set-enabled resilientstorage
-	dnf config-manager --set-enabled crb
-	%endif
+	if [[ "${ID}" == "centos" ]]; then
+		dnf config-manager --set-enabled resilientstorage
+		dnf config-manager --set-enabled crb
+	fi
 fi
 
 
@@ -215,6 +216,7 @@ sed \
 
 DISTVER="$(rpm --eval "%%dist"|cut -c2-)"
 ARCH="$(rpm --eval "%%_arch")"
+ID="$(source /etc/os-release && echo $ID)"
 if rpm --eval "%%dist" | grep -qFi 'el'; then
 	DIST=el
 else
@@ -244,10 +246,10 @@ fi
 
 if [[ "${DISTVER::3}" == "el9" ]] ; then
 	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-el9-stream-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-	%if 0%{?centos} >= 9
-	dnf config-manager --set-enabled resilientstorage
-	dnf config-manager --set-enabled crb
-	%endif
+	if [[ "${ID}" == "centos" ]]; then
+		dnf config-manager --set-enabled resilientstorage
+		dnf config-manager --set-enabled crb
+	fi
 fi
 
 sed \

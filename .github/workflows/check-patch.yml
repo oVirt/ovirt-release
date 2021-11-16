@@ -41,6 +41,16 @@ jobs:
           find tmp.repos -iname \*rpm -exec mv "{}" exported-artifacts/ \;
           mv ./*tar.gz exported-artifacts/
 
+    - name: test install
+      run: |
+          yum install -y exported-artifacts/ovirt-release-master-4*noarch.rpm
+          yum module enable -y javapackages-tools:201801
+          yum module enable -y maven:3.5
+          yum module enable -y pki-deps:10.6
+          yum module enable -y postgresql:12
+          yum --downloadonly install -y exported-artifacts/*noarch.rpm
+          yum --downloadonly install -y ovirt-engine ovirt-engine-setup-plugin-websocket-proxy
+
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
       with:
@@ -81,6 +91,11 @@ jobs:
           mkdir -p exported-artifacts
           find tmp.repos -iname \*rpm -exec mv "{}" exported-artifacts/ \;
           mv ./*tar.gz exported-artifacts/
+
+    - name: test install
+      run: |
+          yum install -y exported-artifacts/ovirt-release-master-4*noarch.rpm
+          yum --downloadonly install -y exported-artifacts/*noarch.rpm
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2

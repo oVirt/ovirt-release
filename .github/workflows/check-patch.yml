@@ -17,7 +17,7 @@ jobs:
     - name: prepare env
       run: |
            mkdir -p ${PWD}/tmp.repos/BUILD
-           yum install -y autoconf automake gettext-devel git systemd make git rpm-build
+           yum install -y --setopt=tsflags=nodocs autoconf automake gettext-devel git systemd make git rpm-build
 
     - uses: actions/checkout@v2
       with:
@@ -30,7 +30,7 @@ jobs:
       run: ./configure
 
     - name: run distcheck
-      run: make distcheck
+      run: make -j distcheck
 
     - name: Build RPM
       run: rpmbuild -D "_topdir ${PWD}/tmp.repos" -D "release_suffix .$(date -u +%Y%m%d%H%M%S).git$(git rev-parse --short HEAD)" -ta ovirt-release*.tar.gz
@@ -68,7 +68,7 @@ jobs:
     - name: prepare env
       run: |
            mkdir -p ${PWD}/tmp.repos/BUILD
-           yum install -y autoconf automake gettext-devel git systemd make git rpm-build
+           yum install -y --setopt=tsflags=nodocs autoconf automake gettext-devel git systemd make git rpm-build
 
     - uses: actions/checkout@v2
       with:
@@ -81,7 +81,7 @@ jobs:
       run: ./configure
 
     - name: run distcheck
-      run: make distcheck
+      run: make -j distcheck
 
     - name: Build RPM
       run: rpmbuild -D "_topdir ${PWD}/tmp.repos" -D "release_suffix .$(date -u +%Y%m%d%H%M%S).git$(git rev-parse --short HEAD)" -ta ovirt-release*.tar.gz

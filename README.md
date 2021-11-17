@@ -5,7 +5,7 @@ Welcome to the oVirt Release source repository. This repository is hosted on [Gi
 
 ## How to contribute
 
-Your contributions are welcome.
+All contributions are welcome - patches, bug reports, and documentation issues.
 
 ### Submitting patches
 

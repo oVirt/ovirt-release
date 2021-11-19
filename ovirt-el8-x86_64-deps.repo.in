@@ -90,6 +90,7 @@ name=CentOS Stream 8 - oVirt 4.5 - testing
 baseurl=https://buildlogs.centos.org/centos/8-stream/virt/$basearch/ovirt-45/
 gpgcheck=0
 enabled=1
+module_hotfixes=1
 
 [ovirt-@OVIRT_SLOT@-centos-stream-gluster10-testing]
 name=CentOS Stream 8 - Glusterfs 10 - testing

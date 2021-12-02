@@ -16,6 +16,7 @@ dnl You should have received a copy of the GNU Lesser General Public
 dnl License along with this library; if not, write to the Free Software
 dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 dnl
+dnl SPDX-License-Identifier: LGPL-2.1-or-later
 
 
 define([VERSION_NUMBER], [4.5.0])

@@ -16,6 +16,7 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #
+# SPDX-License-Identifier: LGPL-2.1-or-later
 
 %global	package_version @PACKAGE_VERSION@
 %global	package_name @PACKAGE_NAME@
@@ -265,6 +266,7 @@ sed \
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
 %ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo
 %doc README.md
+%license LICENSE-2.0.txt
 
 
 %files tested
@@ -412,7 +414,8 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %{_prefix}/share/ovirt-release-host-node/branding
 %{_presetdir}/98-ovirt-host-node.preset
 %{_prefix}/share/ovirt-release-host-node/branding/*
-/etc/dnf/protected.d/ovirt-release-host-node.conf
+%{_sysconfdir}/dnf/protected.d/ovirt-release-host-node.conf
+%license gpl-2.0.txt
 
 
 # Add a folder for local datastores

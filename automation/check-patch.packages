@@ -1,8 +1,0 @@
-autoconf
-automake
-gettext-devel
-git
-make
-dnf
-dnf-plugins-core
-systemd

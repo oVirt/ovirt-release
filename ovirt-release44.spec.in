@@ -31,7 +31,7 @@
 
 Name:		%{package_name}
 Version:	@PACKAGE_RPM_VERSION@
-Release:	@PACKAGE_RPM_RELEASE@%{?release_suffix}%{?dist}
+Release:	@PACKAGE_RPM_RELEASE@%{?dist}
 Summary:	The oVirt repository configuration
 Group:		System Environment/Base
 
@@ -59,7 +59,7 @@ This package contains the yum configuration for oVirt repositories
 %package -n ovirt-release-host-node
 Summary:	The oVirt Node release file
 Version:	@PACKAGE_RPM_VERSION@
-Release:	@PACKAGE_RPM_RELEASE@%{?release_suffix}%{?dist}
+Release:	@PACKAGE_RPM_RELEASE@%{?dist}
 Group:		System Environment/Base
 License:	GPLv2
 URL:		https://www.ovirt.org
@@ -105,7 +105,7 @@ oVirt Node distribution dependencies, presets and required settings.
 %package -n ovirt-node-ng-image-update-placeholder
 Summary:	The oVirt Node Image Update Placeholder
 Version:	@PACKAGE_RPM_VERSION@
-Release:	@PACKAGE_RPM_RELEASE@%{?release_suffix}%{?placeholder_release_suffix}%{?dist}
+Release:	@PACKAGE_RPM_RELEASE@%{?placeholder_release_suffix}%{?dist}
 Group:		System Environment/Base
 License:	GPLv2
 URL:		https://www.ovirt.org
@@ -498,6 +498,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %endif
 
 %changelog
+* Fri Dec 03 2021 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.9.1-1
+- 4.4.9.1
+
 * Mon Oct 18 2021 Lev Veyde <lveyde@redhat.com> - 4.4.9-1
 - 4.4.9
 

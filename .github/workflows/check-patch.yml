@@ -1,10 +1,9 @@
+---
 name: Check patch
 
 on:
   push:
-    branches: [master]
   pull_request:
-    branches: [master]
 
 jobs:
   build-el8:
@@ -41,9 +40,18 @@ jobs:
           find tmp.repos -iname \*rpm -exec mv "{}" exported-artifacts/ \;
           mv ./*tar.gz exported-artifacts/
 
-    - name: test install
+    - name: install master built rpm
+      if: contains(github.ref, "ref/head/master")
       run: |
           yum install -y exported-artifacts/ovirt-release-master-4*noarch.rpm
+
+    - name: install 4.4 built rpm
+      if: contains(github.ref, "ref/head/ovirt-4\.4")
+      run: |
+          yum install -y exported-artifacts/ovirt-release44-4*noarch.rpm
+
+    - name: test project installation
+      run: |
           yum module enable -y javapackages-tools:201801
           yum module enable -y maven:3.5
           yum module enable -y pki-deps:10.6
@@ -59,11 +67,11 @@ jobs:
 
 
   build-el9:
-
+    # Build only on master
     runs-on: ubuntu-latest
     container:
       image: quay.io/centos/centos:stream9
-
+    if: contains(github.ref, "ref/head/master")
     steps:
     - name: prepare env
       run: |

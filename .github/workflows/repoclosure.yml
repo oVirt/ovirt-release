@@ -169,7 +169,7 @@ jobs:
         ISSUENO=$(gh issue list -l $LABEL | awk ' { print $1 } ' | head -n 1)
         if [ -z "$ISSUENO" ]; then
             MESSAGE="The repoclosure CI job failed. Please investigate: https://github.com/oVirt/ovirt-release/actions/runs/${{ github.run_id }}"
-            gh issue create --title $TITLE --body "${MESSAGE}" --label "${LABEL}"
+            gh issue create --title "${TITLE}" --body "${MESSAGE}" --label "${LABEL}"
         else
             MESSAGE="The repoclosure CI job is still failing. Please investigate: https://github.com/oVirt/ovirt-release/actions/runs/${{ github.run_id }}"
             gh issue comment --body "${MESSAGE}"

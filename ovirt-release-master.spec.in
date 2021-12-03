@@ -22,10 +22,6 @@
 %global	package_name @PACKAGE_NAME@
 %global	package_short_version @PACKAGE_SHORT_VERSION@
 %global	ovirt_version @OVIRT_SLOT@
-%global	ovirt_yum_repo @OVIRT_YUM_REPO@
-%global	ovirt_repo_path_normal @REPO_PATH_NORMAL@
-%global	ovirt_repo_path_static @REPO_PATH_STATIC@
-%global	repo_url_key @REPO_URL_KEY@
 %define is_x86 %(test %{_arch} = x86_64 && echo 1 || echo 0)
 %global with_node 1
 
@@ -127,11 +123,7 @@ image to allow upgrading itself
 %setup -q -n "%{package_name}-%{package_version}"
 
 %build
-%configure \
-	--with-ovirt-yum-repo=%{ovirt_yum_repo} \
-	--with-repo-url-key=%{repo_url_key} \
-	--with-repo-path-normal=%{ovirt_repo_path_normal} \
-	--with-repo-path-static=%{ovirt_repo_path_static}
+%configure
 make "%{?_smp_mflags}"
 
 
@@ -195,10 +187,7 @@ if [[ "${DISTVER::3}" == "el9" ]] ; then
 	fi
 fi
 
-
-sed \
-	-e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
-	<"%{_datadir}/%{package_name}/ovirt-snapshot.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
+install -m 644 "%{_datadir}/%{package_name}/ovirt-snapshot.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
 
 
 %files

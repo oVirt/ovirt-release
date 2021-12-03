@@ -1,19 +1,3 @@
-[ovirt-@OVIRT_SLOT@-snapshot]
-name=Latest oVirt @OVIRT_SLOT@ nightly snapshot
-baseurl=@OVIRT_YUM_REPO@/pub/ovirt-@OVIRT_SLOT@-snapshot/rpm/@DIST@$releasever/
-#@URLKEY@=@OVIRT_YUM_REPO@@REPO_PATH_NORMAL@@DIST@$releasever
-enabled=1
-gpgcheck=0
-countme=1
-
-[ovirt-@OVIRT_SLOT@-snapshot-static]
-name=Latest oVirt @OVIRT_SLOT@ additional nightly snapshot
-baseurl=@OVIRT_YUM_REPO@/pub/ovirt-@OVIRT_SLOT@-snapshot-static/rpm/@DIST@$releasever/
-#@URLKEY@=@OVIRT_YUM_REPO@@REPO_PATH_STATIC@@DIST@$releasever
-enabled=1
-gpgcheck=0
-countme=1
-
 [copr:copr.fedorainfracloud.org:ovirt:ovirt-master-snapshot]
 name=Copr repo for ovirt-master-snapshot owned by ovirt
 baseurl=https://download.copr.fedorainfracloud.org/results/ovirt/ovirt-master-snapshot/centos-stream-$releasever-$basearch/

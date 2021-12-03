@@ -46,7 +46,6 @@ pkgdata_DATA = \
 	ovirt-el9-stream-ppc64le-deps.repo \
 	ovirt-el9-stream-x86_64-deps.repo \
 	ovirt-snapshot.repo \
-	ovirt-tested.repo \
 	node-optional.el8.repo \
 	node-optional.el9.repo \
 	$(NULL)
@@ -60,7 +59,6 @@ dist_noinst_DATA = \
 	$(srcdir)/ovirt-el9-stream-ppc64le-deps.repo.in \
 	$(srcdir)/ovirt-el9-stream-x86_64-deps.repo.in \
 	$(srcdir)/ovirt-snapshot.repo.in \
-	$(srcdir)/ovirt-tested.repo.in \
 	$(NULL)
 
 # vim: ts=8

@@ -123,17 +123,6 @@ A sub-package to be included into oVirt Node Next squashfs
 image to allow upgrading itself
 %endif # node supported targets
 
-%package tested
-Summary:	oVirt tested repository configuration
-Group:		System Environment/Base
-Requires:	system-release
-Requires:	tar
-Requires:	python3
-Requires(post): python3-dnf-plugins-core
-
-%description tested
-This package contains the yum configuration for oVirt tested repositories
-
 %prep
 %setup -q -n "%{package_name}-%{package_version}"
 
@@ -152,10 +141,8 @@ rm -rf "%{buildroot}"
 #Allow ghost files
 install -d 755 "%{buildroot}%{_sysconfdir}/yum.repos.d"
 
-touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-tested.repo"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
 touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-cp -rl "%{buildroot}%{_datadir}/%{package_name}" "%{buildroot}%{_datadir}/%{package_name}-tested"
 
 %if %{with_node}
 install -d 755 "%{buildroot}/data/images/rhev"
@@ -213,50 +200,6 @@ sed \
 	-e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
 	<"%{_datadir}/%{package_name}/ovirt-snapshot.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
 
-%post tested
-
-DISTVER="$(rpm --eval "%%dist"|cut -c2-)"
-ARCH="$(rpm --eval "%%_arch")"
-ID="$(source /etc/os-release && echo $ID)"
-if rpm --eval "%%dist" | grep -qFi 'el'; then
-	DIST=el
-else
-	echo "Unsupported distribution: ${DISTVER}"
-	exit 1
-fi
-
-if [[ "${DISTVER::3}" == "el8" ]] ; then
-	if [ -f /etc/dnf/vars/stream ] ; then
-		install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-el8-stream-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-	else
-		install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-el8-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-	fi
-	if [ -f /etc/yum.repos.d/CentOS-PowerTools.repo ] ; then
-		sed -i "s:enabled=0:enabled=1:" /etc/yum.repos.d/CentOS-PowerTools.repo
-	fi
-	if [ -f /etc/yum.repos.d/CentOS-Linux-PowerTools.repo ] ; then
-		sed -i "s:enabled=0:enabled=1:" /etc/yum.repos.d/CentOS-Linux-PowerTools.repo
-	fi
-	if [ -f /etc/yum.repos.d/CentOS-Stream-PowerTools.repo ] ; then
-		sed -i "s:enabled=0:enabled=1:" /etc/yum.repos.d/CentOS-Stream-PowerTools.repo
-	fi
-	if [ -f /etc/yum.repos.d/almalinux-powertools.repo ] ; then
-		dnf config-manager --set-enabled powertools
-	fi
-fi
-
-if [[ "${DISTVER::3}" == "el9" ]] ; then
-	install -m 644 "%{_datadir}/%{package_name}-tested/ovirt-el9-stream-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-	if [[ "${ID}" == "centos" ]]; then
-		dnf config-manager --set-enabled resilientstorage
-		dnf config-manager --set-enabled crb
-	fi
-fi
-
-sed \
-	-e "s/@DIST@/${DIST}/g; s/@URLKEY@/%{repo_url_key}/g" \
-	<"%{_datadir}/%{package_name}-tested/ovirt-tested.repo" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-tested.repo"
-
 
 %files
 %{_datadir}/%{package_name}/
@@ -268,12 +211,6 @@ sed \
 %doc README.md
 %license LICENSE-2.0.txt
 
-
-%files tested
-%{_datadir}/%{package_name}-tested/
-%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-tested.repo
-%ghost %config(noreplace) %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo
-%doc README.md
 
 %if %{with_node}
 %post -n ovirt-release-host-node

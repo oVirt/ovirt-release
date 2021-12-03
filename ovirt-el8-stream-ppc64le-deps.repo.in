@@ -43,16 +43,6 @@ baseurl=https://fedorapeople.org/groups/virt/virtio-win/repo/latest
 enabled=1
 gpgcheck=0
 
-[ovirt-@OVIRT_SLOT@-copr:copr.fedorainfracloud.org:sbonazzo:EL8_collection]
-name=Copr repo for EL8_collection owned by sbonazzo
-baseurl=https://copr-be.cloud.fedoraproject.org/results/sbonazzo/EL8_collection/epel-8-$basearch/
-type=rpm-md
-gpgcheck=1
-gpgkey=https://copr-be.cloud.fedoraproject.org/results/sbonazzo/EL8_collection/pubkey.gpg
-repo_gpgcheck=0
-enabled=1
-enabled_metadata=1
-
 [ovirt-@OVIRT_SLOT@-copr:copr.fedorainfracloud.org:sac:gluster-ansible]
 name=Copr repo for gluster-ansible owned by sac
 baseurl=https://copr-be.cloud.fedoraproject.org/results/sac/gluster-ansible/epel-8-x86_64/

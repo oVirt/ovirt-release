@@ -1,5 +1,6 @@
 # System stuff
 # https://fedoraproject.org/w/index.php?title=Starting_services_by_default&oldid=377748
+# SPDX-License-Identifier: GPL-2.0
 enable cockpit.socket
 enable sshd.service
 enable NetworkManager.service

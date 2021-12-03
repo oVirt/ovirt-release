@@ -16,6 +16,7 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #
+# SPDX-License-Identifier: LGPL-2.1-or-later
 
 AUTOMAKE_OPTIONS = foreign 1.9
 
@@ -25,10 +26,14 @@ SUBDIRS = \
 
 EXTRA_DIST = \
 	autogen.sh \
-	ovirt-release-master.spec \
-	ovirt-release-master.spec.in \
+	gpl-2.0.txt \
+	lgpl-2.1.txt \
+	LICENSE-2.0.txt \
+	LICENSE.md \
 	node-optional.el8.repo \
 	node-optional.el9.repo \
+	ovirt-release-master.spec \
+	ovirt-release-master.spec.in \
 	README.md \
 	$(NULL)
 

@@ -14,6 +14,8 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA  02110-1301, USA.  A copy of the GNU General Public License is
 # also available at http://www.gnu.org/copyleft/gpl.html.
+#
+# SPDX-License-Identifier: GPL-2.0
 brandingdir=$(prefix)/share/ovirt-release-host-node/branding
 systemdpresetdir=$(prefix)/lib/systemd/system-preset
 

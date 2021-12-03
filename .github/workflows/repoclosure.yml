@@ -1,0 +1,151 @@
+---
+name: Check repository closure
+
+# TODO: open an issue if closure is broken?
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Running every hour in EMEA timezone
+    - cron:  '0 6-18 * * *'
+
+jobs:
+  copr-ovirt-master-snapshot-el8:
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/centos/centos:stream8
+
+    steps:
+    - name: Enable repositories
+      run: |
+          rpm --import https://download.copr.fedorainfracloud.org/results/ovirt/ovirt-master-snapshot/pubkey.gpg
+          dnf --repofrompath=ovirt-master-snapshot,https://download.copr.fedorainfracloud.org/results/ovirt/ovirt-master-snapshot/centos-stream-8-x86_64/ install -y ovirt-release-master
+
+    - name: Enable required modules
+      run: |
+          yum module enable -y javapackages-tools:201801
+          yum module enable -y maven:3.5
+          yum module enable -y pki-deps:10.6
+          yum module enable -y postgresql:12
+
+    - name: Run repoclosure on oVirt Master Snapshot from COPR
+      run: |
+          dnf repoclosure --newest --refresh \
+            --check copr:copr.fedorainfracloud.org:ovirt:ovirt-master-snapshot \
+            --repo appstream \
+            --repo baseos \
+            --repo extras \
+            --repo ovirt-master-centos-opstools-testing \
+            --repo ovirt-master-centos-stream-advanced-virtualization-testing \
+            --repo ovirt-master-centos-stream-ceph-pacific \
+            --repo ovirt-master-centos-stream-gluster10-testing \
+            --repo ovirt-master-centos-stream-nfv-openvswitch2-testing \
+            --repo ovirt-master-centos-stream-openstack-yoga-testing \
+            --repo ovirt-master-centos-stream-ovirt45-testing \
+            --repo ovirt-master-copr:copr.fedorainfracloud.org:sac:gluster-ansible \
+            --repo ovirt-master-epel \
+            --repo ovirt-master-ioprocess-preview \
+            --repo ovirt-master-ovirt-imageio-preview \
+            --repo ovirt-master-virtio-win-latest \
+            --repo powertools \
+            --repo rdo-delorean-component-cinder \
+            --repo rdo-delorean-component-clients \
+            --repo rdo-delorean-component-common \
+            --repo rdo-delorean-component-network
+
+  ovirt-master-centos-stream-ovirt45-testing-el8:
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/centos/centos:stream8
+
+    steps:
+    - name: Enable repositories
+      run: |
+          rpm --import https://download.copr.fedorainfracloud.org/results/ovirt/ovirt-master-snapshot/pubkey.gpg
+          dnf --repofrompath=ovirt-master-snapshot,https://download.copr.fedorainfracloud.org/results/ovirt/ovirt-master-snapshot/centos-stream-8-x86_64/ install -y ovirt-release-master
+
+    - name: Enable required modules
+      run: |
+          yum module enable -y javapackages-tools:201801
+          yum module enable -y maven:3.5
+          yum module enable -y pki-deps:10.6
+          yum module enable -y postgresql:12
+
+    - name: Run repoclosure on CentOS Virtualization SIG - oVirt 4.5 testing
+      run: |
+          dnf repoclosure --newest --refresh \
+            --check ovirt-master-centos-stream-ovirt45-testing \
+            --repo appstream \
+            --repo baseos \
+            --repo extras \
+            --repo ovirt-master-centos-opstools-testing \
+            --repo ovirt-master-centos-stream-advanced-virtualization-testing \
+            --repo ovirt-master-centos-stream-ceph-pacific \
+            --repo ovirt-master-centos-stream-gluster10-testing \
+            --repo ovirt-master-centos-stream-nfv-openvswitch2-testing \
+            --repo ovirt-master-centos-stream-openstack-yoga-testing \
+            --repo ovirt-master-copr:copr.fedorainfracloud.org:sac:gluster-ansible \
+            --repo powertools \
+            --repo rdo-delorean-component-cinder \
+            --repo rdo-delorean-component-clients \
+            --repo rdo-delorean-component-common \
+            --repo rdo-delorean-component-network
+
+  copr-ovirt-master-snapshot-el9:
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/centos/centos:stream9
+
+    steps:
+    - name: Enable repositories
+      run: |
+          dnf copr enable -y ovirt/ovirt-master-snapshot
+          dnf install -y ovirt-release-master
+
+    - name: Run repoclosure on oVirt Master Snapshot from COPR
+      run: |
+          dnf repoclosure --newest --refresh \
+            --check copr:copr.fedorainfracloud.org:ovirt:ovirt-master-snapshot \
+            --repo appstream \
+            --repo baseos \
+            --repo resilientstorage \
+            --repo crb \
+            --repo ovirt-master-centos-stream-ceph-pacific-testing \
+            --repo ovirt-master-centos-stream-gluster10-testing \
+            --repo ovirt-master-centos-stream-nfv-openvswitch2-testing \
+            --repo ovirt-master-centos-stream-openstack-yoga-testing \
+            --repo ovirt-master-centos-stream-opstools-collectd5-testing \
+            --repo ovirt-master-centos-stream-ovirt45-testing \
+            --repo rdo-delorean-component-cinder \
+            --repo rdo-delorean-component-clients \
+            --repo rdo-delorean-component-common \
+            --repo rdo-delorean-component-network
+
+  ovirt-master-centos-stream-ovirt45-testing-el9:
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/centos/centos:stream9
+
+    steps:
+    - name: Enable repositories
+      run: |
+          dnf copr enable -y ovirt/ovirt-master-snapshot
+          dnf install -y ovirt-release-master
+
+    - name: Run repoclosure on oVirt Master Snapshot from COPR
+      run: |
+          dnf repoclosure --newest --refresh \
+            --check ovirt-master-centos-stream-ovirt45-testing \
+            --repo appstream \
+            --repo baseos \
+            --repo crb \
+            --repo ovirt-master-centos-stream-ceph-pacific-testing \
+            --repo ovirt-master-centos-stream-gluster10-testing \
+            --repo ovirt-master-centos-stream-nfv-openvswitch2-testing \
+            --repo ovirt-master-centos-stream-openstack-yoga-testing \
+            --repo ovirt-master-centos-stream-opstools-collectd5-testing \
+            --repo rdo-delorean-component-cinder \
+            --repo rdo-delorean-component-clients \
+            --repo rdo-delorean-component-common \
+            --repo rdo-delorean-component-network \
+            --repo resilientstorage

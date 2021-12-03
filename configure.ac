@@ -82,6 +82,5 @@ AC_CONFIG_FILES([
             ovirt-el9-stream-x86_64-deps.repo
             ovirt-release-master.spec
             ovirt-snapshot.repo
-            ovirt-tested.repo
 ])
 AC_OUTPUT

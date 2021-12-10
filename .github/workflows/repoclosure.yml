@@ -1,7 +1,9 @@
 ---
 name: Check repository closure
-
-# TODO: open an issue if closure is broken?
+permissions:
+  issues: write
+  pull-requests: read
+  contents: read
 
 on:
   workflow_dispatch:

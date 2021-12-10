@@ -51,8 +51,7 @@ Reporting here the real time status of the project development branch sanity:
 | ovirt-imageio |  |
 | ovirt-jboss-modules-maven-plugin |  |
 | ovirt-lldp-labeler |  |
-| [ovirt-log-collector](https://github.com/oVirt/ovirt-log-collector) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-log-collector/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-log-collector/)
- |
+| [ovirt-log-collector](https://github.com/oVirt/ovirt-log-collector) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-log-collector/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-log-collector/) |
 | ovirt-node-ng |  |
 | [ovirt-openvswitch](https://github.com/oVirt/ovirt-openvswitch) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-openvswitch/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-openvswitch/) |
 | [ovirt-provider-ovn](https://github.com/oVirt/ovirt-provider-ovn) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-provider-ovn/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-provider-ovn/) |

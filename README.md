@@ -38,14 +38,14 @@ Reporting here the real time status of the project development branch sanity:
 | ovirt-engine-extension-aaa-ldap |  |
 | ovirt-engine-extension-aaa-misc |  |
 | ovirt-engine-extension-logger-log4j |  |
-| ovirt-engine-extensions-api |  |
+| [ovirt-engine-extensions-api](https://github.com/oVirt/ovirt-engine-extensions-api) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-engine-extensions-api/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-engine-extensions-api/) |
 | ovirt-engine-keycloak |  |
 | ovirt-engine-metrics |  |
 | ovirt-engine-nodejs-modules |  |
 | ovirt-engine-ui-extensions |  |
 | ovirt-engine-wildfly |  |
 | ovirt-engine-wildfly-overlay |  |
-| ovirt-host |  |
+| [ovirt-host](https://github.com/oVirt/ovirt-host) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-host/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-host/) |
 | ovirt-hosted-engine-ha |  |
 | ovirt-hosted-engine-setup |  |
 | ovirt-imageio |  |

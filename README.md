@@ -1,5 +1,5 @@
 # oVirt Release
--[![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-release/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-release/)
+[![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-release/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-release/)
 
 Welcome to the oVirt Release source repository. This repository is hosted on [GitHub:ovirt-release](https://github.com/oVirt/ovirt-release).
 
@@ -38,20 +38,20 @@ Reporting here the real time status of the project development branch sanity:
 | ovirt-engine-extension-aaa-ldap |  |
 | ovirt-engine-extension-aaa-misc |  |
 | ovirt-engine-extension-logger-log4j |  |
-| ovirt-engine-extensions-api |  |
+| [ovirt-engine-extensions-api](https://github.com/oVirt/ovirt-engine-extensions-api) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-engine-extensions-api/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-engine-extensions-api/) |
 | ovirt-engine-keycloak |  |
 | ovirt-engine-metrics |  |
 | ovirt-engine-nodejs-modules |  |
 | ovirt-engine-ui-extensions |  |
 | ovirt-engine-wildfly |  |
 | ovirt-engine-wildfly-overlay |  |
-| ovirt-host |  |
+| [ovirt-host](https://github.com/oVirt/ovirt-host) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-host/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-host/) |
 | ovirt-hosted-engine-ha |  |
 | ovirt-hosted-engine-setup |  |
 | ovirt-imageio |  |
 | ovirt-jboss-modules-maven-plugin |  |
 | ovirt-lldp-labeler |  |
-| ovirt-log-collector |  |
+| [ovirt-log-collector](https://github.com/oVirt/ovirt-log-collector) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-log-collector/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-log-collector/) |
 | ovirt-node-ng |  |
 | [ovirt-openvswitch](https://github.com/oVirt/ovirt-openvswitch) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-openvswitch/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-openvswitch/) |
 | [ovirt-provider-ovn](https://github.com/oVirt/ovirt-provider-ovn) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-provider-ovn/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-provider-ovn/) |
@@ -59,7 +59,7 @@ Reporting here the real time status of the project development branch sanity:
 | ovirt-setup-lib |  |
 | ovirt-vmconsole |  |
 | [ovirt-web-ui](https://github.com/oVirt/ovirt-web-ui) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-web-ui/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-web-ui/) |
-| python-ovirt-engine-sdk4 |  |
+| [python-ovirt-engine-sdk4](https://github.com/oVirt/python-ovirt-engine-sdk4) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/python-ovirt-engine-sdk4/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/python-ovirt-engine-sdk4/) |
 | rubygem-ovirt-engine-sdk4 |  |
 | [safelease](https://github.com/oVirt/safelease) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/safelease/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/safelease/) |
 | vdsm |  |

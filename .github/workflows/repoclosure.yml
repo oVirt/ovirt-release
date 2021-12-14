@@ -166,7 +166,7 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Add comment about successful job
+    - name: Add a comment about successful job and close issue
       run: |
         set -e
         LABEL="repoclosure-failed"
@@ -190,7 +190,7 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Add comment about failed job
+    - name: Add a comment about failed job
       run: |
         set -e
         TITLE="Failed repoclosure job"

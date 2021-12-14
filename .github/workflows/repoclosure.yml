@@ -171,7 +171,7 @@ jobs:
         set -e
         LABEL="repoclosure-failed"
         ISSUENO=$(gh issue list -l $LABEL | awk ' { print $1 } ' | head -n 1)
-        if [ -z "$ISSUENO" ]; then
+        if [ -n "$ISSUENO" ]; then
             MESSAGE="✅ The repoclosure CI job is now [successful](https://github.com/oVirt/ovirt-release/actions/runs/${{ github.run_id }}), closing issue."
             gh issue comment "${ISSUENO}" --body "${MESSAGE}"
             gh issue close "${ISSUENO}"

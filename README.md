@@ -27,7 +27,7 @@ Reporting here the real time status of the project development branch sanity:
 | java-client-kubevirt |  |
 | java-ovirt-engine-sdk4 |  |
 | mom |  |
-| otopi |  |
+| [otopi](https://github.com/oVirt/otopi) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/otopi/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/otopi/) |
 | [ovirt-ansible-collection](https://github.com/oVirt/ovirt-ansible-collection) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-ansible-collection/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-ansible-collection/) |
 | [ovirt-cockpit-sso](https://github.com/oVirt/ovirt-cockpit-sso) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-cockpit-sso/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-cockpit-sso/) |
 | ovirt-dependencies |  |
@@ -39,12 +39,12 @@ Reporting here the real time status of the project development branch sanity:
 | ovirt-engine-extension-aaa-misc |  |
 | ovirt-engine-extension-logger-log4j |  |
 | [ovirt-engine-extensions-api](https://github.com/oVirt/ovirt-engine-extensions-api) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-engine-extensions-api/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-engine-extensions-api/) |
-| ovirt-engine-keycloak |  |
+| [ovirt-engine-keycloak](https://github.com/oVirt/ovirt-engine-keycloak) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-engine-keycloak/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-engine-keycloak/) |
 | ovirt-engine-metrics |  |
 | ovirt-engine-nodejs-modules |  |
 | ovirt-engine-ui-extensions |  |
-| ovirt-engine-wildfly |  |
-| ovirt-engine-wildfly-overlay |  |
+| [ovirt-engine-wildfly](https://github.com/oVirt/ovirt-engine-wildfly) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-engine-wildfly/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-engine-wildfly/) |
+| [ovirt-engine-wildfly-overlay](https://github.com/oVirt/ovirt-engine-wildfly) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-engine-wildfly-overlay/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-engine-wildfly-overlay/) |
 | [ovirt-host](https://github.com/oVirt/ovirt-host) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-host/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-host/) |
 | ovirt-hosted-engine-ha |  |
 | ovirt-hosted-engine-setup |  |
@@ -63,7 +63,7 @@ Reporting here the real time status of the project development branch sanity:
 | rubygem-ovirt-engine-sdk4 |  |
 | [safelease](https://github.com/oVirt/safelease) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/safelease/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/safelease/) |
 | vdsm |  |
-| vdsm-jsonrpc-java |  |
+| [vdsm-jsonrpc-java](https://github.com/oVirt/vdsm-jsonrpc-java) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/vdsm-jsonrpc-java/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/vdsm-jsonrpc-java/) |
 
 
 ## How to contribute

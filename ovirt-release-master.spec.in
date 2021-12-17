@@ -177,6 +177,9 @@ if [[ "${DISTVER::3}" == "el8" ]] ; then
 	if [ -f /etc/yum.repos.d/almalinux-powertools.repo ] ; then
 		dnf config-manager --set-enabled powertools
 	fi
+	if [ -f /etc/yum.repos.d/Rocky-PowerTools.repo ] ; then
+		dnf config-manager --set-enabled powertools
+	fi
 fi
 
 if [[ "${DISTVER::3}" == "el9" ]] ; then

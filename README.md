@@ -35,9 +35,9 @@ Reporting here the real time status of the project development branch sanity:
 | ovirt-engine-appliance |  |
 | ovirt-engine-dwh |  |
 | ovirt-engine-extension-aaa-jdbc |  |
-| ovirt-engine-extension-aaa-ldap |  |
-| ovirt-engine-extension-aaa-misc |  |
-| ovirt-engine-extension-logger-log4j |  |
+| [ovirt-engine-extension-aaa-ldap](https://github.com/oVirt/ovirt-engine-extension-aaa-ldap) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-engine-extension-aaa-ldap/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-engine-extension-aaa-ldap/)  |
+| [ovirt-engine-extension-aaa-misc](https://github.com/oVirt/ovirt-engine-extension-aaa-misc) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-engine-extension-aaa-misc/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-engine-extension-aaa-misc/)  |
+| [ovirt-engine-extension-logger-log4j](https://github.com/oVirt/ovirt-engine-extension-logger-log4j) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-engine-extension-logger-log4j/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-engine-extension-logger-log4j/)  |
 | [ovirt-engine-extensions-api](https://github.com/oVirt/ovirt-engine-extensions-api) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-engine-extensions-api/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-engine-extensions-api/) |
 | [ovirt-engine-keycloak](https://github.com/oVirt/ovirt-engine-keycloak) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-engine-keycloak/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-engine-keycloak/) |
 | ovirt-engine-metrics |  |
@@ -49,7 +49,7 @@ Reporting here the real time status of the project development branch sanity:
 | ovirt-hosted-engine-ha |  |
 | ovirt-hosted-engine-setup |  |
 | ovirt-imageio |  |
-| ovirt-jboss-modules-maven-plugin |  |
+| [ovirt-jboss-modules-maven-plugin](https://github.com/oVirt/ovirt-jboss-modules-maven-plugin) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-jboss-modules-maven-plugin/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-jboss-modules-maven-plugin/)  |
 | ovirt-lldp-labeler |  |
 | [ovirt-log-collector](https://github.com/oVirt/ovirt-log-collector) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-log-collector/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-log-collector/) |
 | [ovirt-node-ng](https://github.com/oVirt/ovirt-node-ng) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-node-ng/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-node-ng/) |

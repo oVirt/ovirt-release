@@ -527,7 +527,7 @@ systemctl restart cockpit.service >/dev/null 2>&1
 * Tue Aug 03 2021 Lev Veyde <lveyde@redhat.com> - 4.4.8-0.4.rc4
 - 4.4.8 RC4
 
-* Wed Jul 27 2021 Lev Veyde <lveyde@redhat.com> - 4.4.8-0.3.rc3
+* Wed Jul 28 2021 Lev Veyde <lveyde@redhat.com> - 4.4.8-0.3.rc3
 - 4.4.8 RC3
 
 * Tue Jul 20 2021 Lev Veyde <lveyde@redhat.com> - 4.4.8-0.2.rc2

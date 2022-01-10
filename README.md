@@ -20,7 +20,7 @@ Reporting here the real time status of the project development branch sanity:
 
 | Package | Build status |
 |---------|--------------|
-| cockpit-ovirt |  |
+| [cockpit-ovirt](https://github.com/oVirt/cockpit-ovirt) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/cockpit-ovirt/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/cockpit-ovirt/) |
 | [engine-db-query](https://github.com/oVirt/engine-db-query) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/engine-db-query/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/engine-db-query/) |
 | [imgbased](https://github.com/oVirt/imgbased) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/imgbased/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/imgbased/) |
 | ioprocess |  |

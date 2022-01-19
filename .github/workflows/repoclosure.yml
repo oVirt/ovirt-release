@@ -47,8 +47,6 @@ jobs:
             --repo ovirt-master-centos-stream-ovirt45-testing \
             --repo ovirt-master-copr:copr.fedorainfracloud.org:sac:gluster-ansible \
             --repo ovirt-master-epel \
-            --repo ovirt-master-ioprocess-preview \
-            --repo ovirt-master-ovirt-imageio-preview \
             --repo ovirt-master-virtio-win-latest \
             --repo powertools \
             --repo rdo-delorean-component-cinder \

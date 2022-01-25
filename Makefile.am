@@ -38,8 +38,6 @@ EXTRA_DIST = \
 	$(NULL)
 
 pkgdata_DATA = \
-	ovirt-el8-ppc64le-deps.repo \
-	ovirt-el8-x86_64-deps.repo \
 	ovirt-el8-stream-ppc64le-deps.repo \
 	ovirt-el8-stream-x86_64-deps.repo \
 	ovirt-el9-stream-aarch64-deps.repo \
@@ -51,8 +49,6 @@ pkgdata_DATA = \
 	$(NULL)
 
 dist_noinst_DATA = \
-	$(srcdir)/ovirt-el8-ppc64le-deps.repo.in \
-	$(srcdir)/ovirt-el8-x86_64-deps.repo.in \
 	$(srcdir)/ovirt-el8-stream-ppc64le-deps.repo.in \
 	$(srcdir)/ovirt-el8-stream-x86_64-deps.repo.in \
 	$(srcdir)/ovirt-el9-stream-aarch64-deps.repo.in \

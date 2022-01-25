@@ -14,8 +14,12 @@ on:
 jobs:
   copr-ovirt-master-snapshot-el8:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        container: [ quay.io/centos/centos:stream8, quay.io/almalinux:latest, quay.io/rockylinux:latest, registry.redhat.io/ubi8/ubi ]
+
     container:
-      image: quay.io/centos/centos:stream8
+      image: ${{ matrix.container }}
 
     steps:
     - name: Enable repositories
@@ -56,8 +60,12 @@ jobs:
 
   ovirt-master-centos-stream-ovirt45-testing-el8:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        container: [ centos/centos:stream8, almalinux:latest, rockylinux:latest ]
+
     container:
-      image: quay.io/centos/centos:stream8
+      image: quay.io/${{ matrix.container }}
 
     steps:
     - name: Enable repositories

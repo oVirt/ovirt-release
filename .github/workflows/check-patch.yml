@@ -62,6 +62,7 @@ jobs:
           yum module enable -y postgresql:12
           yum --downloadonly install -y exported-artifacts/*noarch.rpm
           yum --downloadonly install -y ovirt-engine ovirt-engine-setup-plugin-websocket-proxy
+          yum --downloadonly install -y ovirt-engine-appliance
 
     - name: Upload artifacts
       uses: ovirt/upload-rpms-action@v1

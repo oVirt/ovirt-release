@@ -8,3 +8,9 @@ gpgkey=https://download.copr.fedorainfracloud.org/results/ovirt/ovirt-master-sna
 repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
+
+[ovirt-appliance-master-snapshot]
+name=oVirt appliance with ovirt-master-snapshot content
+baseurl=https://resources.ovirt.org/repos/ovirt/github-ci/ovirt-appliance/el$releasever/
+gpgcheck=0
+enabled=1

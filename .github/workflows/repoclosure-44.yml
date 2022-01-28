@@ -85,21 +85,20 @@ jobs:
           # excluding otopi-java and python3-otopi-devtools as they are obsoleted and repoclosure
           # is not able to understand it while dnf update does.
           dnf repoclosure --newest --refresh \
-            --repo ovirt-4.4 \
-            --check ovirt-4.4-pre \
+            --check ovirt-4.4 \
             --repo appstream \
             --repo baseos \
             --repo extras \
             --repo ovirt-4.4-centos-ceph-pacific \
             --repo ovirt-4.4-centos-gluster8 \
             --repo ovirt-4.4-centos-opstools \
-            --repo ovirt-4.4-advanced-virtualization \
+            --repo ovirt-4.4-centos-advanced-virtualization \
             --repo ovirt-4.4-centos-nfv-openvswitch  \
             --repo ovirt-4.4-centos-ovirt44 \
             --repo ovirt-4.4-copr:copr.fedorainfracloud.org:sac:gluster-ansible \
             --repo ovirt-4.4-copr:copr.fedorainfracloud.org:sbonazzo:EL8_collection \
             --repo ovirt-4.4-epel \
-            --repo ovirt-4.4-openstack-victoria \
+            --repo ovirt-4.4-centos-openstack-victoria \
             --repo ovirt-4.4-virtio-win-latest \
             --repo powertools \
             --exclude=\*ppc64le \
@@ -136,7 +135,7 @@ jobs:
             --repo appstream \
             --repo baseos \
             --repo extras \
-            --repo ovirt-4.4-advanced-virtualization \
+            --repo ovirt-4.4-centos-advanced-virtualization \
             --repo ovirt-4.4-centos-ceph-pacific \
             --repo ovirt-4.4-centos-gluster8 \
             --repo ovirt-4.4-centos-nfv-openvswitch \
@@ -145,7 +144,7 @@ jobs:
             --repo ovirt-4.4-copr:copr.fedorainfracloud.org:sac:gluster-ansible \
             --repo ovirt-4.4-copr:copr.fedorainfracloud.org:sbonazzo:EL8_collection \
             --repo ovirt-4.4-epel \
-            --repo ovirt-4.4-openstack-victoria \
+            --repo ovirt-4.4-centos-openstack-victoria \
             --repo ovirt-4.4-virtio-win-latest \
             --repo powertools \
             --exclude=\*ppc64le \

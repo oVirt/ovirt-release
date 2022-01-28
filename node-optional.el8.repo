@@ -43,6 +43,8 @@ includepkgs =
  sssd-ipa
  sssd-krb5-common
  sssd-tools
+ xmlrpc-c
+ xmlrpc-c-client
 
 [onn-appstream]
 name = oVirt Node Optional packages from CentOS Stream $releasever - AppStream
@@ -64,6 +66,7 @@ includepkgs =
  ipa-selinux
  oddjob
  oddjob-mkhomedir
+ python3-click
  python3-gssapi
  python3-ipaclient
  python3-ipalib

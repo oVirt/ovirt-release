@@ -42,6 +42,11 @@ jobs:
           find tmp.repos -iname \*rpm -exec mv "{}" exported-artifacts/ \;
           mv ./*tar.gz exported-artifacts/
 
+    - name: Upload artifacts
+      uses: ovirt/upload-rpms-action@v2
+      with:
+        directory: exported-artifacts
+
     - name: install 4.4 built rpm
       # On 4.4 the release rpm has several variants. We need the snapshot one to be tested.
       # As current snapshot repository is broken, using released packages repo instead.
@@ -57,8 +62,3 @@ jobs:
           yum --downloadonly install -y exported-artifacts/*noarch.rpm
           yum --downloadonly install -y ovirt-engine ovirt-engine-setup-plugin-websocket-proxy
 
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: artifacts
-        path: exported-artifacts/

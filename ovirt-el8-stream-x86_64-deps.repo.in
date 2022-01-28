@@ -43,9 +43,9 @@ gpgcheck=1
 gpgkey=https://download.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8
 
 [ovirt-@OVIRT_SLOT@-centos-gluster8]
-name=CentOS-$releasever - Gluster 8
-mirrorlist=http://mirrorlist.centos.org?arch=$basearch&release=$releasever&repo=storage-gluster-8
-#baseurl=http://mirror.centos.org/$contentdir/$releasever/storage/$basearch/gluster-8/
+name=CentOS-$stream - Gluster 8
+mirrorlist=http://mirrorlist.centos.org?arch=$basearch&release=$stream&repo=storage-gluster-8
+#baseurl=http://mirror.centos.org/$contentdir/$stream/storage/$basearch/gluster-8/
 gpgcheck=1
 enabled=1
 gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-Storage
@@ -76,42 +76,47 @@ repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
 
-[ovirt-@OVIRT_SLOT@-centos-stream-advanced-virtualization]
-name=Advanced Virtualization CentOS Stream packages for $basearch
-baseurl=http://mirror.centos.org/centos/8-stream/virt/$basearch/advancedvirt-common/
-enabled=1
+[ovirt-@OVIRT_SLOT@-centos-advanced-virtualization]
+name=CentOS-$releasever - Advanced Virtualization
+mirrorlist=http://mirrorlist.centos.org/?release=$stream&arch=$basearch&repo=virt-advancedvirt-common
+#baseurl=http://mirror.centos.org/$contentdir/$stream/virt/$basearch/advancedvirt-common/
 gpgcheck=1
-gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-Virtualization
+enabled=1
 module_hotfixes=1
+gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-Virtualization
 
-[ovirt-@OVIRT_SLOT@-centos-stream-ovirt44]
-name=CentOS-8 Stream - oVirt 4.4
-baseurl=http://mirror.centos.org/centos/8-stream/virt/$basearch/ovirt-44/
-enabled=1
+[ovirt-@OVIRT_SLOT@-centos-ovirt44]
+name=CentOS-$releasever - oVirt 4.4
+mirrorlist=http://mirrorlist.centos.org/?release=$stream&arch=$basearch&repo=virt-ovirt-44
+#baseurl=http://mirror.centos.org/$contentdir/$stream/virt/$basearch/ovirt-44/
 gpgcheck=1
+enabled=1
 gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-Virtualization
 
 [ovirt-@OVIRT_SLOT@-centos-opstools]
 name=CentOS-8 - OpsTools - collectd
-mirrorlist=http://mirrorlist.centos.org/?arch=$basearch&release=$releasever&repo=opstools-collectd-5
+mirrorlist=http://mirrorlist.centos.org/?arch=$basearch&release=$stream&repo=opstools-collectd-5
+#baseurl=http://mirror.centos.org/$contentdir/$stream/opstools/$basearch/collectd-5/
 gpgcheck=1
 enabled=1
 gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-OpsTools
 
-[ovirt-@OVIRT_SLOT@-centos-stream-nfv-openvswitch]
+[ovirt-@OVIRT_SLOT@-centos-nfv-openvswitch]
 name=CentOS-$releasever - NFV OpenvSwitch
-baseurl=http://mirror.centos.org/centos/8-stream/nfv/$basearch/openvswitch-2/
+#baseurl=http://mirror.centos.org/centos/$stream/nfv/$basearch/openvswitch-2/
+mirrorlist=http://mirrorlist.centos.org/?release=$stream&arch=$basearch&repo=nfv-openvswitch-2
 gpgcheck=1
 enabled=1
 gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-NFV
 module_hotfixes=1
 
 [ovirt-@OVIRT_SLOT@-centos-ceph-pacific]
-name=Ceph packages for $basearch
-baseurl=http://mirror.centos.org/centos/8-stream/storage/$basearch/ceph-pacific
+name=CentOS-$stream - Ceph Pacific
+mirrorlist=http://mirrorlist.centos.org/?release=$stream&arch=$basearch&repo=storage-ceph-pacific
+#baseurl=http://mirror.centos.org/$contentdir/$stream/storage/$basearch/ceph-pacific/
+gpgcheck=1
 enabled=1
 priority=2
-gpgcheck=1
 gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-Storage
 includepkgs=ceph-common
  gperftools-libs
@@ -131,13 +136,14 @@ includepkgs=ceph-common
  python3-rbd
  python3-rgw
 
-[ovirt-@OVIRT_SLOT@-openstack-victoria]
-name=OpenStack Victoria Repository
-baseurl=http://mirror.centos.org/centos/$releasever/cloud/$basearch/openstack-victoria/
+[ovirt-@OVIRT_SLOT@-centos-openstack-victoria]
+name=CentOS-$releasever - OpenStack victoria
+#baseurl=http://mirror.centos.org/$contentdir/$stream/cloud/$basearch/openstack-victoria/
+mirrorlist=http://mirrorlist.centos.org/?release=$stream&arch=$basearch&repo=cloud-openstack-victoria
 gpgcheck=1
 enabled=1
-module_hotfixes=1
 gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-Cloud
+module_hotfixes=1
 includepkgs=python3-os-brick
  python3-cinderlib
  openstack-cinder

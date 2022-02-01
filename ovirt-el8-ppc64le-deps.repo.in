@@ -96,6 +96,15 @@ gpgcheck=1
 enabled=1
 gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-OpsTools
 
+# Temporary hack as opstools has not been populated yet
+[ovirt-@OVIRT_SLOT@-centos-opstools-vault]
+name=CentOS-8 - OpsTools - collectd - vault
+baseurl=https://vault.centos.org/8.5.2111/opstools/$basearch/collectd-5/
+gpgcheck=1
+enabled=1
+gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-OpsTools
+
+
 [ovirt-@OVIRT_SLOT@-centos-nfv-openvswitch]
 name=CentOS-$releasever - NFV OpenvSwitch
 #baseurl=http://mirror.centos.org/centos/8-stream/nfv/$basearch/openvswitch-2/

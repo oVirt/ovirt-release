@@ -44,6 +44,7 @@ jobs:
             --repo ovirt-4.4-centos-ceph-pacific \
             --repo ovirt-4.4-centos-gluster8 \
             --repo ovirt-4.4-centos-opstools \
+            --repo ovirt-4.4-centos-opstools-vault \
             --repo ovirt-4.4-centos-stream-advanced-virtualization \
             --repo ovirt-4.4-centos-stream-nfv-openvswitch  \
             --repo ovirt-4.4-centos-stream-ovirt44 \
@@ -92,6 +93,7 @@ jobs:
             --repo ovirt-4.4-centos-ceph-pacific \
             --repo ovirt-4.4-centos-gluster8 \
             --repo ovirt-4.4-centos-opstools \
+            --repo ovirt-4.4-centos-opstools-vault \
             --repo ovirt-4.4-centos-advanced-virtualization \
             --repo ovirt-4.4-centos-nfv-openvswitch  \
             --repo ovirt-4.4-centos-ovirt44 \
@@ -140,6 +142,7 @@ jobs:
             --repo ovirt-4.4-centos-gluster8 \
             --repo ovirt-4.4-centos-nfv-openvswitch \
             --repo ovirt-4.4-centos-opstools \
+            --repo ovirt-4.4-centos-opstools-vault \
             --repo ovirt-4.4-centos-ovirt44 \
             --repo ovirt-4.4-copr:copr.fedorainfracloud.org:sac:gluster-ansible \
             --repo ovirt-4.4-copr:copr.fedorainfracloud.org:sbonazzo:EL8_collection \

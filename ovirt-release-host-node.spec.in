@@ -1,0 +1,260 @@
+#
+# ovirt-release -- repo files for oVirt projects
+# Copyright (C) 2014-2021 Red Hat, Inc.
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+#
+# SPDX-License-Identifier: LGPL-2.1-or-later
+
+
+%global	host_node_release_file ovirt-release-host-node
+%global	package_version @PACKAGE_VERSION@
+%global	package_name @PACKAGE_NAME@
+%global	package_short_version @PACKAGE_SHORT_VERSION@
+%define debug_package %{nil}
+
+Name: ovirt-release-host-node
+Summary:	The oVirt Node release file
+Version:	@PACKAGE_RPM_VERSION@
+Release:	@PACKAGE_RPM_RELEASE@%{?release_suffix}%{?dist}
+Group:		System Environment/Base
+License:	GPLv2
+URL:		https://www.ovirt.org
+Source0:	https://resources.ovirt.org/pub/ovirt-master-snapshot/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
+
+
+BuildRequires:	automake
+BuildRequires:	autoconf
+BuildRequires:	systemd
+
+Requires:	system-release
+Requires:	tar
+Requires:	python3
+Requires(post): python3-dnf-plugins-core
+
+Requires(post):	systemd
+Requires(post):	firewalld
+Requires(postun):	systemd
+Requires(postun):	firewalld
+
+Requires:	ovirt-node-ng-nodectl
+Requires:	firewalld
+
+%if 0%{?rhel} < 9
+# On CentOS Stream 9 we are going to use ansible 2.11
+# The whole way of consuming anisble roles is going to change
+# skipping ansible dependencies until we have something working.
+Requires:	gluster-ansible-roles
+%endif
+
+Requires:	imgbased
+Requires:	ovirt-host
+Requires:	vdsm-gluster
+Requires:	python3-ovirt-engine-sdk4
+
+# Additional packages for EFI support
+# https://www.brianlane.com/creating-live-isos-with-livemedia-creator.html
+# http://lorax.readthedocs.org/en/latest/livemedia-creator.html#kickstarts
+# Architecture dependent dependencies
+%ifarch x86_64
+Requires:	efibootmgr
+Requires:	grub2-efi-x64
+Requires:	memtest86+
+Requires:	shim
+Requires:	syslinux
+Requires:	iotop
+%endif
+
+%description
+oVirt Node distribution dependencies, presets and required settings.
+
+%package -n ovirt-node-ng-image-update-placeholder
+Summary:	The oVirt Node Image Update Placeholder
+Version:	%{version}
+Release:	%{release}%{?release_suffix}%{?placeholder_release_suffix}%{?dist}
+Group:		System Environment/Base
+License:	GPLv2
+URL:		https://www.ovirt.org
+BuildArch:	noarch
+
+%description -n ovirt-node-ng-image-update-placeholder
+A sub-package to be included into oVirt Node Next squashfs
+image to allow upgrading itself
+
+%prep
+%setup -q -n "%{package_name}-%{package_version}"
+
+%build
+%configure
+make "%{?_smp_mflags}"
+
+
+%install
+rm -rf "%{buildroot}"
+%make_install
+install -d 755 "%{buildroot}/data/images/rhev"
+install -p -d -m 755 %{buildroot}/etc/dnf/protected.d/
+touch ovirt-release-host-node.conf
+echo ovirt-release-host-node > ovirt-release-host-node.conf
+install -p -c -m 0644 ovirt-release-host-node.conf %{buildroot}/etc/dnf/protected.d/
+rm -rf %{buildroot}/usr/share/ovirt-release-master
+
+
+%post
+%define __default_units_wanted cockpit.socket sshd.service NetworkManager.service imgbase-setup.service rsyslog.service auditd.service
+# Make the defualt services default requirements of the target
+for UNIT in %{__default_units_wanted} ; do
+  ln -fs ../$UNIT %{_unitdir}/multi-user.target.wants/$UNIT
+done
+
+#
+# Create the common os-release file
+
+# Import os-release to get some fields
+# NAME, VERSION, ID, VERSION_ID, CPE_NAME
+. /etc/os-release || :
+
+%if 0%{?rhel} < 9
+VERSION_ID="8.6.2202.0"
+%else
+VERSION_ID="9.0.2202.0"
+%endif
+
+install -d /usr/lib/os.release.d/
+cat << EOF > /usr/lib/os.release.d/%{host_node_release_file}
+NAME="$NAME"
+VERSION="$VERSION"
+ID="$ID"
+ID_LIKE="$ID_LIKE"
+VERSION_ID="$VERSION_ID"
+VARIANT="oVirt Node %{package_version}"
+VARIANT_ID="ovirt-node"
+PRETTY_NAME="oVirt Node %{package_short_version}"
+ANSI_COLOR="$ANSI_COLOR"
+CPE_NAME="$CPE_NAME"
+HOME_URL="https://www.ovirt.org/"
+BUG_REPORT_URL="https://bugzilla.redhat.com/"
+EOF
+
+if [[ -n $PLATFORM_ID ]]; then
+    echo "PLATFORM_ID=\"$PLATFORM_ID\"" >> /usr/lib/os.release.d/%{host_node_release_file}
+fi
+
+# Only on installation
+if [ $1 = 1 ]; then
+	cp -p /etc/os-release /usr/lib/os.release.d/.host-node-previous-os-release
+	ln -sf os.release.d/%{host_node_release_file} /usr/lib/os-release
+	ln -sf ../usr/lib/os-release /etc/os-release
+	source /etc/os-release
+	ln -sf %{_prefix}/share/ovirt-release-host-node/branding %{_prefix}/share/cockpit/branding/$ID-ovirt-node
+fi
+
+# Firewalld - add all services required for host
+firewall-offline-cmd --add-service=cockpit >/dev/null 2>&1
+firewall-offline-cmd --add-service=vdsm >/dev/null 2>&1
+firewall-offline-cmd --add-service=libvirt >/dev/null 2>&1
+firewall-offline-cmd --add-service=libvirt-tls >/dev/null 2>&1
+firewall-offline-cmd --add-service=ssh >/dev/null 2>&1
+firewall-offline-cmd --add-service=glusterfs >/dev/null 2>&1
+systemctl restart firewalld.service >/dev/null 2>&1
+
+# Restarting cockpit to load the new branding data
+systemctl restart cockpit.service >/dev/null 2>&1
+
+# Only whitelist:
+# - ovirt-node-ng-image-update
+# - ovirt-engine-appliance
+# - vdsm-hooks and their deps (bz #1947759)
+# set-enabled is needed to keep the repo enabled when post-processing the image
+
+install -m 644 "%{_datadir}/%{package_name}/node-optional%{dist}.repo" "%{_sysconfdir}/yum.repos.d/node-optional.repo"
+
+PYTHON=$(command -v python3 || command -v python)
+
+for REPO in %{_sysconfdir}/yum.repos.d/ovirt-*.repo;
+do
+    $PYTHON << EOF
+try:
+    from ConfigParser import ConfigParser
+except ImportError:
+    from configparser import ConfigParser
+cp = ConfigParser()
+cp.optionxform = str
+cp.read("$REPO")
+for s in cp.sections():
+    cp.remove_option(s, "includepkgs")
+    cp.set(s, "includepkgs", (
+		"ovirt-node-ng-image-update "
+		"ovirt-node-ng-image "
+		"ovirt-engine-appliance "
+		"vdsm-hook-fcoe "
+		"vdsm-hook-vhostmd "
+		"vdsm-hook-openstacknet "
+		"vdsm-hook-ethtool-options")
+	)
+with open("$REPO", "w") as f:
+    f.write("# imgbased: set-enabled\n")
+    cp.write(f)
+EOF
+done
+
+
+#
+# NGN TEMPORARY HACKS
+# For each hack there must be a bug, and they must be removed at
+# some point in time
+# ===================
+
+# =======================
+# NGN TEMPORARY HACKS END
+#
+
+%postun
+for UNIT in %{__default_units_wanted} ; do
+  rm -f %{_unitdir}/multi-user.target.wants/$UNIT
+done
+
+# In case of uninstall the host-node pkg, return the previous os-release
+if [ $1 = 0 ]; then
+	rm -f %{_prefix}/share/cockpit/branding/*-ovirt-node
+	rm -f /usr/lib/os-release /etc/os-release
+	cp -pf /usr/lib/os.release.d/.host-node-previous-os-release /usr/lib/os-release
+	ln -sf /usr/lib/os-release /etc/os-release
+	rm -f /usr/lib/os.release.d/.host-node-previous-os-release
+	firewall-offline-cmd --remove-service=cockpit >/dev/null 2>&1
+	firewall-offline-cmd --remove-service=vdsm >/dev/null 2>&1
+	firewall-offline-cmd --remove-service=libvirt >/dev/null 2>&1
+	firewall-offline-cmd --remove-service=ssh >/dev/null 2>&1
+	systemctl restart firewalld.service >/dev/null 2>&1
+fi
+# Restarting cockpit to reload the branding data
+systemctl restart cockpit.service >/dev/null 2>&1
+
+%files -n ovirt-node-ng-image-update-placeholder
+
+%files
+%ghost %attr(0644, root, root) %{_prefix}/lib/os.release.d/%{host_node_release_file}
+%dir %{_prefix}/share/ovirt-release-host-node
+%dir %{_prefix}/share/ovirt-release-host-node/branding
+%{_presetdir}/98-ovirt-host-node.preset
+%{_prefix}/share/ovirt-release-host-node/branding/*
+%{_sysconfdir}/dnf/protected.d/ovirt-release-host-node.conf
+%license gpl-2.0.txt
+# Add a folder for local datastores
+%dir %attr(0755, vdsm, kvm) /data/images/rhev
+
+%changelog
+* Tue Sep 07 2021 Sandro Bonazzola <sbonazzo@redhat.com> - 4.5.0-0.0.master
+- Bumped version to 4.5.0

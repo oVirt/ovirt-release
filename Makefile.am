@@ -34,6 +34,8 @@ EXTRA_DIST = \
 	node-optional.el9.repo \
 	ovirt-release-master.spec \
 	ovirt-release-master.spec.in \
+	ovirt-release-host-node.spec.in \
+	ovirt-release-host-node.spec \
 	README.md \
 	$(NULL)
 

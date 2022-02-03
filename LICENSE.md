@@ -15,7 +15,8 @@ host-node/systemd/system-preset/98-ovirt-host-node.preset
 
 The following files are provided under [LGPL-2.1-or-later](lgpl-2.1.txt) license:
 ```
-Makefile.am:
-configure.ac:
-ovirt-release-master.spec.in:
+Makefile.am
+configure.ac
+ovirt-release-master.spec.in
+ovirt-release-host-node.spec.in
 ```

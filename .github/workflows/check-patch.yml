@@ -38,7 +38,12 @@ jobs:
       run: make -j distcheck
 
     - name: Build RPM
-      run: rpmbuild -D "_topdir ${PWD}/tmp.repos" -D "release_suffix .$(date -u +%Y%m%d%H%M%S).git$(git rev-parse --short HEAD)" -ta ovirt-release*.tar.gz
+      run: |
+          mkdir -p ${PWD}/tmp.repos/SOURCES
+          cp ovirt-release*.tar.gz ${PWD}/tmp.repos/SOURCES/
+          SUFFIX=$(date -u +%Y%m%d%H%M%S).git$(git rev-parse --short HEAD)
+          rpmbuild -D "_topdir ${PWD}/tmp.repos" -D "release_suffix .${SUFFIX}" -ba ovirt-release-master.spec
+          rpmbuild -D "_topdir ${PWD}/tmp.repos" -D "release_suffix .${SUFFIX}" -ba ovirt-release-host-node.spec
 
     - name: Collect artifacts
       run: |
@@ -60,7 +65,7 @@ jobs:
           yum module enable -y maven:3.5
           yum module enable -y pki-deps:10.6
           yum module enable -y postgresql:12
-          yum --downloadonly install -y exported-artifacts/*noarch.rpm
+          yum --downloadonly install -y exported-artifacts/*noarch.rpm exported-artifacts/*x86_64.rpm
           yum --downloadonly install -y ovirt-engine ovirt-engine-setup-plugin-websocket-proxy
           yum --downloadonly install -y ovirt-engine-appliance
 
@@ -97,7 +102,12 @@ jobs:
       run: make -j distcheck
 
     - name: Build RPM
-      run: rpmbuild -D "_topdir ${PWD}/tmp.repos" -D "release_suffix .$(date -u +%Y%m%d%H%M%S).git$(git rev-parse --short HEAD)" -ta ovirt-release*.tar.gz
+      run: |
+          mkdir -p ${PWD}/tmp.repos/SOURCES
+          cp ovirt-release*.tar.gz ${PWD}/tmp.repos/SOURCES
+          SUFFIX=$(date -u +%Y%m%d%H%M%S).git$(git rev-parse --short HEAD)
+          rpmbuild -D "_topdir ${PWD}/tmp.repos" -D "release_suffix .${SUFFIX}" -ba ovirt-release-master.spec
+          rpmbuild -D "_topdir ${PWD}/tmp.repos" -D "release_suffix .${SUFFIX}" -ba ovirt-release-host-node.spec
 
     - name: Collect artifacts
       run: |
@@ -108,7 +118,7 @@ jobs:
     - name: test install
       run: |
           yum install -y exported-artifacts/ovirt-release-master-4*noarch.rpm
-          yum --downloadonly install -y exported-artifacts/*noarch.rpm
+          yum --downloadonly install -y exported-artifacts/*noarch.rpm exported-artifacts/*x86_64.rpm
 
     - name: Upload artifacts
       uses: ovirt/upload-rpms-action@v1

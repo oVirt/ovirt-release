@@ -153,6 +153,41 @@ jobs:
             --repo rdo-delorean-component-common \
             --repo rdo-delorean-component-network \
             --repo resilientstorage
+
+  centos-release-ovirt45-el8:
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/centos/centos:stream8
+
+    steps:
+    - name: Enable repositories
+      run: |
+          dnf --repofrompath=extras-common,https://buildlogs.centos.org/centos/8-stream/extras/x86_64/extras-common/  install -y --nogpgcheck centos-release-ovirt45
+
+    - name: Enable required modules
+      run: |
+          dnf module enable -y javapackages-tools:201801
+          dnf module enable -y maven:3.5
+          dnf module enable -y pki-deps:10.6
+          dnf module enable -y postgresql:12
+          dnf module enable -y ruby:3.0
+
+    - name: Run repoclosure
+      run: |
+          dnf repoclosure --newest --refresh \
+            --check centos-ovirt45 \
+            --check centos-ovirt45-testing \
+            --repo appstream \
+            --repo baseos \
+            --repo extras \
+            --repo powertools \
+            --repo centos-ceph-pacific \
+            --repo centos-nfv-openvswitch \
+            --repo centos-opstools \
+            --repo ovirt-45-centos-stream-gluster10 \
+            --repo ovirt-45-centos-stream-openstack-yoga-testing \
+            --repo centos-openstack-xena
+
   close-issue-on-success:
     name: Report workflow success
     runs-on: ubuntu-latest
@@ -161,6 +196,7 @@ jobs:
     - ovirt-master-centos-stream-ovirt45-testing-el8
     - copr-ovirt-master-snapshot-el9
     - ovirt-master-centos-stream-ovirt45-testing-el9
+    - centos-release-ovirt45-el8
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -185,6 +221,7 @@ jobs:
     - ovirt-master-centos-stream-ovirt45-testing-el8
     - copr-ovirt-master-snapshot-el9
     - ovirt-master-centos-stream-ovirt45-testing-el9
+    - centos-release-ovirt45-el8
     steps:
     - name: Checkout
       uses: actions/checkout@v2

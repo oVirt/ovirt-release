@@ -39,7 +39,6 @@ jobs:
             --repo baseos \
             --repo extras \
             --repo ovirt-master-centos-opstools-testing \
-            --repo ovirt-master-centos-stream-advanced-virtualization-testing \
             --repo ovirt-master-centos-stream-ceph-pacific \
             --repo ovirt-master-centos-stream-gluster10-testing \
             --repo ovirt-master-centos-stream-nfv-openvswitch2-testing \
@@ -81,7 +80,6 @@ jobs:
             --repo baseos \
             --repo extras \
             --repo ovirt-master-centos-opstools-testing \
-            --repo ovirt-master-centos-stream-advanced-virtualization-testing \
             --repo ovirt-master-centos-stream-ceph-pacific \
             --repo ovirt-master-centos-stream-gluster10-testing \
             --repo ovirt-master-centos-stream-nfv-openvswitch2-testing \

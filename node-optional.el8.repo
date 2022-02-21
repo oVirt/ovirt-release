@@ -17,34 +17,7 @@ includepkgs =
  python3-librepo
  subscription-manager
  usermode
- #
- # ipa-client
- # https://bugzilla.redhat.com/show_bug.cgi?id=2017681
- autofs
- avahi-libs
- cups-libs
- krb5-workstation
- libipa_hbac
- libkadm5
- libsss_autofs
- libsss_simpleifp
- libsss_sudo
- libwbclient
- python3-dns
- python3-libipa_hbac
- python3-sss
- python3-sss-murmur
- python3-sssdconfig
- samba-client-libs
- samba-common
- samba-common-libs
- sssd-common-pac
- sssd-dbus
- sssd-ipa
- sssd-krb5-common
- sssd-tools
- xmlrpc-c
- xmlrpc-c-client
+
 
 [onn-appstream]
 name = oVirt Node Optional packages from CentOS Stream $releasever - AppStream
@@ -56,24 +29,3 @@ includepkgs =
  # vdsm hooks
  # https://bugzilla.redhat.com/show_bug.cgi?id=1947759
  vhostmd
- #
- # ipa-client
- # https://bugzilla.redhat.com/show_bug.cgi?id=2017681
- certmonger
- ipa-client
- ipa-client-common
- ipa-common
- ipa-selinux
- oddjob
- oddjob-mkhomedir
- python3-click
- python3-gssapi
- python3-ipaclient
- python3-ipalib
- python3-jwcrypto
- python3-ldap
- python3-pyasn1
- python3-pyasn1-modules
- python3-pyusb
- python3-qrcode-core
- python3-yubico

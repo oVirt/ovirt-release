@@ -518,6 +518,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %endif
 
 %changelog
+* Mon Feb 21 2022 Sandro Bonazzola <sbonazzo@redhat.com> - 4.4.10.2-1
+- 4.4.10.2
+
 * Tue Feb 01 2022 Lev Veyde <lveyde@redhat.com> - 4.4.10.1-1
 - 4.4.10.1
 

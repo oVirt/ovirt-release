@@ -14,3 +14,9 @@ name=oVirt appliance with ovirt-master-snapshot content
 baseurl=https://resources.ovirt.org/repos/ovirt/github-ci/ovirt-appliance/el$releasever/
 gpgcheck=0
 enabled=1
+
+[ovirt-node-master-snapshot]
+name=oVirt Node with ovirt-master-snapshot content
+baseurl=https://resources.ovirt.org/repos/ovirt/github-ci/ovirt-node-ng-image/el$releasever/
+gpgcheck=0
+enabled=1

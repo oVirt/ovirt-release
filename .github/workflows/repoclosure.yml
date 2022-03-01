@@ -53,44 +53,6 @@ jobs:
             --repo rdo-delorean-component-common \
             --repo rdo-delorean-component-network
 
-  ovirt-master-centos-stream-ovirt45-testing-el8:
-    runs-on: ubuntu-latest
-    container:
-      image: quay.io/centos/centos:stream8
-
-    steps:
-    - name: Enable repositories
-      run: |
-          rpm --import https://download.copr.fedorainfracloud.org/results/ovirt/ovirt-master-snapshot/pubkey.gpg
-          dnf --repofrompath=ovirt-master-snapshot,https://download.copr.fedorainfracloud.org/results/ovirt/ovirt-master-snapshot/centos-stream-8-x86_64/ install -y ovirt-release-master
-
-    - name: Enable required modules
-      run: |
-          dnf module enable -y javapackages-tools:201801
-          dnf module enable -y maven:3.5
-          dnf module enable -y pki-deps:10.6
-          dnf module enable -y postgresql:12
-          dnf module enable -y ruby:3.0
-
-    - name: Run repoclosure on CentOS Virtualization SIG - oVirt 4.5 testing
-      run: |
-          dnf repoclosure --newest --refresh \
-            --check ovirt-master-centos-stream-ovirt45-testing \
-            --repo appstream \
-            --repo baseos \
-            --repo extras \
-            --repo ovirt-master-centos-opstools-testing \
-            --repo ovirt-master-centos-stream-ceph-pacific \
-            --repo ovirt-master-centos-stream-gluster10-testing \
-            --repo ovirt-master-centos-stream-nfv-openvswitch2-testing \
-            --repo ovirt-master-centos-stream-openstack-yoga-testing \
-            --repo ovirt-master-copr:copr.fedorainfracloud.org:sac:gluster-ansible \
-            --repo powertools \
-            --repo rdo-delorean-component-cinder \
-            --repo rdo-delorean-component-clients \
-            --repo rdo-delorean-component-common \
-            --repo rdo-delorean-component-network
-
   copr-ovirt-master-snapshot-el9:
     runs-on: ubuntu-latest
     container:
@@ -134,48 +96,6 @@ jobs:
               --repo rdo-delorean-component-common \
               --repo rdo-delorean-component-network
 
-  ovirt-master-centos-stream-ovirt45-testing-el9:
-    runs-on: ubuntu-latest
-    container:
-      image: quay.io/centos/centos:stream9
-
-    steps:
-      - name: Use legacy cryptopolicy
-        # as workaround for https://bugzilla.redhat.com/show_bug.cgi?id=2059101
-        # until https://pagure.io/copr/copr/issue/2106 is fixed
-        #
-        # until crypto-policies-20220223-1.git5203b41 lands on mirrors
-        run: |
-            dnf upgrade -y \
-              https://kojihub.stream.centos.org/kojifiles/packages/crypto-policies/20220223/1.git5203b41.el9/noarch/crypto-policies-20220223-1.git5203b41.el9.noarch.rpm \
-              https://kojihub.stream.centos.org/kojifiles/packages/crypto-policies/20220223/1.git5203b41.el9/noarch/crypto-policies-scripts-20220223-1.git5203b41.el9.noarch.rpm
-            dnf upgrade -y crypto-policies-scripts crypto-policies
-            update-crypto-policies --set LEGACY
-
-
-      - name: Enable repositories
-        run: |
-            dnf install -y 'dnf-command(copr)'
-            dnf copr enable -y ovirt/ovirt-master-snapshot
-            dnf install -y ovirt-release-master
-
-      - name: Run repoclosure on oVirt Master Snapshot from COPR
-        run: |
-            dnf repoclosure --newest --refresh \
-              --check ovirt-master-centos-stream-ovirt45-testing \
-              --repo appstream \
-              --repo baseos \
-              --repo crb \
-              --repo ovirt-master-centos-stream-ceph-pacific-testing \
-              --repo ovirt-master-centos-stream-gluster10-testing \
-              --repo ovirt-master-centos-stream-nfv-openvswitch2-testing \
-              --repo ovirt-master-centos-stream-openstack-yoga-testing \
-              --repo ovirt-master-centos-stream-opstools-collectd5-testing \
-              --repo rdo-delorean-component-cinder \
-              --repo rdo-delorean-component-clients \
-              --repo rdo-delorean-component-common \
-              --repo rdo-delorean-component-network \
-              --repo resilientstorage
 
   centos-release-ovirt45-el8:
     runs-on: ubuntu-latest
@@ -195,11 +115,13 @@ jobs:
           dnf module enable -y postgresql:12
           dnf module enable -y ruby:3.0
 
-    - name: Run repoclosure
+    - name: Run repoclosure on CentOS Virtualization SIG - oVirt 45 - testing
       run: |
           dnf repoclosure --newest --refresh \
             --check centos-ovirt45 \
             --check centos-ovirt45-testing \
+            --check ovirt-45-upstream \
+            --check ovirt-45-upstream-testing \
             --repo appstream \
             --repo baseos \
             --repo extras \
@@ -211,15 +133,58 @@ jobs:
             --repo ovirt-45-centos-stream-openstack-yoga-testing \
             --repo centos-openstack-xena
 
+
+  centos-release-ovirt45-el9:
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/centos/centos:stream9
+
+    steps:
+      - name: Use legacy cryptopolicy
+        # as workaround for https://bugzilla.redhat.com/show_bug.cgi?id=2059101
+        # until https://pagure.io/copr/copr/issue/2106 is fixed
+        #
+        # until crypto-policies-20220223-1.git5203b41 lands on mirrors
+        run: |
+            dnf upgrade -y \
+              https://kojihub.stream.centos.org/kojifiles/packages/crypto-policies/20220223/1.git5203b41.el9/noarch/crypto-policies-20220223-1.git5203b41.el9.noarch.rpm \
+              https://kojihub.stream.centos.org/kojifiles/packages/crypto-policies/20220223/1.git5203b41.el9/noarch/crypto-policies-scripts-20220223-1.git5203b41.el9.noarch.rpm
+            dnf upgrade -y crypto-policies-scripts crypto-policies
+            update-crypto-policies --set LEGACY
+
+      - name: Enable repositories
+        run: |
+            dnf --repofrompath=extras-common,https://buildlogs.centos.org/centos/9-stream/extras/x86_64/extras-common/  install -y --nogpgcheck centos-release-ovirt45
+
+      - name: Run repoclosure on CentOS Virtualization SIG - oVirt 45 - testing
+        run: |
+            dnf repoclosure --newest --refresh \
+              --check centos-ovirt45 \
+              --check centos-ovirt45-testing \
+              --check ovirt-45-upstream \
+              --check ovirt-45-upstream-testing \
+              --repo appstream \
+              --repo baseos \
+              --repo resilientstorage \
+              --repo crb \
+              --repo centos-ceph-pacific \
+              --repo centos-gluster10-test \
+              --repo centos-nfv-openvswitch \
+              --repo centos-opstools \
+              --repo ovirt-45-centos-stream-openstack-yoga-testing \
+              --repo rdo-delorean-component-cinder \
+              --repo rdo-delorean-component-clients \
+              --repo rdo-delorean-component-common \
+              --repo rdo-delorean-component-network
+
   close-issue-on-success:
     name: Report workflow success
     runs-on: ubuntu-latest
     needs:
-    - copr-ovirt-master-snapshot-el8
-    - ovirt-master-centos-stream-ovirt45-testing-el8
-    - copr-ovirt-master-snapshot-el9
-    - ovirt-master-centos-stream-ovirt45-testing-el9
-    - centos-release-ovirt45-el8
+      - copr-ovirt-master-snapshot-el8
+      - copr-ovirt-master-snapshot-el9
+      - centos-release-ovirt45-el8
+      - centos-release-ovirt45-el9
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -240,11 +205,10 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ always() && (needs.copr-ovirt-master-snapshot-el8.result=='failure' || needs.ovirt-master-centos-stream-ovirt45-testing-el8.result=='failure' || needs.copr-ovirt-master-snapshot-el9.result=='failure' || needs.ovirt-master-centos-stream-ovirt45-testing-el9.result=='failure') }}
     needs:
-    - copr-ovirt-master-snapshot-el8
-    - ovirt-master-centos-stream-ovirt45-testing-el8
-    - copr-ovirt-master-snapshot-el9
-    - ovirt-master-centos-stream-ovirt45-testing-el9
-    - centos-release-ovirt45-el8
+      - copr-ovirt-master-snapshot-el8
+      - copr-ovirt-master-snapshot-el9
+      - centos-release-ovirt45-el8
+      - centos-release-ovirt45-el9
     steps:
     - name: Checkout
       uses: actions/checkout@v2

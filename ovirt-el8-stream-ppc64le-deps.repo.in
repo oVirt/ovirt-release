@@ -90,6 +90,7 @@ name=CentOS Stream 8 - OpenStack Yoga Repository - testing
 baseurl=https://buildlogs.centos.org/centos/8-stream/cloud/$basearch/openstack-yoga/
 gpgcheck=0
 enabled=1
+module_hotfixes=1
 exclude=
  # ansible-2.9.27-4.el8 shipped in yoga repo is breaking dependencies on oVirt side
  ansible

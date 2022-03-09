@@ -202,7 +202,7 @@ jobs:
   open-issue-on-failure:
     name: Report workflow failure
     runs-on: ubuntu-latest
-    if: ${{ always() && (needs.copr-ovirt-master-snapshot-el8.result=='failure' || needs.ovirt-master-centos-stream-ovirt45-testing-el8.result=='failure' || needs.copr-ovirt-master-snapshot-el9.result=='failure' || needs.ovirt-master-centos-stream-ovirt45-testing-el9.result=='failure') }}
+    if: ${{ always() && (needs.copr-ovirt-master-snapshot-el8.result=='failure' || needs.centos-release-ovirt45-el8.result=='failure' || needs.copr-ovirt-master-snapshot-el9.result=='failure' || needs.centos-release-ovirt45-el9.result=='failure') }}
     needs:
       - copr-ovirt-master-snapshot-el8
       - copr-ovirt-master-snapshot-el9

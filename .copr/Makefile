@@ -11,10 +11,10 @@ srpm: installdeps
 	./configure
 	make dist
 	cp ovirt-release*.tar.gz tmp.repos/SOURCES
-	sed "s:%{?release_suffix}:${SUFFIX}:" -i ovirt-release-master.spec ovirt-release-host-node.spec
+	sed "s:%{?release_suffix}:${SUFFIX}:" -i ovirt-release45.spec ovirt-release-host-node.spec
 	rpmbuild \
 		-D "_topdir tmp.repos" \
-		-bs ovirt-release-master.spec
+		-bs ovirt-release45.spec
 	rpmbuild \
 		-D "_topdir tmp.repos" \
 		-bs ovirt-release-host-node.spec

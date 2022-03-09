@@ -109,7 +109,7 @@ install -p -d -m 755 %{buildroot}/etc/dnf/protected.d/
 touch ovirt-release-host-node.conf
 echo ovirt-release-host-node > ovirt-release-host-node.conf
 install -p -c -m 0644 ovirt-release-host-node.conf %{buildroot}/etc/dnf/protected.d/
-rm -rf %{buildroot}/usr/share/ovirt-release-master
+rm -rf %{buildroot}/usr/share/ovirt-release45
 
 
 %post

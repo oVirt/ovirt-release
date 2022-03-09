@@ -67,7 +67,8 @@ touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencie
 
 rm -f "%{buildroot}/usr/lib/systemd/system-preset/98-ovirt-host-node.preset"
 rm -rf "%{buildroot}/usr/share/ovirt-release-host-node"
-
+rm -f "%{buildroot}/usr/share/ovirt-release-master/node-optional.el8.repo"
+rm -f "%{buildroot}/usr/share/ovirt-release-master/node-optional.el9.repo"
 
 %post
 DISTVER="$(rpm --eval "%%dist"|cut -c2-)"
@@ -115,7 +116,7 @@ install -m 644 "%{_datadir}/%{package_name}/ovirt-snapshot.repo" "%{_sysconfdir}
 
 
 %files
-%{_datadir}/%{package_name}/
+%{_datadir}/%{package_name}/ovirt*
 # We do not know what distribution we are installed at,
 # we copy the actual files at post, but still wants this package to own them.
 # ghost in this case solves that issue

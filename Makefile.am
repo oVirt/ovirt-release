@@ -32,8 +32,8 @@ EXTRA_DIST = \
 	LICENSE.md \
 	node-optional.el8.repo \
 	node-optional.el9.repo \
-	ovirt-release-master.spec \
-	ovirt-release-master.spec.in \
+	ovirt-release45.spec \
+	ovirt-release45.spec.in \
 	ovirt-release-host-node.spec.in \
 	ovirt-release-host-node.spec \
 	README.md \

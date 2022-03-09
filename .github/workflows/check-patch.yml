@@ -42,7 +42,7 @@ jobs:
           mkdir -p ${PWD}/tmp.repos/SOURCES
           cp ovirt-release*.tar.gz ${PWD}/tmp.repos/SOURCES/
           SUFFIX=$(date -u +%Y%m%d%H%M%S).git$(git rev-parse --short HEAD)
-          rpmbuild -D "_topdir ${PWD}/tmp.repos" -D "release_suffix .${SUFFIX}" -ba ovirt-release-master.spec
+          rpmbuild -D "_topdir ${PWD}/tmp.repos" -D "release_suffix .${SUFFIX}" -ba ovirt-release45.spec
           rpmbuild -D "_topdir ${PWD}/tmp.repos" -D "release_suffix .${SUFFIX}" -ba ovirt-release-host-node.spec
 
     - name: Collect artifacts
@@ -52,12 +52,12 @@ jobs:
           mv ./*tar.gz exported-artifacts/
 
     - name: install master built rpm
-      # On master the release rpm is named ovirt-release-master
+      # On master the release rpm is named ovirt-release45
       # The build produce also other packages like ovirt-release-host-node
-      # which require the repos to be enabled by the ovirt-release-master package
+      # which require the repos to be enabled by the ovirt-release45 package
       # in order to be installable.
       run: |
-          yum install -y exported-artifacts/ovirt-release-master-4*noarch.rpm
+          yum install -y exported-artifacts/ovirt-release45-4*noarch.rpm
 
     - name: test project installation
       run: |
@@ -118,7 +118,7 @@ jobs:
             mkdir -p ${PWD}/tmp.repos/SOURCES
             cp ovirt-release*.tar.gz ${PWD}/tmp.repos/SOURCES
             SUFFIX=$(date -u +%Y%m%d%H%M%S).git$(git rev-parse --short HEAD)
-            rpmbuild -D "_topdir ${PWD}/tmp.repos" -D "release_suffix .${SUFFIX}" -ba ovirt-release-master.spec
+            rpmbuild -D "_topdir ${PWD}/tmp.repos" -D "release_suffix .${SUFFIX}" -ba ovirt-release45.spec
             rpmbuild -D "_topdir ${PWD}/tmp.repos" -D "release_suffix .${SUFFIX}" -ba ovirt-release-host-node.spec
 
       - name: Collect artifacts
@@ -129,7 +129,7 @@ jobs:
 
       - name: test install
         run: |
-            yum install -y exported-artifacts/ovirt-release-master-4*noarch.rpm
+            yum install -y exported-artifacts/ovirt-release45-4*noarch.rpm
             yum --downloadonly install -y exported-artifacts/*noarch.rpm exported-artifacts/*x86_64.rpm
 
       - name: Upload artifacts

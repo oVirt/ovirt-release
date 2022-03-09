@@ -22,7 +22,7 @@ dnl SPDX-License-Identifier: LGPL-2.1-or-later
 define([VERSION_NUMBER], [4.5.0])
 define([VERSION_SUFFIX], [_master])
 
-AC_INIT([ovirt-release-master], VERSION_NUMBER[]VERSION_SUFFIX, [infra@ovirt.org])
+AC_INIT([ovirt-release45], VERSION_NUMBER[]VERSION_SUFFIX, [infra@ovirt.org])
 AM_INIT_AUTOMAKE
 
 PACKAGE_RPM_VERSION="VERSION_NUMBER"
@@ -34,10 +34,10 @@ AC_SUBST([PACKAGE_SHORT_VERSION])
 PACKAGE_RPM_RELEASE="0.0.$(echo VERSION_SUFFIX | sed 's/^_//')"
 AC_SUBST([PACKAGE_RPM_RELEASE])
 
-OVIRT_SLOT="master"
+OVIRT_SLOT="45"
 AC_SUBST([OVIRT_SLOT])
 
-PACKAGE_NAME=ovirt-release-${OVIRT_SLOT}
+PACKAGE_NAME=ovirt-release${OVIRT_SLOT}
 PRODUCT_NAME=oVirt\ Packages\ Repository
 
 AC_CONFIG_FILES([
@@ -50,7 +50,7 @@ AC_CONFIG_FILES([
             ovirt-el9-stream-aarch64-deps.repo
             ovirt-el9-stream-ppc64le-deps.repo
             ovirt-el9-stream-x86_64-deps.repo
-            ovirt-release-master.spec
+            ovirt-release45.spec
             ovirt-release-host-node.spec
             ovirt-snapshot.repo
 ])

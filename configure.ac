@@ -22,7 +22,7 @@ dnl SPDX-License-Identifier: LGPL-2.1-or-later
 define([VERSION_NUMBER], [4.5.0])
 define([VERSION_SUFFIX], [_master])
 
-AC_INIT([ovirt-release-master], VERSION_NUMBER[]VERSION_SUFFIX, [infra@ovirt.org])
+AC_INIT([ovirt-release-master], VERSION_NUMBER[]VERSION_SUFFIX, [devel@ovirt.org])
 AM_INIT_AUTOMAKE
 
 PACKAGE_RPM_VERSION="VERSION_NUMBER"

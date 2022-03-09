@@ -110,6 +110,8 @@ touch ovirt-release-host-node.conf
 echo ovirt-release-host-node > ovirt-release-host-node.conf
 install -p -c -m 0644 ovirt-release-host-node.conf %{buildroot}/etc/dnf/protected.d/
 rm -rf %{buildroot}/usr/share/ovirt-release-master
+install -d 755 "%{buildroot}%{_sysconfdir}/yum.repos.d"
+install -m 644 "node-optional%{dist}.repo" "%{buildroot}%{_sysconfdir}/yum.repos.d/node-optional.repo"
 
 
 %post
@@ -178,8 +180,6 @@ systemctl restart cockpit.service >/dev/null 2>&1
 # - ovirt-engine-appliance
 # - vdsm-hooks and their deps (bz #1947759)
 # set-enabled is needed to keep the repo enabled when post-processing the image
-
-install -m 644 "%{_datadir}/%{package_name}/node-optional%{dist}.repo" "%{_sysconfdir}/yum.repos.d/node-optional.repo"
 
 PYTHON=$(command -v python3 || command -v python)
 
@@ -251,6 +251,7 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %{_presetdir}/98-ovirt-host-node.preset
 %{_prefix}/share/ovirt-release-host-node/branding/*
 %{_sysconfdir}/dnf/protected.d/ovirt-release-host-node.conf
+%{_sysconfdir}/yum.repos.d/node-optional.repo
 %license gpl-2.0.txt
 # Add a folder for local datastores
 %dir %attr(0755, vdsm, kvm) /data/images/rhev

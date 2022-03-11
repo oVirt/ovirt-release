@@ -28,11 +28,11 @@
 Name: ovirt-release-host-node
 Summary:	The oVirt Node release file
 Version:	@PACKAGE_RPM_VERSION@
-Release:	@PACKAGE_RPM_RELEASE@%{?release_suffix}%{?dist}
+Release:	@PACKAGE_RPM_RELEASE@%{?dist}
 Group:		System Environment/Base
 License:	GPLv2
 URL:		https://www.ovirt.org
-Source0:	https://resources.ovirt.org/pub/ovirt-master-snapshot/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
+Source0:	https://resources.ovirt.org/pub/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
 
 
 BuildRequires:	automake
@@ -129,9 +129,9 @@ done
 . /etc/os-release || :
 
 %if 0%{?rhel} < 9
-VERSION_ID="8.6.2202.0"
+VERSION_ID="8.6.2203.0"
 %else
-VERSION_ID="9.0.2202.0"
+VERSION_ID="9.0.2203.0"
 %endif
 
 install -d /usr/lib/os.release.d/
@@ -257,5 +257,8 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, vdsm, kvm) /data/images/rhev
 
 %changelog
+* Fri Mar 11 2022 Sandro Bonazzola <sbonazzo@redhat.com> - 4.5.0-1
+- Release 4.5.0
+
 * Tue Sep 07 2021 Sandro Bonazzola <sbonazzo@redhat.com> - 4.5.0-0.0.master
 - Bumped version to 4.5.0

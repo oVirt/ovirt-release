@@ -78,7 +78,7 @@ oVirt Node distribution dependencies, presets and required settings.
 %package -n ovirt-node-ng-image-update-placeholder
 Summary:	The oVirt Node Image Update Placeholder
 Version:	%{version}
-Release:	%{release}%{?release_suffix}%{?placeholder_release_suffix}%{?dist}
+Release:	%{release}%{?placeholder_release_suffix}
 Group:		System Environment/Base
 License:	GPLv2
 URL:		https://www.ovirt.org
@@ -124,9 +124,9 @@ done
 . /etc/os-release || :
 
 %if 0%{?rhel} < 9
-VERSION_ID="8.6.2202.0"
+VERSION_ID="8.6.2203.0"
 %else
-VERSION_ID="9.0.2202.0"
+VERSION_ID="9.0.2203.0"
 %endif
 
 install -d /usr/lib/os.release.d/

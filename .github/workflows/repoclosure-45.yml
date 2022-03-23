@@ -1,0 +1,125 @@
+---
+name: Check repository closure oVirt 4.5
+permissions:
+  issues: write
+  pull-requests: read
+  contents: read
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Running every morning in EMEA timezone
+    - cron: '0 6 * * *'
+
+jobs:
+  centos-release-ovirt45-stream8:
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/centos/centos:stream8
+
+    steps:
+      - name: Enable repositories
+        run: |
+            dnf install -y centos-release-ovirt45
+
+      - name: Enable required modules
+        run: |
+            dnf module enable -y javapackages-tools:201801
+            dnf module enable -y maven:3.5
+            dnf module enable -y pki-deps:10.6
+            dnf module enable -y postgresql:12
+            dnf module enable -y ruby:3.0
+
+      - name: Run repoclosure on oVirt 4.5 Released content
+        run: |
+            dnf repoclosure --newest --refresh \
+              --check centos-ovirt45 \
+              --check ovirt-45-upstream \
+              --repo appstream \
+              --repo baseos \
+              --repo extras \
+              --repo powertools \
+              --repo centos-ceph-pacific \
+              --repo centos-nfv-openvswitch \
+              --repo centos-opstools \
+              --repo ovirt-45-centos-stream-gluster10 \
+              --repo ovirt-45-centos-stream-openstack-yoga-testing \
+              --repo centos-openstack-xena
+
+  centos-release-ovirt45-stream9:
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/centos/centos:stream9
+
+    steps:
+      - name: Enable repositories
+        run: |
+            dnf install -y centos-release-ovirt45
+
+
+      - name: Run repoclosure on oVirt 4.5 Released content
+        run: |
+            dnf repoclosure --newest --refresh \
+              --check centos-ovirt45 \
+              --check ovirt-45-upstream \
+              --repo appstream \
+              --repo baseos \
+              --repo resilientstorage \
+              --repo crb \
+              --repo centos-ceph-pacific \
+              --repo centos-gluster10 \
+              --repo centos-nfv-openvswitch \
+              --repo centos-opstools \
+              --repo ovirt-45-centos-stream-openstack-yoga-testing \
+              --repo rdo-delorean-component-cinder \
+              --repo rdo-delorean-component-clients \
+              --repo rdo-delorean-component-common \
+              --repo rdo-delorean-component-network
+
+  close-45-issue-on-success:
+    name: Report workflow success
+    runs-on: ubuntu-latest
+    needs:
+      - centos-release-ovirt45-stream8
+      - centos-release-ovirt45-stream9
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Add a comment about successful job and close issue
+        run: |
+          set -e
+          LABEL="repoclosure-45-failed"
+          ISSUENO=$(gh issue list -l $LABEL | awk ' { print $1 } ' | head -n 1)
+          if [ -n "$ISSUENO" ]; then
+              MESSAGE="✅ The oVirt 4.5 repoclosure CI job is now [successful](https://github.com/oVirt/ovirt-release/actions/runs/${{ github.run_id }}), closing issue."
+              gh issue comment "${ISSUENO}" --body "${MESSAGE}"
+              gh issue close "${ISSUENO}"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  open-45-issue-on-failure:
+    name: Report workflow failure
+    runs-on: ubuntu-latest
+    if: ${{ always() && (needs.centos-release-ovirt45-stream8.result=='failure' || needs.centos-release-ovirt45-stream9.result=='failure') }}
+    needs:
+      - centos-release-ovirt45-stream8
+      - centos-release-ovirt45-stream9
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Add a comment about failed job
+        run: |
+          set -e
+          TITLE="Failed oVirt 4.5 repoclosure job"
+          LABEL="repoclosure-45-failed"
+          ISSUENO=$(gh issue list -l $LABEL | awk ' { print $1 } ' | head -n 1)
+          if [ -z "$ISSUENO" ]; then
+              MESSAGE="❌ The repoclosure oVirt 4.5 CI job failed. [Please investigate.](https://github.com/oVirt/ovirt-release/actions/runs/${{ github.run_id }})"
+              gh issue create --title "${TITLE}" --body "${MESSAGE}" --label "${LABEL}"
+          else
+              MESSAGE="❌ The repoclosure oVirt 4.5 CI job is still failing. [Please investigate.](https://github.com/oVirt/ovirt-release/actions/runs/${{ github.run_id }})"
+              gh issue comment "${ISSUENO}" --body "${MESSAGE}"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

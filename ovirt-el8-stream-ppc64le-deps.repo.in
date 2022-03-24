@@ -94,6 +94,7 @@ module_hotfixes=1
 exclude=
  # ansible-2.9.27-4.el8 shipped in yoga repo is breaking dependencies on oVirt side
  ansible
+ ansible-test
 
 # As Yoga is under development, also including RDO trunk
 [rdo-delorean-component-cinder]

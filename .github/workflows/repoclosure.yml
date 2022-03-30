@@ -65,9 +65,6 @@ jobs:
         #
         # until crypto-policies-20220223-1.git5203b41 lands on mirrors
         run: |
-            dnf upgrade -y \
-              https://kojihub.stream.centos.org/kojifiles/packages/crypto-policies/20220223/1.git5203b41.el9/noarch/crypto-policies-20220223-1.git5203b41.el9.noarch.rpm \
-              https://kojihub.stream.centos.org/kojifiles/packages/crypto-policies/20220223/1.git5203b41.el9/noarch/crypto-policies-scripts-20220223-1.git5203b41.el9.noarch.rpm
             dnf upgrade -y crypto-policies-scripts crypto-policies
             update-crypto-policies --set LEGACY
 
@@ -106,6 +103,8 @@ jobs:
     - name: Enable repositories
       run: |
           dnf --repofrompath=extras-common,https://buildlogs.centos.org/centos/8-stream/extras/x86_64/extras-common/  install -y --nogpgcheck centos-release-ovirt45
+          dnf config-manager --set-enabled centos-ovirt45-testing
+          dnf config-manager --set-enabled ovirt-45-upstream-testing
 
     - name: Enable required modules
       run: |
@@ -146,15 +145,15 @@ jobs:
         #
         # until crypto-policies-20220223-1.git5203b41 lands on mirrors
         run: |
-            dnf upgrade -y \
-              https://kojihub.stream.centos.org/kojifiles/packages/crypto-policies/20220223/1.git5203b41.el9/noarch/crypto-policies-20220223-1.git5203b41.el9.noarch.rpm \
-              https://kojihub.stream.centos.org/kojifiles/packages/crypto-policies/20220223/1.git5203b41.el9/noarch/crypto-policies-scripts-20220223-1.git5203b41.el9.noarch.rpm
             dnf upgrade -y crypto-policies-scripts crypto-policies
             update-crypto-policies --set LEGACY
 
       - name: Enable repositories
         run: |
             dnf --repofrompath=extras-common-testing,https://buildlogs.centos.org/centos/9-stream/extras/x86_64/extras-common/  install -y --nogpgcheck centos-release-ovirt45
+            dnf config-manager --set-enabled centos-ovirt45-testing
+            dnf config-manager --set-enabled ovirt-45-upstream-testing
+
 
       - name: Run repoclosure on CentOS Virtualization SIG - oVirt 45 - testing
         run: |
@@ -203,7 +202,7 @@ jobs:
   open-issue-on-failure:
     name: Report workflow failure
     runs-on: ubuntu-latest
-    if: ${{ always() && (needs.copr-ovirt-master-snapshot-el8.result=='failure' || needs.ovirt-master-centos-stream-ovirt45-testing-el8.result=='failure' || needs.copr-ovirt-master-snapshot-el9.result=='failure' || needs.ovirt-master-centos-stream-ovirt45-testing-el9.result=='failure') }}
+    if: ${{ always() && (needs.copr-ovirt-master-snapshot-el8.result=='failure' || needs.centos-release-ovirt45-el8.result=='failure' || needs.copr-ovirt-master-snapshot-el9.result=='failure' || needs.centos-release-ovirt45-el9.result=='failure') }}
     needs:
       - copr-ovirt-master-snapshot-el8
       - copr-ovirt-master-snapshot-el9

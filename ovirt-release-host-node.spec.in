@@ -52,12 +52,7 @@ Requires(postun):	firewalld
 Requires:	ovirt-node-ng-nodectl
 Requires:	firewalld
 
-%if 0%{?rhel} < 9
-# On CentOS Stream 9 we are going to use ansible 2.11
-# The whole way of consuming anisble roles is going to change
-# skipping ansible dependencies until we have something working.
-Requires:	gluster-ansible-roles
-%endif
+# TODO: Restore gluster-ansible-roles once it's upgraded to ansible-core 2.12
 
 Requires:	imgbased
 Requires:	ovirt-host

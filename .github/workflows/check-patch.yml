@@ -81,7 +81,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: quay.io/centos/centos:stream9
-    if: contains(github.base_ref, 'master') || contains(github.ref, 'master')
+    if: contains(github.base_ref, 'master') || contains(github.ref, 'master') || contains(github.base_ref, 'ovirt-4.5') || contains(github.ref, 'ovirt-4.5')
     steps:
       - name: Use legacy cryptopolicy
         # as workaround for https://bugzilla.redhat.com/show_bug.cgi?id=2059101

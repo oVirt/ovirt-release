@@ -42,7 +42,7 @@ jobs:
               --repo centos-ceph-pacific \
               --repo centos-nfv-openvswitch \
               --repo centos-opstools \
-              --repo ovirt-45-centos-stream-gluster10 \
+              --repo centos-gluster10 \
               --repo ovirt-45-centos-stream-openstack-yoga-testing \
               --repo centos-openstack-xena
 

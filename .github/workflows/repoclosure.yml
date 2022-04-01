@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
   schedule:
     # Running every hour in EMEA timezone
-    - cron:  '0 6-18 * * *'
+    - cron: '0 6-18 * * *'
 
 jobs:
   copr-ovirt-master-snapshot-el8:
@@ -18,40 +18,41 @@ jobs:
       image: quay.io/centos/centos:stream8
 
     steps:
-    - name: Enable repositories
-      run: |
-          rpm --import https://download.copr.fedorainfracloud.org/results/ovirt/ovirt-master-snapshot/pubkey.gpg
-          dnf --repofrompath=ovirt-master-snapshot,https://download.copr.fedorainfracloud.org/results/ovirt/ovirt-master-snapshot/centos-stream-8-x86_64/ install -y ovirt-release-master
+      - name: Enable repositories
+        run: |
+            rpm --import https://download.copr.fedorainfracloud.org/results/ovirt/ovirt-master-snapshot/pubkey.gpg
+            dnf distro-sync -y
+            dnf --repofrompath=ovirt-master-snapshot,https://download.copr.fedorainfracloud.org/results/ovirt/ovirt-master-snapshot/centos-stream-8-x86_64/ install -y ovirt-release-master
 
-    - name: Enable required modules
-      run: |
-          dnf module enable -y javapackages-tools:201801
-          dnf module enable -y maven:3.5
-          dnf module enable -y pki-deps:10.6
-          dnf module enable -y postgresql:12
-          dnf module enable -y ruby:3.0
+      - name: Enable required modules
+        run: |
+            dnf module enable -y javapackages-tools:201801
+            dnf module enable -y maven:3.5
+            dnf module enable -y pki-deps:10.6
+            dnf module enable -y postgresql:12
+            dnf module enable -y ruby:3.0
 
-    - name: Run repoclosure on oVirt Master Snapshot from COPR
-      run: |
-          dnf repoclosure --newest --refresh \
-            --check copr:copr.fedorainfracloud.org:ovirt:ovirt-master-snapshot \
-            --repo appstream \
-            --repo baseos \
-            --repo extras \
-            --repo ovirt-master-centos-opstools-testing \
-            --repo ovirt-master-centos-stream-ceph-pacific \
-            --repo ovirt-master-centos-stream-gluster10-testing \
-            --repo ovirt-master-centos-stream-nfv-openvswitch2-testing \
-            --repo ovirt-master-centos-stream-openstack-yoga-testing \
-            --repo ovirt-master-centos-stream-ovirt45-testing \
-            --repo ovirt-master-copr:copr.fedorainfracloud.org:sac:gluster-ansible \
-            --repo ovirt-master-epel \
-            --repo ovirt-master-virtio-win-latest \
-            --repo powertools \
-            --repo rdo-delorean-component-cinder \
-            --repo rdo-delorean-component-clients \
-            --repo rdo-delorean-component-common \
-            --repo rdo-delorean-component-network
+      - name: Run repoclosure on oVirt Master Snapshot from COPR
+        run: |
+            dnf repoclosure --newest --refresh \
+              --check copr:copr.fedorainfracloud.org:ovirt:ovirt-master-snapshot \
+              --repo appstream \
+              --repo baseos \
+              --repo extras \
+              --repo ovirt-master-centos-opstools-testing \
+              --repo ovirt-master-centos-stream-ceph-pacific \
+              --repo ovirt-master-centos-stream-gluster10-testing \
+              --repo ovirt-master-centos-stream-nfv-openvswitch2-testing \
+              --repo ovirt-master-centos-stream-openstack-yoga-testing \
+              --repo ovirt-master-centos-stream-ovirt45-testing \
+              --repo ovirt-master-copr:copr.fedorainfracloud.org:sac:gluster-ansible \
+              --repo ovirt-master-epel \
+              --repo ovirt-master-virtio-win-latest \
+              --repo powertools \
+              --repo rdo-delorean-component-cinder \
+              --repo rdo-delorean-component-clients \
+              --repo rdo-delorean-component-common \
+              --repo rdo-delorean-component-network
 
   copr-ovirt-master-snapshot-el9:
     runs-on: ubuntu-latest
@@ -59,17 +60,9 @@ jobs:
       image: quay.io/centos/centos:stream9
 
     steps:
-      - name: Use legacy cryptopolicy
-        # as workaround for https://bugzilla.redhat.com/show_bug.cgi?id=2059101
-        # until https://pagure.io/copr/copr/issue/2106 is fixed
-        #
-        # until crypto-policies-20220223-1.git5203b41 lands on mirrors
-        run: |
-            dnf upgrade -y crypto-policies-scripts crypto-policies
-            update-crypto-policies --set LEGACY
-
       - name: Enable repositories
         run: |
+            dnf distro-sync -y
             dnf install -y 'dnf-command(copr)'
             dnf copr enable -y ovirt/ovirt-master-snapshot
             dnf install -y ovirt-release-master
@@ -100,37 +93,38 @@ jobs:
       image: quay.io/centos/centos:stream8
 
     steps:
-    - name: Enable repositories
-      run: |
-          dnf --repofrompath=extras-common,https://buildlogs.centos.org/centos/8-stream/extras/x86_64/extras-common/  install -y --nogpgcheck centos-release-ovirt45
-          dnf config-manager --set-enabled centos-ovirt45-testing
-          dnf config-manager --set-enabled ovirt-45-upstream-testing
+      - name: Enable repositories
+        run: |
+            dnf distro-sync -y
+            dnf --repofrompath=extras-common-testing,https://buildlogs.centos.org/centos/8-stream/extras/x86_64/extras-common/  install -y --nogpgcheck centos-release-ovirt45
+            dnf config-manager --set-enabled centos-ovirt45-testing
+            dnf config-manager --set-enabled ovirt-45-upstream-testing
 
-    - name: Enable required modules
-      run: |
-          dnf module enable -y javapackages-tools:201801
-          dnf module enable -y maven:3.5
-          dnf module enable -y pki-deps:10.6
-          dnf module enable -y postgresql:12
-          dnf module enable -y ruby:3.0
+      - name: Enable required modules
+        run: |
+            dnf module enable -y javapackages-tools:201801
+            dnf module enable -y maven:3.5
+            dnf module enable -y pki-deps:10.6
+            dnf module enable -y postgresql:12
+            dnf module enable -y ruby:3.0
 
-    - name: Run repoclosure on CentOS Virtualization SIG - oVirt 45 - testing
-      run: |
-          dnf repoclosure --newest --refresh \
-            --check centos-ovirt45 \
-            --check centos-ovirt45-testing \
-            --check ovirt-45-upstream \
-            --check ovirt-45-upstream-testing \
-            --repo appstream \
-            --repo baseos \
-            --repo extras \
-            --repo powertools \
-            --repo centos-ceph-pacific \
-            --repo centos-nfv-openvswitch \
-            --repo centos-opstools \
-            --repo centos-gluster10 \
-            --repo ovirt-45-centos-stream-openstack-yoga-testing \
-            --repo centos-openstack-xena
+      - name: Run repoclosure on CentOS Virtualization SIG - oVirt 45 - testing
+        run: |
+            dnf repoclosure --newest --refresh \
+              --check centos-ovirt45 \
+              --check centos-ovirt45-testing \
+              --check ovirt-45-upstream \
+              --check ovirt-45-upstream-testing \
+              --repo appstream \
+              --repo baseos \
+              --repo extras \
+              --repo powertools \
+              --repo centos-ceph-pacific \
+              --repo centos-nfv-openvswitch \
+              --repo centos-opstools \
+              --repo centos-gluster10 \
+              --repo ovirt-45-centos-stream-openstack-yoga-testing \
+              --repo centos-openstack-xena
 
 
   centos-release-ovirt45-el9:
@@ -139,17 +133,9 @@ jobs:
       image: quay.io/centos/centos:stream9
 
     steps:
-      - name: Use legacy cryptopolicy
-        # as workaround for https://bugzilla.redhat.com/show_bug.cgi?id=2059101
-        # until https://pagure.io/copr/copr/issue/2106 is fixed
-        #
-        # until crypto-policies-20220223-1.git5203b41 lands on mirrors
-        run: |
-            dnf upgrade -y crypto-policies-scripts crypto-policies
-            update-crypto-policies --set LEGACY
-
       - name: Enable repositories
         run: |
+            dnf distro-sync -y
             dnf --repofrompath=extras-common-testing,https://buildlogs.centos.org/centos/9-stream/extras/x86_64/extras-common/  install -y --nogpgcheck centos-release-ovirt45
             dnf config-manager --set-enabled centos-ovirt45-testing
             dnf config-manager --set-enabled ovirt-45-upstream-testing
@@ -185,20 +171,21 @@ jobs:
       - centos-release-ovirt45-el8
       - centos-release-ovirt45-el9
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Add a comment about successful job and close issue
-      run: |
-        set -e
-        LABEL="repoclosure-failed"
-        ISSUENO=$(gh issue list -l $LABEL | awk ' { print $1 } ' | head -n 1)
-        if [ -n "$ISSUENO" ]; then
-            MESSAGE="✅ The repoclosure CI job is now [successful](https://github.com/oVirt/ovirt-release/actions/runs/${{ github.run_id }}), closing issue."
-            gh issue comment "${ISSUENO}" --body "${MESSAGE}"
-            gh issue close "${ISSUENO}"
-        fi
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Add a comment about successful job and close issue
+        run: |
+          set -e
+          LABEL="repoclosure-failed"
+          ISSUENO=$(gh issue list -l $LABEL | awk ' { print $1 } ' | head -n 1)
+          if [ -n "$ISSUENO" ]; then
+              MESSAGE="✅ The repoclosure CI job is now [successful](https://github.com/oVirt/ovirt-release/actions/runs/${{ github.run_id }}), closing issue."
+              gh issue comment "${ISSUENO}" --body "${MESSAGE}"
+              gh issue close "${ISSUENO}"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   open-issue-on-failure:
     name: Report workflow failure
     runs-on: ubuntu-latest
@@ -209,20 +196,20 @@ jobs:
       - centos-release-ovirt45-el8
       - centos-release-ovirt45-el9
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Add a comment about failed job
-      run: |
-        set -e
-        TITLE="Failed repoclosure job"
-        LABEL="repoclosure-failed"
-        ISSUENO=$(gh issue list -l $LABEL | awk ' { print $1 } ' | head -n 1)
-        if [ -z "$ISSUENO" ]; then
-            MESSAGE="❌ The repoclosure CI job failed. [Please investigate.](https://github.com/oVirt/ovirt-release/actions/runs/${{ github.run_id }})"
-            gh issue create --title "${TITLE}" --body "${MESSAGE}" --label "${LABEL}"
-        else
-            MESSAGE="❌ The repoclosure CI job is still failing. [Please investigate.](https://github.com/oVirt/ovirt-release/actions/runs/${{ github.run_id }})"
-            gh issue comment "${ISSUENO}" --body "${MESSAGE}"
-        fi
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Add a comment about failed job
+        run: |
+          set -e
+          TITLE="Failed repoclosure job"
+          LABEL="repoclosure-failed"
+          ISSUENO=$(gh issue list -l $LABEL | awk ' { print $1 } ' | head -n 1)
+          if [ -z "$ISSUENO" ]; then
+              MESSAGE="❌ The repoclosure CI job failed. [Please investigate.](https://github.com/oVirt/ovirt-release/actions/runs/${{ github.run_id }})"
+              gh issue create --title "${TITLE}" --body "${MESSAGE}" --label "${LABEL}"
+          else
+              MESSAGE="❌ The repoclosure CI job is still failing. [Please investigate.](https://github.com/oVirt/ovirt-release/actions/runs/${{ github.run_id }})"
+              gh issue comment "${ISSUENO}" --body "${MESSAGE}"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

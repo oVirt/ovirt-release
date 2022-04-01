@@ -17,63 +17,64 @@ jobs:
       image: quay.io/centos/centos:stream8
 
     steps:
-    - name: prepare env
-      run: |
-          echo ${{ github.base_ref }}
-          echo ${{ github.ref }}
-          mkdir -p ${PWD}/tmp.repos/BUILD
-          yum install -y --setopt=tsflags=nodocs autoconf automake gettext-devel git systemd make git rpm-build
+      - name: Prepare env
+        run: |
+            echo ${{ github.base_ref }}
+            echo ${{ github.ref }}
+            mkdir -p ${PWD}/tmp.repos/BUILD
+            dnf distro-sync -y
+            dnf install -y --setopt=tsflags=nodocs autoconf automake gettext-devel git systemd make git rpm-build
 
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
-    - name: autoreconf
-      run: autoreconf -ivf
+      - name: Autoreconf
+        run: autoreconf -ivf
 
-    - name: configure
-      run: ./configure
+      - name: Configure
+        run: ./configure
 
-    - name: run distcheck
-      run: make -j distcheck
+      - name: Run distcheck
+        run: make -j distcheck
 
-    - name: Build RPM
-      run: |
-          mkdir -p ${PWD}/tmp.repos/SOURCES
-          cp ovirt-release*.tar.gz ${PWD}/tmp.repos/SOURCES/
-          SUFFIX=$(date -u +%Y%m%d%H%M%S).git$(git rev-parse --short HEAD)
-          rpmbuild -D "_topdir ${PWD}/tmp.repos" -D "release_suffix .${SUFFIX}" -ba ovirt-release-master.spec
-          rpmbuild -D "_topdir ${PWD}/tmp.repos" -D "release_suffix .${SUFFIX}" -ba ovirt-release-host-node.spec
+      - name: Build RPM
+        run: |
+            mkdir -p ${PWD}/tmp.repos/SOURCES
+            cp ovirt-release*.tar.gz ${PWD}/tmp.repos/SOURCES/
+            SUFFIX=$(date -u +%Y%m%d%H%M%S).git$(git rev-parse --short HEAD)
+            rpmbuild -D "_topdir ${PWD}/tmp.repos" -D "release_suffix .${SUFFIX}" -ba ovirt-release-master.spec
+            rpmbuild -D "_topdir ${PWD}/tmp.repos" -D "release_suffix .${SUFFIX}" -ba ovirt-release-host-node.spec
 
-    - name: Collect artifacts
-      run: |
-          mkdir -p exported-artifacts
-          find tmp.repos -iname \*rpm -exec mv "{}" exported-artifacts/ \;
-          mv ./*tar.gz exported-artifacts/
+      - name: Collect artifacts
+        run: |
+            mkdir -p exported-artifacts
+            find tmp.repos -iname \*rpm -exec mv "{}" exported-artifacts/ \;
+            mv ./*tar.gz exported-artifacts/
 
-    - name: install master built rpm
-      # On master the release rpm is named ovirt-release-master
-      # The build produce also other packages like ovirt-release-host-node
-      # which require the repos to be enabled by the ovirt-release-master package
-      # in order to be installable.
-      run: |
-          yum install -y exported-artifacts/ovirt-release-master-4*noarch.rpm
+      - name: Install master built rpm
+        # On master the release rpm is named ovirt-release-master
+        # The build produce also other packages like ovirt-release-host-node
+        # which require the repos to be enabled by the ovirt-release-master package
+        # in order to be installable.
+        run: |
+            dnf install -y exported-artifacts/ovirt-release-master-4*noarch.rpm
 
-    - name: test project installation
-      run: |
-          yum module enable -y javapackages-tools:201801
-          yum module enable -y maven:3.5
-          yum module enable -y pki-deps:10.6
-          yum module enable -y postgresql:12
-          yum --downloadonly install -y exported-artifacts/*noarch.rpm exported-artifacts/*x86_64.rpm
-          yum --downloadonly install -y ovirt-engine ovirt-engine-setup-plugin-websocket-proxy
-          yum --downloadonly install -y ovirt-engine-appliance
+      - name: Test project installation
+        run: |
+            dnf module enable -y javapackages-tools:201801
+            dnf module enable -y maven:3.5
+            dnf module enable -y pki-deps:10.6
+            dnf module enable -y postgresql:12
+            dnf --downloadonly install -y exported-artifacts/*noarch.rpm exported-artifacts/*x86_64.rpm
+            dnf --downloadonly install -y ovirt-engine ovirt-engine-setup-plugin-websocket-proxy
+            dnf --downloadonly install -y ovirt-engine-appliance
 
-    - name: Upload artifacts
-      uses: ovirt/upload-rpms-action@v1
-      with:
-        directory: exported-artifacts
-        distro: el8stream
+      - name: Upload artifacts
+        uses: ovirt/upload-rpms-action@v1
+        with:
+          directory: exported-artifacts
+          distro: el8stream
 
 
   build-el9:
@@ -83,34 +84,23 @@ jobs:
       image: quay.io/centos/centos:stream9
     if: contains(github.base_ref, 'master') || contains(github.ref, 'master')
     steps:
-      - name: Use legacy cryptopolicy
-        # as workaround for https://bugzilla.redhat.com/show_bug.cgi?id=2059101
-        # until https://pagure.io/copr/copr/issue/2106 is fixed
-        #
-        # until crypto-policies-20220223-1.git5203b41 lands on mirrors
-        run: |
-            dnf upgrade -y \
-              https://kojihub.stream.centos.org/kojifiles/packages/crypto-policies/20220223/1.git5203b41.el9/noarch/crypto-policies-20220223-1.git5203b41.el9.noarch.rpm \
-              https://kojihub.stream.centos.org/kojifiles/packages/crypto-policies/20220223/1.git5203b41.el9/noarch/crypto-policies-scripts-20220223-1.git5203b41.el9.noarch.rpm
-            dnf upgrade -y crypto-policies-scripts crypto-policies
-            update-crypto-policies --set LEGACY
-
-      - name: prepare env
+      - name: Prepare env
         run: |
             mkdir -p ${PWD}/tmp.repos/BUILD
-            yum install -y --setopt=tsflags=nodocs autoconf automake gettext-devel git systemd make git rpm-build
+            dnf distro-sync -y
+            dnf install -y --setopt=tsflags=nodocs autoconf automake gettext-devel git systemd make git rpm-build
 
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
-      - name: autoreconf
+      - name: Autoreconf
         run: autoreconf -ivf
 
-      - name: configure
+      - name: Configure
         run: ./configure
 
-      - name: run distcheck
+      - name: Run distcheck
         run: make -j distcheck
 
       - name: Build RPM
@@ -127,10 +117,10 @@ jobs:
             find tmp.repos -iname \*rpm -exec mv "{}" exported-artifacts/ \;
             mv ./*tar.gz exported-artifacts/
 
-      - name: test install
+      - name: Test install
         run: |
-            yum install -y exported-artifacts/ovirt-release-master-4*noarch.rpm
-            yum --downloadonly install -y exported-artifacts/*noarch.rpm exported-artifacts/*x86_64.rpm
+            dnf install -y exported-artifacts/ovirt-release-master-4*noarch.rpm
+            dnf --downloadonly install -y exported-artifacts/*noarch.rpm exported-artifacts/*x86_64.rpm
 
       - name: Upload artifacts
         uses: ovirt/upload-rpms-action@v1

@@ -20,6 +20,7 @@ jobs:
     steps:
       - name: Enable repositories
         run: |
+            dnf distro-sync -y
             dnf install -y centos-release-ovirt45
 
       - name: Enable required modules
@@ -54,6 +55,7 @@ jobs:
     steps:
       - name: Enable repositories
         run: |
+            dnf distro-sync -y
             dnf install -y centos-release-ovirt45
 
 

@@ -257,6 +257,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, vdsm, kvm) /data/images/rhev
 
 %changelog
+* Fri Apr 01 2022 Sandro Bonazzola <sbonazzo@redhat.com> - 4.5.0-3
+- Bumped for 4.5.0 Beta
+
 * Tue Mar 15 2022 Sandro Bonazzola <sbonazzo@redhat.com> - 4.5.0-2
 - Fix double dist-tag on placeholder sub package
 

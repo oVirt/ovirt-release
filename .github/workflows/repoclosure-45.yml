@@ -28,6 +28,7 @@ jobs:
             dnf module enable -y maven:3.5
             dnf module enable -y pki-deps:10.6
             dnf module enable -y postgresql:12
+            dnf module enable -y mod_auth_openidc:2.3
             dnf module enable -y ruby:3.0
 
       - name: Run repoclosure on oVirt 4.5 Released content

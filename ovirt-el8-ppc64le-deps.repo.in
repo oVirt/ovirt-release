@@ -6,45 +6,6 @@
 # for your distribution of choice.
 # The best we can do is consuming CentOS Stream 8 also on its derivatives
 
-[ovirt-@OVIRT_SLOT@-epel]
-name=Extra Packages for Enterprise Linux 8 - $basearch
-#baseurl=https://download.fedoraproject.org/pub/epel/8/Everything/$basearch
-metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-8&arch=$basearch&infra=$infra&content=$contentdir
-enabled=1
-includepkgs=
- ansible
- ansible-doc
- epel-release
- facter
- golang
- golang-github-stretchr-testify-devel
- golang-bin
- golang-github-davecgh-go-spew-devel
- golang-github-pmezard-go-difflib-devel
- golang-github-stretchr-objx-devel
- golang-src
- hiera
- libsodium
- libtomcrypt
- libtommath
- puppet
- python2-crypto
- python2-ecdsa
- python-ordereddict
- ruby-augeas
- rubygem-rgen
- ruby-shadow
- sshpass
- qpid-proton-c
- python3-bcrypt
- python3-qpid-proton
- python3-lockfile
- python3-paramiko
- python3-pynacl
-
-gpgcheck=1
-gpgkey=https://download.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8
-
 [ovirt-@OVIRT_SLOT@-virtio-win-latest]
 name=virtio-win builds roughly matching what will be shipped in upcoming RHEL
 baseurl=https://fedorapeople.org/groups/virt/virtio-win/repo/latest
@@ -91,8 +52,8 @@ enabled=1
 module_hotfixes=1
 
 [ovirt-@OVIRT_SLOT@-centos-opstools-testing]
-name=CentOS-8 - OpsTools - collectd
-baseurl=https://buildlogs.centos.org/centos/8/opstools/$basearch/collectd-5/
+name=CentOS Stream 8 - OpsTools - collectd
+baseurl=https://buildlogs.centos.org/centos/8-stream/opstools/$basearch/collectd-5/
 gpgcheck=0
 enabled=1
 
@@ -101,127 +62,39 @@ name=CentOS Stream 8 - Ceph packages for $basearch
 baseurl=http://mirror.centos.org/centos/8-stream/storage/$basearch/ceph-pacific
 enabled=1
 gpgcheck=0
-includepkgs=ceph-common
- gperftools-libs
- leveldb
- libcephfs2
- liboath
- libradosstriper1
- librgw2
- librbd1
- librados2
- fmt
- libunwind
- python3-ceph-common
- python3-ceph-argparse
- python3-cephfs
- python3-rados
- python3-rbd
- python3-rgw
 
-[ovirt-@OVIRT_SLOT@-centos-stream-openstack-victoria]
-name=CentOS Stream 8 - OpenStack Victoria Repository
-baseurl=http://mirror.centos.org/centos/8-stream/cloud/$basearch/openstack-victoria/
+[ovirt-@OVIRT_SLOT@-centos-stream-openstack-yoga-testing]
+name=CentOS Stream 8 - OpenStack Yoga Repository - testing
+baseurl=https://buildlogs.centos.org/centos/8-stream/cloud/$basearch/openstack-yoga/
 gpgcheck=0
 enabled=1
 module_hotfixes=1
-includepkgs=python3-os-brick
- python3-cinderlib
- openstack-cinder
- python3-importlib-metadata
- python3-oslo-*
- python-oslo-*
- python3-iso8601
- python3-os-win
- python3-paste
- python3-paste-deploy
- python3-pbr
- python3-funcsigs
- python3-pyparsing
- python3-retrying
- python3-tempita
- python3-yappi
- python3-eventlet
- python3-fasteners
- python3-oslo-privsep
- python3-msgpack
- python3-webob
- python3-routes
- python3-rfc3986
- python3-repoze-lru
- python3-osprofiler
- python3-cinderclient
- python3-cinder
- python3-tooz
- python3-taskflow
- python3-swiftclient
- python3-simplejson
- python3-oauth2client
- python3-novaclient
- python3-migrate
- python3-keystonemiddleware
- python3-keystoneclient
- python3-keystoneauth1
- python3-google-api-client
- python3-glanceclient
- python3-etcd3gw
- python3-defusedxml
- python3-cursive
- python3-castellan
- python3-barbicanclient
- python3-zake
- python3-warlock
- python3-uritemplate
- python3-google-api-client
- python3-tenacity
- python3-statsd
- python3-sqlparse
- python3-redis
- python3-pyngus
- python3-pycadf
- python3-os-service-types
- python3-kombu
- python3-keyring
- python3-futurist
- python3-automaton
- python3-amqp
- python3-alembic
- python3-rsa
- python3-cachetools
- python3-vine
- python3-secretstorage
- python3-memcached
- python3-kazoo
- python3-editor
- python3-dogpile-cache
- python-pycadf-common
- python3-jeepney
- python3-cinder-common
- python3-zstd
- python3-tabulate
- python3-networkx
- libzstd
- libzstd-devel
- python3-pydot
- python3-pygraphviz
- python3-pandas
- python3-tables
- python3dist
- python3-matplotlib
- python3-matplotlib-tk
- python3-matplotlib-data
- python3-numexpr
- python3-kiwisolver
- python3-cycler
- python3-Bottleneck
- python3-matplotlib-data-fonts
- hdf5
- blosc
- libhdf
- libblosc
- python3-oslo-utils
- python3-packaging
- python3-stevedore
- python3-six
- python3-requests
- python3-psutil
+exclude=
+ # ansible-2.9.27-4.el8 shipped in yoga repo is breaking dependencies on oVirt side
+ ansible
+ ansible-test
+
+# As Yoga is under development, also including RDO trunk
+[rdo-delorean-component-cinder]
+name=RDO Delorean OpenStack Cinder - current
+baseurl=https://trunk.rdoproject.org/centos8-master/component/cinder/current/
+enabled=1
+gpgcheck=0
+
+[rdo-delorean-component-network]
+name=RDO Delorean Network - current
+baseurl=https://trunk.rdoproject.org/centos8-master/component/network/current/
+enabled=1
+gpgcheck=0
+
+[rdo-delorean-component-clients]
+name=RDO Delorean Clients - current
+baseurl=https://trunk.rdoproject.org/centos8-master/component/clients/current/
+enabled=1
+gpgcheck=0
+
+[rdo-delorean-component-common]
+name=RDO Delorean Common - current
+baseurl=https://trunk.rdoproject.org/centos8-master/component/common/current/
+enabled=1
+gpgcheck=0

@@ -45,8 +45,7 @@ jobs:
               --repo centos-nfv-openvswitch \
               --repo centos-opstools \
               --repo centos-gluster10 \
-              --repo ovirt-45-centos-stream-openstack-yoga-testing \
-              --repo centos-openstack-xena
+              --repo ovirt-45-centos-stream-openstack-yoga
 
   centos-release-ovirt45-stream9:
     runs-on: ubuntu-latest

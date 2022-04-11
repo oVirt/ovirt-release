@@ -124,9 +124,9 @@ done
 . /etc/os-release || :
 
 %if 0%{?rhel} < 9
-VERSION_ID="8.6.2203.0"
+VERSION_ID="8.6.2204.0"
 %else
-VERSION_ID="9.0.2203.0"
+VERSION_ID="9.0.2204.0"
 %endif
 
 install -d /usr/lib/os.release.d/
@@ -252,7 +252,10 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, vdsm, kvm) /data/images/rhev
 
 %changelog
-* Thu Apr 07 2022 Sandro Bonazzola <sbonazzo@redhat.com> - - 4.5.0-4
+* Mon Apr 11 2022 Sandro Bonazzola <sbonazzo@redhat.com> - 4.5.0-5
+- Bumped for 4.5.0 GA
+
+* Thu Apr 07 2022 Sandro Bonazzola <sbonazzo@redhat.com> - 4.5.0-4
 - Bumped for 4.5.0 Beta respin
 
 * Fri Apr 01 2022 Sandro Bonazzola <sbonazzo@redhat.com> - 4.5.0-3

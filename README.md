@@ -75,6 +75,21 @@ All contributions are welcome - patches, bug reports, and documentation issues.
 
 Please submit patches to [GitHub:ovirt-release](https://github.com/oVirt/ovirt-release). If you are not familiar with the process, you can read about [collaborating with pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests) on the GitHub website.
 
+### Review patches / issues
+
+You can review open patches for oVirt organization:
+
+* [Untargeted PRs (no milestone set)](https://github.com/pulls?q=is%3Aopen+is%3Apr+user%3Aovirt+archived%3Afalse+no%3Amilestone)
+* [oVirt 4.5.0 PRs](https://github.com/pulls?q=is%3Aopen+is%3Apr+user%3Aovirt+archived%3Afalse+milestone%3Aovirt-4.5.0)
+* [oVirt 4.5.1 PRs](https://github.com/pulls?q=is%3Aopen+is%3Apr+user%3Aovirt+archived%3Afalse+milestone%3Aovirt-4.5.1)
+
+you can review/triage open issues for oVirt organization:
+
+* [Untargeted issues(no milestone set)](https://github.com/issues?q=is%3Aopen+is%3Aissue+user%3Aovirt+archived%3Afalse+no%3Amilestone)
+* [oVirt 4.5.0 issues](https://github.com/issues?q=is%3Aopen+is%3Aissue+user%3Aovirt+archived%3Afalse+milestone%3Aovirt-4.5.0)
+* [oVirt 4.5.1 issues](https://github.com/issues?q=is%3Aopen+is%3Aissue+user%3Aovirt+archived%3Afalse+milestone%3Aovirt-4.5.1)
+
+
 ### Found a bug or documentation issue?
 
 To submit a bug or suggest an enhancement for oVirt Release please use [oVirt Bugzilla for ovirt-release product](https://bugzilla.redhat.com/enter_bug.cgi?product=ovirt-release).

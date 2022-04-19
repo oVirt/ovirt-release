@@ -72,11 +72,7 @@ jobs:
               --repo centos-gluster10 \
               --repo centos-nfv-openvswitch \
               --repo centos-opstools \
-              --repo ovirt-45-centos-stream-openstack-yoga-testing \
-              --repo rdo-delorean-component-cinder \
-              --repo rdo-delorean-component-clients \
-              --repo rdo-delorean-component-common \
-              --repo rdo-delorean-component-network
+              --repo ovirt-45-centos-stream-openstack-yoga
 
   close-45-issue-on-success:
     name: Report workflow success

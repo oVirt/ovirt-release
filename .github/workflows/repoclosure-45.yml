@@ -72,7 +72,7 @@ jobs:
               --repo centos-gluster10 \
               --repo centos-nfv-openvswitch \
               --repo centos-opstools \
-              --repo ovirt-45-centos-stream-openstack-yoga
+              --repo centos-openstack-yoga
 
   close-45-issue-on-success:
     name: Report workflow success

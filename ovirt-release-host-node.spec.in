@@ -124,9 +124,9 @@ done
 . /etc/os-release || :
 
 %if 0%{?rhel} < 9
-VERSION_ID="8.6.2203.0"
+VERSION_ID="8.7.2205.0"
 %else
-VERSION_ID="9.0.2203.0"
+VERSION_ID="9.1.2205.0"
 %endif
 
 install -d /usr/lib/os.release.d/

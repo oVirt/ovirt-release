@@ -48,11 +48,7 @@ jobs:
               --repo ovirt-master-centos-stream-ovirt45-testing \
               --repo ovirt-master-copr:copr.fedorainfracloud.org:sac:gluster-ansible \
               --repo ovirt-master-virtio-win-latest \
-              --repo powertools \
-              --repo rdo-delorean-component-cinder \
-              --repo rdo-delorean-component-clients \
-              --repo rdo-delorean-component-common \
-              --repo rdo-delorean-component-network
+              --repo powertools
 
   copr-ovirt-master-snapshot-el9:
     runs-on: ubuntu-latest
@@ -80,11 +76,7 @@ jobs:
               --repo ovirt-master-centos-stream-nfv-openvswitch2-testing \
               --repo ovirt-master-centos-stream-openstack-yoga-testing \
               --repo ovirt-master-centos-stream-opstools-collectd5-testing \
-              --repo ovirt-master-centos-stream-ovirt45-testing \
-              --repo rdo-delorean-component-cinder \
-              --repo rdo-delorean-component-clients \
-              --repo rdo-delorean-component-common \
-              --repo rdo-delorean-component-network
+              --repo ovirt-master-centos-stream-ovirt45-testing
 
 
   centos-release-ovirt45-el8:

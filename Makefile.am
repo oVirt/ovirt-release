@@ -1,6 +1,6 @@
 #
 # ovirt-release -- repo files for oVirt projects
-# Copyright (C) 2012-2019 Red Hat, Inc.
+# Copyright (C) 2012-2022 Red Hat, Inc.
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public

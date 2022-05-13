@@ -1,6 +1,6 @@
 #
 # ovirt-release -- repo files for oVirt projects
-# Copyright (C) 2014-2021 Red Hat, Inc.
+# Copyright (C) 2014-2022 Red Hat, Inc.
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -27,11 +27,12 @@ Name:		%{package_name}
 Version:	@PACKAGE_RPM_VERSION@
 Release:	@PACKAGE_RPM_RELEASE@%{?dist}
 Summary:	The oVirt repository configuration
-Group:		System Environment/Base
 
 License:	ASL 2.0
 URL:		https://www.ovirt.org
-Source0:	https://resources.ovirt.org/pub/src/%{package_name}/%{package_name}-%{package_version}.tar.gz
+# Source is taken from https://github.com/oVirt/ovirt-release.git
+# tarball is generated from ovirt-4.5 branch tag corresponding to package version
+Source0:	%{package_name}-%{package_version}.tar.gz
 
 BuildArch:	noarch
 

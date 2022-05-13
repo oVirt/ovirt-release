@@ -34,28 +34,3 @@ name=CentOS Stream 9 - OpenStack Yoga Repository - testing
 baseurl=https://buildlogs.centos.org/9-stream/cloud/$basearch/openstack-yoga/
 gpgcheck=0
 enabled=1
-
-# As Yoga is under development, also including RDO trunk
-[rdo-delorean-component-cinder]
-name=RDO Delorean OpenStack Cinder - current
-baseurl=https://trunk.rdoproject.org/centos9-yoga/component/cinder/current/
-enabled=1
-gpgcheck=0
-
-[rdo-delorean-component-network]
-name=RDO Delorean Network - current
-baseurl=https://trunk.rdoproject.org/centos9-yoga/component/network/current/
-enabled=1
-gpgcheck=0
-
-[rdo-delorean-component-clients]
-name=RDO Delorean Clients - current
-baseurl=https://trunk.rdoproject.org/centos9-yoga/component/clients/current/
-enabled=1
-gpgcheck=0
-
-[rdo-delorean-component-common]
-name=RDO Delorean Common - current
-baseurl=https://trunk.rdoproject.org/centos9-yoga/component/common/current/
-enabled=1
-gpgcheck=0

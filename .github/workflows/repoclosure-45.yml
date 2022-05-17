@@ -107,6 +107,64 @@ jobs:
               --repo centos-gluster10 \
               --repo ovirt-45-centos-stream-openstack-yoga
 
+  centos-release-ovirt45-alma-linux-8:
+    runs-on: ubuntu-latest
+    container:
+      image: almalinux:latest
+    steps:
+      - name: Enable repositories
+        run: |
+          cat >/etc/yum.repos.d/CentOS-Stream-Extras.repo <<'EOF'
+          [cs8-extras]
+          name=CentOS Stream $releasever - Extras
+          mirrorlist=http://mirrorlist.centos.org/?release=8-stream&arch=$basearch&repo=extras&infra=$infra
+          #baseurl=http://mirror.centos.org/$contentdir/8-stream/extras/$basearch/os/
+          gpgcheck=1
+          enabled=1
+          gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-Official
+          EOF
+
+          cat >/etc/yum.repos.d/CentOS-Stream-Extras-common.repo <<'EOF'
+          [cs8-extras-common]
+          name=CentOS Stream $releasever - Extras common packages
+          mirrorlist=http://mirrorlist.centos.org/?release=8-stream&arch=$basearch&repo=extras-extras-common
+          #baseurl=http://mirror.centos.org/$contentdir/8-stream/extras/$basearch/extras-common/
+          gpgcheck=1
+          enabled=1
+          gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-Extras
+          EOF
+
+
+          echo "8-stream" > /etc/yum/vars/stream
+
+          dnf distro-sync -y
+          dnf install -y centos-release-ovirt45
+
+      - name: Enable required modules
+        run: |
+            dnf module enable -y javapackages-tools:201801
+            dnf module enable -y maven:3.5
+            dnf module enable -y pki-deps:10.6
+            dnf module enable -y postgresql:12
+            dnf module enable -y mod_auth_openidc:2.3
+            dnf module enable -y ruby:3.0
+
+      - name: Run repoclosure on oVirt 4.5 Released content
+        run: |
+            dnf repoclosure --newest --refresh \
+              --check centos-ovirt45 \
+              --check ovirt-45-upstream \
+              --repo appstream \
+              --repo baseos \
+              --repo extras \
+              --repo powertools \
+              --repo centos-ceph-pacific \
+              --repo centos-nfv-openvswitch \
+              --repo centos-opstools \
+              --repo centos-gluster10 \
+              --repo ovirt-45-centos-stream-openstack-yoga
+
+
   centos-release-ovirt45-stream9:
     runs-on: ubuntu-latest
     container:
@@ -140,6 +198,7 @@ jobs:
     needs:
       - centos-release-ovirt45-stream8
       - centos-release-ovirt45-rocky-linux-8
+      - centos-release-ovirt45-alma-linux-8
       - centos-release-ovirt45-stream9
 
     steps:
@@ -161,10 +220,16 @@ jobs:
   open-45-issue-on-failure:
     name: Report workflow failure
     runs-on: ubuntu-latest
-    if: ${{ always() && (needs.centos-release-ovirt45-stream8.result=='failure' || needs.centos-release-ovirt45-stream9.result=='failure' || needs.centos-release-ovirt45-rocky-linux-8.result=='failure') }}
+    if: ${{ always() && (
+      needs.centos-release-ovirt45-stream8.result=='failure' ||
+      needs.centos-release-ovirt45-stream9.result=='failure' ||
+      needs.centos-release-ovirt45-rocky-linux-8.result=='failure' ||
+      needs.centos-release-ovirt45-alma-linux-8=='failure'
+      ) }}
     needs:
       - centos-release-ovirt45-stream8
       - centos-release-ovirt45-rocky-linux-8
+      - centos-release-ovirt45-alma-linux-8
       - centos-release-ovirt45-stream9
     steps:
       - name: Checkout

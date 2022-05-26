@@ -254,5 +254,8 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, vdsm, kvm) /data/images/rhev
 
 %changelog
+* Thu May 26 2022 Sandro Bonazzola <sbonazzo@redhat.com> - 4.5.1
+- Bumped version to 4.5.1
+
 * Tue Sep 07 2021 Sandro Bonazzola <sbonazzo@redhat.com> - 4.5.0-0.0.master
 - Bumped version to 4.5.0

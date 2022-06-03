@@ -104,9 +104,9 @@ jobs:
       - name: Run repoclosure on CentOS Virtualization SIG - oVirt 45 - testing
         run: |
             dnf repoclosure --newest --refresh \
-              --check centos-ovirt45 \
+              --repo centos-ovirt45 \
               --check centos-ovirt45-testing \
-              --check ovirt-45-upstream \
+              --repo ovirt-45-upstream \
               --check ovirt-45-upstream-testing \
               --repo appstream \
               --repo baseos \
@@ -136,9 +136,9 @@ jobs:
       - name: Run repoclosure on CentOS Virtualization SIG - oVirt 45 - testing
         run: |
             dnf repoclosure --newest --refresh \
-              --check centos-ovirt45 \
+              --repo centos-ovirt45 \
               --check centos-ovirt45-testing \
-              --check ovirt-45-upstream \
+              --repo ovirt-45-upstream \
               --check ovirt-45-upstream-testing \
               --repo appstream \
               --repo baseos \

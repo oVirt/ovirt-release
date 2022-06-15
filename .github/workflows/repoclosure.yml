@@ -88,7 +88,7 @@ jobs:
       - name: Enable repositories
         run: |
             dnf distro-sync -y
-            dnf --repofrompath=extras-common-testing,https://buildlogs.centos.org/centos/8-stream/extras/x86_64/extras-common/  install -y --nogpgcheck centos-release-ovirt45
+            dnf --repofrompath=extras-common-testing,https://buildlogs.centos.org/centos/8-stream/extras/x86_64/extras-common/  install -y --nogpgcheck centos-release-ovirt45-testing
             dnf config-manager --set-enabled centos-ovirt45-testing
             dnf config-manager --set-enabled ovirt-45-upstream-testing
 
@@ -128,7 +128,7 @@ jobs:
       - name: Enable repositories
         run: |
             dnf distro-sync -y
-            dnf --repofrompath=extras-common-testing,https://buildlogs.centos.org/centos/9-stream/extras/x86_64/extras-common/  install -y --nogpgcheck centos-release-ovirt45
+            dnf --repofrompath=extras-common-testing,https://buildlogs.centos.org/centos/9-stream/extras/x86_64/extras-common/  install -y --nogpgcheck centos-release-ovirt45-testing
             dnf config-manager --set-enabled centos-ovirt45-testing
             dnf config-manager --set-enabled ovirt-45-upstream-testing
 

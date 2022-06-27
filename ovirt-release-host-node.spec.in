@@ -180,7 +180,8 @@ systemctl restart cockpit.service >/dev/null 2>&1
 
 PYTHON=$(command -v python3 || command -v python)
 
-for REPO in %{_sysconfdir}/yum.repos.d/ovirt-*.repo %{_sysconfdir}/yum.repos.d/CentOS-oVirt-*.repo;
+pushd %{_sysconfdir}/yum.repos.d
+for REPO in $(find -maxdepth 1 -type f -name 'CentOS-oVirt-*.repo' -printf '%f\n');
 do
     $PYTHON << EOF
 try:
@@ -207,6 +208,33 @@ with open("$REPO", "w") as f:
 EOF
 done
 
+for REPO in $(find -maxdepth 1 -type f -name 'ovirt-*.repo' -printf '%f\n');
+do
+    $PYTHON << EOF
+import os
+from configparser import ConfigParser
+cp = ConfigParser()
+cp.optionxform = str
+if os.path.exists("$REPO"):
+	cp.read("$REPO")
+	for s in cp.sections():
+		cp.remove_option(s, "includepkgs")
+		cp.set(s, "includepkgs", (
+			"ovirt-node-ng-image-update "
+			"ovirt-node-ng-image "
+			"ovirt-engine-appliance "
+			"vdsm-hook-fcoe "
+			"vdsm-hook-vhostmd "
+			"vdsm-hook-openstacknet "
+			"vdsm-hook-ethtool-options")
+		)
+	with open("$REPO", "w") as f:
+		f.write("# imgbased: set-enabled\n")
+		cp.write(f)
+EOF
+done
+
+popd
 
 #
 # NGN TEMPORARY HACKS

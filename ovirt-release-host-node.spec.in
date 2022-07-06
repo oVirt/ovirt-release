@@ -180,7 +180,7 @@ systemctl restart cockpit.service >/dev/null 2>&1
 
 PYTHON=$(command -v python3 || command -v python)
 
-for REPO in %{_sysconfdir}/yum.repos.d/ovirt-*.repo;
+for REPO in %{_sysconfdir}/yum.repos.d/ovirt-*.repo %{_sysconfdir}/yum.repos.d/CentOS-oVirt-*.repo;
 do
     $PYTHON << EOF
 try:

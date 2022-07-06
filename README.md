@@ -80,16 +80,16 @@ Please submit patches to [GitHub:ovirt-release](https://github.com/oVirt/ovirt-r
 You can review open patches for oVirt organization:
 
 * [Untargeted PRs (no milestone set)](https://github.com/pulls?q=is%3Aopen+is%3Apr+user%3Aovirt+archived%3Afalse+no%3Amilestone)
-* [oVirt 4.5.1 PRs](https://github.com/pulls?q=is%3Aopen+is%3Apr+user%3Aovirt+archived%3Afalse+milestone%3Aovirt-4.5.1)
 * [oVirt 4.5.1-1 PRs](https://github.com/pulls?q=is%3Aopen+is%3Apr+user%3Aovirt+archived%3Afalse+milestone%3Aovirt-4.5.1-1)
 * [oVirt 4.5.2 PRs](https://github.com/pulls?q=is%3Aopen+is%3Apr+user%3Aovirt+archived%3Afalse+milestone%3Aovirt-4.5.2)
+* [oVirt 4.5.3 PRs](https://github.com/pulls?q=is%3Aopen+is%3Apr+user%3Aovirt+archived%3Afalse+milestone%3Aovirt-4.5.3)
 
 you can review/triage open issues for oVirt organization:
 
 * [Untargeted issues(no milestone set)](https://github.com/issues?q=is%3Aopen+is%3Aissue+user%3Aovirt+archived%3Afalse+no%3Amilestone)
-* [oVirt 4.5.1 issues](https://github.com/issues?q=is%3Aopen+is%3Aissue+user%3Aovirt+archived%3Afalse+milestone%3Aovirt-4.5.1)
 * [oVirt 4.5.1-1 issues](https://github.com/issues?q=is%3Aopen+is%3Aissue+user%3Aovirt+archived%3Afalse+milestone%3Aovirt-4.5.1-1)
 * [oVirt 4.5.2 issues](https://github.com/issues?q=is%3Aopen+is%3Aissue+user%3Aovirt+archived%3Afalse+milestone%3Aovirt-4.5.2)
+* [oVirt 4.5.3 issues](https://github.com/issues?q=is%3Aopen+is%3Aissue+user%3Aovirt+archived%3Afalse+milestone%3Aovirt-4.5.3)
 
 
 ### Found a bug or documentation issue?

@@ -22,15 +22,6 @@ repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
 
-# Once CentOS Stream derivatives will start providing 8.6 content we can drop this repo as
-# advanced virtualization is going to be included in AppStream.
-[ovirt-@OVIRT_SLOT@-centos-stream-advanced-virtualization-testing]
-name=Advanced Virtualization CentOS Stream testing packages for $basearch
-baseurl=https://buildlogs.centos.org/centos/8-stream/virt/$basearch/advancedvirt-common/
-enabled=1
-gpgcheck=0
-module_hotfixes=1
-
 [ovirt-@OVIRT_SLOT@-centos-stream-ovirt45-testing]
 name=CentOS Stream 8 - oVirt 4.5 - testing
 baseurl=https://buildlogs.centos.org/centos/8-stream/virt/$basearch/ovirt-45/

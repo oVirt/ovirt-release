@@ -50,7 +50,7 @@ jobs:
   centos-release-ovirt45-rocky-linux-8:
     runs-on: ubuntu-latest
     container:
-      image: rockylinux:latest
+      image: rockylinux:8
     steps:
       - name: Enable repositories
         run: |

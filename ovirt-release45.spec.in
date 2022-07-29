@@ -107,9 +107,13 @@ fi
 
 if [[ "${DISTVER::3}" == "el9" ]] ; then
 	install -m 644 "%{_datadir}/%{package_name}/ovirt-el9-stream-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-	if [[ "${ID}" == "centos" ]]; then
-		dnf config-manager --set-enabled resilientstorage
+	if [ $(rpm --eval "%%centos") == 9 ]
+	then
+		# centos macro is defined on centos-like distributions
+		# Ensuring crb repository is enabled
 		dnf config-manager --set-enabled crb
+		# Ensuring resilientstorage repository is enabled
+		dnf config-manager --set-enabled resilientstorage
 	fi
 fi
 
@@ -127,5 +131,8 @@ install -m 644 "%{_datadir}/%{package_name}/ovirt-snapshot.repo" "%{_sysconfdir}
 %license LICENSE-2.0.txt
 
 %changelog
+* Thu May 26 2022 Sandro Bonazzola <sbonazzo@redhat.com> - 4.5.1
+- Bumped version to 4.5.1
+
 * Tue Sep 07 2021 Sandro Bonazzola <sbonazzo@redhat.com> - 4.5.0-0.0.master
 - Bumped version to 4.5.0

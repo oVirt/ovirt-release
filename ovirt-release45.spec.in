@@ -131,6 +131,9 @@ install -m 644 "%{_datadir}/%{package_name}/ovirt-snapshot.repo" "%{_sysconfdir}
 %license LICENSE-2.0.txt
 
 %changelog
+* Tue Aug 09 2022 Lev Veyde <lveyde@redhat.com> - 4.5.2
+- Bumped version to 4.5.2
+
 * Thu May 26 2022 Sandro Bonazzola <sbonazzo@redhat.com> - 4.5.1
 - Bumped version to 4.5.1
 

@@ -60,7 +60,7 @@ jobs:
         run: |
             dnf distro-sync -y
             dnf install -y 'dnf-command(copr)'
-            dnf copr enable -y ovirt/ovirt-master-snapshot
+            dnf copr enable -y ovirt/ovirt-master-snapshot centos-stream-9
             dnf install -y ovirt-release-master
 
       - name: Run repoclosure on oVirt Master Snapshot from COPR

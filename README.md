@@ -94,9 +94,7 @@ you can review/triage open issues for oVirt organization:
 
 ### Found a bug or documentation issue?
 
-To submit a bug or suggest an enhancement for oVirt Release please use [oVirt Bugzilla for ovirt-release product](https://bugzilla.redhat.com/enter_bug.cgi?product=ovirt-release).
-
-If you don't have a Bugzilla account, you can still report [issues](https://github.com/oVirt/ovirt-release/issues). If you find a documentation issue on the oVirt website, please navigate to the page footer and click "Report an issue on GitHub".
+To submit a bug or suggest an enhancement for oVirt Release please use GitHub [issues](https://github.com/oVirt/ovirt-release/issues). If you find a documentation issue on the oVirt website, please navigate to the page footer and click "Report an issue on GitHub".
 
 ## Still need help?
 

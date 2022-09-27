@@ -144,7 +144,7 @@ PRETTY_NAME="oVirt Node %{package_short_version}"
 ANSI_COLOR="$ANSI_COLOR"
 CPE_NAME="$CPE_NAME"
 HOME_URL="https://www.ovirt.org/"
-BUG_REPORT_URL="https://bugzilla.redhat.com/"
+BUG_REPORT_URL="https://github.com/oVirt/ovirt-release/issues"
 EOF
 
 if [[ -n $PLATFORM_ID ]]; then

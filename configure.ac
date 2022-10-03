@@ -19,7 +19,7 @@ dnl
 dnl SPDX-License-Identifier: LGPL-2.1-or-later
 
 
-define([VERSION_NUMBER], [4.5.2])
+define([VERSION_NUMBER], [4.5.4])
 define([VERSION_SUFFIX], [_master])
 
 AC_INIT([ovirt-release-master], VERSION_NUMBER[]VERSION_SUFFIX, [devel@ovirt.org])
@@ -31,7 +31,7 @@ AC_SUBST([PACKAGE_RPM_VERSION])
 PACKAGE_SHORT_VERSION="$(echo VERSION_NUMBER | cut -d '.' -f 1,2,3)"
 AC_SUBST([PACKAGE_SHORT_VERSION])
 
-PACKAGE_RPM_RELEASE="0.3.$(echo VERSION_SUFFIX | sed 's/^_//')"
+PACKAGE_RPM_RELEASE="0.0.$(echo VERSION_SUFFIX | sed 's/^_//')"
 AC_SUBST([PACKAGE_RPM_RELEASE])
 
 OVIRT_SLOT="master"

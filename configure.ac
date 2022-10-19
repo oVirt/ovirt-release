@@ -19,7 +19,7 @@ dnl
 dnl SPDX-License-Identifier: LGPL-2.1-or-later
 
 
-define([VERSION_NUMBER], [4.5.3])
+define([VERSION_NUMBER], [4.5.3.1])
 define([VERSION_SUFFIX], [])
 
 AC_INIT([ovirt-release45], VERSION_NUMBER[]VERSION_SUFFIX, [devel@ovirt.org])

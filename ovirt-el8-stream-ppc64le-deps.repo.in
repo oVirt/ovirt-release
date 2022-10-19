@@ -58,3 +58,8 @@ exclude=
  # ansible-2.9.27-4.el8 shipped in yoga repo is breaking dependencies on oVirt side
  ansible
  ansible-test
+ rdo-openvswitch
+ rdo-ovn
+ rdo-ovn-central
+ rdo-ovn-host
+ python3-rdo-openvswitch

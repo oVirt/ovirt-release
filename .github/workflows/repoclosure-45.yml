@@ -11,6 +11,35 @@ on:
     # Running every morning in EMEA timezone
     - cron: '0 6 * * *'
 
+env:
+  EXTRA_REPOS_EL8: >
+    --repo appstream
+    --repo baseos
+    --repo extras
+    --repo powertools
+    --repo centos-ceph-pacific
+    --repo centos-nfv-openvswitch
+    --repo centos-opstools
+    --repo centos-gluster10
+    --repo ovirt-45-centos-stream-openstack-yoga
+
+  EXTRA_REPOS_EL9: >
+    --repo appstream
+    --repo baseos
+    --repo resilientstorage
+    --repo crb
+    --repo centos-ceph-pacific
+    --repo centos-gluster10
+    --repo centos-nfv-openvswitch
+    --repo centos-opstools
+    --repo centos-openstack-yoga
+
+  NON_CBS_PACKAGES: >
+    --pkg java-client-kubevirt
+    --pkg java-ovirt-engine-sdk4
+    --pkg ovirt-node-ng-image-update
+    --pkg ovirt-engine-appliance
+
 jobs:
   centos-release-ovirt45-stream8:
     runs-on: ubuntu-latest
@@ -32,20 +61,23 @@ jobs:
             dnf module enable -y mod_auth_openidc:2.3
             dnf module enable -y ruby:3.0
 
-      - name: Run repoclosure on oVirt 4.5 Released content
+      - name: Run repoclosure on oVirt 4.5 CBS released content
         run: |
             dnf repoclosure --newest --refresh \
               --check centos-ovirt45 \
+              --repo ovirt-45-upstream \
+              $EXTRA_REPOS_EL8
+
+      - name: Run repoclosure on oVirt 4.5 resource.ovirt.org content
+        # We need to check only packages which are stored exclusively on resources.ovirt.org and omit packages,
+        # which are newly built on CBS due to bug in repoclosure around having different package versions on multiple
+        # repositories
+        run: |
+            dnf repoclosure --newest --refresh \
               --check ovirt-45-upstream \
-              --repo appstream \
-              --repo baseos \
-              --repo extras \
-              --repo powertools \
-              --repo centos-ceph-pacific \
-              --repo centos-nfv-openvswitch \
-              --repo centos-opstools \
-              --repo centos-gluster10 \
-              --repo ovirt-45-centos-stream-openstack-yoga
+              --repo centos-ovirt45 \
+              $EXTRA_REPOS_EL8 \
+              $NON_CBS_PACKAGES
 
   centos-release-ovirt45-rocky-linux-8:
     runs-on: ubuntu-latest
@@ -92,20 +124,23 @@ jobs:
             dnf module enable -y mod_auth_openidc:2.3
             dnf module enable -y ruby:3.0
 
-      - name: Run repoclosure on oVirt 4.5 Released content
+      - name: Run repoclosure on oVirt 4.5 CBS released content
         run: |
             dnf repoclosure --newest --refresh \
               --check centos-ovirt45 \
+              --repo ovirt-45-upstream \
+              $EXTRA_REPOS_EL8
+
+      - name: Run repoclosure on oVirt 4.5 resource.ovirt.org content
+        # We need to check only packages which are stored exclusively on resources.ovirt.org and omit packages,
+        # which are newly built on CBS due to bug in repoclosure around having different package versions on multiple
+        # repositories
+        run: |
+            dnf repoclosure --newest --refresh \
               --check ovirt-45-upstream \
-              --repo appstream \
-              --repo baseos \
-              --repo extras \
-              --repo powertools \
-              --repo centos-ceph-pacific \
-              --repo centos-nfv-openvswitch \
-              --repo centos-opstools \
-              --repo centos-gluster10 \
-              --repo ovirt-45-centos-stream-openstack-yoga
+              --repo centos-ovirt45 \
+              $EXTRA_REPOS_EL8 \
+              $NON_CBS_PACKAGES
 
   centos-release-ovirt45-alma-linux-8:
     runs-on: ubuntu-latest
@@ -149,20 +184,23 @@ jobs:
             dnf module enable -y mod_auth_openidc:2.3
             dnf module enable -y ruby:3.0
 
-      - name: Run repoclosure on oVirt 4.5 Released content
+      - name: Run repoclosure on oVirt 4.5 CBS released content
         run: |
             dnf repoclosure --newest --refresh \
               --check centos-ovirt45 \
+              --repo ovirt-45-upstream \
+              $EXTRA_REPOS_EL8
+
+      - name: Run repoclosure on oVirt 4.5 resource.ovirt.org content
+        # We need to check only packages which are stored exclusively on resources.ovirt.org and omit packages,
+        # which are newly built on CBS due to bug in repoclosure around having different package versions on multiple
+        # repositories
+        run: |
+            dnf repoclosure --newest --refresh \
               --check ovirt-45-upstream \
-              --repo appstream \
-              --repo baseos \
-              --repo extras \
-              --repo powertools \
-              --repo centos-ceph-pacific \
-              --repo centos-nfv-openvswitch \
-              --repo centos-opstools \
-              --repo centos-gluster10 \
-              --repo ovirt-45-centos-stream-openstack-yoga
+              --repo centos-ovirt45 \
+              $EXTRA_REPOS_EL8 \
+              $NON_CBS_PACKAGES
 
 
   centos-release-ovirt45-stream9:
@@ -182,15 +220,7 @@ jobs:
             dnf repoclosure --newest --refresh \
               --check centos-ovirt45 \
               --check ovirt-45-upstream \
-              --repo appstream \
-              --repo baseos \
-              --repo resilientstorage \
-              --repo crb \
-              --repo centos-ceph-pacific \
-              --repo centos-gluster10 \
-              --repo centos-nfv-openvswitch \
-              --repo centos-opstools \
-              --repo centos-openstack-yoga
+              $EXTRA_REPOS_EL9
 
   close-45-issue-on-success:
     name: Report workflow success

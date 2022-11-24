@@ -72,11 +72,9 @@ jobs:
             dnf --downloadonly install -y ovirt-engine-appliance
 
       - name: Upload artifacts
-        uses: ovirt/upload-rpms-action@v1
+        uses: ovirt/upload-rpms-action@main
         with:
           directory: exported-artifacts
-          distro: el8stream
-
 
   build-el9:
     # Building only on master as we don't support el9 in 4.4.
@@ -124,7 +122,6 @@ jobs:
             dnf --downloadonly install -y exported-artifacts/*noarch.rpm exported-artifacts/*x86_64.rpm
 
       - name: Upload artifacts
-        uses: ovirt/upload-rpms-action@v1
+        uses: ovirt/upload-rpms-action@main
         with:
           directory: exported-artifacts
-          distro: el9stream

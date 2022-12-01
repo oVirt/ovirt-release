@@ -281,6 +281,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, vdsm, kvm) /data/images/rhev
 
 %changelog
+* Thu Dec 01 2022 Lev Veyde <lveyde@redhat.com> - 4.5.4-1
+- Bumped for 4.5.4 GA
+
 * Thu Oct 27 2022 Lev Veyde <lveyde@redhat.com> - 4.5.3.2-1
 - Bumped for 4.5.3.2 Async
 

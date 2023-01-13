@@ -29,6 +29,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Mark git repo as safe
+        run: git config --global --add safe.directory $(pwd)
+
       - name: Autoreconf
         run: autoreconf -ivf
 

@@ -1,6 +1,6 @@
 #
 # ovirt-release -- repo files for oVirt projects
-# Copyright (C) 2014-2022 Red Hat, Inc.
+# Copyright (C) 2014-2023 Red Hat, Inc.
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -282,6 +282,9 @@ systemctl restart cockpit.service >/dev/null 2>&1
 %dir %attr(0755, vdsm, kvm) /data/images/rhev
 
 %changelog
+* Fri Jan 13 2023 Sandro Bonazzola <sbonazzo@redhat.com> - 4.5.5
+- Bumped version to 4.5.5
+
 * Mon Jun 27 2022 Sandro Bonazzola <sbonazzo@redhat.com> - 4.5.2
 - Bumped version to 4.5.2
 

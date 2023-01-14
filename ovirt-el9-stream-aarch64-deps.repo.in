@@ -36,6 +36,7 @@ gpgcheck=0
 enabled=1
 exclude=
  python3-rdo-openvswitch
+ rdo-network-scripts-openvswitch
  rdo-openvswitch
  rdo-ovn
  rdo-ovn-central

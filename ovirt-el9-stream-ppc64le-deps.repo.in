@@ -34,3 +34,10 @@ name=CentOS Stream 9 - OpenStack Yoga Repository - testing
 baseurl=https://buildlogs.centos.org/9-stream/cloud/$basearch/openstack-yoga/
 gpgcheck=0
 enabled=1
+exclude=
+ python3-rdo-openvswitch
+ rdo-network-scripts-openvswitch
+ rdo-openvswitch
+ rdo-ovn
+ rdo-ovn-central
+ rdo-ovn-host

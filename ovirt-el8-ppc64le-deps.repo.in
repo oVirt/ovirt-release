@@ -65,6 +65,7 @@ exclude=
  ansible
  ansible-test
  python3-rdo-openvswitch
+ rdo-network-scripts-openvswitch
  rdo-openvswitch
  rdo-ovn
  rdo-ovn-central

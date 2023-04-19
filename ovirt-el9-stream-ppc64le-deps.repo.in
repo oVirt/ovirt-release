@@ -35,6 +35,7 @@ baseurl=https://buildlogs.centos.org/9-stream/cloud/$basearch/openstack-yoga/
 gpgcheck=0
 enabled=1
 exclude=
+ openstack-ansible-core
  python3-rdo-openvswitch
  rdo-network-scripts-openvswitch
  rdo-openvswitch

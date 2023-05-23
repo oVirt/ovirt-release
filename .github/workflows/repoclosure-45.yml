@@ -145,7 +145,7 @@ jobs:
   centos-release-ovirt45-alma-linux-8:
     runs-on: ubuntu-latest
     container:
-      image: almalinux:latest
+      image: almalinux:8
     steps:
       - name: Enable repositories
         run: |

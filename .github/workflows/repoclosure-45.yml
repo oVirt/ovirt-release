@@ -123,6 +123,7 @@ jobs:
             dnf module enable -y postgresql:12
             dnf module enable -y mod_auth_openidc:2.3
             dnf module enable -y ruby:3.0
+            dnf module enable -y jaxb:4
 
       - name: Run repoclosure on oVirt 4.5 CBS released content
         run: |
@@ -183,6 +184,7 @@ jobs:
             dnf module enable -y postgresql:12
             dnf module enable -y mod_auth_openidc:2.3
             dnf module enable -y ruby:3.0
+            dnf module enable -y jaxb:4
 
       - name: Run repoclosure on oVirt 4.5 CBS released content
         run: |

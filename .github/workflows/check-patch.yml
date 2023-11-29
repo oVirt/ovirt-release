@@ -24,9 +24,12 @@ jobs:
           mkdir -p ${PWD}/tmp.repos/BUILD
           yum install -y --setopt=tsflags=nodocs autoconf automake gettext-devel git systemd make git rpm-build
 
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 0
+
+    - name: Mark git repo as safe
+      run: git config --global --add safe.directory $(pwd)
 
     - name: autoreconf
       run: autoreconf -ivf
@@ -101,9 +104,12 @@ jobs:
             mkdir -p ${PWD}/tmp.repos/BUILD
             yum install -y --setopt=tsflags=nodocs autoconf automake gettext-devel git systemd make git rpm-build
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Mark git repo as safe
+        run: git config --global --add safe.directory $(pwd)
 
       - name: autoreconf
         run: autoreconf -ivf

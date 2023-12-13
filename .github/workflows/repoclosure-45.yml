@@ -8,8 +8,8 @@ permissions:
 on:
   workflow_dispatch:
   schedule:
-    # Running every morning in EMEA timezone
-    - cron: '0 6 * * *'
+    # Running every Monday
+    - cron: '0 6 * * 1'
 
 env:
   EXTRA_REPOS_EL8: >

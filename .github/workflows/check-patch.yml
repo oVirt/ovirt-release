@@ -25,7 +25,7 @@ jobs:
             dnf distro-sync -y
             dnf install -y --setopt=tsflags=nodocs autoconf automake gettext-devel git systemd make git rpm-build
 
-      - uses: actions/checkout@v3
+      - uses: ovirt/checkout-action@main
         with:
           fetch-depth: 0
 

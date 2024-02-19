@@ -160,7 +160,7 @@ jobs:
       - centos-release-ovirt45-el9
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: ovirt/checkout-action@main
       - name: Add a comment about successful job and close issue
         run: |
           set -e
@@ -185,7 +185,7 @@ jobs:
       - centos-release-ovirt45-el9
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: ovirt/checkout-action@main
       - name: Add a comment about failed job
         run: |
           set -e

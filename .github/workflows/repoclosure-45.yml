@@ -12,17 +12,6 @@ on:
     - cron: '0 6 * * 1'
 
 env:
-  EXTRA_REPOS_EL8: >
-    --repo appstream
-    --repo baseos
-    --repo extras
-    --repo powertools
-    --repo centos-ceph-pacific
-    --repo centos-nfv-openvswitch
-    --repo centos-opstools
-    --repo centos-gluster10
-    --repo ovirt-45-centos-stream-openstack-yoga
-
   EXTRA_REPOS_EL9: >
     --repo appstream
     --repo baseos
@@ -41,170 +30,6 @@ env:
     --pkg ovirt-engine-appliance
 
 jobs:
-  centos-release-ovirt45-stream8:
-    runs-on: ubuntu-latest
-    container:
-      image: quay.io/centos/centos:stream8
-
-    steps:
-      - name: Enable repositories
-        run: |
-            dnf distro-sync -y
-            dnf install -y centos-release-ovirt45
-
-      - name: Enable required modules
-        run: |
-            dnf module enable -y javapackages-tools:201801
-            dnf module enable -y maven:3.5
-            dnf module enable -y pki-deps:10.6
-            dnf module enable -y postgresql:12
-            dnf module enable -y mod_auth_openidc:2.3
-            dnf module enable -y ruby:3.0
-
-      - name: Run repoclosure on oVirt 4.5 CBS released content
-        run: |
-            dnf repoclosure --newest --refresh \
-              --check centos-ovirt45 \
-              --repo ovirt-45-upstream \
-              $EXTRA_REPOS_EL8
-
-      - name: Run repoclosure on oVirt 4.5 resource.ovirt.org content
-        # We need to check only packages which are stored exclusively on resources.ovirt.org and omit packages,
-        # which are newly built on CBS due to bug in repoclosure around having different package versions on multiple
-        # repositories
-        run: |
-            dnf repoclosure --newest --refresh \
-              --check ovirt-45-upstream \
-              --repo centos-ovirt45 \
-              $EXTRA_REPOS_EL8 \
-              $NON_CBS_PACKAGES
-
-  centos-release-ovirt45-rocky-linux-8:
-    runs-on: ubuntu-latest
-    container:
-      image: rockylinux:8
-    steps:
-      - name: Enable repositories
-        run: |
-          # On Rocky, extras contains broken centos-release-nfv package
-          dnf install -y dnf-plugins-core
-          dnf config-manager --set-disabled extras
-
-          cat >/etc/yum.repos.d/CentOS-Stream-Extras.repo <<'EOF'
-          [cs8-extras]
-          name=CentOS Stream $releasever - Extras
-          mirrorlist=http://mirrorlist.centos.org/?release=8-stream&arch=$basearch&repo=extras&infra=$infra
-          #baseurl=http://mirror.centos.org/$contentdir/8-stream/extras/$basearch/os/
-          gpgcheck=1
-          enabled=1
-          gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-Official
-          EOF
-
-          cat >/etc/yum.repos.d/CentOS-Stream-Extras-common.repo <<'EOF'
-          [cs8-extras-common]
-          name=CentOS Stream $releasever - Extras common packages
-          mirrorlist=http://mirrorlist.centos.org/?release=8-stream&arch=$basearch&repo=extras-extras-common
-          #baseurl=http://mirror.centos.org/$contentdir/8-stream/extras/$basearch/extras-common/
-          gpgcheck=1
-          enabled=1
-          gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-Extras
-          EOF
-
-          echo "8-stream" > /etc/yum/vars/stream
-
-          dnf distro-sync -y
-          dnf install -y centos-release-ovirt45
-
-      - name: Enable required modules
-        run: |
-            dnf module enable -y javapackages-tools:201801
-            dnf module enable -y maven:3.5
-            dnf module enable -y pki-deps:10.6
-            dnf module enable -y postgresql:12
-            dnf module enable -y mod_auth_openidc:2.3
-            dnf module enable -y ruby:3.0
-            dnf module enable -y jaxb:4
-
-      - name: Run repoclosure on oVirt 4.5 CBS released content
-        run: |
-            dnf repoclosure --newest --refresh \
-              --check centos-ovirt45 \
-              --repo ovirt-45-upstream \
-              $EXTRA_REPOS_EL8
-
-      - name: Run repoclosure on oVirt 4.5 resource.ovirt.org content
-        # We need to check only packages which are stored exclusively on resources.ovirt.org and omit packages,
-        # which are newly built on CBS due to bug in repoclosure around having different package versions on multiple
-        # repositories
-        run: |
-            dnf repoclosure --newest --refresh \
-              --check ovirt-45-upstream \
-              --repo centos-ovirt45 \
-              $EXTRA_REPOS_EL8 \
-              $NON_CBS_PACKAGES
-
-  centos-release-ovirt45-alma-linux-8:
-    runs-on: ubuntu-latest
-    container:
-      image: almalinux:8
-    steps:
-      - name: Enable repositories
-        run: |
-          cat >/etc/yum.repos.d/CentOS-Stream-Extras.repo <<'EOF'
-          [cs8-extras]
-          name=CentOS Stream $releasever - Extras
-          mirrorlist=http://mirrorlist.centos.org/?release=8-stream&arch=$basearch&repo=extras&infra=$infra
-          #baseurl=http://mirror.centos.org/$contentdir/8-stream/extras/$basearch/os/
-          gpgcheck=1
-          enabled=1
-          gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-Official
-          EOF
-
-          cat >/etc/yum.repos.d/CentOS-Stream-Extras-common.repo <<'EOF'
-          [cs8-extras-common]
-          name=CentOS Stream $releasever - Extras common packages
-          mirrorlist=http://mirrorlist.centos.org/?release=8-stream&arch=$basearch&repo=extras-extras-common
-          #baseurl=http://mirror.centos.org/$contentdir/8-stream/extras/$basearch/extras-common/
-          gpgcheck=1
-          enabled=1
-          gpgkey=https://www.centos.org/keys/RPM-GPG-KEY-CentOS-SIG-Extras
-          EOF
-
-
-          echo "8-stream" > /etc/yum/vars/stream
-
-          dnf distro-sync -y
-          dnf install -y centos-release-ovirt45
-
-      - name: Enable required modules
-        run: |
-            dnf module enable -y javapackages-tools:201801
-            dnf module enable -y maven:3.5
-            dnf module enable -y pki-deps:10.6
-            dnf module enable -y postgresql:12
-            dnf module enable -y mod_auth_openidc:2.3
-            dnf module enable -y ruby:3.0
-            dnf module enable -y jaxb:4
-
-      - name: Run repoclosure on oVirt 4.5 CBS released content
-        run: |
-            dnf repoclosure --newest --refresh \
-              --check centos-ovirt45 \
-              --repo ovirt-45-upstream \
-              $EXTRA_REPOS_EL8
-
-      - name: Run repoclosure on oVirt 4.5 resource.ovirt.org content
-        # We need to check only packages which are stored exclusively on resources.ovirt.org and omit packages,
-        # which are newly built on CBS due to bug in repoclosure around having different package versions on multiple
-        # repositories
-        run: |
-            dnf repoclosure --newest --refresh \
-              --check ovirt-45-upstream \
-              --repo centos-ovirt45 \
-              $EXTRA_REPOS_EL8 \
-              $NON_CBS_PACKAGES
-
-
   centos-release-ovirt45-stream9:
     runs-on: ubuntu-latest
     container:
@@ -228,9 +53,6 @@ jobs:
     name: Report workflow success
     runs-on: ubuntu-latest
     needs:
-      - centos-release-ovirt45-stream8
-      - centos-release-ovirt45-rocky-linux-8
-      - centos-release-ovirt45-alma-linux-8
       - centos-release-ovirt45-stream9
 
     steps:
@@ -253,15 +75,9 @@ jobs:
     name: Report workflow failure
     runs-on: ubuntu-latest
     if: ${{ always() && (
-      needs.centos-release-ovirt45-stream8.result=='failure' ||
-      needs.centos-release-ovirt45-stream9.result=='failure' ||
-      needs.centos-release-ovirt45-rocky-linux-8.result=='failure' ||
-      needs.centos-release-ovirt45-alma-linux-8=='failure'
+      needs.centos-release-ovirt45-stream9.result=='failure'
       ) }}
     needs:
-      - centos-release-ovirt45-stream8
-      - centos-release-ovirt45-rocky-linux-8
-      - centos-release-ovirt45-alma-linux-8
       - centos-release-ovirt45-stream9
     steps:
       - name: Checkout

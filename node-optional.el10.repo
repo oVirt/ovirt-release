@@ -1,0 +1,25 @@
+# imgbased: set-enabled
+
+[onn-baseos]
+name = oVirt Node Optional packages from CentOS Stream $releasever - BaseOS
+metalink = https://mirrors.centos.org/metalink?repo=centos-baseos-$stream&arch=$basearch&protocol=https,http
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
+gpgcheck = 1
+countme = 1
+enabled = 1
+includepkgs =
+ # vdsm hooks
+ # https://bugzilla.redhat.com/show_bug.cgi?id=1947759
+ fcoe-utils
+
+
+[onn-sap]
+name = oVirt Node Optional packages from CentOS Stream $releasever - SAP
+baseurl = https://composes.stream.centos.org/stream-$releasever/production/latest-CentOS-Stream/compose/SAP/$basearch/os
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
+gpgcheck = 1
+enabled = 1
+includepkgs =
+ # vdsm hooks
+ # https://bugzilla.redhat.com/show_bug.cgi?id=1947759
+ vhostmd

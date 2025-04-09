@@ -32,6 +32,7 @@ EXTRA_DIST = \
 	LICENSE.md \
 	node-optional.el8.repo \
 	node-optional.el9.repo \
+	node-optional.el10.repo \
 	ovirt-release-master.spec \
 	ovirt-release-master.spec.in \
 	ovirt-release-host-node.spec.in \
@@ -47,9 +48,14 @@ pkgdata_DATA = \
 	ovirt-el9-stream-aarch64-deps.repo \
 	ovirt-el9-stream-ppc64le-deps.repo \
 	ovirt-el9-stream-x86_64-deps.repo \
+	ovirt-el10-stream-aarch64-deps.repo \
+	ovirt-el10-stream-ppc64le-deps.repo \
+	ovirt-el10-stream-s390x-deps.repo \
+	ovirt-el10-stream-x86_64-deps.repo \
 	ovirt-snapshot.repo \
 	node-optional.el8.repo \
 	node-optional.el9.repo \
+	node-optional.el10.repo \
 	$(NULL)
 
 dist_noinst_DATA = \
@@ -60,6 +66,10 @@ dist_noinst_DATA = \
 	$(srcdir)/ovirt-el9-stream-aarch64-deps.repo.in \
 	$(srcdir)/ovirt-el9-stream-ppc64le-deps.repo.in \
 	$(srcdir)/ovirt-el9-stream-x86_64-deps.repo.in \
+	$(srcdir)/ovirt-el10-stream-aarch64-deps.repo.in \
+	$(srcdir)/ovirt-el10-stream-ppc64le-deps.repo.in \
+	$(srcdir)/ovirt-el10-stream-s390x-deps.repo.in \
+	$(srcdir)/ovirt-el10-stream-x86_64-deps.repo.in \
 	$(srcdir)/ovirt-snapshot.repo.in \
 	$(NULL)
 

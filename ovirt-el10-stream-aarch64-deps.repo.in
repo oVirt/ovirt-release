@@ -1,0 +1,14 @@
+# CentOS 10 SIGs dependencies
+
+[ovirt-@OVIRT_SLOT@-centos-stream-nfv-openvswitch2-testing]
+name=CentOS Stream 10 - NFV OpenVSwitch 2 - testing
+baseurl=https://buildlogs.centos.org/centos/10-stream/nfv/$basearch/openvswitch-2/
+gpgcheck=0
+enabled=1
+module_hotfixes=1
+
+[ovirt-@OVIRT_SLOT@-centos-stream-ceph-squid-testing]
+name=CentOS Stream 10 - Ceph Squid - testing
+baseurl=https://buildlogs.centos.org/centos/10-stream/storage/$basearch/ceph-squid/
+gpgcheck=0
+enabled=1

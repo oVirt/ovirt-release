@@ -70,9 +70,11 @@ rm -f "%{buildroot}/usr/lib/systemd/system-preset/98-ovirt-host-node.preset"
 rm -rf "%{buildroot}/usr/share/ovirt-release-host-node"
 rm -f "%{buildroot}/usr/share/ovirt-release-master/node-optional.el8.repo"
 rm -f "%{buildroot}/usr/share/ovirt-release-master/node-optional.el9.repo"
+rm -f "%{buildroot}/usr/share/ovirt-release-master/node-optional.el10.repo"
 
 %post
 DISTVER="$(rpm --eval "%%dist"|cut -c2-)"
+CENTOS="$(rpm --eval "%%centos")"
 ARCH="$(rpm --eval "%%_arch")"
 ID="$(source /etc/os-release && echo $ID)"
 if rpm --eval "%%dist" | grep -qFi 'el'; then
@@ -82,7 +84,18 @@ else
 	exit 1
 fi
 
-if [[ "${DISTVER::3}" == "el8" ]] ; then
+install -m 644 "%{_datadir}/%{package_name}/ovirt-${DISTVER::4}-stream-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+
+
+if [ $CENTOS -gt 8 ]
+then
+	# centos macro is defined on centos-like distributions
+	# Ensuring crb repository is enabled
+	dnf config-manager --set-enabled crb
+	# Ensuring resilientstorage repository is enabled
+	dnf config-manager --set-enabled resilientstorage
+else
+    #el8
 	if [ -f /etc/dnf/vars/stream ] ; then
 		install -m 644 "%{_datadir}/%{package_name}/ovirt-el8-stream-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
 	else
@@ -105,19 +118,14 @@ if [[ "${DISTVER::3}" == "el8" ]] ; then
 	fi
 fi
 
-if [[ "${DISTVER::3}" == "el9" ]] ; then
-	install -m 644 "%{_datadir}/%{package_name}/ovirt-el9-stream-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-	if [ $(rpm --eval "%%centos") == 9 ]
-	then
-		# centos macro is defined on centos-like distributions
-		# Ensuring crb repository is enabled
-		dnf config-manager --set-enabled crb
-		# Ensuring resilientstorage repository is enabled
-		dnf config-manager --set-enabled resilientstorage
-	fi
-fi
-
 install -m 644 "%{_datadir}/%{package_name}/ovirt-snapshot.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
+
+if [ $CENTOS -gt 9 ]
+then
+	# appliance and node not available yet on el10
+	dnf config-manager --set-disabled ovirt-node-master-snapshot
+	dnf config-manager --set-disabled ovirt-appliance-master-snapshot
+fi
 
 
 %files

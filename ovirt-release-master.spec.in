@@ -128,6 +128,14 @@ then
 fi
 
 
+%postun
+if [ $1 -eq 0 ] ; then
+	# this is an uninstall, not an update
+	mv %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo.rpmsave
+	mv %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo %{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo.rpmsave
+fi
+
+
 %files
 %{_datadir}/%{package_name}/ovirt*
 # We do not know what distribution we are installed at,

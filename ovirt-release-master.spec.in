@@ -38,6 +38,7 @@ BuildArch:	noarch
 
 BuildRequires:	automake
 BuildRequires:	autoconf
+BuildRequires:	make
 Requires:	system-release
 Requires:	tar
 Requires:	python3

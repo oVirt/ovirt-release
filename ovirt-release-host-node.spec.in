@@ -39,6 +39,7 @@ Source0:	%{package_name}-%{package_version}.tar.gz
 
 BuildRequires:	automake
 BuildRequires:	autoconf
+BuildRequires:	make
 BuildRequires:	systemd
 
 Requires:	system-release

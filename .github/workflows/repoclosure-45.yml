@@ -23,6 +23,14 @@ env:
     --repo centos-opstools
     --repo centos-openstack-yoga
 
+  EXTRA_REPOS_EL10: >
+    --repo appstream
+    --repo baseos
+    --repo resilientstorage
+    --repo crb
+    --repo centos-ceph-squid
+    --repo centos-nfv-openvswitch
+
   NON_CBS_PACKAGES: >
     --pkg java-client-kubevirt
     --pkg java-ovirt-engine-sdk4
@@ -30,10 +38,13 @@ env:
     --pkg ovirt-engine-appliance
 
 jobs:
-  centos-release-ovirt45-stream9:
+  centos-release-ovirt45:
+    strategy:
+      matrix:
+        version: [9, 10]
     runs-on: ubuntu-latest
     container:
-      image: quay.io/centos/centos:stream9
+      image: quay.io/centos/centos:stream${{ matrix.version }}
 
     steps:
       - name: Enable repositories
@@ -47,13 +58,13 @@ jobs:
             dnf repoclosure --newest --refresh \
               --check centos-ovirt45 \
               --check ovirt-45-upstream \
-              $EXTRA_REPOS_EL9
+              $EXTRA_REPOS_EL${{ matrix.version }}
 
   close-45-issue-on-success:
     name: Report workflow success
     runs-on: ubuntu-latest
     needs:
-      - centos-release-ovirt45-stream9
+      - centos-release-ovirt45
 
     steps:
       - name: Checkout
@@ -75,10 +86,10 @@ jobs:
     name: Report workflow failure
     runs-on: ubuntu-latest
     if: ${{ always() && (
-      needs.centos-release-ovirt45-stream9.result=='failure'
+      needs.centos-release-ovirt45.result=='failure'
       ) }}
     needs:
-      - centos-release-ovirt45-stream9
+      - centos-release-ovirt45
     steps:
       - name: Checkout
         uses: ovirt/checkout-action@main

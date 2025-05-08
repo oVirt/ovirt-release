@@ -1,5 +1,11 @@
 # CentOS 10 SIGs dependencies
 
+[ovirt-@OVIRT_SLOT@-centos-stream-ovirt45-testing]
+name=CentOS Stream 10 - oVirt 4.5 - testing
+baseurl=https://buildlogs.centos.org/centos/10-stream/virt/$basearch/ovirt-45/
+gpgcheck=0
+enabled=1
+
 [ovirt-@OVIRT_SLOT@-centos-stream-nfv-openvswitch2-testing]
 name=CentOS Stream 10 - NFV OpenVSwitch 2 - testing
 baseurl=https://buildlogs.centos.org/centos/10-stream/nfv/$basearch/openvswitch-2/

@@ -10,11 +10,15 @@ on:
   pull_request:
 
 jobs:
-  build-el9:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [9, 10]
     # Building only on master as we don't support el9 in 4.4.
     runs-on: ubuntu-latest
     container:
-      image: quay.io/centos/centos:stream9
+      image: quay.io/centos/centos:stream${{ matrix.version }}
     if: contains(github.base_ref, 'master') || contains(github.ref, 'master')
     steps:
       - name: Prepare env

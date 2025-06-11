@@ -40,6 +40,7 @@ env:
 jobs:
   centos-release-ovirt45:
     strategy:
+      fail-fast: false
       matrix:
         version: [9, 10]
     runs-on: ubuntu-latest

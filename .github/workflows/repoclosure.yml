@@ -14,6 +14,7 @@ on:
 jobs:
   copr-ovirt-master-snapshot:
     strategy:
+      fail-fast: false
       matrix:
         include:
           - version: 9
@@ -53,6 +54,7 @@ jobs:
 
   centos-release-ovirt45:
     strategy:
+      fail-fast: false
       matrix:
         include:
           - version: 9

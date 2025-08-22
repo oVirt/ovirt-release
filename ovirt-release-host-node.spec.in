@@ -55,11 +55,14 @@ Requires(postun):	firewalld
 Requires:	ovirt-node-ng-nodectl
 Requires:	firewalld
 
+# Gluster is not build since EL10
+%if 0%{?rhel} <= 9
 Requires:	gluster-ansible-roles
+Requires:	vdsm-gluster
+%endif
 
 Requires:	imgbased
 Requires:	ovirt-host
-Requires:	vdsm-gluster
 Requires:	python3-ovirt-engine-sdk4
 
 # Additional packages for EFI support

@@ -74,7 +74,6 @@ touch "%{buildroot}%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencie
 
 rm -f "%{buildroot}/usr/lib/systemd/system-preset/98-ovirt-host-node.preset"
 rm -rf "%{buildroot}/usr/share/ovirt-release-host-node"
-rm -f "%{buildroot}/usr/share/ovirt-release-master/node-optional.el8.repo"
 rm -f "%{buildroot}/usr/share/ovirt-release-master/node-optional.el9.repo"
 rm -f "%{buildroot}/usr/share/ovirt-release-master/node-optional.el10.repo"
 
@@ -91,42 +90,18 @@ else
 fi
 
 install -m 644 "%{_datadir}/%{package_name}/ovirt-${DISTVER::4}-stream-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
+install -m 644 "%{_datadir}/%{package_name}/ovirt-snapshot.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
 
-
-if [ $CENTOS -gt 8 ]
+if [ $CENTOS -ge 9 ]
 then
 	# centos macro is defined on centos-like distributions
 	# Ensuring crb repository is enabled
 	dnf config-manager --set-enabled crb
 	# Ensuring resilientstorage repository is enabled
 	dnf config-manager --set-enabled resilientstorage
-else
-    #el8
-	if [ -f /etc/dnf/vars/stream ] ; then
-		install -m 644 "%{_datadir}/%{package_name}/ovirt-el8-stream-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-	else
-		install -m 644 "%{_datadir}/%{package_name}/ovirt-el8-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-	fi
-	if [ -f /etc/yum.repos.d/CentOS-PowerTools.repo ] ; then
-		sed -i "s:enabled=0:enabled=1:" /etc/yum.repos.d/CentOS-PowerTools.repo
-	fi
-	if [ -f /etc/yum.repos.d/CentOS-Linux-PowerTools.repo ] ; then
-		sed -i "s:enabled=0:enabled=1:" /etc/yum.repos.d/CentOS-Linux-PowerTools.repo
-	fi
-	if [ -f /etc/yum.repos.d/CentOS-Stream-PowerTools.repo ] ; then
-		sed -i "s:enabled=0:enabled=1:" /etc/yum.repos.d/CentOS-Stream-PowerTools.repo
-	fi
-	if [ -f /etc/yum.repos.d/almalinux-powertools.repo ] ; then
-		dnf config-manager --set-enabled powertools
-	fi
-	if [ -f /etc/yum.repos.d/Rocky-PowerTools.repo ] ; then
-		dnf config-manager --set-enabled powertools
-	fi
 fi
 
-install -m 644 "%{_datadir}/%{package_name}/ovirt-snapshot.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
-
-if [ $CENTOS -gt 9 ]
+if [ $CENTOS -ge 10 ]
 then
 	# appliance and node not available yet on el10
 	dnf config-manager --set-disabled ovirt-node-master-snapshot
@@ -136,7 +111,6 @@ then
 		dnf config-manager --set-enabled epel
 	fi
 fi
-
 
 %postun
 if [ $1 -eq 0 ] ; then

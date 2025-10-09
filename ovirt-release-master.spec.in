@@ -44,6 +44,11 @@ Requires:	tar
 Requires:	python3
 Requires(post): python3-dnf-plugins-core
 
+# On CentOS / RHEL 10, we require packages from EPEL
+%if 0%{?rhel} >= 10
+Requires:	epel-release
+%endif
+
 
 %description
 This package contains the yum configuration for oVirt repositories
@@ -126,6 +131,10 @@ then
 	# appliance and node not available yet on el10
 	dnf config-manager --set-disabled ovirt-node-master-snapshot
 	dnf config-manager --set-disabled ovirt-appliance-master-snapshot
+	# Enable EPEL if it would have been disabled
+	if [ -f /etc/yum.repos.d/epel.repo ] ; then
+		dnf config-manager --set-enabled epel
+	fi
 fi
 
 

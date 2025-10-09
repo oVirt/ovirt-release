@@ -28,6 +28,7 @@ env:
     --repo baseos
     --repo resilientstorage
     --repo crb
+    --repo epel
     --repo centos-ceph-squid
     --repo centos-nfv-openvswitch
 

@@ -27,6 +27,7 @@ jobs:
               --repo ovirt-master-centos-stream-ovirt45-testing
           - version: 10
             additional_repos: |
+              --repo epel \
               --repo ovirt-master-centos-stream-ceph-squid-testing \
               --repo ovirt-master-centos-stream-nfv-openvswitch2-testing \
               --repo ovirt-master-centos-stream-ovirt45-testing
@@ -66,6 +67,7 @@ jobs:
               --repo centos-openstack-yoga
           - version: 10
             additional_repos: |
+              --repo epel \
               --repo centos-ceph-squid \
               --repo centos-nfv-openvswitch
     runs-on: ubuntu-latest

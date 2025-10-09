@@ -43,10 +43,6 @@ PRODUCT_NAME=oVirt\ Packages\ Repository
 AC_CONFIG_FILES([
             Makefile
             host-node/Makefile
-            ovirt-el8-ppc64le-deps.repo
-            ovirt-el8-x86_64-deps.repo
-            ovirt-el8-stream-ppc64le-deps.repo
-            ovirt-el8-stream-x86_64-deps.repo
             ovirt-el9-stream-aarch64-deps.repo
             ovirt-el9-stream-ppc64le-deps.repo
             ovirt-el9-stream-x86_64-deps.repo

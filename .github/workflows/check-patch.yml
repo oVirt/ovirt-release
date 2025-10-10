@@ -14,11 +14,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        os: [centos, almalinux]
         version: [9, 10]
-    # Building only on master as we don't support el9 in 4.4.
+        include:
+          - os: centos
+            image: "quay.io/centos/centos:stream"
+          - os: almalinux
+            image: "quay.io/almalinuxorg/almalinux:"
     runs-on: ubuntu-latest
     container:
-      image: quay.io/centos/centos:stream${{ matrix.version }}
+      image: ${{ matrix.image }}${{ matrix.version }}
     if: contains(github.base_ref, 'master') || contains(github.ref, 'master')
     steps:
       - name: Prepare env
@@ -62,7 +67,13 @@ jobs:
             dnf install -y exported-artifacts/ovirt-release-master-4*noarch.rpm
             dnf --downloadonly install -y exported-artifacts/*noarch.rpm exported-artifacts/*x86_64.rpm
 
+      - name: Prepare artifacts for upload
+        run: |
+            which createrepo_c || dnf install -y createrepo_c
+            test -d exported-artifacts/repodata || createrepo_c exported-artifacts
+
       - name: Upload artifacts
-        uses: ovirt/upload-rpms-action@main
+        uses: actions/upload-artifact@v4
         with:
-          directory: exported-artifacts
+          name: rpm-${{ matrix.os }}-el${{ matrix.version }}
+          path: exported-artifacts

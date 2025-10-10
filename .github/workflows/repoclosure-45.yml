@@ -1,5 +1,5 @@
 ---
-name: Check repository closure oVirt 4.5
+name: Check repository closure oVirt 4.5 Release
 permissions:
   issues: write
   pull-requests: read
@@ -43,10 +43,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        os: [centos, almalinux]
         version: [9, 10]
+        include:
+          - os: centos
+            image: "quay.io/centos/centos:stream"
+          - os: almalinux
+            image: "quay.io/almalinuxorg/almalinux:"
     runs-on: ubuntu-latest
     container:
-      image: quay.io/centos/centos:stream${{ matrix.version }}
+      image: ${{ matrix.image }}${{ matrix.version }}
 
     steps:
       - name: Enable repositories

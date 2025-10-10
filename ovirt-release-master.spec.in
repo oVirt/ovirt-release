@@ -97,8 +97,6 @@ then
 	# centos macro is defined on centos-like distributions
 	# Ensuring crb repository is enabled
 	dnf config-manager --set-enabled crb
-	# Ensuring resilientstorage repository is enabled
-	dnf config-manager --set-enabled resilientstorage
 fi
 
 if [ $CENTOS -ge 10 ]

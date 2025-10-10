@@ -57,7 +57,6 @@ jobs:
               --check copr:copr.fedorainfracloud.org:ovirt:ovirt-master-snapshot \
               --repo appstream \
               --repo baseos \
-              --repo resilientstorage \
               --repo crb \
               ${{ matrix.additional_repos }}
 
@@ -106,7 +105,6 @@ jobs:
               --check ovirt-45-upstream-testing \
               --repo appstream \
               --repo baseos \
-              --repo resilientstorage \
               --repo crb \
               ${{ matrix.additional_repos }}
 

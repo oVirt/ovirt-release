@@ -88,10 +88,21 @@ jobs:
       image: ${{ matrix.image }}${{ matrix.version }}
 
     steps:
-      - name: Enable repositories
+      - name: Distro-sync
         run: |
             dnf distro-sync -y
-            dnf --repofrompath=extras-common-testing,https://buildlogs.centos.org/centos/${{ matrix.version }}-stream/extras/x86_64/extras-common/  install -y --nogpgcheck centos-release-ovirt45-testing
+
+      - name: Enable repositories CentOS
+        if: matrix.os == 'centos'
+        run: |
+            dnf --repofrompath=extras-common-testing,https://buildlogs.centos.org/centos/${{ matrix.version }}-stream/extras/x86_64/extras-common/ install -y --nogpgcheck centos-release-ovirt45-testing
+            dnf config-manager --set-enabled centos-ovirt45-testing
+            dnf config-manager --set-enabled ovirt-45-upstream-testing
+
+      - name: Enable repositories AlmaLinux
+        if: matrix.os == 'almalinux'
+        run: |
+            dnf --repofrompath=extras-common-testing,https://repo.almalinux.org/almalinux/${{ matrix.version }}/extras/x86_64/os/ install -y --nogpgcheck centos-release-ovirt45-testing
             dnf config-manager --set-enabled centos-ovirt45-testing
             dnf config-manager --set-enabled ovirt-45-upstream-testing
 

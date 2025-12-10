@@ -42,6 +42,8 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ${{ matrix.container }}${{ matrix.version }}
+      # Workaround for https://github.com/AlmaLinux/container-images/issues/71
+      options: --platform linux/amd64
 
     steps:
       - name: Enable repositories

@@ -26,7 +26,6 @@ env:
   EXTRA_REPOS_EL10: >
     --repo appstream
     --repo baseos
-    --repo resilientstorage
     --repo crb
     --repo epel
     --repo centos-ceph-squid

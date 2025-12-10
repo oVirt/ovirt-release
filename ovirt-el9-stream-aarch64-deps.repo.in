@@ -41,3 +41,4 @@ exclude=
  rdo-openvswitch
  rdo-ovn
  rdo-ovn-central
+ rdo-ovn-host

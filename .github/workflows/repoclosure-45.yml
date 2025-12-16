@@ -12,25 +12,6 @@ on:
     - cron: '0 6 * * 1'
 
 env:
-  EXTRA_REPOS_EL9: >
-    --repo appstream
-    --repo baseos
-    --repo resilientstorage
-    --repo crb
-    --repo centos-ceph-pacific
-    --repo centos-gluster10
-    --repo centos-nfv-openvswitch
-    --repo centos-opstools
-    --repo centos-openstack-yoga
-
-  EXTRA_REPOS_EL10: >
-    --repo appstream
-    --repo baseos
-    --repo crb
-    --repo epel
-    --repo centos-ceph-squid
-    --repo centos-nfv-openvswitch
-
   NON_CBS_PACKAGES: >
     --pkg java-client-kubevirt
     --pkg java-ovirt-engine-sdk4
@@ -49,6 +30,28 @@ jobs:
             image: "quay.io/centos/centos:stream"
           - os: almalinux
             image: "quay.io/almalinuxorg/almalinux:"
+            additional_packages: almalinux-release-devel
+            additional_repos_os: |-
+              --repo devel
+          - version: 9
+            additional_repos: |-
+              --repo appstream \
+              --repo baseos \
+              --repo resilientstorage \
+              --repo crb \
+              --repo centos-ceph-pacific \
+              --repo centos-gluster10 \
+              --repo centos-nfv-openvswitch \
+              --repo centos-opstools \
+              --repo centos-openstack-yoga
+          - version: 10
+            additional_repos: |-
+              --repo appstream \
+              --repo baseos \
+              --repo crb \
+              --repo epel \
+              --repo centos-ceph-squid \
+              --repo centos-nfv-openvswitch
     runs-on: ubuntu-latest
     container:
       image: ${{ matrix.image }}${{ matrix.version }}
@@ -61,13 +64,18 @@ jobs:
             dnf distro-sync -y
             dnf install -y centos-release-ovirt45
 
+      - name: Install additional packages
+        if: ${{ matrix.additional_packages }}
+        run: |
+            dnf install -y ${{ matrix.additional_packages }}
 
       - name: Run repoclosure on oVirt 4.5 Released content
         run: |
             dnf repoclosure --newest --refresh \
               --check centos-ovirt45 \
               --check ovirt-45-upstream \
-              $EXTRA_REPOS_EL${{ matrix.version }}
+              ${{ matrix.additional_repos_os }} \
+              ${{ matrix.additional_repos }}
 
   close-45-issue-on-success:
     name: Report workflow success

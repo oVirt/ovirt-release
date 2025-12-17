@@ -73,15 +73,17 @@ jobs:
             image: "quay.io/centos/centos:stream"
           - os: almalinux
             image: "quay.io/almalinuxorg/almalinux:"
+            additional_repos_os: |-
+              --repo devel
           - version: 9
-            additional_repos: |
+            additional_repos: |-
               --repo centos-ceph-pacific \
               --repo centos-gluster10-test \
               --repo centos-nfv-openvswitch \
               --repo centos-opstools \
               --repo centos-openstack-yoga
           - version: 10
-            additional_repos: |
+            additional_repos: |-
               --repo epel \
               --repo centos-ceph-squid \
               --repo centos-nfv-openvswitch
@@ -107,6 +109,7 @@ jobs:
             dnf --repofrompath=extras-common-testing,https://repo.almalinux.org/almalinux/${{ matrix.version }}/extras/x86_64/os/ install -y --nogpgcheck centos-release-ovirt45-testing
             dnf config-manager --set-enabled centos-ovirt45-testing
             dnf config-manager --set-enabled ovirt-45-upstream-testing
+            dnf install -y almalinux-release-devel
 
 
       - name: Run repoclosure on CentOS Virtualization SIG - oVirt 45 - testing
@@ -119,6 +122,7 @@ jobs:
               --repo appstream \
               --repo baseos \
               --repo crb \
+              ${{ matrix.additional_repos_os }} \
               ${{ matrix.additional_repos }}
 
   close-issue-on-success:

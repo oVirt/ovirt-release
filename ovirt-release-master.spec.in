@@ -101,9 +101,8 @@ fi
 
 if [ $CENTOS -ge 10 ]
 then
-	# appliance and node not available yet on el10
+	# node not available on el10
 	dnf config-manager --set-disabled ovirt-node-master-snapshot
-	dnf config-manager --set-disabled ovirt-appliance-master-snapshot
 	# Enable EPEL if it would have been disabled
 	if [ -f /etc/yum.repos.d/epel.repo ] ; then
 		dnf config-manager --set-enabled epel

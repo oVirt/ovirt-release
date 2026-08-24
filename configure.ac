@@ -52,6 +52,5 @@ AC_CONFIG_FILES([
             ovirt-el10-stream-x86_64-deps.repo
             ovirt-release-master.spec
             ovirt-release-host-node.spec
-            ovirt-snapshot.repo
 ])
 AC_OUTPUT

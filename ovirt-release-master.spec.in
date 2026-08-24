@@ -90,7 +90,21 @@ else
 fi
 
 install -m 644 "%{_datadir}/%{package_name}/ovirt-${DISTVER::4}-stream-${ARCH}-deps.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-dependencies.repo"
-install -m 644 "%{_datadir}/%{package_name}/ovirt-snapshot.repo" "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
+
+# Select the distribution tag for the snapshot repo:
+# - CentOS Stream uses the "s" suffix (el9s, el10s)
+# - Other EL derivatives (AlmaLinux, Rocky Linux, Oracle Linux, RHEL, etc.)
+#   use the plain variant (el9, el10)
+case "$ID" in
+	centos)
+		OVIRT_DIST="${DISTVER}s"
+		;;
+	*)
+		OVIRT_DIST="${DISTVER}"
+		;;
+esac
+sed "s/@OVIRT_DIST@/${OVIRT_DIST}/g" "%{_datadir}/%{package_name}/ovirt-snapshot.repo.in" > "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
+chmod 644 "%{_sysconfdir}/yum.repos.d/ovirt-%{ovirt_version}-snapshot.repo"
 
 if [ $CENTOS -ge 9 ]
 then

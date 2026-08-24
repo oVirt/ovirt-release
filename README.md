@@ -1,5 +1,5 @@
 # oVirt Release
-[![Check patch](https://github.com/oVirt/ovirt-release/actions/workflows/check-patch.yml/badge.svg)](https://github.com/oVirt/ovirt-release/actions/workflows/check-patch.yml)
+[![Build and publish ovirt-release RPMs](https://github.com/oVirt/ovirt-release/actions/workflows/build.yml/badge.svg)](https://github.com/oVirt/ovirt-release/actions/workflows/build.yml)
 
 Welcome to the oVirt Release source repository. This repository is hosted on [GitHub:ovirt-release](https://github.com/oVirt/ovirt-release).
 
@@ -55,8 +55,8 @@ Reporting here the real time status of the project development branch sanity:
 | [ovirt-node-ng-image](https://github.com/oVirt/ovirt-node-ng-image) | [![Build](https://github.com/oVirt/ovirt-node-ng-image/actions/workflows/build.yml/badge.svg)](https://github.com/oVirt/ovirt-node-ng-image/actions/workflows/build.yml) |
 | [ovirt-openvswitch](https://github.com/oVirt/ovirt-openvswitch) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-openvswitch/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-openvswitch/) |
 | [ovirt-provider-ovn](https://github.com/oVirt/ovirt-provider-ovn) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-provider-ovn/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-provider-ovn/) |
-| [ovirt-release-master](https://github.com/oVirt/ovirt-release) | [![Check patch](https://github.com/oVirt/ovirt-release/actions/workflows/check-patch.yml/badge.svg)](https://github.com/oVirt/ovirt-release/actions/workflows/check-patch.yml) |
-| [ovirt-release-host-node](https://github.com/oVirt/ovirt-release) | [![Check patch](https://github.com/oVirt/ovirt-release/actions/workflows/check-patch.yml/badge.svg)](https://github.com/oVirt/ovirt-release/actions/workflows/check-patch.yml) |
+| [ovirt-release-master](https://github.com/oVirt/ovirt-release) | [![Build and publish ovirt-release RPMs](https://github.com/oVirt/ovirt-release/actions/workflows/build.yml/badge.svg)](https://github.com/oVirt/ovirt-release/actions/workflows/build.yml) |
+| [ovirt-release-host-node](https://github.com/oVirt/ovirt-release) | [![Build and publish ovirt-release RPMs](https://github.com/oVirt/ovirt-release/actions/workflows/build.yml/badge.svg)](https://github.com/oVirt/ovirt-release/actions/workflows/build.yml) |
 | [ovirt-setup-lib](https://github.com/oVirt/ovirt-setup-lib) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-setup-lib/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-setup-lib/) |
 | [ovirt-vmconsole](https://github.com/oVirt/ovirt-vmconsole) |  [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-vmconsole/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-vmconsole/) |
 | [ovirt-web-ui](https://github.com/oVirt/ovirt-web-ui) | [![Copr build status](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-web-ui/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/ovirt/ovirt-master-snapshot/package/ovirt-web-ui/) |

@@ -1,5 +1,5 @@
 ---
-name: Check patch
+name: Build and publish ovirt-release RPMs
 
 permissions:
   pull-requests: read
@@ -7,24 +7,36 @@ permissions:
 
 on:
   push:
+    branches: [master]
+    tags: ['*']
   pull_request:
+    branches: [master]
+  workflow_dispatch:
 
 jobs:
   build:
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        os: [centos, almalinux]
-        version: [9, 10]
         include:
-          - os: centos
-            image: "quay.io/centos/centos:stream"
-          - os: almalinux
-            image: "quay.io/almalinuxorg/almalinux:"
-    runs-on: ubuntu-latest
+          - name: almalinux-9
+            shortcut: el9
+            image: "quay.io/almalinuxorg/almalinux:9"
+          - name: almalinux-10
+            shortcut: el10
+            image: "quay.io/almalinuxorg/almalinux:10"
+          - name: centos-stream-9
+            shortcut: el9s
+            image: "quay.io/centos/centos:stream9"
+          - name: centos-stream-10
+            shortcut: el10s
+            image: "quay.io/centos/centos:stream10"
+
+    name: Build on ${{ matrix.name }}
     container:
-      image: ${{ matrix.image }}${{ matrix.version }}
-    if: contains(github.base_ref, 'master') || contains(github.ref, 'master')
+      image: ${{ matrix.image }}
+
     steps:
       - name: Prepare env
         run: |
@@ -32,7 +44,7 @@ jobs:
             dnf distro-sync -y
             dnf install -y --setopt=tsflags=nodocs autoconf automake gettext-devel git systemd make git rpm-build
 
-      - uses: ovirt/checkout-action@main
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -52,9 +64,18 @@ jobs:
         run: |
             mkdir -p ${PWD}/tmp.repos/SOURCES
             cp ovirt-release*.tar.gz ${PWD}/tmp.repos/SOURCES
-            SUFFIX=$(date -u +%Y%m%d%H%M%S).git$(git rev-parse --short HEAD)
-            rpmbuild -D "_topdir ${PWD}/tmp.repos" -D "release_suffix .${SUFFIX}" -ba ovirt-release-master.spec
-            rpmbuild -D "_topdir ${PWD}/tmp.repos" -D "release_suffix .${SUFFIX}" -ba ovirt-release-host-node.spec
+            TAG=$(git tag --points-at HEAD | head -1)
+            if [[ -n "$TAG" ]]; then
+              if [[ "$TAG" =~ -([0-9]+)$ ]]; then
+                SUFFIX=".${BASH_REMATCH[1]}"
+              else
+                SUFFIX=".1"
+              fi
+            else
+              SUFFIX=".$(date --utc +%Y%m%d%H%M%S).git$(git rev-parse --short HEAD)"
+            fi
+            rpmbuild -D "_topdir ${PWD}/tmp.repos" -D "release_suffix ${SUFFIX}" -ba ovirt-release-master.spec
+            rpmbuild -D "_topdir ${PWD}/tmp.repos" -D "release_suffix ${SUFFIX}" -ba ovirt-release-host-node.spec
 
       - name: Collect artifacts
         run: |
@@ -67,13 +88,17 @@ jobs:
             dnf install -y exported-artifacts/ovirt-release-master-4*noarch.rpm
             dnf --downloadonly install -y exported-artifacts/*noarch.rpm exported-artifacts/*x86_64.rpm
 
-      - name: Prepare artifacts for upload
-        run: |
-            which createrepo_c || dnf install -y createrepo_c
-            test -d exported-artifacts/repodata || createrepo_c exported-artifacts
-
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
-          name: rpm-${{ matrix.os }}-el${{ matrix.version }}
+          name: rpm-${{ matrix.shortcut }}
           path: exported-artifacts
+
+  publish-rpms:
+    permissions:
+      artifact-metadata: read
+    needs: build
+    if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
+    uses: ovirt/ovirt-workflows/.github/workflows/publish-rpms.yml@main
+    secrets: inherit
+

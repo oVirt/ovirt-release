@@ -47,9 +47,12 @@ pkgdata_DATA = \
 	ovirt-el10-stream-ppc64le-deps.repo \
 	ovirt-el10-stream-s390x-deps.repo \
 	ovirt-el10-stream-x86_64-deps.repo \
-	ovirt-snapshot.repo \
 	node-optional.el9.repo \
 	node-optional.el10.repo \
+	$(NULL)
+
+dist_pkgdata_DATA = \
+	ovirt-snapshot.repo.in \
 	$(NULL)
 
 dist_noinst_DATA = \
@@ -60,7 +63,6 @@ dist_noinst_DATA = \
 	$(srcdir)/ovirt-el10-stream-ppc64le-deps.repo.in \
 	$(srcdir)/ovirt-el10-stream-s390x-deps.repo.in \
 	$(srcdir)/ovirt-el10-stream-x86_64-deps.repo.in \
-	$(srcdir)/ovirt-snapshot.repo.in \
 	$(NULL)
 
 # vim: ts=8

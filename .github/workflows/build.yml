@@ -130,6 +130,6 @@ jobs:
           username: ${{ secrets.SSH_USERNAME_FOR_RESOURCES_OVIRT_ORG }}
           key: ${{ secrets.SSH_KEY_FOR_RESOURCES_OVIRT_ORG }}
           source: ovirt-release-master.rpm
-          target: /pub/ovirt-master-snapshot/rpm/${{ matrix.shortcut }}/
+          target: ovirt-master-snapshot/rpm/${{ matrix.shortcut }}/
           create_target_dir: yes
           delete_before_upload: yes
